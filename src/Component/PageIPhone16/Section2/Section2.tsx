@@ -91,11 +91,7 @@ function Section2() {
   };
   return (
     <div style={{ backgroundColor: "black" }}>
-      <img
-        src="https://cdn2.cellphones.com.vn/insecure/rs:fill:768:0/q:90/plain/https://cellphones.com.vn/media/wysiwyg/bang-gia.png"
-        alt=""
-        style={{ display: "block", margin: "auto" }}
-      />
+      <h4 className={style.title}>Hệ Sinh Thái Apple</h4>
       <div className={style.carousel_wrapper}>
         <Carousel autoplay autoplaySpeed={2000} {...settings}>
           {ecosystemApple.map((product, index) => (

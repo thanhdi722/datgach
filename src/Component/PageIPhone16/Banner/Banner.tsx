@@ -7,7 +7,12 @@ import Image from "next/image";
 const Banner: React.FC = () => {
   return (
     <div style={{ width: "100vw", height: "max-content" }}>
-      <Image src={banner} alt="Description of image" layout="responsive" />
+      <Image
+        src={banner}
+        alt="Description of image"
+        layout="responsive"
+        style={{ width: "100vw" }}
+      />
     </div>
   );
 };
