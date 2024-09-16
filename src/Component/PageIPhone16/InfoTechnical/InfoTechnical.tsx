@@ -5,7 +5,7 @@ import iphone16Green from "../../../assets/images/iphone16_Green.png";
 import iphone16Black from "../../../assets/images/iphone16_Black.png";
 import iphone16ProBlack from "../../../assets/images/iphone16_BlackPro.png";
 import iphone16WhitePro from "../../../assets/images/iphone16_Whitte.png";
-import iphone16White from "../../../assets/images/iphone16_Whitte.png";
+import iphone16White from "../../../assets/images/iphone16_White.png";
 import iphone16Pink from "../../../assets/images/iphone16_Pink.png";
 import iphone16Blue from "../../../assets/images/iphone16_blue.png";
 import iphone16TitanPro from "../../../assets/images/iphone16_titan.png";
@@ -94,10 +94,10 @@ export default function InfoTechnical() {
         },
       },
       images: {
-        "Titan Đen": iphone16Black,
+        "Titan Đen": iphone16ProBlack,
         "Titan Sa Mạc": iphone16DesertPro,
         "Titan Tự Nhiên": iphone16TitanPro,
-        "Titan Trắng": iphone16White,
+        "Titan Trắng": iphone16WhitePro,
       },
       capacities: ["1TB", "512GB", "256GB", "128GB"],
       colors: [
