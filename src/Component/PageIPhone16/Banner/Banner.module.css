@@ -45,6 +45,11 @@
   position: relative;
   width: 70vw;
 }
+.timeline {
+  margin: 0 auto;
+  width: 60vw;
+  padding: 20px 0;
+}
 @media screen and (max-width: 1440px) {
   .group_btn {
     display: flex;

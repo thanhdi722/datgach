@@ -1,0 +1,23 @@
+.imageWrapper {
+  display: block;
+  width: 60vw;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.container {
+  background-color: #1d1d1f;
+  overflow: hidden;
+  width: 100vw;
+}
+
+@media (max-width: 768px) {
+  .imageEdit {
+    transform: scale(1.6);
+  }
+  .imageWrapper {
+    display: block;
+    width: 100vw;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+}
