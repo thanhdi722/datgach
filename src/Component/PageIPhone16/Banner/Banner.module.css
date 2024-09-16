@@ -1,0 +1,77 @@
+.bannerPC {
+  display: block;
+}
+.bannerMB {
+  display: none;
+}
+.group_btn {
+  display: flex;
+  height: 60px;
+  margin: auto;
+  justify-content: center;
+  width: 65vw;
+  z-index: 99;
+  margin-top: -10vh;
+}
+.btn_scroll {
+  background: transparent;
+  border: 0;
+  bottom: auto;
+  cursor: pointer;
+  height: 100%;
+  left: auto;
+  position: static;
+  transform: translate(0);
+  width: 50%;
+  z-index: 99;
+}
+.btn_open_modal {
+  background: transparent;
+  border: 0;
+  bottom: auto;
+  cursor: pointer;
+  height: 100%;
+  left: auto;
+  position: static;
+  transform: translate(0);
+  width: 50%;
+  z-index: 99;
+}
+.cps-container {
+  box-sizing: border-box;
+  display: block;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+  width: 70vw;
+}
+@media screen and (max-width: 1440px) {
+  .group_btn {
+    display: flex;
+    height: 60px;
+    margin: auto;
+    justify-content: center;
+    width: 65vw;
+    z-index: 99;
+    margin-top: -11vh;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .bannerPC {
+    display: none;
+  }
+  .bannerMB {
+    display: block;
+  }
+  .group_btn {
+    display: flex;
+    height: 60px;
+    z-index: 99;
+    margin-top: -9vh;
+  }
+}
+@media screen and (max-width: 768px) {
+  .group_btn {
+    height: 40px;
+  }
+}

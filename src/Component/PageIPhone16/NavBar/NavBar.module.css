@@ -1,0 +1,75 @@
+.carousel_wrapper {
+  width: 70vw;
+  margin: auto;
+}
+.navbar_container {
+  padding: 10px;
+  /* margin-top: 35px; */
+}
+.carousel_item {
+  display: inline-block;
+  width: 20%; /* Show 5 items per slide */
+  padding: 0 10px; /* Add some spacing between items */
+  box-sizing: border-box;
+}
+
+.tabs_wrapper {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.tab_item {
+  background-color: transparent;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+.button {
+  border-color: #dbdbdb;
+  border-width: 1px;
+  cursor: pointer;
+  justify-content: center;
+  padding: calc(0.5em - 1px) 1em;
+  text-align: center;
+  white-space: nowrap;
+}
+.active {
+  color: #c6806a;
+}
+@media (max-width: 1440px) {
+  .carousel_wrapper {
+    width: 85vw;
+  }
+  .navbar_container {
+    /* margin-top: 35px; */
+  }
+}
+@media (max-width: 1000px) {
+  .carousel_wrapper {
+    width: 90vw;
+  }
+}
+@media (max-width: 840px) {
+  .carousel_wrapper {
+    width: 100vw;
+  }
+}
+@media (max-width: 767px) {
+  .tab_item {
+    font-size: 14px;
+  }
+  .button {
+    border-color: #dbdbdb;
+    border-width: 1px;
+    cursor: pointer;
+    justify-content: center;
+    width: 180px;
+    padding: calc(0.5em - 1px) 1em;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+}
