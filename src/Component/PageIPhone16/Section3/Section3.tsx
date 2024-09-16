@@ -40,18 +40,10 @@ function Section3() {
         </div>
         <div className={`${style.content} ${expanded ? style.expanded : ""}`}>
           {activeButton === 1 && (
-            <Image
-              src={ImagesInfoIP16}
-              alt="Description of iPhone 16 Pro"
-              layout="responsive"
-            />
+            <Image src={ImagesInfoIP16} alt="Description of iPhone 16 Pro" />
           )}
           {activeButton === 2 && (
-            <Image
-              src={InfoIP16Plus}
-              alt="Description of iPhone 16"
-              layout="responsive"
-            />
+            <Image src={InfoIP16Plus} alt="Description of iPhone 16" />
           )}
         </div>
         <button

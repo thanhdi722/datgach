@@ -6,7 +6,7 @@ import { StaticImageData } from "next/image";
 
 interface InfoTechnicalProps {
   productName: string;
-  productPrices: { [key: string]: string };
+  productPrices: { [capacity: string]: { [color: string]: string } };
   images: { [key: string]: StaticImageData };
   capacities: string[];
   colors: { name: string; colorCode: string }[];
@@ -72,7 +72,7 @@ export default function InfoTechnicalComponent({
           ))}
         </div>
         <div className={style.productPrice}>
-          <span>Giá</span> <b>{productPrices[activeCapacity]}</b>
+          <span>Giá</span> <b>{productPrices[activeCapacity][activeColor]}</b>
         </div>
         <div className={style.groupButtonMobile}>
           <button type="submit" className={style.button_buy}>

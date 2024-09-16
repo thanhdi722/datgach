@@ -18,7 +18,6 @@ const Banner: React.FC = () => {
       <Image
         src={banner}
         alt="Description of image"
-        layout="responsive"
         style={{ width: "100vw" }}
       />
       <Image src={chuongtrinh} alt="timeline" />

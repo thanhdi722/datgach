@@ -5,7 +5,7 @@ import iphone16Green from "../../../assets/images/iphone16_Green.png";
 import iphone16Black from "../../../assets/images/iphone16_Black.png";
 import iphone16ProBlack from "../../../assets/images/iphone16_BlackPro.png";
 import iphone16WhitePro from "../../../assets/images/iphone16_Whitte.png";
-import iphone16White from "../../../assets/images/iphone16_White.png";
+import iphone16White from "../../../assets/images/iphone16_Whitte.png";
 import iphone16Pink from "../../../assets/images/iphone16_Pink.png";
 import iphone16Blue from "../../../assets/images/iphone16_blue.png";
 import iphone16TitanPro from "../../../assets/images/iphone16_titan.png";
@@ -13,11 +13,12 @@ import iphone16DesertPro from "../../../assets/images/iphone16_desert.png";
 
 import { StaticImageData } from "next/image";
 import { Carousel } from "antd";
+
 type ProductImage = { [key: string]: StaticImageData };
 
 type Product = {
   productName: string;
-  productPrices: { [key: string]: string };
+  productPrices: { [capacity: string]: { [color: string]: string } };
   images: ProductImage;
   capacities: string[];
   colors: Array<{ name: string; colorCode: string }>;
@@ -29,9 +30,24 @@ export default function InfoTechnical() {
     {
       productName: "iPhone 16 Pro Max",
       productPrices: {
-        "1TB": "45.690.000₫",
-        "512GB": "39.690.000₫",
-        "256GB": "34.190.000₫",
+        "1TB": {
+          "Titan Đen": "45.690.000₫",
+          "Titan Sa Mạc": "45.690.000₫",
+          "Titan Tự Nhiên": "45.990.000₫",
+          "Titan Trắng": "45.990.000₫",
+        },
+        "512GB": {
+          "Titan Đen": "39.690.000₫",
+          "Titan Sa Mạc": "39.690.000₫",
+          "Titan Tự Nhiên": "39.690.000₫",
+          "Titan Trắng": "39.690.000₫",
+        },
+        "256GB": {
+          "Titan Đen": "34.190.000₫",
+          "Titan Sa Mạc": "34.190.000₫",
+          "Titan Tự Nhiên": "34.190.000₫",
+          "Titan Trắng": "34.190.000₫",
+        },
       },
       images: {
         "Titan Đen": iphone16ProBlack,
@@ -52,16 +68,36 @@ export default function InfoTechnical() {
     {
       productName: "iPhone 16 Pro",
       productPrices: {
-        "1TB": "42.690.000₫",
-        "512GB": "36.690.000₫",
-        "256GB": "30.690.000₫",
-        "128GB": "27.690.000₫",
+        "1TB": {
+          "Titan Đen": "42.690.000₫",
+          "Titan Sa Mạc": "42.690.000₫",
+          "Titan Tự Nhiên": "42.690.000₫",
+          "Titan Trắng": "42.690.000₫",
+        },
+        "512GB": {
+          "Titan Đen": "36.690.000₫",
+          "Titan Sa Mạc": "36.690.000₫",
+          "Titan Tự Nhiên": "36.690.000₫",
+          "Titan Trắng": "36.690.000₫",
+        },
+        "256GB": {
+          "Titan Đen": "30.690.000₫",
+          "Titan Sa Mạc": "30.690.000₫",
+          "Titan Tự Nhiên": "30.690.000₫",
+          "Titan Trắng": "30.690.000₫",
+        },
+        "128GB": {
+          "Titan Đen": "27.690.000₫",
+          "Titan Sa Mạc": "27.690.000₫",
+          "Titan Tự Nhiên": "27.690.000₫",
+          "Titan Trắng": "27.690.000₫",
+        },
       },
       images: {
-        "Titan Đen": iphone16ProBlack,
+        "Titan Đen": iphone16Black,
         "Titan Sa Mạc": iphone16DesertPro,
         "Titan Tự Nhiên": iphone16TitanPro,
-        "Titan Trắng": iphone16WhitePro,
+        "Titan Trắng": iphone16White,
       },
       capacities: ["1TB", "512GB", "256GB", "128GB"],
       colors: [
@@ -71,14 +107,32 @@ export default function InfoTechnical() {
         { name: "Titan Trắng", colorCode: "rgb(251, 247, 244)" },
       ],
       productLink:
-        "/dtdd/iphone-16-pro-max?m=2&amp;gid=1&amp;pId=329136&amp;strcode=0131491004227",
+        "/dtdd/iphone-16-pro?m=2&amp;gid=1&amp;pId=329136&amp;strcode=0131491004227",
     },
     {
       productName: "iPhone 16 Plus",
       productPrices: {
-        "512GB": "33.690.000₫",
-        "256GB": "27.590.000₫",
-        "128GB": "24.690.000₫",
+        "512GB": {
+          Đen: "33.690.000₫",
+          Trắng: "33.690.000₫",
+          "Xanh Mòng Két": "33.690.000₫",
+          Hồng: "33.690.000₫",
+          "Xanh Lưu Ly": "33.690.000₫",
+        },
+        "256GB": {
+          Đen: "27.690.000₫",
+          Trắng: "27.690.000₫",
+          "Xanh Mòng Két": "27.690.000₫",
+          Hồng: "27.690.000₫",
+          "Xanh Lưu Ly": "27.590.000₫",
+        },
+        "128GB": {
+          Đen: "24.690.000₫",
+          Trắng: "24.690.000₫",
+          "Xanh Mòng Két": "24.690.000₫",
+          Hồng: "24.690.000₫",
+          "Xanh Lưu Ly": "24.690.000₫",
+        },
       },
       images: {
         Đen: iphone16Black,
@@ -96,14 +150,32 @@ export default function InfoTechnical() {
         { name: "Xanh Lưu Ly", colorCode: "rgb(72, 118, 255)" },
       ],
       productLink:
-        "/dtdd/iphone-16-pro-max?m=2&amp;gid=1&amp;pId=329136&amp;strcode=0131491004227",
+        "/dtdd/iphone-16-plus?m=2&amp;gid=1&amp;pId=329136&amp;strcode=0131491004227",
     },
     {
       productName: "iPhone 16",
       productPrices: {
-        "512GB": "30.690.000₫",
-        "256GB": "24.690.000₫",
-        "128GB": "21.690.000₫",
+        "512GB": {
+          Đen: "30.690.000₫",
+          Trắng: "30.690.000₫",
+          "Xanh Mòng Két": "30.690.000₫",
+          Hồng: "30.690.000₫",
+          "Xanh Lưu Ly": "30.690.000₫",
+        },
+        "256GB": {
+          Đen: "24.690.000₫",
+          Trắng: "24.690.000₫",
+          "Xanh Mòng Két": "24.690.000₫",
+          Hồng: "24.690.000₫",
+          "Xanh Lưu Ly": "24.690.000₫",
+        },
+        "128GB": {
+          Đen: "21.690.000₫",
+          Trắng: "21.690.000₫",
+          "Xanh Mòng Két": "21.690.000₫",
+          Hồng: "21.690.000₫",
+          "Xanh Lưu Ly": "21.690.000₫",
+        },
       },
       images: {
         Đen: iphone16Black,
@@ -121,15 +193,17 @@ export default function InfoTechnical() {
         { name: "Xanh Lưu Ly", colorCode: "rgb(72, 118, 255)" },
       ],
       productLink:
-        "/dtdd/iphone-16-pro-max?m=2&amp;gid=1&amp;pId=329136&amp;strcode=0131491004227",
+        "/dtdd/iphone-16?m=2&amp;gid=1&amp;pId=329136&amp;strcode=0131491004227",
     },
   ];
+
   const settings = {
     slidesToShow: 2,
     rows: 1,
     slidesPerRow: 1,
     dots: false,
   };
+
   return (
     <div className={style.infoTechnical}>
       <h4 className={style.title}>Bảng Giá iPhone 16 Series Chính Hãng VN/A</h4>
