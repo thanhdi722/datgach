@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import CardProduct from "@/app/Component/CardProductIP16/CardProductIP16";
+import CardProduct from "../Component/CardProductIP16/CardProductIP16";
 import { Carousel } from "antd";
 import style from "./Section2.module.css";
-import { ecosystemApple } from "@/app/Api/Data";
+import { ecosystemApple } from "../app/api/DataTest";
 function Section2() {
   function SampleNextArrow(props: any) {
     const { className, style, onClick } = props;

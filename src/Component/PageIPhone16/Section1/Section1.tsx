@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useState } from "react";
-import CardProduct from "@/app/src/Component/CardProductIP16/CardProductIP16";
+import CardProduct from "../../CardProductIP16/CardProductIP16";
 import { Carousel } from "antd";
 import style from "./SliderProduct.module.css";
 import {
@@ -11,7 +11,7 @@ import {
   productsIP16Plus,
   productsIP16Pro,
   productsIP16ProMax,
-} from "@/app/src/Api/Data";
+} from "../../../app/api/DataTest";
 
 const Section1: React.FC = () => {
   function SampleNextArrow(props: any) {
