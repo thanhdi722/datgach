@@ -83,7 +83,7 @@ const products: any = {
     },
     colorOptions: {
       Trắng: {
-        img: "/Images/iphone/iphone16_whitePro.png",
+        img: "/Images/iphone/iphone16_WhitePro.png",
         codeColor: "rgb(251, 247, 244)",
       },
       "Sa mạc": {
@@ -95,7 +95,7 @@ const products: any = {
         codeColor: "rgb(250, 235, 215)",
       },
       Đen: {
-        img: "/Images/iphone/iphone16_black.png",
+        img: "/Images/iphone/iphone16_Black.png",
         codeColor: "rgb(60, 64, 66)",
       },
     },
@@ -164,7 +164,7 @@ const products: any = {
     },
     colorOptions: {
       Trắng: {
-        img: "/Images/iphone/iphone16_whitePro.png",
+        img: "/Images/iphone/iphone16_WhitePro.png",
         codeColor: "rgb(251, 247, 244)",
       },
       "Sa mạc": {
@@ -176,7 +176,7 @@ const products: any = {
         codeColor: "rgb(250, 235, 215)",
       },
       Đen: {
-        img: "/Images/iphone/iphone16_black.png",
+        img: "/Images/iphone/iphone16_Black.png",
         codeColor: "rgb(60, 64, 66)",
       },
     },
