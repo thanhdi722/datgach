@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import style from "./CardProduct.module.css";
+import style from "@/style/CardProduct.module.css";
 interface CardProductProps {
   link: string;
   imageUrl: string;

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import style from "./NavBar.module.css";
+import style from "@/style/NavBar.module.css";
 
 function NavBar() {
   const [activeButton, setActiveButton] = useState<number>(1); // Default button 1

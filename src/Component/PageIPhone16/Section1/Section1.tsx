@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import CardProduct from "../../CardProductIP16/CardProductIP16";
 import { Carousel } from "antd";
-import style from "./SliderProduct.module.css";
+import style from "@/style//SliderProduct.module.css";
 import {
   productsIP16Series,
   productsIP16,

@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./InfoTechnical.module.css";
+import style from "@/style/InfoTechnical.module.css";
 import InfoTechnicalComponent from "../../../Component/InfoTechnicalComponent/InfoTechnicalComponent";
 import iphone16Green from "../../../assets/images/iphone16_Green.png";
 import iphone16Black from "../../../assets/images/iphone16_Black.png";

@@ -1,6 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import style from "./BoxContent.module.css";
+import style from "@/style/BoxContent.module.css";
 export default function BoxBasic() {
   return (
     <div id="box-gif" style={{ padding: "20px 0px" }}>

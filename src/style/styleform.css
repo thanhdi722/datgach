@@ -32,7 +32,7 @@ body {
   box-shadow: 5px 5px 30px rgba(255, 142, 49, 0.3);
 
   .modal-product {
-    width: 40%;
+    width: 60%;
     height: 100%;
     float: left;
     position: relative;
@@ -46,7 +46,7 @@ body {
       z-index: 2;
 
       .product-slideshow {
-        max-width: 350px;
+        /* max-width: 350px; */
         margin: 0 auto;
         position: relative;
 
@@ -134,13 +134,12 @@ body {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      border-right: 2px solid #d08e7b;
       background-color: #000;
       z-index: 1;
     }
   }
   .modal-info {
-    width: 60%;
+    width: 40%;
     height: 100%;
     float: right;
     position: relative;

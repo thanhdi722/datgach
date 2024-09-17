@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import "./CardProduct.css";
+import "@/style/CardProduct.css";
 function CardProduct() {
   return (
     <div>

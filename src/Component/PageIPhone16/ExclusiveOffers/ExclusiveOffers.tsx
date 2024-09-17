@@ -4,7 +4,7 @@ import ExclusiveOffersImage from "@/assets/images/Asset 12.png";
 import SetWarrantyRightsImage from "@/assets/images/DAC QUYEN BAO HANH.png";
 import SetWarrantyRightsImageMB from "@/assets/images/uu dai doc quyen 5 sao mobile.png";
 import datquyenMb from "@/assets/images/datquyen_mobile.png";
-import styles from "./ExclusiveOffers.module.css";
+import styles from "@/style/ExclusiveOffers.module.css";
 export default function ExclusiveOffers() {
   return (
     <div

@@ -1,7 +1,7 @@
 import React from "react";
 import combo1 from "../../../assets/images/6 BO QUA PK.png";
 import Image from "next/image";
-import style from "./SixCombo.module.css";
+import style from "@/style/SixCombo.module.css";
 export default function SixCombo() {
   return (
     <div style={{ backgroundColor: "#1d1d1f" }}>

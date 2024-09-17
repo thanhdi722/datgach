@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import "./styleform.css";
+import "@/style/styleform.css";
 import {
   Box,
   Button,
@@ -401,7 +401,6 @@ export default function FormMain() {
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     const data = {
       name,
       phone,
@@ -416,24 +415,50 @@ export default function FormMain() {
     };
 
     try {
-      const response = await fetch("https://api.example.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      // Gửi toàn bộ dữ liệu tới Google Sheet 1
+      const response1 = await fetch(
+        "https://script.google.com/macros/s/AKfycbxXxsQHTsk1_0oG8AsJqEY_CHx8qBP49-tYHANyEmfWFSFUX2vaoUlJ2_WjRW9UpsGe/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Response from API:", result);
+      if (response1.ok) {
+        const result1 = await response1.json();
+        console.log("Response from Google Sheet 1:", result1);
       } else {
-        console.error("Failed to submit data");
+        console.error("Failed to submit full data");
+      }
+
+      // Gửi dữ liệu name và phone tới Google Sheet 2
+      const response2 = await fetch(
+        "https://script.google.com/macros/s/AKfycbyY8sv7T4Lqrn719epFwCKHUFRF1bQSn7802DZzFSmX00zqcMumv3Ge-zb2oGja3QQ_/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name: data.name, phone: data.phone }),
+        }
+      );
+
+      if (response2.ok) {
+        const result2 = await response2.json();
+        console.log("Response from Google Sheet 2:", result2);
+      } else {
+        console.error("Failed to submit name and phone");
       }
     } catch (error) {
       console.error("Error submitting data:", error);
     }
   };
+
   return (
     <div
       id="registerForm"
@@ -478,8 +503,8 @@ export default function FormMain() {
                     height={200}
                   />
                 </Box>
-                <Box sx={{ display: "flex", flexDirection: "row" }}>
-                  <Grid container spacing={2} sx={{ marginLeft: 2 }}>
+                <Box sx={{ display: "flex" }}>
+                  <Grid container spacing={2} sx={{ marginLeft: 0 }}>
                     {Object.keys(products).map((product, index) => (
                       <Grid key={index} item>
                         <Button
@@ -629,7 +654,17 @@ export default function FormMain() {
           </div>
           <div className="modal-info">
             <div className="info">
-              <h2>Đăng ký đặt iPhone 16 Series</h2>
+              <h2
+                style={{
+                  color: "#fff",
+                  fontWeight: 400,
+                  fontSize: 20,
+                  padding: "0px 0px",
+                  textAlign: "center",
+                }}
+              >
+                Đăng ký đặt iPhone 16 Series
+              </h2>
               <form onSubmit={handleSubmit}>
                 <ul className="form-list">
                   <li className="form-list-row">

@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./ProductCard.module.css";
+import style from "@/style/ProductCard.module.css";
 import Image from "next/image";
 import { StaticImageData } from "next/image";
 interface ProductCardProps {

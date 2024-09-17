@@ -3,7 +3,7 @@
 import React from "react";
 import CardProduct from "../../../Component/CardProductIP16/CardProductIP16";
 import { Carousel } from "antd";
-import style from "./Section2.module.css";
+import style from "@/style/Section2.module.css";
 import { ecosystemApple } from "../../../app/api/DataTest";
 function Section2() {
   function SampleNextArrow(props: any) {

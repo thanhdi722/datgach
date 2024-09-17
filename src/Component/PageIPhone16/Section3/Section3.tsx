@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import ImagesInfoIP16 from "../../../assets/images/imagesInfoIp16.png";
 import InfoIP16Plus from "../../../assets/images/info-iphone-16-16-plus.png";
-import style from "./Section3.module.css";
+import style from "@/style/Section3.module.css";
 
 function Section3() {
   const [activeButton, setActiveButton] = useState<number>(1);
