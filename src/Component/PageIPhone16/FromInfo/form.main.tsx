@@ -437,7 +437,7 @@ export default function FormMain() {
   return (
     <div
       id="registerForm"
-      style={{ backgroundColor: "#1d1d1f", padding: "20px 0" }}
+      style={{ backgroundColor: "#1d1d1f", padding: "10px 0" }}
     >
       <div>
         <link
@@ -509,7 +509,7 @@ export default function FormMain() {
                     ))}
                   </Grid>
                 </Box>
-                {/* Lựa chọn dung lượng */}
+
                 <Box
                   sx={{ display: "flex", flexDirection: "row", marginTop: 2 }}
                 >
@@ -598,22 +598,14 @@ export default function FormMain() {
                                   />
                                 </Tooltip>
                               }
-                            >
-                              {/* {color} */}
-                            </FormControlLabel>
-                            {/* <Typography
-                              variant="body2"
-                              sx={{ marginTop: 1, color: "white" }}
-                            >
-                            
-                            </Typography> */}
+                            ></FormControlLabel>
                           </Grid>
                         )
                       )}
                     </RadioGroup>
                   </Grid>
                 </Box>
-                {/* Hiển thị giá và trả góp */}
+
                 <Box>
                   <Typography
                     sx={{ color: "#fff", fontWeight: 40, fontSize: 20 }}
@@ -696,302 +688,279 @@ export default function FormMain() {
         </div>
       </div>
       <div className="modal-MB" style={{ backgroundColor: "#1d1d1f" }}>
-        <div className="modal-product">
-          <div className="product">
-            {/* Slideshow container */}
-            <Box
-              className=""
-              sx={{
-                marginBottom: 20,
+        <Box
+          className=""
+          sx={{
+            marginBottom: 20,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Grid container style={{ height: "170px" }}>
+            <Grid item sm={6}>
+              <Box
+                sx={{
+                  marginBottom: 5,
+                  display: "flex",
+                  justifyContent: "center",
+                  borderRadius: "5px",
+                }}
+              >
+                <Image
+                  alt={selectedProduct}
+                  src={
+                    products[selectedProduct].colorOptions[selectedColor].img
+                  }
+                  width={150}
+                  height={150}
+                />
+              </Box>
+            </Grid>
+            <Grid item sm={6}>
+              <Box sx={{ marginTop: 5 }}>
+                <Typography className="textGiaDuKien_MB">
+                  Giá dự kiến:{" "}
+                  <span style={{ color: "red" }}>
+                    {products[selectedProduct]?.storageOptions[
+                      selectedStorage
+                    ]?.[selectedColor]?.price?.toLocaleString()}
+                    đ
+                  </span>
+                </Typography>
+                <Typography className="textGia_MB">
+                  Trả góp chỉ từ:{" "}
+                  <span>{products[selectedProduct].installment}</span>
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+
+          <Box sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid
+              container
+              spacing={2}
+              style={{
+                margin: "auto",
                 display: "flex",
-                flexDirection: "column",
                 justifyContent: "center",
-                alignItems: "center",
               }}
             >
-              <Grid container style={{ height: "170px" }}>
-                <Grid item sm={6}>
-                  <Box
+              {Object.keys(products).map((product, index) => (
+                <Grid key={index} item style={{ marginTop: "-8px" }}>
+                  <Button
                     sx={{
-                      marginBottom: 5,
-                      display: "flex",
-                      justifyContent: "center",
-                      borderRadius: "5px",
+                      background:
+                        selectedProduct === product
+                          ? "linear-gradient(90deg, #d09e7b, #f3eae6)"
+                          : "#ffff",
+                      color: "#000",
+                      marginRight: "10px",
+                      borderRadius: "22px",
+                      width: "122px",
+                      fontSize: 10,
+                      "&:hover": {
+                        color: selectedColor === product ? "#000" : "#ec1b26",
+                        backgroundColor:
+                          selectedColor === product ? "#fff" : "#fff",
+                      },
                     }}
+                    key={product}
+                    onClick={() => handleProductChange(product)}
                   >
-                    <Image
-                      alt={selectedProduct}
-                      src={
-                        products[selectedProduct].colorOptions[selectedColor]
-                          .img
-                      }
-                      width={150}
-                      height={150}
-                    />
-                  </Box>
+                    {product}
+                  </Button>
                 </Grid>
-                <Grid item sm={6}>
-                  <Box sx={{ marginTop: 5 }}>
-                    <Typography
-                      sx={{ color: "#fff", fontWeight: 40, fontSize: 16 }}
+              ))}
+            </Grid>
+          </Box>
+          {/* Lựa chọn dung lượng */}
+          <Box sx={{ display: "flex", flexDirection: "row", marginTop: 0.5 }}>
+            <Grid container spacing={2}>
+              {Object.keys(products[selectedProduct].storageOptions).map(
+                (storage, index) => (
+                  <Grid item key={index}>
+                    <Button
+                      sx={{
+                        background:
+                          selectedStorage === storage
+                            ? "linear-gradient(90deg, #d09e7b, #f3eae6)"
+                            : "#ffff",
+                        color: "#000",
+                        marginRight: "3px",
+                        borderRadius: "22px",
+                        fontSize: 12,
+                        "&:hover": {
+                          color: selectedColor === storage ? "#000" : "#ec1b26",
+                          backgroundColor:
+                            selectedColor === storage ? "#fff" : "#fff",
+                        },
+                      }}
+                      key={storage}
+                      onClick={() => handleStorageChange(storage)}
                     >
-                      Giá dự kiến:{" "}
-                      <span style={{ color: "red" }}>
-                        {products[selectedProduct]?.storageOptions[
-                          selectedStorage
-                        ]?.[selectedColor]?.price?.toLocaleString()}
-                        đ
-                      </span>
-                    </Typography>
-                    <Typography sx={{ color: "#fff", fontSize: 14 }}>
-                      Trả góp chỉ từ:{" "}
-                      <span style={{ color: "#fff", fontSize: 12 }}>
-                        {products[selectedProduct].installment}
-                      </span>
-                    </Typography>
-                  </Box>
-                </Grid>
-              </Grid>
-
-              <Box sx={{ display: "flex", flexDirection: "row" }}>
-                <Grid container spacing={2} sx={{ marginLeft: 4 }}>
-                  {Object.keys(products).map((product, index) => (
-                    <Grid key={index} item style={{ marginTop: "-8px" }}>
-                      <Button
-                        sx={{
-                          background:
-                            selectedProduct === product
-                              ? "linear-gradient(90deg, #d09e7b, #f3eae6)"
-                              : "#ffff",
-                          color: "#000",
-                          marginRight: "10px",
-                          borderRadius: "22px",
-                          width: "122px",
-                          fontSize: 10,
-                          "&:hover": {
-                            color:
-                              selectedColor === product ? "#000" : "#ec1b26",
-                            backgroundColor:
-                              selectedColor === product ? "#fff" : "#fff",
-                          },
-                        }}
-                        key={product}
-                        onClick={() => handleProductChange(product)}
-                      >
-                        {product}
-                      </Button>
-                    </Grid>
-                  ))}
-                </Grid>
-              </Box>
-              {/* Lựa chọn dung lượng */}
-              <Box
-                sx={{ display: "flex", flexDirection: "row", marginTop: 0.5 }}
+                      {storage}
+                    </Button>
+                  </Grid>
+                )
+              )}
+            </Grid>
+          </Box>
+          <Box sx={{ display: "flex", flexDirection: "row", marginTop: 2 }}>
+            <Grid container>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="female"
+                name="radio-buttons-group"
+                sx={{ display: "flex", flexDirection: "row" }}
               >
-                <Grid container spacing={2}>
-                  {Object.keys(products[selectedProduct].storageOptions).map(
-                    (storage, index) => (
-                      <Grid item key={index}>
-                        <Button
-                          sx={{
-                            background:
-                              selectedStorage === storage
-                                ? "linear-gradient(90deg, #d09e7b, #f3eae6)"
-                                : "#ffff",
-                            color: "#000",
-                            marginRight: "3px",
-                            borderRadius: "22px",
-                            fontSize: 12,
-                            "&:hover": {
-                              color:
-                                selectedColor === storage ? "#000" : "#ec1b26",
-                              backgroundColor:
-                                selectedColor === storage ? "#fff" : "#fff",
-                            },
-                          }}
-                          key={storage}
-                          onClick={() => handleStorageChange(storage)}
-                        >
-                          {storage}
-                        </Button>
-                      </Grid>
-                    )
-                  )}
-                </Grid>
-              </Box>
-              <Box sx={{ display: "flex", flexDirection: "row", marginTop: 2 }}>
-                <Grid container>
-                  <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="female"
-                    name="radio-buttons-group"
-                    sx={{ display: "flex", flexDirection: "row" }}
-                  >
-                    {Object.keys(products[selectedProduct].colorOptions).map(
-                      (color, index) => (
-                        <Grid
-                          item
-                          key={index}
-                          sx={{
-                            marginLeft: 0,
-                            marginBottom: 1,
-                            textAlign: "center",
-                          }}
-                        >
-                          <FormControlLabel
-                            label=""
-                            value={color}
-                            control={
-                              <Tooltip
-                                placement="top"
-                                title={color}
-                                style={{
-                                  color: "black !important",
-                                  backgroundColor: "white",
-                                }}
-                              >
-                                <Radio
-                                  {...controlProps("e")}
-                                  checked={selectedColor === color}
-                                  onChange={() => handleColorsChange(color)}
-                                  sx={{
-                                    marginLeft: 2,
-                                    color:
-                                      products[selectedProduct].colorOptions[
-                                        color
-                                      ].codeColor,
-                                    "&.Mui-checked": {
-                                      color:
-                                        products[selectedProduct].colorOptions[
-                                          color
-                                        ].codeColor,
-                                    },
-                                  }}
-                                />
-                              </Tooltip>
-                            }
+                {Object.keys(products[selectedProduct].colorOptions).map(
+                  (color, index) => (
+                    <Grid
+                      item
+                      key={index}
+                      sx={{
+                        marginLeft: 0,
+                        marginBottom: 1,
+                        textAlign: "center",
+                      }}
+                    >
+                      <FormControlLabel
+                        label=""
+                        value={color}
+                        control={
+                          <Tooltip
+                            placement="top"
+                            title={color}
+                            style={{
+                              color: "black !important",
+                              backgroundColor: "white",
+                            }}
                           >
-                            {/* {color} */}
-                          </FormControlLabel>
-                          {/* <Typography
-                              variant="body2"
-                              sx={{ marginTop: 1, color: "white" }}
-                            >
-                            
-                            </Typography> */}
-                        </Grid>
-                      )
-                    )}
-                  </RadioGroup>
-                </Grid>
-              </Box>
-              <div className="">
-                <div className="info">
-                  <h2
-                    style={{
-                      color: "#fff",
-                      fontWeight: 400,
-                      fontSize: 20,
-                      padding: "0px 0px",
-                      textAlign: "center",
-                    }}
-                  >
-                    Đăng ký đặt iPhone 16 Series
-                  </h2>
-                  <form onSubmit={handleSubmit}>
-                    <ul className="form-list">
-                      <li className="form-list-row">
-                        <div className="user">
-                          <label
-                            style={{ color: "#fff", fontSize: 14 }}
-                            htmlFor="#"
-                          >
-                            Họ và tên:
-                          </label>
-                          <br />
-                          {/* <i
+                            <Radio
+                              {...controlProps("e")}
+                              checked={selectedColor === color}
+                              onChange={() => handleColorsChange(color)}
+                              sx={{
+                                marginLeft: 2,
+                                color:
+                                  products[selectedProduct].colorOptions[color]
+                                    .codeColor,
+                                "&.Mui-checked": {
+                                  color:
+                                    products[selectedProduct].colorOptions[
+                                      color
+                                    ].codeColor,
+                                },
+                              }}
+                            />
+                          </Tooltip>
+                        }
+                      >
+                        {/* {color} */}
+                      </FormControlLabel>
+                    </Grid>
+                  )
+                )}
+              </RadioGroup>
+            </Grid>
+          </Box>
+
+          <div className="info">
+            <h2
+              style={{
+                color: "#fff",
+                fontWeight: 400,
+                fontSize: 20,
+                padding: "0px 0px",
+                textAlign: "center",
+              }}
+            >
+              Đăng ký đặt iPhone 16 Series
+            </h2>
+            <form onSubmit={handleSubmit}>
+              <ul className="form-list">
+                <li className="form-list-row">
+                  <div className="user">
+                    <label style={{ color: "#fff", fontSize: 14 }} htmlFor="#">
+                      Họ và tên:
+                    </label>
+                    <br />
+                    {/* <i
                               className="fas fa-user"
                               style={{ color: "white", fontSize: 20 }}
                             /> */}
-                          <input
-                            type="text"
-                            className="input-formMB"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                            style={{ color: "#000" }}
-                          />
-                        </div>
-                      </li>
-                      <li className="form-list-row">
-                        <div className="number">
-                          <label
-                            style={{ color: "#fff", fontSize: 14 }}
-                            htmlFor="#"
-                          >
-                            Số điện thoại:
-                          </label>
-                          <br />
-                          {/* <i
+                    <input
+                      type="text"
+                      className="input-formMB"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                      style={{ color: "#000" }}
+                    />
+                  </div>
+                </li>
+                <li className="form-list-row">
+                  <div className="number">
+                    <label style={{ color: "#fff", fontSize: 14 }} htmlFor="#">
+                      Số điện thoại:
+                    </label>
+                    <br />
+                    {/* <i
                               className="far fa-address-book	"
                               style={{ color: "white", fontSize: 20 }}
                             /> */}
-                          <input
-                            type="text"
-                            value={phone}
-                            className="input-formMB"
-                            onChange={(e) => setPhone(e.target.value)}
-                            required
-                            style={{ color: "#000" }}
-                          />
-                        </div>
-                      </li>
-                      <li className="form-list-row clearfix">
-                        <div className="number">
-                          <label
-                            style={{ color: "#fff", fontSize: 14 }}
-                            htmlFor="#"
-                          >
-                            Email:
-                          </label>
-                          <br />
-                          {/* <i className="far fa-credit-card" /> */}
-                          <input
-                            type="text"
-                            value={email}
-                            className="input-formMB"
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            style={{ color: "#000" }}
-                          />
-                        </div>
-                      </li>
-                    </ul>
-                    <button
-                      style={{
-                        color: "#fff",
-                        padding: "6px 10px",
-                        borderRadius: "10px",
-                        border: "none",
-                        backgroundColor: "red",
-                        margin: "10px auto",
-                        display: "block",
-                        justifyContent: "center",
-                        fontSize: 16,
-                        fontWeight: 600,
-                      }}
-                      type="submit"
-                    >
-                      Đặt hàng
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </Box>
+                    <input
+                      type="text"
+                      value={phone}
+                      className="input-formMB"
+                      onChange={(e) => setPhone(e.target.value)}
+                      required
+                      style={{ color: "#000" }}
+                    />
+                  </div>
+                </li>
+                <li className="form-list-row clearfix">
+                  <div className="number">
+                    <label style={{ color: "#fff", fontSize: 14 }} htmlFor="#">
+                      Email:
+                    </label>
+                    <br />
+                    {/* <i className="far fa-credit-card" /> */}
+                    <input
+                      type="text"
+                      value={email}
+                      className="input-formMB"
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      style={{ color: "#000" }}
+                    />
+                  </div>
+                </li>
+              </ul>
+              <button
+                style={{
+                  color: "#fff",
+                  padding: "6px 10px",
+                  borderRadius: "10px",
+                  border: "none",
+                  backgroundColor: "red",
+                  margin: "10px auto",
+                  display: "block",
+                  justifyContent: "center",
+                  fontSize: 16,
+                  fontWeight: 600,
+                }}
+                type="submit"
+              >
+                Đặt hàng
+              </button>
+            </form>
           </div>
-          <div className="round-shape" />
-        </div>
+        </Box>
       </div>
+      <div className="round-shape" />
     </div>
   );
 }

@@ -293,4 +293,30 @@ body {
   .css-slulp6 {
     margin-bottom: 10px;
   }
+  .textGia_MB {
+    color: #fff;
+    font-size: 14px;
+  }
+  .textGia_MB span {
+    color: #fff;
+    font-size: 14px;
+  }
+  .textGiaDuKien_MB {
+    color: #fff;
+    font-size: 16px;
+  }
+}
+@media (max-width: 350px) {
+  .textGiaDuKien_MB {
+    color: #fff;
+    font-size: 12px;
+  }
+  .textGia_MB {
+    color: #fff;
+    font-size: 10px;
+  }
+  .textGia_MB span {
+    color: #fff;
+    font-size: 10px;
+  }
 }
