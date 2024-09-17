@@ -49,6 +49,7 @@
   margin: 0 auto;
   width: 60vw;
   padding: 20px 0;
+  display: block;
 }
 .chuongtrinhPc {
   display: block;
@@ -60,6 +61,12 @@
   display: block;
 }
 .bannerMB {
+  display: none;
+}
+.timelineMB {
+  margin: 0 auto;
+  width: 60vw;
+  padding: 20px 0;
   display: none;
 }
 @media screen and (max-width: 1440px) {
@@ -74,19 +81,20 @@
   }
 }
 @media screen and (max-width: 1000px) {
-  .bannerPC {
-    display: none;
-  }
-  .bannerMB {
-    display: block;
-  }
   .group_btn {
     display: flex;
     height: 60px;
     z-index: 99;
     margin-top: -9vh;
   }
+  .timelineMB {
+    margin: 0 auto;
+    width: 85vw;
+    padding: 20px 0;
+    display: block;
+  }
   .timeline {
+    display: none;
     margin: 0 auto;
     width: 80vw;
     padding: 20px 0;
@@ -108,9 +116,15 @@
   .group_btn {
     height: 40px;
   }
-  .timeline {
+  .timelineMB {
     margin: 0 auto;
     width: 95vw;
     padding: 20px 0;
+  }
+  .bannerPC {
+    display: none;
+  }
+  .bannerMB {
+    display: block;
   }
 }

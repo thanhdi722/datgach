@@ -10,7 +10,6 @@ interface InfoTechnicalProps {
   images: { [key: string]: StaticImageData };
   capacities: string[];
   colors: { name: string; colorCode: string }[];
-  productLink: string;
 }
 
 export default function InfoTechnicalComponent({
@@ -19,7 +18,6 @@ export default function InfoTechnicalComponent({
   images,
   capacities,
   colors,
-  productLink,
 }: InfoTechnicalProps) {
   const [activeColor, setActiveColor] = useState(colors[0].name);
   const [activeCapacity, setActiveCapacity] = useState(capacities[0]);
@@ -76,7 +74,7 @@ export default function InfoTechnicalComponent({
         </div>
         <div className={style.groupButtonMobile}>
           <button type="submit" className={style.button_buy}>
-            <a href={productLink} style={{ color: "#fff" }}>
+            <a href="#registerForm" style={{ color: "#fff" }}>
               Đặt ngay
             </a>
           </button>

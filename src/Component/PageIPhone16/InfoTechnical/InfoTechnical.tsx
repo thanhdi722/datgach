@@ -10,9 +10,7 @@ import iphone16Pink from "../../../assets/images/iphone16_Pink.png";
 import iphone16Blue from "../../../assets/images/iphone16_blue.png";
 import iphone16TitanPro from "../../../assets/images/iphone16_titan.png";
 import iphone16DesertPro from "../../../assets/images/iphone16_desert.png";
-
 import { StaticImageData } from "next/image";
-import { Carousel } from "antd";
 
 type ProductImage = { [key: string]: StaticImageData };
 
@@ -197,13 +195,6 @@ export default function InfoTechnical() {
     },
   ];
 
-  const settings = {
-    slidesToShow: 2,
-    rows: 1,
-    slidesPerRow: 1,
-    dots: false,
-  };
-
   return (
     <div className={style.infoTechnical}>
       <h4 className={style.title}>Bảng Giá iPhone 16 Series Chính Hãng VN/A</h4>
@@ -216,26 +207,9 @@ export default function InfoTechnical() {
               images={product.images}
               capacities={product.capacities}
               colors={product.colors}
-              productLink={product.productLink}
             />
           </div>
         ))}
-      </div>
-      <div className={style.productListMB}>
-        <Carousel arrows infinite={false} {...settings}>
-          {products.map((product, index) => (
-            <div key={index} className={style.productItem}>
-              <InfoTechnicalComponent
-                productName={product.productName}
-                productPrices={product.productPrices}
-                images={product.images}
-                capacities={product.capacities}
-                colors={product.colors}
-                productLink={product.productLink}
-              />
-            </div>
-          ))}
-        </Carousel>
       </div>
     </div>
   );

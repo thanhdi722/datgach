@@ -1,0 +1,10 @@
+.comboImage {
+  width: 60vw;
+  display: block;
+  margin: auto;
+}
+@media (max-width: 1000px) {
+  .comboImage {
+    width: 100vw;
+  }
+}

@@ -5,14 +5,16 @@ import InfoTechnicalIphone16 from "../../Component/PageIPhone16/InfoTechnical/In
 import ExclusiveOffers from "../../Component/PageIPhone16/ExclusiveOffers/ExclusiveOffers";
 import SixCombo from "../../Component/PageIPhone16/SixCombo/SixCombo";
 import PriceList from "../../Component/PageIPhone16/PriceList/PriceList";
+import FromMain from "../../Component/PageIPhone16/FromInfo/form.main";
 function page() {
   return (
     <div>
       <Banner />
       <InfoTechnicalIphone16 />
       <ExclusiveOffers />
-      <Section3 />
+      <FromMain />
       <PriceList />
+      <Section3 />
       <SixCombo />
     </div>
   );

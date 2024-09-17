@@ -5,6 +5,7 @@ import banner from "../../../assets/images/baner_iphone16.png";
 import bannerMB from "../../../assets/images/banner_mobile.png";
 import Image from "next/image";
 import timeLine from "../../../assets/images/TIMELINE.png";
+import timeLineMB from "../../../assets/images/timeLine_mb.png";
 import style from "./Banner.module.css";
 import chuongtrinh from "../../../assets/images/4 chuong trinh.png";
 import chuongtrinhMB from "../../../assets/images/4_chuong_trinh_mobile.png";
@@ -32,6 +33,7 @@ const Banner: React.FC = () => {
         className={style.chuongtrinhMB}
       />
       <Image src={timeLine} alt="timeline" className={style.timeline} />
+      <Image src={timeLineMB} alt="timeline" className={style.timelineMB} />
     </div>
   );
 };
