@@ -176,7 +176,7 @@ const products: any = {
         codeColor: "rgb(250, 235, 215)",
       },
       Đen: {
-        img: "/Images/iphone/iphone16_Black.png",
+        img: "/Images/iphone/iphone16_BlackPro.png",
         codeColor: "rgb(60, 64, 66)",
       },
     },
