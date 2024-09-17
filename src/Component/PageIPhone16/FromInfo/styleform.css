@@ -291,7 +291,7 @@ body {
     border-radius: 10px;
   }
   .css-slulp6 {
-    margin-bottom: 10px;
+    margin-bottom: 0px !important;
   }
   .textGia_MB {
     color: #fff;
