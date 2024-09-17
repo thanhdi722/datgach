@@ -3,7 +3,7 @@ import ProductCard from "../../CardPriceList/CardPriceList";
 import iphone16 from "../../../assets/images/iphone16_BlackPro.png";
 import styles from "./PriceList.module.css";
 import Image from "next/image";
-import datquyen_mb from "@/assets/images/datquyen_mobile.png";
+import newChangeImageMb from "@/assets/images/THU CU LEN DOI.png";
 import newChangeImage from "@/assets/images/THU CU LEN DOI.png";
 const products = [
   {
@@ -54,7 +54,7 @@ const PriceList: React.FC = () => {
   return (
     <div style={{ backgroundColor: "#1d1d1f" }}>
       <Image
-        src={datquyen_mb}
+        src={newChangeImageMb}
         alt="Exclusive Offers"
         className={styles.imageWrapperMB}
       />
