@@ -9,7 +9,20 @@
   overflow: hidden;
   width: 100vw;
 }
-
+.uudaiPc {
+  display: block;
+}
+.uudaiMb {
+  display: none;
+}
+@media (max-width: 1000px) {
+  .uudaiPc {
+    display: none !important;
+  }
+  .uudaiMb {
+    display: block;
+  }
+}
 @media (max-width: 768px) {
   .imageEdit {
     transform: scale(1.6);

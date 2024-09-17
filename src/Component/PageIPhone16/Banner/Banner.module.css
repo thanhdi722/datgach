@@ -50,6 +50,18 @@
   width: 60vw;
   padding: 20px 0;
 }
+.chuongtrinhPc {
+  display: block;
+}
+.chuongtrinhMB {
+  display: none;
+}
+.bannerPc {
+  display: block;
+}
+.bannerMB {
+  display: none;
+}
 @media screen and (max-width: 1440px) {
   .group_btn {
     display: flex;
@@ -74,9 +86,31 @@
     z-index: 99;
     margin-top: -9vh;
   }
+  .timeline {
+    margin: 0 auto;
+    width: 80vw;
+    padding: 20px 0;
+  }
+  .chuongtrinhPc {
+    display: none;
+  }
+  .chuongtrinhMB {
+    display: block;
+  }
+  .bannerPc {
+    display: none !important;
+  }
+  .bannerMB {
+    display: block;
+  }
 }
 @media screen and (max-width: 768px) {
   .group_btn {
     height: 40px;
+  }
+  .timeline {
+    margin: 0 auto;
+    width: 95vw;
+    padding: 20px 0;
   }
 }
