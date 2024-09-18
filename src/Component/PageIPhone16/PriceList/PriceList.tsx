@@ -1,9 +1,10 @@
 import React from "react";
 import ProductCard from "../../CardPriceList/CardPriceList";
 import iphone15 from "../../../assets/images/iphone_15.png";
-import iphone14 from "../../../assets/images/iphone_14.png";
+import iphone14Pro from "../../../assets/images/iphone_14Pro.png";
 import iphone13 from "../../../assets/images/iphone_13.png";
 import iphone12 from "../../../assets/images/iphone_12.png";
+import iphone11Pro from "../../../assets/images/iphone_11Pro.png";
 import iphone11 from "../../../assets/images/iphone_11.png";
 import iphoneX from "../../../assets/images/iphone_XS.png";
 import styles from "@/style/PriceList.module.css";
@@ -19,7 +20,12 @@ const products = [
   {
     productName: "iPhone 14 Pro Max",
     price: "22.800.000",
-    imageUrl: iphone14,
+    imageUrl: iphone14Pro,
+  },
+  {
+    productName: "iPhone 14",
+    price: "14.000.000",
+    imageUrl: iphone14Pro,
   },
   {
     productName: "iPhone 13 Pro Max",
@@ -34,6 +40,11 @@ const products = [
   {
     productName: "iPhone 11 Pro Max",
     price: "10.000.000",
+    imageUrl: iphone11Pro,
+  },
+  {
+    productName: "iPhone 11",
+    price: "7.900.000",
     imageUrl: iphone11,
   },
   {
@@ -41,18 +52,6 @@ const products = [
     price: "7.300.000",
     imageUrl: iphoneX,
   },
-  {
-    productName: "iPhone XS",
-    price: "5.700.000",
-    imageUrl: iphone15,
-  },
-  {
-    productName: "iPhone XR",
-    price: "4.500.000",
-    imageUrl: iphone15,
-  },
-
-  // Add more products as needed
 ];
 
 const PriceList: React.FC = () => {

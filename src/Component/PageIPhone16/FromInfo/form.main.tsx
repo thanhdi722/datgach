@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import { Tooltip } from "antd";
+import { message } from "antd";
 // interface Product {
 //   name:{
 //     name: string;
@@ -435,7 +436,7 @@ export default function FormMain() {
       } else {
         console.error("Failed to submit full data");
       }
-
+      message.success("Đăng ký thành công");
       // Gửi dữ liệu name và phone tới Google Sheet 2
       const response2 = await fetch(
         "https://script.google.com/macros/s/AKfycbyY8sv7T4Lqrn719epFwCKHUFRF1bQSn7802DZzFSmX00zqcMumv3Ge-zb2oGja3QQ_/exec",
@@ -451,6 +452,7 @@ export default function FormMain() {
 
       if (response2.ok) {
         const result2 = await response2.json();
+
         console.log("Response from Google Sheet 2:", result2);
       } else {
         console.error("Failed to submit name and phone");
