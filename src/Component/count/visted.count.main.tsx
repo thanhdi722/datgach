@@ -3,7 +3,7 @@ import CountUp from 'react-countup'
 import styled from 'styled-components' // Import styled-components
 // import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import { Grid } from '@mui/material'
-import '../../style/visitors.css'
+import '../../style/Visitors.css'
 // Updated styled-component for VisitorCountStyled to match the image
 const VisitorCountStyled = styled.div`
   background-color: #000000; /* Nền màu đen */
