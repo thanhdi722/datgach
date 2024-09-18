@@ -1,9 +1,9 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import style from "@/style/BoxContent.module.css";
+import * as React from 'react'
+import Box from '@mui/material/Box'
+import style from '../../../style/BoxContent.module.css'
 export default function BoxBasic() {
   return (
-    <div id="box-gif" style={{ padding: "20px 0px" }}>
+    <div id="box-gif" style={{ padding: '20px 0px' }}>
       <Box component="section" sx={{ p: 2 }} className={style.box}>
         <h3 className={style.title}>CÁC QUÀ TẶNG TẠI BẠCH LONG</h3>
         <ul className={style.content}>
@@ -25,5 +25,5 @@ export default function BoxBasic() {
         </ul>
       </Box>
     </div>
-  );
+  )
 }
