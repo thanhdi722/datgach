@@ -6,9 +6,11 @@ import ExclusiveOffers from "../../Component/PageIPhone16/ExclusiveOffers/Exclus
 import SixCombo from "../../Component/PageIPhone16/SixCombo/SixCombo";
 import PriceList from "../../Component/PageIPhone16/PriceList/PriceList";
 import FromMain from "../../Component/PageIPhone16/FromInfo/form.main";
+import Header from "../../Component/Header/header.main";
 function page() {
   return (
     <div>
+      <Header />
       <Banner />
       <InfoTechnicalIphone16 />
       <ExclusiveOffers />

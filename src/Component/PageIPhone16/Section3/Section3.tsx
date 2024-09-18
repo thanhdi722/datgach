@@ -53,6 +53,38 @@ function Section3() {
           {expanded ? "Thu gọn" : "Xem thêm"}
         </button>
       </div>
+      <div className={style.ContainerMb}>
+        <div className={style.tabs_wrapper}>
+          <button
+            className={`${style.tab_item} ${style.button}`}
+            onClick={() => handleButtonClick(1)}
+            style={{
+              backgroundColor: activeButton === 1 ? "White" : "black",
+              color: activeButton === 1 ? "black" : "white",
+            }}
+          >
+            iPhone 16 Pro
+          </button>
+          <button
+            className={`${style.tab_item} ${style.button}`}
+            onClick={() => handleButtonClick(2)}
+            style={{
+              backgroundColor: activeButton === 2 ? "white" : "black",
+              color: activeButton === 2 ? "black" : "white",
+            }}
+          >
+            iPhone 16
+          </button>
+        </div>
+        <div>
+          {activeButton === 1 && (
+            <Image src={ImagesInfoIP16} alt="Description of iPhone 16 Pro" />
+          )}
+          {activeButton === 2 && (
+            <Image src={InfoIP16Plus} alt="Description of iPhone 16" />
+          )}
+        </div>
+      </div>
     </div>
   );
 }

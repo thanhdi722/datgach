@@ -11,8 +11,8 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import { Tooltip } from "antd";
-import { message } from "antd";
+import { Tooltip, Spin } from "antd";
+
 // interface Product {
 //   name:{
 //     name: string;
@@ -233,7 +233,7 @@ const products: any = {
           price: 33690000,
         },
         "Xanh lưu ly": {
-          price: 33590000,
+          price: 33690000,
         },
         "Xanh mồng két": {
           price: 33690000,
@@ -357,7 +357,8 @@ export default function FormMain() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-
+  const [spinning, setSpinning] = React.useState(false);
+  const [percent, setPercent] = React.useState(0);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
   };
@@ -416,6 +417,20 @@ export default function FormMain() {
         ]?.price?.toLocaleString(),
     };
 
+    setSpinning(true);
+    let ptg = -10;
+
+    const interval = setInterval(() => {
+      ptg += 3;
+      setPercent(ptg);
+
+      if (ptg > 150) {
+        clearInterval(interval);
+        setSpinning(false);
+        setPercent(0);
+      }
+    }, 100);
+
     try {
       // Gửi toàn bộ dữ liệu tới Google Sheet 1
       const response1 = await fetch(
@@ -436,7 +451,6 @@ export default function FormMain() {
       } else {
         console.error("Failed to submit full data");
       }
-      message.success("Đăng ký thành công");
       // Gửi dữ liệu name và phone tới Google Sheet 2
       const response2 = await fetch(
         "https://script.google.com/macros/s/AKfycbyY8sv7T4Lqrn719epFwCKHUFRF1bQSn7802DZzFSmX00zqcMumv3Ge-zb2oGja3QQ_/exec",
@@ -467,6 +481,7 @@ export default function FormMain() {
       id="registerForm"
       style={{ backgroundColor: "#1d1d1f", padding: "10px 0" }}
     >
+      <Spin spinning={spinning} percent={percent} fullscreen />
       <p className="comboText">
         Sở hữu siêu phẩm iPhone 16 Series tại Bạch Long Mobile AAR
       </p>
@@ -714,7 +729,7 @@ export default function FormMain() {
                         style={{ color: "white", fontSize: 20 }}
                       />
                       <input
-                        type="text"
+                        type="number"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         required
@@ -728,7 +743,7 @@ export default function FormMain() {
                       <br />
                       <i className="far fa-credit-card" />
                       <input
-                        type="text"
+                        type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
@@ -968,7 +983,7 @@ export default function FormMain() {
                               style={{ color: "white", fontSize: 20 }}
                             /> */}
                     <input
-                      type="text"
+                      type="number"
                       value={phone}
                       className="input-formMB"
                       onChange={(e) => setPhone(e.target.value)}
@@ -985,7 +1000,7 @@ export default function FormMain() {
                     <br />
                     {/* <i className="far fa-credit-card" /> */}
                     <input
-                      type="text"
+                      type="email"
                       value={email}
                       className="input-formMB"
                       onChange={(e) => setEmail(e.target.value)}

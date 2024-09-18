@@ -1,6 +1,6 @@
 .Container {
   width: 60vw;
-  padding: 10px;
+  padding: 20px 0;
   margin: auto;
 }
 .tabs_wrapper {
@@ -57,6 +57,9 @@
 .expandButton:hover {
   background-color: #a3a3a3;
 }
+.ContainerMb {
+  display: none;
+}
 @media (max-width: 1000px) {
   .Container {
     width: 80vw;
@@ -66,6 +69,12 @@
 @media (max-width: 767px) {
   .Container {
     width: 100vw;
+    display: none;
+  }
+  .ContainerMb {
+    padding: 10px;
+    margin: auto;
+    display: block;
   }
   .button {
     background-color: #fff;
