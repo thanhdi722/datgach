@@ -7,6 +7,7 @@ import SixCombo from '../../Component/PageIPhone16/SixCombo/SixCombo'
 import PriceList from '../../Component/PageIPhone16/PriceList/PriceList'
 import FromMain from '../../Component/PageIPhone16/FromInfo/form.main'
 import Header from '../../Component/Header/header.main'
+import BoxContent from '../../Component/PageIPhone16/BoxContent/BoxContent'
 function page() {
   return (
     <div className="123">
@@ -18,6 +19,7 @@ function page() {
       <PriceList />
       <Section3 />
       <SixCombo />
+      <BoxContent />
     </div>
   )
 }
