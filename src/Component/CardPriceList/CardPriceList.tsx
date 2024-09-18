@@ -1,19 +1,15 @@
-import React from "react";
-import style from "@/style/ProductCard.module.css";
-import Image from "next/image";
-import { StaticImageData } from "next/image";
+import React from 'react'
+import style from '../../style/ProductCard.module.css'
+import Image from 'next/image'
+import { StaticImageData } from 'next/image'
 
 interface ProductCardProps {
-  productName: string;
-  price: string;
-  imageUrl: StaticImageData;
+  productName: string
+  price: string
+  imageUrl: StaticImageData
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({
-  productName,
-  price,
-  imageUrl,
-}) => {
+const ProductCard: React.FC<ProductCardProps> = ({ productName, price, imageUrl }) => {
   return (
     <div className={style.cardContainer}>
       <Image src={imageUrl} alt={productName} className={style.productImage} />
@@ -25,7 +21,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {price}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductCard;
+export default ProductCard

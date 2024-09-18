@@ -1,15 +1,15 @@
-import React from "react";
-import Section3 from "../../Component/PageIPhone16/Section3/Section3";
-import Banner from "../../Component/PageIPhone16/Banner/Banner";
-import InfoTechnicalIphone16 from "../../Component/PageIPhone16/InfoTechnical/InfoTechnical";
-import ExclusiveOffers from "../../Component/PageIPhone16/ExclusiveOffers/ExclusiveOffers";
-import SixCombo from "../../Component/PageIPhone16/SixCombo/SixCombo";
-import PriceList from "../../Component/PageIPhone16/PriceList/PriceList";
-import FromMain from "../../Component/PageIPhone16/FromInfo/form.main";
-import Header from "../../Component/Header/header.main";
+import React from 'react'
+import Section3 from '../../Component/PageIPhone16/Section3/Section3'
+import Banner from '../../Component/PageIPhone16/Banner/Banner'
+import InfoTechnicalIphone16 from '../../Component/PageIPhone16/InfoTechnical/InfoTechnical'
+import ExclusiveOffers from '../../Component/PageIPhone16/ExclusiveOffers/ExclusiveOffers'
+import SixCombo from '../../Component/PageIPhone16/SixCombo/SixCombo'
+import PriceList from '../../Component/PageIPhone16/PriceList/PriceList'
+import FromMain from '../../Component/PageIPhone16/FromInfo/form.main'
+import Header from '../../Component/Header/header.main'
 function page() {
   return (
-    <div>
+    <div className="123">
       <Header />
       <Banner />
       <InfoTechnicalIphone16 />
@@ -19,7 +19,7 @@ function page() {
       <Section3 />
       <SixCombo />
     </div>
-  );
+  )
 }
 
-export default page;
+export default page

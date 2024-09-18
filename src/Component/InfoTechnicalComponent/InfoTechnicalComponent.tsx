@@ -1,15 +1,15 @@
-"use client";
-import React, { useState } from "react";
-import style from "@/style/InfoTechnicalComponent.module.css";
-import Image from "next/image";
-import { StaticImageData } from "next/image";
+'use client'
+import React, { useState } from 'react'
+import style from '../../style/InfoTechnicalComponent.module.css'
+import Image from 'next/image'
+import { StaticImageData } from 'next/image'
 
 interface InfoTechnicalProps {
-  productName: string;
+  productName: string
   // productPrices: { [capacity: string]: { [color: string]: string } };
-  images: { [key: string]: StaticImageData };
+  images: { [key: string]: StaticImageData }
   // capacities: string[];
-  colors: { name: string; colorCode: string }[];
+  colors: { name: string; colorCode: string }[]
 }
 
 export default function InfoTechnicalComponent({
@@ -19,35 +19,25 @@ export default function InfoTechnicalComponent({
   // capacities,
   colors,
 }: InfoTechnicalProps) {
-  const [activeColor, setActiveColor] = useState(colors[0].name);
+  const [activeColor, setActiveColor] = useState(colors[0].name)
   // const [activeCapacity, setActiveCapacity] = useState(capacities[0]);
   const getImageKey = (colorName: string) => {
-    return colorName.replace("Màu ", "");
-  };
+    return colorName.replace('Màu ', '')
+  }
   return (
     <div className={style.infoTechnicalComponent}>
       <div className={style.itemProduct}>
         <div className={style.wrapImg}>
-          <Image
-            src={images[getImageKey(activeColor)]}
-            alt={productName}
-            title={productName}
-          />
+          <Image src={images[getImageKey(activeColor)]} alt={productName} title={productName} />
         </div>
         <div className={style.productName}>{productName}</div>
-        <p style={{ textAlign: "center", marginBottom: "10px" }}>
-          {activeColor}
-        </p>
+        <p style={{ textAlign: 'center', marginBottom: '10px' }}>{activeColor}</p>
         <div className={style.listColorProduct}>
           {colors.map((color) => (
             <div
               key={color.name}
               title={color.name}
-              className={`${
-                color.name === activeColor
-                  ? `${style.active} ${style.selected}`
-                  : ""
-              }`}
+              className={`${color.name === activeColor ? `${style.active} ${style.selected}` : ''}`}
               style={{ backgroundColor: color.colorCode }}
               onClick={() => setActiveColor(color.name)}
             ></div>
@@ -73,11 +63,7 @@ export default function InfoTechnicalComponent({
           <span>Giá</span> <b>{productPrices[activeCapacity][activeColor]}</b>
         </div> */}
         <div>
-          <a
-            href="#registerForm"
-            style={{ color: "#fff" }}
-            className={style.groupButtonMobile}
-          >
+          <a href="#registerForm" style={{ color: '#fff' }} className={style.groupButtonMobile}>
             <button type="submit" className={style.button_buy}>
               Đặt ngay
             </button>
@@ -85,5 +71,5 @@ export default function InfoTechnicalComponent({
         </div>
       </div>
     </div>
-  );
+  )
 }
