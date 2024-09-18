@@ -729,9 +729,17 @@ export default function FormMain() {
                         style={{ color: "white", fontSize: 20 }}
                       />
                       <input
-                        type="number"
+                        type="tel"
                         value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
+                        onChange={(e) => {
+                          const re = /^[0-9\b]+$/;
+                          if (
+                            e.target.value === "" ||
+                            re.test(e.target.value)
+                          ) {
+                            setPhone(e.target.value);
+                          }
+                        }}
                         required
                         style={{ color: "#fff" }}
                       />
@@ -983,10 +991,14 @@ export default function FormMain() {
                               style={{ color: "white", fontSize: 20 }}
                             /> */}
                     <input
-                      type="number"
+                      type="tel"
                       value={phone}
-                      className="input-formMB"
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={(e) => {
+                        const re = /^[0-9\b]+$/;
+                        if (e.target.value === "" || re.test(e.target.value)) {
+                          setPhone(e.target.value);
+                        }
+                      }}
                       required
                       style={{ color: "#000" }}
                     />

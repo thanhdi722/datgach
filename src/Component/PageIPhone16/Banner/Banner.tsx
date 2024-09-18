@@ -14,6 +14,7 @@ const Banner: React.FC = () => {
     <div
       style={{
         backgroundColor: "#1d1d1f",
+        marginTop: "60px",
       }}
     >
       <Image
