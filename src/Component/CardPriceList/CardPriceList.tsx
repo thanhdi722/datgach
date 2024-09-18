@@ -17,7 +17,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <div className={style.cardContainer}>
       <Image src={imageUrl} alt={productName} className={style.productImage} />
       <h3 className={style.productName}>{productName}</h3>
-      <div className={style.labelPrice}>Giá thu đến: {price}</div>
+      <div className={style.labelPrice}>Giá thu lên đến: {price}</div>
     </div>
   );
 };

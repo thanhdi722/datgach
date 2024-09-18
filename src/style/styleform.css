@@ -19,7 +19,25 @@ body {
   font-family: poppins, arial, sans-serif;
   background-color: #fff;
 }
-
+.comboText {
+  margin: 0;
+  font-weight: 400;
+  text-align: center;
+  font-size: 30px;
+  line-height: 1.5;
+  background: linear-gradient(90deg, #ffa500, #ff0055);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.comboText2 {
+  margin: 0;
+  font-weight: 400;
+  text-align: center;
+  font-size: 30px;
+  line-height: 1.5;
+  color: #fff;
+  margin-bottom: 20px;
+}
 .modal {
   width: 96%;
   max-width: 1000px;
@@ -277,6 +295,14 @@ body {
 .modal-MB {
   display: none;
 }
+@media (max-width: 1000px) {
+  .comboText {
+    font-size: 24px;
+  }
+  .comboText2 {
+    font-size: 24px;
+  }
+}
 @media (max-width: 768px) {
   .modal-MB {
     display: block;
@@ -302,6 +328,12 @@ body {
   }
   .textGiaDuKien_MB {
     color: #fff;
+    font-size: 16px;
+  }
+  .comboText {
+    font-size: 16px;
+  }
+  .comboText2 {
     font-size: 16px;
   }
 }

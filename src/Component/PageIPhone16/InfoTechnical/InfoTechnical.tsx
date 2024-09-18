@@ -16,9 +16,9 @@ type ProductImage = { [key: string]: StaticImageData };
 
 type Product = {
   productName: string;
-  productPrices: { [capacity: string]: { [color: string]: string } };
+  // productPrices: { [capacity: string]: { [color: string]: string } };
   images: ProductImage;
-  capacities: string[];
+  // capacities: string[];
   colors: Array<{ name: string; colorCode: string }>;
   productLink: string;
 };
@@ -27,33 +27,33 @@ export default function InfoTechnical() {
   const products: Product[] = [
     {
       productName: "iPhone 16 Pro Max",
-      productPrices: {
-        "1TB": {
-          "Titan Đen": "45.690.000₫",
-          "Titan Sa Mạc": "45.690.000₫",
-          "Titan Tự Nhiên": "45.990.000₫",
-          "Titan Trắng": "45.990.000₫",
-        },
-        "512GB": {
-          "Titan Đen": "39.690.000₫",
-          "Titan Sa Mạc": "39.690.000₫",
-          "Titan Tự Nhiên": "39.690.000₫",
-          "Titan Trắng": "39.690.000₫",
-        },
-        "256GB": {
-          "Titan Đen": "34.190.000₫",
-          "Titan Sa Mạc": "34.190.000₫",
-          "Titan Tự Nhiên": "34.190.000₫",
-          "Titan Trắng": "34.190.000₫",
-        },
-      },
+      // productPrices: {
+      //   "1TB": {
+      //     "Titan Đen": "45.690.000₫",
+      //     "Titan Sa Mạc": "45.690.000₫",
+      //     "Titan Tự Nhiên": "45.990.000₫",
+      //     "Titan Trắng": "45.990.000₫",
+      //   },
+      //   "512GB": {
+      //     "Titan Đen": "39.690.000₫",
+      //     "Titan Sa Mạc": "39.690.000₫",
+      //     "Titan Tự Nhiên": "39.690.000₫",
+      //     "Titan Trắng": "39.690.000₫",
+      //   },
+      //   "256GB": {
+      //     "Titan Đen": "34.190.000₫",
+      //     "Titan Sa Mạc": "34.190.000₫",
+      //     "Titan Tự Nhiên": "34.190.000₫",
+      //     "Titan Trắng": "34.190.000₫",
+      //   },
+      // },
       images: {
         "Titan Đen": iphone16ProBlack,
         "Titan Sa Mạc": iphone16DesertPro,
         "Titan Tự Nhiên": iphone16TitanPro,
         "Titan Trắng": iphone16WhitePro,
       },
-      capacities: ["1TB", "512GB", "256GB"],
+      // capacities: ["1TB", "512GB", "256GB"],
       colors: [
         { name: "Titan Đen", colorCode: "rgb(60, 64, 66)" },
         { name: "Titan Sa Mạc", colorCode: "rgb(255, 218, 185)" },
@@ -65,39 +65,39 @@ export default function InfoTechnical() {
     },
     {
       productName: "iPhone 16 Pro",
-      productPrices: {
-        "1TB": {
-          "Titan Đen": "42.690.000₫",
-          "Titan Sa Mạc": "42.690.000₫",
-          "Titan Tự Nhiên": "42.690.000₫",
-          "Titan Trắng": "42.690.000₫",
-        },
-        "512GB": {
-          "Titan Đen": "36.690.000₫",
-          "Titan Sa Mạc": "36.690.000₫",
-          "Titan Tự Nhiên": "36.690.000₫",
-          "Titan Trắng": "36.690.000₫",
-        },
-        "256GB": {
-          "Titan Đen": "30.690.000₫",
-          "Titan Sa Mạc": "30.690.000₫",
-          "Titan Tự Nhiên": "30.690.000₫",
-          "Titan Trắng": "30.690.000₫",
-        },
-        "128GB": {
-          "Titan Đen": "27.690.000₫",
-          "Titan Sa Mạc": "27.690.000₫",
-          "Titan Tự Nhiên": "27.690.000₫",
-          "Titan Trắng": "27.690.000₫",
-        },
-      },
+      // productPrices: {
+      //   "1TB": {
+      //     "Titan Đen": "42.690.000₫",
+      //     "Titan Sa Mạc": "42.690.000₫",
+      //     "Titan Tự Nhiên": "42.690.000₫",
+      //     "Titan Trắng": "42.690.000₫",
+      //   },
+      //   "512GB": {
+      //     "Titan Đen": "36.690.000₫",
+      //     "Titan Sa Mạc": "36.690.000₫",
+      //     "Titan Tự Nhiên": "36.690.000₫",
+      //     "Titan Trắng": "36.690.000₫",
+      //   },
+      //   "256GB": {
+      //     "Titan Đen": "30.690.000₫",
+      //     "Titan Sa Mạc": "30.690.000₫",
+      //     "Titan Tự Nhiên": "30.690.000₫",
+      //     "Titan Trắng": "30.690.000₫",
+      //   },
+      //   "128GB": {
+      //     "Titan Đen": "27.690.000₫",
+      //     "Titan Sa Mạc": "27.690.000₫",
+      //     "Titan Tự Nhiên": "27.690.000₫",
+      //     "Titan Trắng": "27.690.000₫",
+      //   },
+      // },
       images: {
         "Titan Đen": iphone16ProBlack,
         "Titan Sa Mạc": iphone16DesertPro,
         "Titan Tự Nhiên": iphone16TitanPro,
         "Titan Trắng": iphone16WhitePro,
       },
-      capacities: ["1TB", "512GB", "256GB", "128GB"],
+      // capacities: ["1TB", "512GB", "256GB", "128GB"],
       colors: [
         { name: "Titan Đen", colorCode: "rgb(60, 64, 66)" },
         { name: "Titan Sa Mạc", colorCode: "rgb(255, 218, 185)" },
@@ -109,29 +109,29 @@ export default function InfoTechnical() {
     },
     {
       productName: "iPhone 16 Plus",
-      productPrices: {
-        "512GB": {
-          Đen: "33.690.000₫",
-          Trắng: "33.690.000₫",
-          "Xanh Mòng Két": "33.690.000₫",
-          Hồng: "33.690.000₫",
-          "Xanh Lưu Ly": "33.690.000₫",
-        },
-        "256GB": {
-          Đen: "27.690.000₫",
-          Trắng: "27.690.000₫",
-          "Xanh Mòng Két": "27.690.000₫",
-          Hồng: "27.690.000₫",
-          "Xanh Lưu Ly": "27.590.000₫",
-        },
-        "128GB": {
-          Đen: "24.690.000₫",
-          Trắng: "24.690.000₫",
-          "Xanh Mòng Két": "24.690.000₫",
-          Hồng: "24.690.000₫",
-          "Xanh Lưu Ly": "24.690.000₫",
-        },
-      },
+      // productPrices: {
+      //   "512GB": {
+      //     Đen: "33.690.000₫",
+      //     Trắng: "33.690.000₫",
+      //     "Xanh Mòng Két": "33.690.000₫",
+      //     Hồng: "33.690.000₫",
+      //     "Xanh Lưu Ly": "33.690.000₫",
+      //   },
+      //   "256GB": {
+      //     Đen: "27.690.000₫",
+      //     Trắng: "27.690.000₫",
+      //     "Xanh Mòng Két": "27.690.000₫",
+      //     Hồng: "27.690.000₫",
+      //     "Xanh Lưu Ly": "27.590.000₫",
+      //   },
+      //   "128GB": {
+      //     Đen: "24.690.000₫",
+      //     Trắng: "24.690.000₫",
+      //     "Xanh Mòng Két": "24.690.000₫",
+      //     Hồng: "24.690.000₫",
+      //     "Xanh Lưu Ly": "24.690.000₫",
+      //   },
+      // },
       images: {
         Đen: iphone16Black,
         Trắng: iphone16White,
@@ -139,7 +139,7 @@ export default function InfoTechnical() {
         Hồng: iphone16Pink,
         "Xanh Lưu Ly": iphone16Blue,
       },
-      capacities: ["512GB", "256GB", "128GB"],
+      // capacities: ["512GB", "256GB", "128GB"],
       colors: [
         { name: "Đen", colorCode: "rgb(60, 64, 66)" },
         { name: "Trắng", colorCode: "rgb(251, 247, 244)" },
@@ -152,29 +152,29 @@ export default function InfoTechnical() {
     },
     {
       productName: "iPhone 16",
-      productPrices: {
-        "512GB": {
-          Đen: "30.690.000₫",
-          Trắng: "30.690.000₫",
-          "Xanh Mòng Két": "30.690.000₫",
-          Hồng: "30.690.000₫",
-          "Xanh Lưu Ly": "30.690.000₫",
-        },
-        "256GB": {
-          Đen: "24.690.000₫",
-          Trắng: "24.690.000₫",
-          "Xanh Mòng Két": "24.690.000₫",
-          Hồng: "24.690.000₫",
-          "Xanh Lưu Ly": "24.690.000₫",
-        },
-        "128GB": {
-          Đen: "21.690.000₫",
-          Trắng: "21.690.000₫",
-          "Xanh Mòng Két": "21.690.000₫",
-          Hồng: "21.690.000₫",
-          "Xanh Lưu Ly": "21.690.000₫",
-        },
-      },
+      // productPrices: {
+      //   "512GB": {
+      //     Đen: "30.690.000₫",
+      //     Trắng: "30.690.000₫",
+      //     "Xanh Mòng Két": "30.690.000₫",
+      //     Hồng: "30.690.000₫",
+      //     "Xanh Lưu Ly": "30.690.000₫",
+      //   },
+      //   "256GB": {
+      //     Đen: "24.690.000₫",
+      //     Trắng: "24.690.000₫",
+      //     "Xanh Mòng Két": "24.690.000₫",
+      //     Hồng: "24.690.000₫",
+      //     "Xanh Lưu Ly": "24.690.000₫",
+      //   },
+      //   "128GB": {
+      //     Đen: "21.690.000₫",
+      //     Trắng: "21.690.000₫",
+      //     "Xanh Mòng Két": "21.690.000₫",
+      //     Hồng: "21.690.000₫",
+      //     "Xanh Lưu Ly": "21.690.000₫",
+      //   },
+      // },
       images: {
         Đen: iphone16Black,
         Trắng: iphone16White,
@@ -182,7 +182,7 @@ export default function InfoTechnical() {
         Hồng: iphone16Pink,
         "Xanh Lưu Ly": iphone16Blue,
       },
-      capacities: ["512GB", "256GB", "128GB"],
+      // capacities: ["512GB", "256GB", "128GB"],
       colors: [
         { name: "Đen", colorCode: "rgb(60, 64, 66)" },
         { name: "Trắng", colorCode: "rgb(251, 247, 244)" },
@@ -197,15 +197,17 @@ export default function InfoTechnical() {
 
   return (
     <div className={style.infoTechnical}>
-      <h4 className={style.title}>Bảng Giá iPhone 16 Series Chính Hãng VN/A</h4>
+      <h4 className={style.title}>
+        Hãy chọn ngay iPhone 16 Series cho bạn nhé !
+      </h4>
       <div className={style.productList}>
         {products.map((product, index) => (
           <div key={index} className={style.productItem}>
             <InfoTechnicalComponent
               productName={product.productName}
-              productPrices={product.productPrices}
+              // productPrices={product.productPrices}
               images={product.images}
-              capacities={product.capacities}
+              // capacities={product.capacities}
               colors={product.colors}
             />
           </div>

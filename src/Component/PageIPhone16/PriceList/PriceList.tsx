@@ -1,6 +1,11 @@
 import React from "react";
 import ProductCard from "../../CardPriceList/CardPriceList";
-import iphone15 from "../../../assets/images/ip15.png";
+import iphone15 from "../../../assets/images/iphone_15.png";
+import iphone14 from "../../../assets/images/iphone_14.png";
+import iphone13 from "../../../assets/images/iphone_13.png";
+import iphone12 from "../../../assets/images/iphone_12.png";
+import iphone11 from "../../../assets/images/iphone_11.png";
+import iphoneX from "../../../assets/images/iphone_XS.png";
 import styles from "@/style/PriceList.module.css";
 import Image from "next/image";
 import newChangeImageMb from "@/assets/images/THU CU LEN DOI.png";
@@ -14,30 +19,30 @@ const products = [
   {
     productName: "iPhone 14 Pro Max",
     price: "22.800.000",
-    imageUrl: iphone15,
+    imageUrl: iphone14,
   },
   {
     productName: "iPhone 13 Pro Max",
     price: "17.600.000",
-    imageUrl: iphone15,
+    imageUrl: iphone13,
   },
   {
     productName: "iPhone 12 Pro Max",
     price: "13.000.000",
-    imageUrl: iphone15,
+    imageUrl: iphone12,
   },
   {
     productName: "iPhone 11 Pro Max",
     price: "10.000.000",
-    imageUrl: iphone15,
+    imageUrl: iphone11,
   },
   {
     productName: "iPhone XS Max",
     price: "7.300.000",
-    imageUrl: iphone15,
+    imageUrl: iphoneX,
   },
   {
-    productName: "iPhone SX",
+    productName: "iPhone XS",
     price: "5.700.000",
     imageUrl: iphone15,
   },
@@ -70,7 +75,7 @@ const PriceList: React.FC = () => {
             fontWeight: "bold",
           }}
         >
-          Bảng giá thu tham khảo
+          Bảng giá &quot;Trade-in&quot; tham khảo
         </h2>
       </div>
       <div className={styles.priceList}>

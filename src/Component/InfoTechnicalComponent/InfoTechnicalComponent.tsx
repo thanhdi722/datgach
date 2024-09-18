@@ -6,21 +6,21 @@ import { StaticImageData } from "next/image";
 
 interface InfoTechnicalProps {
   productName: string;
-  productPrices: { [capacity: string]: { [color: string]: string } };
+  // productPrices: { [capacity: string]: { [color: string]: string } };
   images: { [key: string]: StaticImageData };
-  capacities: string[];
+  // capacities: string[];
   colors: { name: string; colorCode: string }[];
 }
 
 export default function InfoTechnicalComponent({
   productName,
-  productPrices,
+  // productPrices,
   images,
-  capacities,
+  // capacities,
   colors,
 }: InfoTechnicalProps) {
   const [activeColor, setActiveColor] = useState(colors[0].name);
-  const [activeCapacity, setActiveCapacity] = useState(capacities[0]);
+  // const [activeCapacity, setActiveCapacity] = useState(capacities[0]);
   const getImageKey = (colorName: string) => {
     return colorName.replace("Màu ", "");
   };
@@ -53,7 +53,7 @@ export default function InfoTechnicalComponent({
             ></div>
           ))}
         </div>
-        <div className={style.listCapacity}>
+        {/* <div className={style.listCapacity}>
           {capacities.map((capacity) => (
             <div
               key={capacity}
@@ -71,13 +71,17 @@ export default function InfoTechnicalComponent({
         </div>
         <div className={style.productPrice}>
           <span>Giá</span> <b>{productPrices[activeCapacity][activeColor]}</b>
-        </div>
-        <div className={style.groupButtonMobile}>
-          <button type="submit" className={style.button_buy}>
-            <a href="#registerForm" style={{ color: "#fff" }}>
+        </div> */}
+        <div>
+          <a
+            href="#registerForm"
+            style={{ color: "#fff" }}
+            className={style.groupButtonMobile}
+          >
+            <button type="submit" className={style.button_buy}>
               Đặt ngay
-            </a>
-          </button>
+            </button>
+          </a>
         </div>
       </div>
     </div>

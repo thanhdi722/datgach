@@ -1,5 +1,5 @@
 .infoTechnical {
-  padding-top: 50px;
+  padding-top: 20px;
   background-color: #1d1d1f;
   display: flex;
   flex-direction: column;
@@ -45,6 +45,7 @@
   background-color: #1d1d1f;
   padding: 10px 20px;
   border-radius: 5px;
+  margin-bottom: 20px;
 }
 @media (max-width: 1024px) {
   .productList {

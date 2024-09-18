@@ -27,7 +27,7 @@ const products: any = {
   "iPhone 16 Pro Max": {
     id: 1,
     name: "iPhone 16 Pro Max",
-    installment: "2,300,000d / tháng",
+
     storageOptions: {
       "256GB": {
         Trắng: {
@@ -99,11 +99,12 @@ const products: any = {
         codeColor: "rgb(60, 64, 66)",
       },
     },
+    installment: `${Math.floor(34190000 / 12).toLocaleString()}đ / tháng`,
   },
   "iPhone 16 Pro": {
     id: 2,
     name: "iPhone 16 Pro",
-    installment: "2,565,487d / tháng",
+    installment: `${Math.floor(42690000 / 12).toLocaleString()}đ / tháng`,
     storageOptions: {
       "128GB": {
         Trắng: {
@@ -184,7 +185,7 @@ const products: any = {
   "iPhone 16 Plus": {
     id: 3,
     name: "iPhone 16 Plus",
-    installment: "2,565,487d / tháng",
+    installment: "2,565,487đ / tháng",
     storageOptions: {
       "128GB": {
         Trắng: {
@@ -264,7 +265,7 @@ const products: any = {
   "iPhone 16 ": {
     id: 4,
     name: "iPhone 16 Pro",
-    installment: "2,565,487d / tháng",
+    installment: "2,565,487đ / tháng",
     storageOptions: {
       "128GB": {
         Trắng: {
@@ -417,7 +418,7 @@ export default function FormMain() {
     try {
       // Gửi toàn bộ dữ liệu tới Google Sheet 1
       const response1 = await fetch(
-        "https://script.google.com/macros/s/AKfycbxXxsQHTsk1_0oG8AsJqEY_CHx8qBP49-tYHANyEmfWFSFUX2vaoUlJ2_WjRW9UpsGe/exec",
+        "https://script.google.com/macros/s/AKfycbwc40vfUnb4H6kwkYfPKQCnI824IhXWzYGP9g6v1utAEzcHXgKU5hdrM59LqSGaIdK3/exec",
         {
           method: "POST",
           mode: "no-cors",
@@ -464,6 +465,17 @@ export default function FormMain() {
       id="registerForm"
       style={{ backgroundColor: "#1d1d1f", padding: "10px 0" }}
     >
+      <p className="comboText">
+        Sở hữu siêu phẩm iPhone 16 Series tại Bạch Long Mobile AAR
+      </p>
+      <p className="comboText2">
+        Hãy trở thành khách hàng đầu tiên nhận được thông tin có hàng sớm nhất
+        <br />
+        và những ưu đãi khủng của chương trình
+        <br />
+        IPhone 16 Series tại Bạch Long Mobile AAR chính thức bắt đầu mở bán
+        <span className="comboText"> 00h01p 27/09/2024</span>
+      </p>
       <div>
         <link
           rel="stylesheet"
@@ -645,7 +657,14 @@ export default function FormMain() {
                   </Typography>
                   <Typography sx={{ color: "#fff", fontWeight: 20 }}>
                     Trả góp chỉ từ:{" "}
-                    <span>{products[selectedProduct].installment}</span>
+                    <span>
+                      {Math.floor(
+                        products[selectedProduct]?.storageOptions[
+                          selectedStorage
+                        ]?.[selectedColor]?.price / 12
+                      ).toLocaleString()}
+                      đ / tháng
+                    </span>
                   </Typography>
                 </Box>
               </Box>
