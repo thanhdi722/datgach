@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import { Tooltip, Spin } from "antd";
+import { Tooltip, Spin, Modal } from "antd";
 
 // interface Product {
 //   name:{
@@ -347,6 +347,7 @@ const products: any = {
 };
 
 export default function FormMain() {
+  const [modal2Open, setModal2Open] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState("iPhone 16 Pro Max");
   const defaultStorage = Object.keys(
     products["iPhone 16 Pro Max"].storageOptions
@@ -444,7 +445,7 @@ export default function FormMain() {
           body: JSON.stringify(data),
         }
       );
-
+      setModal2Open(true);
       if (response1.ok) {
         const result1 = await response1.json();
         console.log("Response from Google Sheet 1:", result1);
@@ -1045,6 +1046,32 @@ export default function FormMain() {
         </Box>
       </div>
       <div className="round-shape" />
+      <Modal
+        centered
+        open={modal2Open}
+        closable={true}
+        footer={false}
+        onClose={() => setModal2Open(false)}
+        onCancel={() => setModal2Open(false)}
+      >
+        <h2 style={{ textAlign: "center", fontSize: 20, fontWeight: 600 }}>
+          Cảm ơn quý khách đã đăng ký thông tin iPhone 16 Series tại Bạch Long
+          Mobile
+        </h2>
+        <p className="text-modal">Họ và tên: {name}</p>
+        <p className="text-modal">SĐT: {phone}</p>
+        <p className="text-modal">
+          Sản Phẩm: {selectedProduct} {selectedStorage} Màu {selectedColor}
+        </p>
+        <p className="text-modal">
+          Đặc quyền <strong style={{ color: "red" }}>“Thu Cũ Đổi Mới”</strong>{" "}
+          iPhone 16 Series trở giá lên đến 16 triệu
+        </p>
+        <p className="text-modal">
+          Liên hệ hỗ trợ :{" "}
+          <strong style={{ color: "blue" }}>0961.686.686</strong>
+        </p>
+      </Modal>
     </div>
   );
 }

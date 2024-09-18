@@ -9,6 +9,7 @@ import timeLineMB from "../../../assets/images/timeLine_mb.png";
 import style from "@/style/Banner.module.css";
 import chuongtrinh from "../../../assets/images/4 chuong trinh.png";
 import chuongtrinhMB from "../../../assets/images/4_chuong_trinh_mobile.png";
+import Visitors from "../../count/visted.count.main";
 const Banner: React.FC = () => {
   return (
     <div
@@ -22,17 +23,21 @@ const Banner: React.FC = () => {
         alt="Description of image"
         className={style.bannerPc}
       />
-      <Image
-        src={bannerMB}
-        alt="Description of image"
-        className={style.bannerMB}
-      />
+      <a href="#registerForm">
+        <Image
+          src={bannerMB}
+          alt="Description of image"
+          className={style.bannerMB}
+        />
+      </a>
+
       <Image src={chuongtrinh} alt="timeline" className={style.chuongtrinhPc} />
       <Image
         src={chuongtrinhMB}
         alt="timeline"
         className={style.chuongtrinhMB}
       />
+      <Visitors />
       <Image src={timeLine} alt="timeline" className={style.timeline} />
       <Image src={timeLineMB} alt="timeline" className={style.timelineMB} />
     </div>
