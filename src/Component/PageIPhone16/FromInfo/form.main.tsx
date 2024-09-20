@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import "@/style/styleform.css";
+import "../../../style/styleform.css";
 import {
   Box,
   Button,
@@ -12,18 +12,19 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import { Tooltip, Spin, Modal } from "antd";
-
-// interface Product {
-//   name:{
-//     name: string;
-//     installment: string;
-//     imageUrl: string;
-//     storageOptions: object;
-//     colorOptions: object;
-//   }
-
-// }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+import whitePro from "../../../../public/Images/iphone/iphone16_WhitePro.png";
+import desert from "../../../../public/Images/iphone/iphone16_desert.png";
+import iPhone_16_Pro_White_Titanium from "../../../../public/Images/iPhone_16_Pro_White_Titanium.jpg";
+import iPhone_16_Pro_Natural_Titanium from "../../../../public/Images/iPhone_16_Pro_Natural_Titanium.jpg";
+import iPhone_16_Pro_Black_Titanium from "../../../../public/Images/iPhone_16_Pro_Black_Titanium.jpg";
+import deserttitaniumI from "../../../../public/Images/iPhone_16_Pro_Desert_TitaniumI.jpg";
+import iphone16_titan from "../../../../public/Images/iphone/iphone16_titan.png";
+import iphone16_BlackPro from "../../../../public/Images/iphone/iphone16_BlackPro.png";
+import iphone16_White from "../../../../public/Images/iphone/iphone16_White.png";
+import iphone16_Black from "../../../../public/Images/iphone/iphone16_Black.png";
+import iphone16_Pink from "../../../../public/Images/iphone/iphone16_Pink.png";
+import iphone16_blue from "../../../../public/Images/iphone/iphone16_blue.png";
+import iphone16_Green from "../../../../public/Images/iphone/iphone16_Green.png";
 const products: any = {
   "iPhone 16 Pro Max": {
     id: 1,
@@ -60,23 +61,23 @@ const products: any = {
       },
       "1TB": {
         Trắng: {
-          img: "/Images/iPhone_16_Pro_White_Titanium.jpg",
+          img: iPhone_16_Pro_White_Titanium,
           codeColor: "rgb(251, 247, 244)",
           price: 45990000,
         },
 
         "Sa mạc": {
-          img: "/Images/iPhone_16_Pro_Desert_TitaniumI.jpg",
+          img: deserttitaniumI,
           codeColor: "rgb(255, 218, 185)",
           price: 45690000,
         },
         "Màu tự nhiên": {
-          img: "/Images/iPhone_16_Pro_Natural_Titanium.jpg",
+          img: iPhone_16_Pro_Natural_Titanium,
           codeColor: "rgb(250, 235, 215)",
           price: 45990000,
         },
         Đen: {
-          img: "/Images/iPhone_16_Pro_Black_Titanium.jpg",
+          img: iPhone_16_Pro_Black_Titanium,
           codeColor: "rgb(60, 64, 66)",
           price: 45690000,
         },
@@ -84,19 +85,19 @@ const products: any = {
     },
     colorOptions: {
       Trắng: {
-        img: "/Images/iphone/iphone16_WhitePro.png",
+        img: whitePro,
         codeColor: "rgb(251, 247, 244)",
       },
       "Sa mạc": {
-        img: "/Images/iphone/iphone16_desert.png",
+        img: desert,
         codeColor: "rgb(255, 218, 185)",
       },
       "Màu tự nhiên": {
-        img: "/Images/iphone/iphone16_titan.png",
+        img: iphone16_titan,
         codeColor: "rgb(250, 235, 215)",
       },
       Đen: {
-        img: "/Images/iphone/iphone16_BlackPro.png",
+        img: iphone16_BlackPro,
         codeColor: "rgb(60, 64, 66)",
       },
     },
@@ -166,19 +167,19 @@ const products: any = {
     },
     colorOptions: {
       Trắng: {
-        img: "/Images/iphone/iphone16_WhitePro.png",
+        img: whitePro,
         codeColor: "rgb(251, 247, 244)",
       },
       "Sa mạc": {
-        img: "/Images/iphone/iphone16_desert.png",
+        img: desert,
         codeColor: "rgb(255, 218, 185)",
       },
       "Màu tự nhiên": {
-        img: "/Images/iphone/iphone16_titan.png",
+        img: iphone16_titan,
         codeColor: "rgb(250, 235, 215)",
       },
       Đen: {
-        img: "/Images/iphone/iphone16_BlackPro.png",
+        img: iphone16_BlackPro,
         codeColor: "rgb(60, 64, 66)",
       },
     },
@@ -242,23 +243,23 @@ const products: any = {
     },
     colorOptions: {
       Trắng: {
-        img: "/Images/iphone/iphone16_White.png",
+        img: iphone16_White,
         codeColor: "rgb(251, 247, 244)",
       },
       Đen: {
-        img: "/Images/iphone/iphone16_Black.png",
+        img: iphone16_Black,
         codeColor: "rgb(60, 64, 66)",
       },
       Hồng: {
-        img: "/Images/iphone/iphone16_Pink.png",
+        img: iphone16_Pink,
         codeColor: "rgb(255, 110, 180)",
       },
       "Xanh lưu ly": {
-        img: "/Images/iphone/iphone16_blue.png",
+        img: iphone16_blue,
         codeColor: "rgb(72, 118, 255)",
       },
       "Xanh mồng két": {
-        img: "/Images/iphone/iphone16_Green.png",
+        img: iphone16_Green,
         codeColor: "rgb(176, 212, 210)",
       },
     },
@@ -322,23 +323,23 @@ const products: any = {
     },
     colorOptions: {
       Trắng: {
-        img: "/Images/iphone/iphone16_White.png",
+        img: iphone16_White,
         codeColor: "rgb(251, 247, 244)",
       },
       Đen: {
-        img: "/Images/iphone/iphone16_Black.png",
+        img: iphone16_Black,
         codeColor: "rgb(60, 64, 66)",
       },
       Hồng: {
-        img: "/Images/iphone/iphone16_Pink.png",
+        img: iphone16_Pink,
         codeColor: "rgb(255, 110, 180)",
       },
       "Xanh lưu ly": {
-        img: "/Images/iphone/iphone16_blue.png",
+        img: iphone16_blue,
         codeColor: "rgb(72, 118, 255)",
       },
       "Xanh mồng két": {
-        img: "/Images/iphone/iphone16_Green.png",
+        img: iphone16_Green,
         codeColor: "rgb(176, 212, 210)",
       },
     },
@@ -705,7 +706,7 @@ export default function FormMain() {
                   textAlign: "center",
                 }}
               >
-                Đăng ký đặt iPhone 16 Series
+                Đăng ký iPhone 16 Series
               </h2>
               <form onSubmit={handleSubmit}>
                 <ul className="form-list">
@@ -773,7 +774,7 @@ export default function FormMain() {
                     </div>
                   </li>
                 </ul>
-                <button type="submit">Đặt hàng</button>
+                <button type="submit">Đăng ký</button>
               </form>
             </div>
           </div>
@@ -969,7 +970,7 @@ export default function FormMain() {
                 textAlign: "center",
               }}
             >
-              Đăng ký đặt iPhone 16 Series
+              Đăng ký iPhone 16 Series
             </h2>
             <form onSubmit={handleSubmit}>
               <ul className="form-list">
@@ -1044,7 +1045,7 @@ export default function FormMain() {
                 }}
                 type="submit"
               >
-                Đặt hàng
+                Đăng ký
               </button>
             </form>
           </div>

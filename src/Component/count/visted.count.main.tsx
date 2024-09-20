@@ -97,7 +97,7 @@ function Visitors() {
             onEnd={onComplete}
             onStart={onStart}
           />
-          <span> khách đã đặt hàng</span>
+          <span> khách hàng đã đăng ký</span>
         </Grid>
         {/* <Grid
           xs={12}

@@ -50,7 +50,7 @@ function CardProductIP16({
           </div>
           <button type="submit" className={style.button_buy}>
             <a href={link} style={{ color: "#fff" }}>
-              Đặt hàng
+              Đăng ký
             </a>
           </button>
         </div>

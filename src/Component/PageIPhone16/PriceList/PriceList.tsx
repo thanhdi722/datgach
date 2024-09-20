@@ -8,12 +8,12 @@ import iphone12 from "../../../assets/images/iphone_12.png";
 import iphone11Pro from "../../../assets/images/iphone_11Pro.png";
 import iphone11 from "../../../assets/images/iphone_11.png";
 import iphoneX from "../../../assets/images/iphone_XS.png";
-import styles from "@/style/PriceList.module.css";
+import styles from "../../../style/PriceList.module.css";
 import Image from "next/image";
-import newChangeImageMb from "@/assets/images/THU CU LEN DOI.png";
+import newChangeImageMb from "../../../assets/images/THU CU LEN DOI.png";
 import comboPhuKienPC from "../../../assets/images/combo_phu_kien_PC.png";
 import comboPhuKienMb from "../../../assets/images/combo_phu_kien_MB.png";
-import newChangeImage from "@/assets/images/THU CU LEN DOI.png";
+import newChangeImage from "../../../assets/images/THU CU LEN DOI.png";
 const products = [
   {
     productName: "iPhone 15 Pro Max",

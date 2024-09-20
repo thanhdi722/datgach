@@ -79,7 +79,7 @@ export default function InfoTechnicalComponent({
             className={style.groupButtonMobile}
           >
             <button type="submit" className={style.button_buy}>
-              Đặt hàng
+              Đăng ký
             </button>
           </a>
         </div>
