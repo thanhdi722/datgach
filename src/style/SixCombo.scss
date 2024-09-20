@@ -1,0 +1,41 @@
+.BoxCombo {
+  padding: 20px;
+  &-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+    background: linear-gradient(to top, #d09e7b, #f3eae6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  &-content {
+    position: relative;
+    width: 60vw;
+    margin: 0 auto;
+    color: #fff;
+    padding: 20px;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      border: 2px solid transparent;
+      border-image: linear-gradient(to top, #d09e7b, #f3eae6) 1;
+    }
+  }
+}
+.expandButton:hover {
+  background-color: #a3a3a3;
+}
+@media (max-width: 768px) {
+  .BoxCombo-content {
+    padding: 10px;
+    width: 95vw;
+  }
+}

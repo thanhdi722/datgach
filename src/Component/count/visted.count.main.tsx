@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import CountUp from 'react-countup'
-import styled from 'styled-components' // Import styled-components
+import React, { useState, useEffect } from "react";
+import CountUp from "react-countup";
+import styled from "styled-components"; // Import styled-components
 // import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import { Grid } from '@mui/material'
-import '../../style/Visitors.css'
+import { Grid } from "@mui/material";
+import "../../style/Visitors.css";
 // Updated styled-component for VisitorCountStyled to match the image
 const VisitorCountStyled = styled.div`
   background-color: #000000; /* Nền màu đen */
@@ -20,7 +20,7 @@ const VisitorCountStyled = styled.div`
   align-items: center; /* Căn giữa dọc */
   margin-top: -8px;
   width: 100%;
-`
+`;
 
 // const IconStyled = styled(PeopleAltIcon)`
 //   font-size: 1.5rem; /* Kích thước icon vừa phải */
@@ -29,49 +29,49 @@ const VisitorCountStyled = styled.div`
 // `;
 
 const onComplete = () => {
-  console.log('Completed! 👏')
-}
+  console.log("Completed! 👏");
+};
 
 const onStart = () => {
-  console.log('Started! 💨')
-}
+  console.log("Started! 💨");
+};
 
 function Visitors() {
-  const [visitors, setVisitors] = useState(3012) // Giá trị mặc định ban đầu là 3000
-  const [isClient, setIsClient] = useState(false) // Để kiểm tra xem có chạy trên client-side không
+  const [visitors, setVisitors] = useState(9847); // Giá trị mặc định ban đầu là 3000
+  const [isClient, setIsClient] = useState(false); // Để kiểm tra xem có chạy trên client-side không
 
   // Chỉ chạy sau khi component đã được mount trên client-side
   useEffect(() => {
-    setIsClient(true) // Đã có client-side
-  }, [])
+    setIsClient(true); // Đã có client-side
+  }, []);
 
   // Truy cập vào localStorage trên client-side
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedVisitors = localStorage.getItem('visitorCount')
+    if (typeof window !== "undefined") {
+      const savedVisitors = localStorage.getItem("visitorCount");
       if (savedVisitors) {
-        setVisitors(parseInt(savedVisitors, 10))
+        setVisitors(parseInt(savedVisitors, 10));
       }
     }
-  }, []) // Chạy một lần khi component được mount
+  }, []); // Chạy một lần khi component được mount
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.setItem('visitorCount', visitors.toString())
+    if (typeof window !== "undefined" && window.localStorage) {
+      localStorage.setItem("visitorCount", visitors.toString());
     }
-  }, [visitors])
+  }, [visitors]);
 
   // Tăng số lượng người truy cập mỗi phút
   useEffect(() => {
     const interval = setInterval(() => {
-      setVisitors((prevVisitors) => prevVisitors + 1)
-    }, 60000)
+      setVisitors((prevVisitors) => prevVisitors + 1);
+    }, 60000);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
   if (!isClient) {
-    return null // Không render gì nếu chưa chạy trên client
+    return null; // Không render gì nếu chưa chạy trên client
   }
 
   return (
@@ -82,10 +82,10 @@ function Visitors() {
           xs={12}
           className="text_white"
           sx={{
-            background: 'linear-gradient(90deg,#dfae86, #9ca4c4)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            fontSize: { xs: '11px', sm: '14px' },
+            background: "linear-gradient(90deg,#dfae86, #9ca4c4)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontSize: { xs: "11px", sm: "14px" },
           }}
         >
           <CountUp
@@ -97,9 +97,9 @@ function Visitors() {
             onEnd={onComplete}
             onStart={onStart}
           />
-          <span> Khách hàng đăng ký</span>
+          <span> khách đã đặt hàng</span>
         </Grid>
-        <Grid
+        {/* <Grid
           xs={12}
           item
           sx={{
@@ -111,10 +111,10 @@ function Visitors() {
           }}
         >
           Thể Lệ Chương Trình
-        </Grid>
+        </Grid> */}
       </Grid>
     </VisitorCountStyled>
-  )
+  );
 }
 
-export default Visitors
+export default Visitors;

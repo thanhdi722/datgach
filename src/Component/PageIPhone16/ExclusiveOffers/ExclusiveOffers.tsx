@@ -1,21 +1,21 @@
-import React from 'react'
-import Image from 'next/image'
-import ExclusiveOffersImage from '@/assets/images/Asset 12.png'
-import SetWarrantyRightsImage from '@/assets/images/DAC QUYEN BAO HANH.png'
-import SetWarrantyRightsImageMB from '@/assets/images/uu dai doc quyen 5 sao mobile.png'
-import datquyenMb from '@/assets/images/datquyen_mobile.png'
-import styles from '@/style/ExclusiveOffers.module.css'
+import React from "react";
+import Image from "next/image";
+import ExclusiveOffersImage from "@/assets/images/Asset 12.png";
+import SetWarrantyRightsImage from "@/assets/images/DAC QUYEN BAO HANH.png";
+import SetWarrantyRightsImageMB from "@/assets/images/uu dai doc quyen 5 sao mobile.png";
+import datquyenMb from "@/assets/images/datquyen_mobile.png";
+import styles from "@/style/ExclusiveOffers.module.css";
 export default function ExclusiveOffers() {
   return (
     <div
       style={{
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#1d1d1f',
-        overflow: 'hidden',
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#1d1d1f",
+        overflow: "hidden",
       }}
     >
-      {/* <Image
+      <Image
         src={ExclusiveOffersImage}
         alt="Exclusive Offers"
         className={styles.imageEdit + " " + styles.uudaiPc}
@@ -34,7 +34,7 @@ export default function ExclusiveOffers() {
         src={datquyenMb}
         alt="Exclusive Offers"
         className={styles.imageWrapper + " " + styles.uudaiMb}
-      /> */}
+      />
     </div>
-  )
+  );
 }
