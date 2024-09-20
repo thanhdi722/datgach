@@ -8,7 +8,7 @@
 }
 
 .clearfix:after {
-  content: ' '; /* Older browser do not support empty content */
+  content: " "; /* Older browser do not support empty content */
   visibility: hidden;
   display: block;
   height: 0;
@@ -56,6 +56,7 @@ body {
     position: relative;
 
     .product {
+      padding: 0px !important;
       width: 100%;
       position: absolute;
       top: 50%;
@@ -123,24 +124,24 @@ body {
       }
       .product-name {
         color: #fff;
-        font-size: 1.7rem;
+        font-size: 27px;
         font-weight: 300;
-        line-height: 2rem;
+        line-height: 32px;
         text-align: center;
         margin-top: -22px;
       }
 
       .product-code-name {
-        font-size: 0.8rem;
+        font-size: 12px;
         font-weight: 300;
         text-align: center;
         margin: 8px auto 5px;
       }
 
       .product-price {
-        font-size: 1.5rem;
+        font-size: 24px;
         font-weight: 300;
-        letter-spacing: 0.18rem;
+        letter-spacing: 2.8px;
         text-align: center;
       }
     }
@@ -171,8 +172,8 @@ body {
       transform: translate(0%, -50%);
 
       h2 {
-        font-size: 2.25rem;
-        margin-left: 1rem;
+        font-size: 36px;
+        margin-left: 16px;
         color: #fff;
       }
       label {
@@ -180,19 +181,19 @@ body {
       }
       form {
         .form-list {
-          margin-top: 1.5rem;
-          margin-left: 3.5rem;
+          margin-top: 24px;
+          margin-left: 56px;
           .form-list-row {
-            margin: 1rem 0;
+            margin: 16px 0;
 
             label {
-              font-size: 1rem;
+              font-size: 16px;
             }
 
             input {
               width: 70%;
-              font-size: 1rem;
-              padding: 0.4rem 0;
+              font-size: 16px;
+              padding: 8px 0;
               border: none;
               display: inline-block;
               border-bottom: solid 2px #999;
@@ -206,7 +207,7 @@ body {
             .user {
               .fa-user {
                 color: #999;
-                font-size: 1rem;
+                font-size: 16px;
               }
 
               input {
@@ -219,7 +220,7 @@ body {
             .number {
               .fa-credit-card {
                 color: #fff;
-                font-size: 1.6rem;
+                font-size: 24px;
               }
 
               input {
@@ -237,20 +238,20 @@ body {
                 text-align: center;
               }
               .year {
-                margin-left: 1.5rem;
+                margin-left: 24px;
               }
             }
 
             .cvc {
               float: left;
-              margin-left: 6rem;
+              margin-left: 96px;
               text-align: center;
 
               .fa-question-circle {
                 color: dodgerblue;
                 display: inline-block;
                 position: relative;
-                left: 0.75rem;
+                left: 14px;
               }
 
               input {
@@ -260,20 +261,20 @@ body {
             }
 
             .checkbox {
-              margin-top: 2rem;
+              margin-top: 32px;
               input {
                 width: auto;
               }
 
               span {
-                font-size: 0.8rem;
+                font-size: 14px;
               }
             }
           }
         }
         button {
           color: white;
-          font-size: 1.25rem;
+          font-size: 20px;
           margin: 40px auto;
           font-weight: 600;
           display: flex;

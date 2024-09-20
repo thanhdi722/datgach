@@ -33,53 +33,53 @@ const products: any = {
     storageOptions: {
       "256GB": {
         Trắng: {
-          price: 34190000,
+          price: 34790000,
         },
         "Sa mạc": {
-          price: 34190000,
+          price: 34790000,
         },
         "Màu tự nhiên": {
-          price: 34190000,
+          price: 34590000,
         },
         Đen: {
-          price: 34190000,
+          price: 34790000,
         },
       },
       "512GB": {
         Trắng: {
-          price: 39690000,
+          price: 40790000,
         },
         "Sa mạc": {
-          price: 39690000,
+          price: 40790000,
         },
         "Màu tự nhiên": {
-          price: 39690000,
+          price: 40590000,
         },
         Đen: {
-          price: 39690000,
+          price: 40790000,
         },
       },
       "1TB": {
         Trắng: {
           img: iPhone_16_Pro_White_Titanium,
           codeColor: "rgb(251, 247, 244)",
-          price: 45990000,
+          price: 46790000,
         },
 
         "Sa mạc": {
           img: deserttitaniumI,
           codeColor: "rgb(255, 218, 185)",
-          price: 45690000,
+          price: 46790000,
         },
         "Màu tự nhiên": {
           img: iPhone_16_Pro_Natural_Titanium,
           codeColor: "rgb(250, 235, 215)",
-          price: 45990000,
+          price: 46590000,
         },
         Đen: {
           img: iPhone_16_Pro_Black_Titanium,
           codeColor: "rgb(60, 64, 66)",
-          price: 45690000,
+          price: 46790000,
         },
       },
     },
@@ -110,58 +110,58 @@ const products: any = {
     storageOptions: {
       "128GB": {
         Trắng: {
-          price: 27690000,
+          price: 28790000,
         },
         "Sa mạc": {
-          price: 27690000,
+          price: 28790000,
         },
         "Màu tự nhiên": {
-          price: 27690000,
+          price: 28590000,
         },
         Đen: {
-          price: 27690000,
+          price: 28790000,
         },
       },
       "256GB": {
         Trắng: {
-          price: 30690000,
+          price: 31790000,
         },
         "Sa mạc": {
-          price: 30690000,
+          price: 31790000,
         },
         "Màu tự nhiên": {
-          price: 30690000,
+          price: 31590000,
         },
         Đen: {
-          price: 30690000,
+          price: 31790000,
         },
       },
       "512GB": {
         Trắng: {
-          price: 36690000,
+          price: 37790000,
         },
         "Sa mạc": {
-          price: 36690000,
+          price: 37790000,
         },
         "Màu tự nhiên": {
-          price: 36690000,
+          price: 37590000,
         },
         Đen: {
-          price: 36690000,
+          price: 37790000,
         },
       },
       "1TB": {
         Trắng: {
-          price: 42690000,
+          price: 43790000,
         },
         "Sa mạc": {
-          price: 42690000,
+          price: 43790000,
         },
         "Màu tự nhiên": {
-          price: 42690000,
+          price: 43590000,
         },
         Đen: {
-          price: 42690000,
+          price: 43790000,
         },
       },
     },
@@ -191,53 +191,53 @@ const products: any = {
     storageOptions: {
       "128GB": {
         Trắng: {
-          price: 24690000,
+          price: 25790000,
         },
         Đen: {
-          price: 24690000,
+          price: 25790000,
         },
         Hồng: {
-          price: 24690000,
+          price: 25590000,
         },
         "Xanh lưu ly": {
-          price: 24690000,
+          price: 25790000,
         },
         "Xanh mồng két": {
-          price: 24690000,
+          price: 25790000,
         },
       },
       "256GB": {
         Trắng: {
-          price: 27690000,
+          price: 28690000,
         },
         Đen: {
-          price: 27690000,
+          price: 28690000,
         },
         Hồng: {
-          price: 27690000,
+          price: 28590000,
         },
         "Xanh lưu ly": {
-          price: 27590000,
+          price: 28690000,
         },
         "Xanh mồng két": {
-          price: 27690000,
+          price: 28690000,
         },
       },
       "512GB": {
         Trắng: {
-          price: 33690000,
+          price: 34790000,
         },
         Đen: {
-          price: 33690000,
+          price: 34790000,
         },
         Hồng: {
-          price: 33690000,
+          price: 34590000,
         },
         "Xanh lưu ly": {
-          price: 33690000,
+          price: 34790000,
         },
         "Xanh mồng két": {
-          price: 33690000,
+          price: 34790000,
         },
       },
     },
@@ -271,53 +271,53 @@ const products: any = {
     storageOptions: {
       "128GB": {
         Trắng: {
-          price: 21690000,
+          price: 22790000,
         },
         Đen: {
-          price: 21690000,
+          price: 22790000,
         },
         Hồng: {
-          price: 21690000,
+          price: 22590000,
         },
         "Xanh lưu ly": {
-          price: 21690000,
+          price: 22790000,
         },
         "Xanh mồng két": {
-          price: 21690000,
+          price: 22790000,
         },
       },
       "256GB": {
         Trắng: {
-          price: 24690000,
+          price: 25790000,
         },
         Đen: {
-          price: 24690000,
+          price: 25790000,
         },
         Hồng: {
-          price: 24690000,
+          price: 25590000,
         },
         "Xanh lưu ly": {
-          price: 24690000,
+          price: 25790000,
         },
         "Xanh mồng két": {
-          price: 24690000,
+          price: 25790000,
         },
       },
       "512GB": {
         Trắng: {
-          price: 30690000,
+          price: 31790000,
         },
         Đen: {
-          price: 30690000,
+          price: 31790000,
         },
         Hồng: {
-          price: 30690000,
+          price: 31590000,
         },
         "Xanh lưu ly": {
-          price: 30690000,
+          price: 31790000,
         },
         "Xanh mồng két": {
-          price: 30690000,
+          price: 31790000,
         },
       },
     },
@@ -442,7 +442,7 @@ export default function FormMain() {
     try {
       // Gửi toàn bộ dữ liệu tới Google Sheet 1
       const response1 = await fetch(
-        "https://script.google.com/macros/s/AKfycbwwBe3PkWyEV8MDYA_9gXlESoL8dFTklKeg4o3B8TmEPRNKUXLu_PMZTmN27X4y1MSp/exec",
+        "https://script.google.com/macros/s/AKfycbxT-DaGDRB0YD-vMyrd0OvMwm0DuZhtn_m33dSJ8QdZbVW7sXE_qvysHseA3kJ6U56o/exec",
         {
           method: "POST",
           mode: "no-cors",
