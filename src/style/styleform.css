@@ -38,6 +38,14 @@ body {
   color: #fff;
   margin-bottom: 20px;
 }
+.img_product {
+  width: 200px;
+  height: 200px;
+}
+.img_productMb {
+  width: 150px;
+  height: 150px;
+}
 .modal {
   width: 96%;
   max-width: 1000px;

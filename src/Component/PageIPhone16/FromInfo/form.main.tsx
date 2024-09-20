@@ -14,9 +14,6 @@ import Image from "next/image";
 import { Tooltip, Spin, Modal } from "antd";
 import whitePro from "../../../../public/Images/iphone/iphone16_WhitePro.png";
 import desert from "../../../../public/Images/iphone/iphone16_desert.png";
-import iPhone_16_Pro_White_Titanium from "../../../../public/Images/iPhone_16_Pro_White_Titanium.jpg";
-import iPhone_16_Pro_Natural_Titanium from "../../../../public/Images/iPhone_16_Pro_Natural_Titanium.jpg";
-import iPhone_16_Pro_Black_Titanium from "../../../../public/Images/iPhone_16_Pro_Black_Titanium.jpg";
 import deserttitaniumI from "../../../../public/Images/iPhone_16_Pro_Desert_TitaniumI.jpg";
 import iphone16_titan from "../../../../public/Images/iphone/iphone16_titan.png";
 import iphone16_BlackPro from "../../../../public/Images/iphone/iphone16_BlackPro.png";
@@ -61,7 +58,7 @@ const products: any = {
       },
       "1TB": {
         Trắng: {
-          img: iPhone_16_Pro_White_Titanium,
+          img: whitePro,
           codeColor: "rgb(251, 247, 244)",
           price: 46790000,
         },
@@ -72,12 +69,12 @@ const products: any = {
           price: 46790000,
         },
         "Màu tự nhiên": {
-          img: iPhone_16_Pro_Natural_Titanium,
+          img: iphone16_titan,
           codeColor: "rgb(250, 235, 215)",
           price: 46590000,
         },
         Đen: {
-          img: iPhone_16_Pro_Black_Titanium,
+          img: iphone16_BlackPro,
           codeColor: "rgb(60, 64, 66)",
           price: 46790000,
         },
@@ -535,8 +532,7 @@ export default function FormMain() {
                     src={
                       products[selectedProduct].colorOptions[selectedColor].img
                     }
-                    width={200}
-                    height={200}
+                    className="img_product"
                   />
                 </Box>
                 <Box sx={{ display: "flex" }}>
@@ -679,7 +675,10 @@ export default function FormMain() {
                       đ
                     </span>
                   </Typography>
-                  <Typography sx={{ color: "#fff", fontWeight: 20 }}>
+                  <Typography
+                    sx={{ color: "#fff", fontWeight: 20 }}
+                    className=""
+                  >
                     Trả góp chỉ từ:{" "}
                     <span>
                       {Math.floor(
@@ -791,7 +790,7 @@ export default function FormMain() {
             alignItems: "center",
           }}
         >
-          <Grid container style={{ height: "170px" }}>
+          <Grid container>
             <Grid item sm={6}>
               <Box
                 sx={{
@@ -806,8 +805,7 @@ export default function FormMain() {
                   src={
                     products[selectedProduct].colorOptions[selectedColor].img
                   }
-                  width={150}
-                  height={150}
+                  className="img_productMb"
                 />
               </Box>
             </Grid>

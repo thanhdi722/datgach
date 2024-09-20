@@ -24,6 +24,13 @@ export default function InfoTechnicalComponent({
   const getImageKey = (colorName: string) => {
     return colorName.replace("Màu ", "");
   };
+  const scrollToRegisterForm = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const registerForm = document.getElementById("registerForm");
+    if (registerForm) {
+      registerForm.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <div className={style.infoTechnicalComponent}>
       <div className={style.itemProduct}>
@@ -74,7 +81,8 @@ export default function InfoTechnicalComponent({
         </div> */}
         <div>
           <a
-            href="#registerForm"
+            href="#"
+            onClick={scrollToRegisterForm}
             style={{ color: "#fff" }}
             className={style.groupButtonMobile}
           >
