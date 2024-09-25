@@ -1,0 +1,258 @@
+.itemProduct {
+  color: #fff;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0 12px;
+  margin-left: 10px;
+  text-align: center;
+  vertical-align: top;
+  background-color: #fff;
+}
+
+.wrapImg {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 100%;
+  
+  img {
+    background: none;
+    display: inline;
+    height: auto;
+    opacity: 1 !important;
+    width: 250px;
+    height: 250px;
+  }
+}
+
+.productName {
+  align-items: center;
+  border-radius: 8px;
+  display: flex;
+  font-size: 22px;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 120%;
+  margin: 0 auto 20px;
+  color: #fff;
+  padding: 0;
+  text-align: center;
+}
+
+.productPrice {
+  align-items: baseline;
+  display: flex;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 30px;
+  line-height: 1;
+  margin: 0 auto 0px;
+  width: -moz-max-content;
+  width: max-content;
+  
+  span {
+    font-size: 18px;
+    font-weight: 400;
+    color: #000;
+    padding-right: 10px;
+  }
+  
+  b {
+    color: red;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  
+  p {
+    padding: 10px 10px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    word-break: break-word;
+  }
+}
+
+.listCapacity {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 0 auto 10px;
+  position: relative;
+  
+  div {
+    border: 1px solid #000;
+    border-radius: 30px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    padding: 5px 8px;
+    position: relative;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+    color: #000;
+  }
+}
+
+.listColorProduct {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 0 auto;
+  padding-bottom: 10px;
+  position: relative;
+  width: 100%;
+  
+  div {
+    border-radius: 50%;
+    box-sizing: content-box;
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    margin-top: 0;
+    padding: 2px;
+    position: relative;
+    vertical-align: middle;
+    width: 20px;
+    border: 2px solid transparent;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+}
+
+.groupButtonMobile {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+.content {
+  margin-bottom: 10px;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button_buy {
+  background-color: red;
+  padding: 20px 20px;
+  width: 80%;
+  border-radius: 20px;
+  margin: auto;
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  
+  &:hover {
+    background-color: rgb(250, 96, 96);
+    cursor: pointer;
+  }
+}
+
+.listColorProduct div.selected {
+  border: 2px solid red;
+}
+
+.listCapacity div.active {
+  background-color: #000;
+  color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .listColorProduct div {
+    height: 15px;
+    width: 15px;
+  }
+  
+  .wrapImg img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .productName {
+    font-size: 16px;
+    margin: 0 auto 6px;
+  }
+  
+  .productPrice span {
+    font-size: 16px;
+  }
+  
+  .listColorProduct div.selected {
+    border-width: 2px;
+  }
+  
+  .productPrice {
+    margin: 0 auto 10px;
+  }
+  
+  .productPrice b {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  .listColorProduct {
+    gap: 6px;
+  }
+  
+  .groupButtonMobile {
+    margin-top: 0px;
+  }
+  
+  .listCapacity {
+    height: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .colorName {
+    display: none;
+  }
+  .itemProduct {
+    margin-left: 0px;
+    margin-bottom: 10px;
+    padding: 10px 0 6px;
+  }
+  
+  .button_buy {
+    background-color: red;
+    padding: 10px 10px;
+    width: 80%;
+    border-radius: 10px;
+    margin: auto;
+    color: #fff;
+    font-weight: 500;
+  }
+  
+  .productPrice p {
+    width: 50vw;
+  }
+  .listCapacity {
+    margin: 0;
+  }
+  .wrapImg img {
+    width: 120px;
+    height: 120px;
+  }
+  .productPrice b {
+    font-size: 16px;
+    font-weight: 700;
+}
+.productPrice {
+  margin: 0 auto;
+}
+.wrapImg {
+  margin-bottom: 10px;
+}
+}
