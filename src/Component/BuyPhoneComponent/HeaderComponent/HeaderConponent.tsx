@@ -144,7 +144,10 @@ function HeaderConponent() {
         </div>
         <h2 className="promo_title">Ưu Đãi Trả Góp Siêu Hời</h2>
         <div className="dichvu_container">
-          <a href="#" className="dichvu_images">
+          <a
+            href="https://bachlongmobile.com/tra-gop-muadee/"
+            className="dichvu_images"
+          >
             <Image src={dichvu8} alt="dichvu8" />
           </a>
           <a
