@@ -145,7 +145,7 @@ function HeaderConponent() {
         <h2 className="promo_title">Ưu Đãi Trả Góp Siêu Hời</h2>
         <div className="dichvu_container">
           <a
-            href="https://bachlongmobile.com/tra-gop-muadee/"
+            href="https://bachlongmobile.com/news/tin-cong-nghe/cung-mpos-x-bach-long-mobile-so-huu-iphone-16-series-gia-tot-qua-tang-khung/"
             className="dichvu_images"
           >
             <Image src={dichvu8} alt="dichvu8" />
@@ -162,7 +162,10 @@ function HeaderConponent() {
           >
             <Image src={dichvu6} alt="dichvu6" />
           </a>
-          <a href="#" className="dichvu_images">
+          <a
+            href="https://bachlongmobile.com/tra-gop-muadee/"
+            className="dichvu_images"
+          >
             <Image src={dichvu7} alt="dichvu7" />
           </a>
           <a
