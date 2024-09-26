@@ -19,7 +19,7 @@ import cong from "../../../../public/Images/viber_image_2024-09-24_16-13-09-438.
 // import icon_khien from "../../../../public/Images/iconKhien.png";
 // import icon_pos from "../../../../public/Images/iconPos.png";
 // import gif from "../../../../public/Images/gif.png";
-import "../../../Style/Header.scss";
+import "../../../style/Header.scss";
 // import { Row, Col } from "antd";
 
 function HeaderConponent() {

@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import "../../../Style/InfoTechnical.scss";
+import "../../../style/InfoTechnical.scss";
 import InfoBuyPhoneComponent from "../../../Component/BuyPhoneComponent/infoBuyPhoneComponent/InfoBuyPhoneComponent";
 import iphone16Green from "../../../../public/Images/iphone/iphone-16-green.png";
 import iphone16Black from "../../../../public/Images/iphone/iphone16_Black.png";
