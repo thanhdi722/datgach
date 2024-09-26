@@ -135,7 +135,7 @@ const Ecosystem: React.FC = () => {
 
   return (
     <div className="ecosystem">
-      <div className="upgrade-list">
+      <div className="upgrade-list" style={{ backgroundColor: "black" }}>
         <div className="container">
           <div className="upgrade">
             <div className="upgrade-header">

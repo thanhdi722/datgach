@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import "./upgrade.scss";
 import UpgradeModal from "../UpgradeModal";
 import { useQuery } from "@tanstack/react-query";
-
+import thuculendoi from "../../../../public/Images/thuculendoi.webp";
 export interface Product {
   id: number;
   name: string;
@@ -110,8 +110,15 @@ const UpgradeList: React.FC = () => {
   if (error) return <div>Error loading data</div>;
 
   return (
-    <div className="upgrade-list">
+    <div className="upgrade-list" style={{ backgroundColor: "black" }}>
       <div className="container">
+        <Image
+          src={thuculendoi}
+          width={1820}
+          height={1200}
+          alt="thu-cu-len-doi"
+          className="upgrade-list-img"
+        />
         <div className="upgrade">
           <div className="upgrade-header">
             <h3 className="upgrade-header-tt">Lên đời iPhone 16 Series</h3>
