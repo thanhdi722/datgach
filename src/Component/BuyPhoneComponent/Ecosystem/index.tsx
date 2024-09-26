@@ -142,7 +142,7 @@ const Ecosystem: React.FC = () => {
               <h3 className="upgrade-header-tt">Hệ sinh thái Apple</h3>
             </div>
 
-            <div className="tabs">
+            <div className="tabs" style={{ marginBottom: "1.2rem" }}>
               {tabs.map((tab) => (
                 <button
                   key={tab}
