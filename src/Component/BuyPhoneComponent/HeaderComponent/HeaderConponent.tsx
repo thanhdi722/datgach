@@ -11,7 +11,7 @@ import dichvu6 from "../../../../public/Images/Asset 55.png";
 import dichvu7 from "../../../../public/Images/Asset 56.png";
 import dichvu8 from "../../../../public/Images/Asset 57.png";
 import uudai1 from "../../../../public/Images/1.png";
-import uudai2 from "../../../../public/Images/2.png";
+// import uudai2 from "../../../../public/Images/2.png";
 import uudai3 from "../../../../public/Images/3.png";
 import uudai4 from "../../../../public/Images/4.png";
 import uudai5 from "../../../../public/Images/5.png";
@@ -127,19 +127,19 @@ function HeaderConponent() {
         </div> */}
         <div className="uudai_container">
           <Image src={uudai1} alt="uudai1" className="uudai_images" />
-          <Image src={cong} alt="cong" className="cong_images" />
-          <Image src={uudai2} alt="uudai2" className="uudai_images" />
-          <div className="cong_imagesMB_container">
+          {/* <Image src={cong} alt="cong" className="cong_images" />
+          <Image src={uudai2} alt="uudai2" className="uudai_images" /> */}
+          {/* <div className="cong_imagesMB_container">
             <Image src={cong} alt="cong" className="cong_imagesMB" />
-          </div>
+          </div> */}
           <Image src={cong} alt="cong" className="cong_images" />
           <Image src={uudai3} alt="uudai3" className="uudai_images" />
           <Image src={cong} alt="cong" className="cong_images" />
-          <Image src={uudai4} alt="uudai4" className="uudai_images" />
-          <Image src={cong} alt="cong" className="cong_images" />
           <div className="cong_imagesMB_container">
             <Image src={cong} alt="cong" className="cong_imagesMB" />
           </div>
+          <Image src={uudai4} alt="uudai4" className="uudai_images" />
+          <Image src={cong} alt="cong" className="cong_images" />
           <Image src={uudai5} alt="uudai5" className="uudai_images" />
         </div>
         <h2 className="promo_title">Ưu Đãi Trả Góp Siêu Hời</h2>
