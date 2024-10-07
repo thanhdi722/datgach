@@ -2,7 +2,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import './product-list.scss';
-import CardProduct from '../CardProduct/CardProduct';
+import CardProduct from '../CardProductComboPK/CardProduct';
 import { useQuery } from '@tanstack/react-query';
 import { Spin } from 'antd';
 import pklaptop from '../../../public/sac du phong.png';

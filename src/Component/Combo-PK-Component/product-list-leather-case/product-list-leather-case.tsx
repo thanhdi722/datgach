@@ -2,7 +2,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import './product-list-leather-case.scss';
-import CardProduct from '../CardProduct/CardProduct';
+import CardProduct from '../CardProductComboPK/CardProduct';
 import { useQuery } from '@tanstack/react-query';
 import { Spin } from 'antd';
 import 'swiper/css';
