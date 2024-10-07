@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './ComboIPhone15.scss';
 import Image from 'next/image';
-import { Button, Form, Input, message, Modal, Select } from 'antd';
+import { Button, Form, Spin, message, Modal, Select } from 'antd';
 import images1 from '../../../../public/combo-01-15.png';
 import images2 from '../../../../public/combo-02-15.png';
 import images3 from '../../../../public/combo-03-15.png';
@@ -34,6 +34,7 @@ const ComboIPhone15: React.FC = () => {
 	const [totalPrice, setTotalPrice] = useState<number>(0);
 
 	const fetchData = async () => {
+		setLoading(true);
 		const response = await fetch(
 			'https://script.google.com/macros/s/AKfycbysamsKFA9Pbr0czRuXVDWKpnCo5BM3HxutpKXLPY_jemM6GZTBCkR6_5oe-nlnK92pbw/exec?id=iphone15',
 			{
@@ -42,6 +43,7 @@ const ComboIPhone15: React.FC = () => {
 		);
 		const data: ProductCombo16[] = await response.json();
 		setFetchedData(data);
+		setLoading(false);
 	};
 
 	useEffect(() => {
@@ -119,6 +121,16 @@ const ComboIPhone15: React.FC = () => {
 		<div className='banner-slide'>
 			<div className='container'>
 				<h1 className='title-combo-15'>COMBO PHỤ KIỆN IPHONE 15</h1>
+				{loading && (
+					<div
+						className='loading container-spin flex items-center justify-center'
+						style={{
+							height: '300px',
+						}}
+					>
+						<Spin />
+					</div>
+				)}
 				<div className='banner-slide-combo15'>
 					{fetchedData.map((combo, index) => (
 						<div key={index} className='banner-slide-combo15-wrap' onClick={() => handleClickTest(combo)}>

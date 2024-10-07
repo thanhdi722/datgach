@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Button, Form, Input, Modal, Select, message } from 'antd';
+import { Button, Form, Spin, Modal, Select, message } from 'antd';
 import './ComboIPhone16.scss';
 import images1 from '../../../../public/combo-01-16.png';
 import images2 from '../../../../public/combo-02-16.png';
@@ -35,6 +35,7 @@ const ComboIPhone16: React.FC = () => {
 	const [totalPrice, setTotalPrice] = useState<number>(0);
 
 	const fetchData = async () => {
+		setLoading(true);
 		const response = await fetch(
 			'https://script.google.com/macros/s/AKfycbysamsKFA9Pbr0czRuXVDWKpnCo5BM3HxutpKXLPY_jemM6GZTBCkR6_5oe-nlnK92pbw/exec?id=iphone16',
 			{
@@ -43,6 +44,7 @@ const ComboIPhone16: React.FC = () => {
 		);
 		const data: ProductCombo16[] = await response.json();
 		setFetchedData(data);
+		setLoading(false);
 	};
 
 	useEffect(() => {
@@ -127,6 +129,16 @@ const ComboIPhone16: React.FC = () => {
 			<div className='banner-slide'>
 				<div className='container'>
 					<h1 className='title-combo-16'>COMBO PHỤ KIỆN IPHONE 16 SERIES</h1>
+					{loading && (
+						<div
+							className='loading container-spin flex items-center justify-center'
+							style={{
+								height: '300px',
+							}}
+						>
+							<Spin />
+						</div>
+					)}
 					<div className='banner-slide-combo'>
 						{fetchedData.map((combo, index) => (
 							<div key={index} className='banner-slide-combo-wrap' onClick={() => handleClickTest(combo)}>
