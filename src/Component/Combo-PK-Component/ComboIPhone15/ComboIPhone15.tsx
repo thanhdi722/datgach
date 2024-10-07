@@ -151,7 +151,7 @@ const ComboIPhone15: React.FC = () => {
 								name='username'
 								rules={[{ required: true, message: 'Vui lòng nhập họ và tên' }]}
 							>
-								<Input />
+								<Input style={{ border: '1px solid #999' }} />
 							</Form.Item>
 							<Form.Item<FieldType>
 								label='Số điện thoại'
@@ -164,7 +164,7 @@ const ComboIPhone15: React.FC = () => {
 									},
 								]}
 							>
-								<Input />
+								<Input style={{ border: '1px solid #999' }} />
 							</Form.Item>
 
 							<div className='modal-content'>
