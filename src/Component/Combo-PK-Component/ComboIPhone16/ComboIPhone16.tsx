@@ -166,10 +166,7 @@ const ComboIPhone16: React.FC = () => {
 									name='username'
 									rules={[{ required: true, message: 'Vui lòng nhập họ và tên' }]}
 								>
-									<Input
-										className='inputComboPK'
-										style={{ border: '1px solid #999 !important', borderRadius: '5px !important' }}
-									/>
+									<input className='input-modal-combo' />
 								</Form.Item>
 
 								<Form.Item<FieldType>
@@ -183,10 +180,7 @@ const ComboIPhone16: React.FC = () => {
 										},
 									]}
 								>
-									<Input
-										className='inputComboPK'
-										style={{ border: '1px solid #999 !important', borderRadius: '5px !important' }}
-									/>
+									<input className='input-modal-combo' />
 								</Form.Item>
 
 								<div className='modal-content'>
