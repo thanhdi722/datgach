@@ -45,7 +45,48 @@
 			list-style-type: none; /* Loại bỏ bullet points */
 			padding: 0;
 			margin: 0 0 30px;
+			.li-cus {
+				font-size: 18px;
+				line-height: 1.8;
+				color: #333; /* Màu chữ chính */
+				margin-bottom: 15px;
+				padding-left: 20px; /* Tạo khoảng cách cho danh sách */
+				position: relative;
+				list-style: none;
 
+				&::before {
+					content: '';
+					width: 8px;
+					height: 8px;
+					background-color: #22e078;
+					border-radius: 50%;
+					position: absolute;
+					left: 0;
+					top: 50%;
+					transform: translateY(-50%);
+				}
+			}
+			.li-cus-02 {
+				font-size: 18px;
+				line-height: 1.8;
+				color: #333; /* Màu chữ chính */
+				margin-bottom: 15px;
+				padding-left: 20px; /* Tạo khoảng cách cho danh sách */
+				position: relative;
+				list-style: none;
+
+				&::before {
+					content: '';
+					width: 8px;
+					height: 8px;
+					background-color: #37413b;
+					border-radius: 50%;
+					position: absolute;
+					left: 0;
+					top: 50%;
+					transform: translateY(-50%);
+				}
+			}
 			li {
 				font-size: 18px;
 				line-height: 1.8;
