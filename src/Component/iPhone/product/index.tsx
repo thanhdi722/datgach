@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Spin } from 'antd';
 import './product.scss';
 import ProductBanner from '../../../../public/apple/product-banner-01.png';
+import Author from '../../../../public/apple/author.webp';
 
 export interface Product {
 	id: number;
@@ -348,13 +349,7 @@ const ProductList: React.FC = () => {
 								<div className='upgrade-item'>
 									<div className='upgrade-item-header'>
 										<span className='percent'>Trả góp 0%</span>
-										<Image
-											src='/apple/author.webp'
-											width={60}
-											height={20}
-											quality={100}
-											alt='author'
-										/>
+										<Image src={Author} width={60} height={20} quality={100} alt='author' />
 									</div>
 									<div className='upgrade-item-img'>
 										<Image
