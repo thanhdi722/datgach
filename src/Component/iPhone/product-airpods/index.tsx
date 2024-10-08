@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Spin } from 'antd';
+import ProductBanner from '../../../../public/apple/product-banner-05.png';
 import './product-airpods.scss';
 
 export interface Product {
@@ -223,13 +224,7 @@ const ProductAirPods: React.FC = () => {
 		<div className='product-list'>
 			<div className='upgrade-list'>
 				<div className='container'>
-					<Image
-						src='/apple/product-banner-05.png'
-						width={1820}
-						height={1200}
-						alt='product-banner-05'
-						className=''
-					/>
+					<Image src={ProductBanner} width={1820} height={1200} alt='product-banner-05' className='' />
 					<div className='upgrade'>
 						{visibleProducts.map((product, index) => (
 							<Link

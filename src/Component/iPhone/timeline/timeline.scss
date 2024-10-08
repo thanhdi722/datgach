@@ -1,0 +1,101 @@
+.timeline {
+	padding: 2rem 0;
+	background: linear-gradient(135deg, #ff7e7e, #ff9a66, #ff7e7e); // Toned-down fiery gradient
+	background-size: 300% 300%;
+	animation: gentleFlame 6s infinite alternate; // Subtle flame animation
+
+	.timeline-content {
+		display: flex;
+		justify-content: center;
+		gap: 2rem;
+		align-items: center;
+		&-button {
+			background: #ed1d26;
+			color: #fff;
+			padding: 1.2rem 2.4rem;
+			border-radius: 1rem;
+			border: none;
+			font-size: 2.4rem;
+			font-weight: 600;
+			height: fit-content;
+			transition: transform 0.3s ease;
+
+			&:hover {
+				transform: scale(1.05);
+			}
+		}
+		&-ended {
+			font-size: 2rem;
+			color: #ed1d26;
+			font-weight: 600;
+		}
+		&-countdown {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			padding: 1rem;
+			border-radius: 0.5rem;
+
+			&-flip-card {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 1rem;
+				position: relative;
+				background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+				padding: 1.5rem;
+				border-radius: 1rem;
+				box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+				&::before {
+					content: '';
+					position: absolute;
+					top: -8px;
+					left: -8px;
+					right: -8px;
+					bottom: -8px;
+					border: 2px solid rgba(255, 255, 255, 0.5);
+					border-radius: 1.2rem;
+					z-index: -1;
+					background: rgba(255, 255, 255, 0.1);
+				}
+			}
+
+			&-item {
+				display: flex;
+				align-items: center;
+				gap: 1.2rem;
+				padding: 0.5rem 1rem;
+				border-radius: 0.5rem;
+			}
+
+			&-item-number {
+				font-size: 2.4rem;
+				font-weight: bold;
+				color: #fff;
+				background: #ed1d26;
+				padding: 0.5rem 1rem;
+				border-radius: 0.5rem;
+			}
+
+			&-item-text {
+				font-size: 1.6rem;
+				color: #fff;
+				font-weight: 600;
+			}
+		}
+	}
+}
+
+@keyframes gentleFlame {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

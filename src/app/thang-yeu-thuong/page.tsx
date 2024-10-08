@@ -3,13 +3,13 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import itemAccess from "../../../public/apple/category-fixed-06.png";
+import itemAccess from '../../../public/apple/category-fixed-06.png';
 import 'swiper/css';
-import itemIphone from "../../../public/apple/category-fixed-01.png";
-import itemIpad from "../../../public/apple/category-fixed-02.png";
-import itemWatch from "../../../public/apple/category-fixed-03.png";
-import itemMac from "../../../public/apple/category-fixed-04.png";
-import itemAirPods from "../../../public/apple/category-fixed-05.png";
+import itemIphone from '../../../public/apple/category-fixed-01.png';
+import itemIpad from '../../../public/apple/category-fixed-02.png';
+import itemWatch from '../../../public/apple/category-fixed-03.png';
+import itemMac from '../../../public/apple/category-fixed-04.png';
+import itemAirPods from '../../../public/apple/category-fixed-05.png';
 import Banner from '../../Component/iPhone/banner';
 import Category from '../../Component/iPhone/category';
 import ProductList from '../../Component/iPhone/product';
@@ -19,8 +19,9 @@ import ProductIpad from '../../Component/iPhone/product-ipad';
 import ProductMac from '../../Component/iPhone/product-mac';
 import ProductWatch from '../../Component/iPhone/product-watch';
 import Promotion from '../../Component/iPhone/promotion';
+import Rules from '../../Component/iPhone/rules';
+import TimeLine from '../../Component/iPhone/timeline';
 import './apple.scss';
-
 
 const categories = [
 	{ id: 'item-iphone', src: itemIphone, alt: 'category-fixed-01' },
@@ -43,6 +44,10 @@ const Apple = () => {
 			element.scrollIntoView({ behavior: 'smooth' });
 			setActiveCategory(id);
 		}
+	};
+
+	const handleScrollToRules = () => {
+		handleClick('item-rules');
 	};
 
 	useEffect(() => {
@@ -88,6 +93,7 @@ const Apple = () => {
 	return (
 		<div className='apple'>
 			<Banner />
+			<TimeLine onScrollToRules={handleScrollToRules} />
 			<Promotion />
 			<div ref={categoryRef}>
 				<Category />
@@ -109,6 +115,9 @@ const Apple = () => {
 			</div>
 			<div id='item-access'>
 				<ProductAccess />
+			</div>
+			<div id='item-rules'>
+				<Rules />
 			</div>
 			<div className={`sticky-category ${isStickyVisible ? 'visible' : 'hidden'}`}>
 				<div className='category-desktop'>

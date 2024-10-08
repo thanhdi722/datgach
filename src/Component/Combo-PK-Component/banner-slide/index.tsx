@@ -163,18 +163,18 @@ const BannerSlide = () => {
 				>
 					<div className='OldForNew-Section1-imageSliderBanner'>
 						<Carousel autoplay autoplaySpeed={2000} dots={false} arrows={true}>
-							<Link href='https://bachlongmobile.com/phu-kien/chon-dong-phu-kien/apple/'>
+							<Link href='https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/'>
 								<div className='OldForNew-Section1-image'>
 									<Image src={bannerSlider} alt='' className='OldForNew-Section1-imageItem' />
 								</div>
 							</Link>
 
-							<Link href='https://bachlongmobile.com/phu-kien/chon-dong-phu-kien/apple/'>
+							<Link href='https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/'>
 								<div className='OldForNew-Section1-image'>
 									<Image src={bannerSlider2} alt='' className='OldForNew-Section1-imageItem' />
 								</div>
 							</Link>
-							<Link href='https://bachlongmobile.com/phu-kien/chon-dong-phu-kien/apple/'>
+							<Link href='https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/'>
 								<div className='OldForNew-Section1-image'>
 									<Image src={bannerSlider} alt='' className='OldForNew-Section1-imageItem' />
 								</div>
@@ -183,17 +183,17 @@ const BannerSlide = () => {
 					</div>
 					<div className='OldForNew-Section1-imageSliderBanner'>
 						<Carousel autoplay autoplaySpeed={2000} dots={false} arrows={true}>
-							<Link href='https://bachlongmobile.com/phu-kien/chon-dong-phu-kien/apple/'>
+							<Link href='https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/'>
 								<div className='OldForNew-Section1-image'>
 									<Image src={bannerSlider2} alt='' className='OldForNew-Section1-imageItem' />
 								</div>
 							</Link>
-							<Link href='https://bachlongmobile.com/phu-kien/chon-dong-phu-kien/apple/'>
+							<Link href='https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/'>
 								<div className='OldForNew-Section1-image'>
 									<Image src={bannerSlider} alt='' className='OldForNew-Section1-imageItem' />
 								</div>
 							</Link>
-							<Link href='https://bachlongmobile.com/phu-kien/chon-dong-phu-kien/apple/'>
+							<Link href='https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/'>
 								<div className='OldForNew-Section1-image'>
 									<Image src={bannerSlider2} alt='' className='OldForNew-Section1-imageItem' />
 								</div>
