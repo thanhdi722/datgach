@@ -5,15 +5,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 import './apple.scss';
-import Banner from '@/Component/iPhone/banner';
-import Promotion from '@/Component/iPhone/promotion';
-import Category from '@/Component/iPhone/category';
-import ProductList from '@/Component/iPhone/product';
-import ProductIpad from '@/Component/iPhone/product-ipad';
-import ProductWatch from '@/Component/iPhone/product-watch';
-import ProductMac from '@/Component/iPhone/product-mac';
-import ProductAirPods from '@/Component/iPhone/product-airpods';
-import ProductAccess from '@/Component/iPhone/product-access';
+import Banner from '../../Component/iPhone/banner';
+import Promotion from '../../Component/iPhone/promotion';
+import Category from '../../Component/iPhone/category';
+import ProductList from '../../Component/iPhone/product';
+import ProductIpad from '../../Component/iPhone/product-ipad';
+import ProductWatch from '../../Component/iPhone/product-watch';
+import ProductMac from '../../Component/iPhone/product-mac';
+import ProductAirPods from '../../Component/iPhone/product-airpods';
+import ProductAccess from '../../Component/iPhone/product-access';
 
 const categories = [
 	{ id: 'item-iphone', src: '/apple/category-fixed-01.png', alt: 'category-fixed-01' },
