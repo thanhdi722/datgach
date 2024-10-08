@@ -1,18 +1,26 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import React from 'react';
 import Link from 'next/link';
 import './category.scss';
+import Category01 from '/public/apple/category-01.png';
+import Category02 from '/public/apple/category-02.png';
+import Category03 from '/public/apple/category-03.png';
+import Category04 from '/public/apple/category-04.png';
+import Category05 from '/public/apple/category-05.png';
+import Category06 from '/public/apple/category-06.png';
+import Category07 from '/public/apple/category-07.png';
+import Category08 from '/public/apple/category-08.png';
 
 const Category = () => {
 	const categoryImages = [
-		'/apple/category-01.png',
-		'/apple/category-02.png',
-		'/apple/category-03.png',
-		'/apple/category-04.png',
-		'/apple/category-05.png',
-		'/apple/category-06.png',
-		'/apple/category-07.png',
-		'/apple/category-08.png',
+		Category01,
+		Category02,
+		Category03,
+		Category04,
+		Category05,
+		Category06,
+		Category07,
+		Category08,
 	];
 
 	const handleClickiPhone = () => {
@@ -62,7 +70,7 @@ const Category = () => {
 		7: 'https://bachlongmobile.com/bnews/bach-long-mobile-don-vi-tien-phong-ho-tro-apple-pay-tai-viet-nam/',
 	};
 
-	const renderCategoryItem = (src: string, index: number) => {
+	const renderCategoryItem = (src: StaticImageData, index: number) => {
 		const isLinkWrapped = index === 6 || index === 7;
 
 		const content = (
