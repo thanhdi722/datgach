@@ -38,16 +38,23 @@ const Apple = () => {
 	const [activeCategory, setActiveCategory] = useState<string | null>(null);
 	const scrollThreshold = 2000;
 
-	const handleClick = (id: string) => {
+	const handleClick = (id: string, offset = 0) => {
 		const element = document.getElementById(id);
 		if (element) {
-			element.scrollIntoView({ behavior: 'smooth' });
+			const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+			const offsetPosition = elementPosition - offset;
+
+			window.scrollTo({
+				top: offsetPosition,
+				behavior: 'smooth',
+			});
 			setActiveCategory(id);
 		}
 	};
 
 	const handleScrollToRules = () => {
-		handleClick('item-rules');
+		const customOffset = 300;
+		handleClick('item-rules', customOffset);
 	};
 
 	useEffect(() => {

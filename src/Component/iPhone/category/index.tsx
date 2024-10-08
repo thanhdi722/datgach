@@ -2,14 +2,14 @@ import Image, { StaticImageData } from 'next/image';
 import React from 'react';
 import Link from 'next/link';
 import './category.scss';
-import Category01 from '/public/apple/category-01.png';
-import Category02 from '/public/apple/category-02.png';
-import Category03 from '/public/apple/category-03.png';
-import Category04 from '/public/apple/category-04.png';
-import Category05 from '/public/apple/category-05.png';
-import Category06 from '/public/apple/category-06.png';
-import Category07 from '/public/apple/category-07.png';
-import Category08 from '/public/apple/category-08.png';
+import Category01 from '../../../../public/apple/category-01.png';
+import Category02 from '../../../../public/apple/category-02.png';
+import Category03 from '../../../../public/apple/category-03.png';
+import Category04 from '../../../../public/apple/category-04.png';
+import Category05 from '../../../../public/apple/category-05.png';
+import Category06 from '../../../../public/apple/category-06.png';
+import Category07 from '../../../../public/apple/category-07.png';
+import Category08 from '../../../../public/apple/category-08.png';
 
 const Category = () => {
 	const categoryImages = [
