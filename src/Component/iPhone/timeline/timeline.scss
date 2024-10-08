@@ -9,6 +9,9 @@
 		justify-content: center;
 		gap: 2rem;
 		align-items: center;
+		@media screen and (max-width: 1200px) {
+			flex-direction: column;
+		}
 		&-button {
 			background: #ed1d26;
 			color: #fff;
@@ -47,6 +50,9 @@
 				border-radius: 1rem;
 				box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				@media screen and (max-width: 1200px) {
+					padding: 1rem;
+				}
 
 				&::before {
 					content: '';
@@ -83,6 +89,9 @@
 				font-size: 1.6rem;
 				color: #fff;
 				font-weight: 600;
+				@media screen and (max-width: 1200px) {
+					display: none;
+				}
 			}
 		}
 	}
