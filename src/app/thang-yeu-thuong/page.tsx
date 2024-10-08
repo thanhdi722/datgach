@@ -1,27 +1,34 @@
 'use client';
-import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import itemAccess from "../../../public/apple/category-fixed-06.png";
 import 'swiper/css';
-import './apple.scss';
+import itemIphone from "../../../public/apple/category-fixed-01.png";
+import itemIpad from "../../../public/apple/category-fixed-02.png";
+import itemWatch from "../../../public/apple/category-fixed-03.png";
+import itemMac from "../../../public/apple/category-fixed-04.png";
+import itemAirPods from "../../../public/apple/category-fixed-05.png";
 import Banner from '../../Component/iPhone/banner';
-import Promotion from '../../Component/iPhone/promotion';
 import Category from '../../Component/iPhone/category';
 import ProductList from '../../Component/iPhone/product';
-import ProductIpad from '../../Component/iPhone/product-ipad';
-import ProductWatch from '../../Component/iPhone/product-watch';
-import ProductMac from '../../Component/iPhone/product-mac';
-import ProductAirPods from '../../Component/iPhone/product-airpods';
 import ProductAccess from '../../Component/iPhone/product-access';
+import ProductAirPods from '../../Component/iPhone/product-airpods';
+import ProductIpad from '../../Component/iPhone/product-ipad';
+import ProductMac from '../../Component/iPhone/product-mac';
+import ProductWatch from '../../Component/iPhone/product-watch';
+import Promotion from '../../Component/iPhone/promotion';
+import './apple.scss';
+
 
 const categories = [
-	{ id: 'item-iphone', src: '/apple/category-fixed-01.png', alt: 'category-fixed-01' },
-	{ id: 'item-ipad', src: '/apple/category-fixed-02.png', alt: 'category-fixed-02' },
-	{ id: 'item-watch', src: '/apple/category-fixed-03.png', alt: 'category-fixed-03' },
-	{ id: 'item-mac', src: '/apple/category-fixed-04.png', alt: 'category-fixed-04' },
-	{ id: 'item-airpods', src: '/apple/category-fixed-05.png', alt: 'category-fixed-05' },
-	{ id: 'item-access', src: '/apple/category-fixed-06.png', alt: 'category-fixed-06' },
+	{ id: 'item-iphone', src: itemIphone, alt: 'category-fixed-01' },
+	{ id: 'item-ipad', src: itemIpad, alt: 'category-fixed-02' },
+	{ id: 'item-watch', src: itemWatch, alt: 'category-fixed-03' },
+	{ id: 'item-mac', src: itemMac, alt: 'category-fixed-04' },
+	{ id: 'item-airpods', src: itemAirPods, alt: 'category-fixed-05' },
+	{ id: 'item-access', src: itemAccess, alt: 'category-fixed-06' },
 ];
 
 const Apple = () => {
