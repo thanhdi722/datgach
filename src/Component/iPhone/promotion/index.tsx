@@ -16,27 +16,31 @@ import Promotion08 from '../../../../public/apple/promotion-08.png';
 import Image from 'next/image';
 import './promotion.scss';
 
-const Promotion = () => {
+type PromotionProps = {
+	onScrollToRules: () => void;
+};
+
+const Promotion = ({ onScrollToRules }: PromotionProps) => {
 	return (
 		<div className='promotion'>
 			<div className='container'>
 				<div className='promotion-header'>5 đặc quyền mua hàng tại Bạch Long Mobile</div>
 				<div className='promotion-list-privilege'>
-					<Link href='https://bachlongmobile.com/news/tin-cong-nghe/tet-apple-vong-quay-may-man-nhan-li-xi-tet-cung-bach-long-mobile/'>
+					<div onClick={onScrollToRules}>
 						<Image src={Privilege01} alt='privilege-01' width={270} height={117} />
-					</Link>
-					<Link href='https://bachlongmobile.com/tra-gop-0-lai-suat/'>
+					</div>
+					<Link href='https://bachlongmobile.com/renew/'>
 						<Image src={Privilege02} alt='privilege-02' width={270} height={117} />
 					</Link>
-					<Link href='https://bachlongmobile.com/news/tin-cong-nghe/tet-apple-thu-cu-doi-moi-tro-gia-den-100-gia-tri-may-ban-ra/'>
+					<Link href='https://bachlongmobile.com/promotion/tet-apple-bao-hanh-toan-dien/'>
 						<Image src={Privilege03} alt='privilege-03' width={270} height={117} />
 					</Link>
-					<Link href='https://bachlongmobile.com/news/tin-cong-nghe/chuong-trinh-n-ng-cap-bao-hanh-iphone-16-series-tai-bach-long-mobile/'>
+					<Link href='https://bachlongmobile.com/combo-phu-kien/'>
 						<Image src={Privilege04} alt='privilege-04' width={270} height={117} />
 					</Link>
-					<Link href='https://bachlongmobile.com/news/tin-cong-nghe/chuong-trinh-n-ng-cap-bao-hanh-iphone-16-series-tai-bach-long-mobile/'>
+					<div onClick={onScrollToRules}>
 						<Image src={Privilege05} alt='privilege-05' width={270} height={117} />
-					</Link>
+					</div>
 				</div>
 			</div>
 

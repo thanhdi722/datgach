@@ -101,7 +101,7 @@ const Apple = () => {
 		<div className='apple'>
 			<Banner />
 			<TimeLine onScrollToRules={handleScrollToRules} />
-			<Promotion />
+			<Promotion onScrollToRules={handleScrollToRules} />
 			<div ref={categoryRef}>
 				<Category />
 			</div>
