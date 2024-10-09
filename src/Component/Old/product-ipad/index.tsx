@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Spin } from 'antd';
 import './product-ipad.scss';
-
+import ProductBanner from '../../../../public/old/product-banner-02.png';
 export interface Product {
 	id: number;
 	name: string;
@@ -246,13 +246,7 @@ const ProductIpad: React.FC = () => {
 		<div className='product-list'>
 			<div className='upgrade-list'>
 				<div className='container'>
-					<Image
-						src='/apple/product-banner-02.png'
-						width={1820}
-						height={1200}
-						alt='product-banner-02'
-						className=''
-					/>
+					<Image src={ProductBanner} width={1820} height={1200} alt='product-banner-02' className='' />
 					<div className='tabs'>
 						{tabs.map((tab) => (
 							<button

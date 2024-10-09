@@ -65,7 +65,7 @@ const Category = () => {
 
 		const content = (
 			<div
-				className='category-it'
+				className='category-it-old'
 				onClick={
 					index === 0
 						? handleClickiPhone
@@ -105,9 +105,9 @@ const Category = () => {
 	};
 
 	return (
-		<div className='category-wrapper'>
+		<div className='category-wrapper-old'>
 			<div className='container'>
-				<div className='category-container'>
+				<div className='category-container-old'>
 					{categoryImages.map((src, index) => renderCategoryItem(src, index))}
 				</div>
 			</div>

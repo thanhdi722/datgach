@@ -4,9 +4,9 @@ import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Spin } from 'antd';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import ProductBanner from '../../../../public/old/product-banner-01.png';
 import 'swiper/css';
 import './product.scss';
-
 export interface Product {
 	id: number;
 	name: string;
@@ -299,13 +299,7 @@ const ProductList: React.FC = () => {
 		<div className='product-list'>
 			<div className='upgrade-list'>
 				<div className='container'>
-					<Image
-						src='/apple/product-banner-01.png'
-						width={1820}
-						height={1200}
-						alt='product-banner-01'
-						className=''
-					/>
+					<Image src={ProductBanner} width={1820} height={1200} alt='product-banner-01' className='' />
 					<div className='tabs'>
 						{window.innerWidth < 768 ? (
 							<Swiper

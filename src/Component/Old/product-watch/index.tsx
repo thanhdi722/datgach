@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Spin } from 'antd';
+import ProductBanner from '../../../../public/old/product-banner-03.png';
 import './product-watch.scss';
 
 export interface Product {
@@ -240,13 +241,7 @@ const ProductWatch: React.FC = () => {
 		<div className='product-list'>
 			<div className='upgrade-list'>
 				<div className='container'>
-					<Image
-						src='/apple/product-banner-03.png'
-						width={1820}
-						height={1200}
-						alt='product-banner-03'
-						className=''
-					/>
+					<Image src={ProductBanner} width={1820} height={1200} alt='product-banner-03' className='' />
 					<div className='upgrade'>
 						{visibleProducts.map((product, index) => (
 							<Link

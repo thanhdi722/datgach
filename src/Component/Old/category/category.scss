@@ -1,4 +1,4 @@
-.category-wrapper {
+.category-wrapper-old {
 	padding: 2rem 0;
 	display: flex;
 	justify-content: center;
@@ -6,7 +6,7 @@
 	background-color: #f9f9f9;
 }
 
-.category-container {
+.category-container-old {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	gap: 2rem;
@@ -19,7 +19,7 @@
 	}
 }
 
-.category-it {
+.category-it-old {
 	background-color: #ffffff;
 	padding: 1.5rem;
 	border-radius: 1rem;
