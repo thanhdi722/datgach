@@ -1,8 +1,12 @@
 .timeline {
 	padding: 2rem 0;
-	background: linear-gradient(135deg, #ff7e7e, #ff9a66, #ff7e7e); // Toned-down fiery gradient
+	background: linear-gradient(135deg, #ff7e7e, #ff9a66, #ff7e7e);
 	background-size: 300% 300%;
-	animation: gentleFlame 6s infinite alternate; // Subtle flame animation
+	animation: gentleFlame 6s infinite alternate;
+
+	@media screen and (max-width: 768px) {
+		padding: 1rem 0;
+	}
 
 	.timeline-content {
 		display: flex;
@@ -11,6 +15,7 @@
 		align-items: center;
 		@media screen and (max-width: 1200px) {
 			flex-direction: column;
+			gap: 0.4rem;
 		}
 		&-button {
 			background: #ed1d26;
@@ -23,8 +28,16 @@
 			height: fit-content;
 			transition: transform 0.3s ease;
 
+			@media screen and (max-width: 768px) {
+				padding: 1rem;
+				font-size: 1.8rem;
+			}
+
 			&:hover {
 				transform: scale(1.05);
+				@media screen and (max-width: 768px) {
+					transform: scale(1);
+				}
 			}
 		}
 		&-ended {

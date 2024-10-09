@@ -6,15 +6,18 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import './banner.scss';
-import banner from '../../../../public/apple/banner-apple.jpg';
+import bannerDesktop from '../../../../public/apple/banner-apple.jpg';
+import bannerMobile from '../../../../public/apple/banner-mobile.jpg';
 
 const Banner: React.FC = () => {
 	return (
 		<div className='banner'>
-			<Image src={banner} alt='banner' width={1820} height={1400} />
-			{/* <div className='banner-content'>
-				<Image src='/apple/heart.png' alt='heart' width={1200} height={900} />
-			</div> */}
+			<div className='banner-desktop'>
+				<Image src={bannerDesktop} alt='banner desktop' width={1820} height={1400} />
+			</div>
+			<div className='banner-mobile'>
+				<Image src={bannerMobile} alt='banner mobile' width={1820} height={1820} />
+			</div>
 		</div>
 	);
 };

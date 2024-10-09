@@ -16,6 +16,10 @@ $background: #faf6f6;
 		animation: slideIn 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
 		transition: opacity 0.8s ease, transform 0.8s ease;
 
+		@media screen and (max-width: 768px) {
+			top: 17rem;
+		}
+
 		&.hidden {
 			opacity: 0;
 			transform: translateY(-10px);
