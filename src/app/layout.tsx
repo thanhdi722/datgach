@@ -29,7 +29,9 @@ export default function RootLayout({
 		<html lang='en'>
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 				{/* <AntdRegistry> */}
-				<Provider>{children}</Provider>
+				{/* <Provider> */}
+				{children}
+				{/* </Provider> */}
 				{/* </AntdRegistry> */}
 			</body>
 		</html>

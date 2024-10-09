@@ -56,10 +56,6 @@ const Rules = () => {
 					</h2>
 					<ul className='rules-list'>
 						<li>
-							Giờ vàng giá sốc gồm 25 sản phẩm Apple hàng tuần{' '}
-							<span className='rules-section-title-hot'>giảm đến 50%.</span>
-						</li>
-						<li>
 							Giảm đến 30% cho các sản phẩm Apple MỚI và lì xì lên đến{' '}
 							<span className='rules-section-title-hot'>300.000đ.</span>
 						</li>
