@@ -215,7 +215,7 @@ const ProductList: React.FC = () => {
 		},
 		{
 			name: 'iPhone 13',
-			subTabs: ['iPhone 13 Pro Max', 'iPhone 13 Pro', 'iPhone 13'],
+			subTabs: ['iPhone 13 Pro Max', 'iPhone 13 Pro', 'iPhone 13', 'iPhone 13 Mini'],
 		},
 		{
 			name: 'iPhone 11',
@@ -247,7 +247,8 @@ const ProductList: React.FC = () => {
 					? product.name.includes(activeTab) &&
 					  !product.name.includes('Pro') &&
 					  !product.name.includes('Plus') &&
-					  !product.name.includes('Max')
+					  !product.name.includes('Max') &&
+					  !product.name.includes('Mini')
 					: product.name.includes(activeTab);
 
 			const matchesSubTab = activeSubTab
@@ -308,7 +309,7 @@ const ProductList: React.FC = () => {
 								slidesPerView='auto'
 								breakpoints={{
 									375: {
-										slidesPerView: 3.5,
+										slidesPerView: 3.7,
 									},
 									768: {
 										slidesPerView: 3.2,
@@ -403,7 +404,7 @@ const ProductList: React.FC = () => {
 								<div className='upgrade-item'>
 									<div className='upgrade-item-header'>
 										<span className='percent'>Trả góp 0%</span>
-										<Image src={Author} width={60} height={20} quality={100} alt='author' />
+										{/* <Image src={Author} width={60} height={20} quality={100} alt='author' /> */}
 									</div>
 									<div className='upgrade-item-img'>
 										<Image

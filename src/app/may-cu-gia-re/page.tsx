@@ -18,7 +18,7 @@ const categories = [
 	{ id: 'item-ipad', name: 'iPad' },
 	{ id: 'item-watch', name: 'Watch' },
 	{ id: 'item-mac', name: 'Mac' },
-	{ id: 'item-airpods', name: 'SamSung' },
+	{ id: 'item-airpods', name: 'Samsung' },
 ];
 
 const Old = () => {
@@ -114,10 +114,10 @@ const Old = () => {
 						spaceBetween={10}
 						breakpoints={{
 							300: {
-								slidesPerView: 5,
+								slidesPerView: 4,
 							},
-							1200: {
-								slidesPerView: 6,
+							1400: {
+								slidesPerView: 5,
 							},
 						}}
 						slidesPerView='auto'
