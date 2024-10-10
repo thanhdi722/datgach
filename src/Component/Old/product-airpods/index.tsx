@@ -394,13 +394,6 @@ const ProductAirPods: React.FC = () => {
 								<div className='upgrade-item'>
 									<div className='upgrade-item-header'>
 										<span className='percent'>Trả góp 0%</span>
-										<Image
-											src='/apple/author.webp'
-											width={60}
-											height={20}
-											quality={100}
-											alt='author'
-										/>
 									</div>
 									<div className='upgrade-item-img'>
 										<Image
