@@ -80,22 +80,22 @@ const Rules = () => {
 									</li>
 									<ul className='rules-sublist'>
 										<li className='li-cus'>
-											Combo 1: Ốp lưng và Cường lực chính hãng giá chỉ{' '}
+											Combo Tết Apple 1: Ốp lưng và Cường lực chính hãng giá chỉ{' '}
 											<span className='rules-section-title-hot'>960.000đ</span> (Giá gốc
 											1.140.000đ)
 										</li>
 										<li className='li-cus'>
-											Combo 2: Cường lực và Cốc sạc chính hãng giá chỉ{' '}
+											Combo Tết Apple 2: Cường lực và Cốc sạc chính hãng giá chỉ{' '}
 											<span className='rules-section-title-hot'>1.060.000đ</span> (Giá gốc
 											1.410.000đ)
 										</li>
 										<li className='li-cus'>
-											Combo 3: Ốp lưng, Cường lực và Camera lens chính hãng giá chỉ{' '}
+											Combo Tết Apple 3: Ốp lưng, Cường lực và Camera lens chính hãng giá chỉ{' '}
 											<span className='rules-section-title-hot'>1.360.000đ</span> (Giá gốc
 											1.650.000đ)
 										</li>
 										<li className='li-cus'>
-											Combo 4: Ốp lưng, Cường, Camera lens và Cốc sạc chính hãng giá chỉ{' '}
+											Combo Tết Apple 4: Ốp lưng, Cường, Camera lens và Cốc sạc chính hãng giá chỉ{' '}
 											<span className='rules-section-title-hot'>1.260.000đ</span> (Giá gốc
 											2.470.000đ)
 										</li>
