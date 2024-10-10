@@ -16,9 +16,9 @@ import Content from '../../Component/Old/content';
 const categories = [
 	{ id: 'item-iphone', name: 'iPhone' },
 	{ id: 'item-ipad', name: 'iPad' },
-	{ id: 'item-watch', name: 'Watch' },
-	{ id: 'item-mac', name: 'Mac' },
 	{ id: 'item-airpods', name: 'Samsung' },
+	{ id: 'item-mac', name: 'Mac' },
+	{ id: 'item-watch', name: 'Watch' },
 ];
 
 const Old = () => {
@@ -87,14 +87,14 @@ const Old = () => {
 			<div id='item-ipad'>
 				<ProductIpad />
 			</div>
-			<div id='item-watch'>
-				<ProductWatch />
+			<div id='item-airpods'>
+				<ProductAirPods />
 			</div>
 			<div id='item-mac'>
 				<ProductMac />
 			</div>
-			<div id='item-airpods'>
-				<ProductAirPods />
+			<div id='item-watch'>
+				<ProductWatch />
 			</div>
 			<Content />
 			<div className={`sticky-category ${isStickyVisible ? 'visible' : 'hidden'}`}>

@@ -5,9 +5,10 @@ import Link from 'next/link';
 import { Spin } from 'antd';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ProductBanner from '../../../../public/old/product-banner-01.png';
-import Author from '../../../../public/apple/author.webp';
+import Gift from '../../../../public/old/gift.png';
 import 'swiper/css';
 import './product.scss';
+
 export interface Product {
 	id: number;
 	name: string;
@@ -446,6 +447,16 @@ const ProductList: React.FC = () => {
 													</div>
 												)}
 											</div>
+										</div>
+										<div className='gift'>
+											<Image
+												src={Gift}
+												width={100}
+												height={100}
+												alt='gift'
+												className='gift-img'
+											/>
+											<span className='gift-text'>Tặng bộ sạc cao cấp 20W</span>
 										</div>
 									</div>
 								</div>
