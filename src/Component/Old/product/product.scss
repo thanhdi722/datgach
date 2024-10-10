@@ -176,6 +176,10 @@
 			font-size: 1.4rem;
 			color: #ef373e;
 			font-weight: 500;
+			white-space: nowrap;
+			line-clamp: 1;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 	}
 
