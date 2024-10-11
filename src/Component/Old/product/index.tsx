@@ -170,7 +170,7 @@ fragment ProductPriceField on ProductPrice {
 const variables = {
 	filter: {
 		category_uid: {
-			eq: 'MjQ2',
+			eq: 'NTc=',
 		},
 	},
 	pageSize: 900,
@@ -200,12 +200,16 @@ const ProductList: React.FC = () => {
 		staleTime: 300000,
 	});
 
-	const [activeTab, setActiveTab] = useState<string>('iPhone 15');
+	const [activeTab, setActiveTab] = useState<string>('iPhone 16');
 	const [activeSubTab, setActiveSubTab] = useState<string>('');
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
 	const [visibleCount, setVisibleCount] = useState<number>(10);
 
 	const tabs = [
+		{
+			name: 'iPhone 16',
+			subTabs: ['iPhone 16 Pro Max', 'iPhone 16 Pro', 'iPhone 16 Plus', 'iPhone 16'],
+		},
 		{
 			name: 'iPhone 15',
 			subTabs: ['iPhone 15 Pro Max', 'iPhone 15 Pro', 'iPhone 15 Plus', 'iPhone 15'],
@@ -217,6 +221,10 @@ const ProductList: React.FC = () => {
 		{
 			name: 'iPhone 13',
 			subTabs: ['iPhone 13 Pro Max', 'iPhone 13 Pro', 'iPhone 13', 'iPhone 13 Mini'],
+		},
+		{
+			name: 'iPhone 12',
+			subTabs: ['iPhone 12 Pro Max', 'iPhone 12 Pro', 'iPhone 12', 'iPhone 12 Mini'],
 		},
 		{
 			name: 'iPhone 11',
@@ -243,6 +251,7 @@ const ProductList: React.FC = () => {
 				(activeTab === 'iPhone 15' && activeSubTab === 'iPhone 15') ||
 				(activeTab === 'iPhone 14' && activeSubTab === 'iPhone 14') ||
 				(activeTab === 'iPhone 13' && activeSubTab === 'iPhone 13') ||
+				(activeTab === 'iPhone 12' && activeSubTab === 'iPhone 12') ||
 				(activeTab === 'iPhone 11' && activeSubTab === 'iPhone 11') ||
 				(activeTab === 'iPhone XS' && activeSubTab === '')
 					? product.name.includes(activeTab) &&
