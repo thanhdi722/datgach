@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import bannerPC from '../../../../public/THU CU DOI MOI PC.png';
+import bannerPC from '../../../../public/THU CU DOI MOI PC NEW.jpg';
 import bannerMB from '../../../../public/THU CU DOI MOI MB.jpg';
 import './HeaderOldAutumn.scss';
 const HeaderOldAutumn = () => {
