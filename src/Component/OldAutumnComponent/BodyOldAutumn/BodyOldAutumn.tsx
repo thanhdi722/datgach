@@ -5,6 +5,8 @@ import './BodyOldAutumn.scss';
 import CardProduct from '../CardProductOldAutumn/CardProductOldAutumn';
 import { Spin, Pagination } from 'antd';
 import ProductModal from '../ProductModalComponent1/ProductModalComponent1';
+import iconSearch from "../../../../public/ic-search.png";
+import noProducts from "../../../../public/img-no-pro-matching.webp"
 export interface ProductData {
 	id: number;
 	name: string;
@@ -21,6 +23,7 @@ export interface ProductData {
 		};
 	};
 }
+
 export interface Product {
 	item: {
 		name: string;
@@ -38,55 +41,88 @@ const BodyOldAutumn = () => {
 	const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 	const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
 	const [currentPage, setCurrentPage] = useState<number>(1);
-	const [productType, setProductType] = useState<string>('iPhone');
+	const [productType, setProductType] = useState<string>('Tất Cả');
 	const [selectedPrice, setSelectedPrice] = useState<number>(0);
 	const [loading, setLoading] = useState(false);
+	const [searchQuery, setSearchQuery] = useState<string>(''); // New state for search query
+
 	const handleChange = (value: string) => {
 		setProductType(value);
-		setActiveButton(value);
+		setActiveButton(value || 'Tất Cả');
+
 	};
-	const [activeButton, setActiveButton] = useState<string>('iPhone');
+
+	const [activeButton, setActiveButton] = useState<string>('Tất Cả');
+
 	const showModal = (product: Product) => {
 		setSelectedProduct(product);
 		setIsModalOpen(true);
 		setPhoneCondition('warranty_mobile');
 	};
+
 	useEffect(() => {
 		if (selectedProduct) {
 			handlePriceChange(phoneCondition);
 		}
 	}, [selectedProduct, phoneCondition]);
+
 	const handleCancel = () => {
 		setIsModalOpen(false);
 	};
+
 	const handleOpenModal2 = () => {
 		setIsModalOpen(false); // Close the first modal
 	};
-	useEffect(() => {
-		const fetchData = async () => {
-			setLoading(true);
-			const response = await fetch(
-				'https://script.google.com/macros/s/AKfycbyk9SIAxTIM--HkPzDuOYbWzplDnLC1n527jwOW4-0m-uHehJtjr_PcH8U1coh-4hs/exec'
-			);
-			const data = await response.json();
-			setFilteredProducts(data);
-			console.log('data thu cu', data);
-			setLoading(false);
-			return data;
-		};
 
+	const fetchData = async (query = '') => {
+		setLoading(true);
+		try {
+			const url = `https://script.google.com/macros/s/AKfycbyk9SIAxTIM--HkPzDuOYbWzplDnLC1n527jwOW4-0m-uHehJtjr_PcH8U1coh-4hs/exec?query=${query}`; // Add query parameter
+			const response = await fetch(url);
+			const data = await response.json();
+
+			// If the API returns an error status or no products are found
+			if (response.ok && data.length > 0) {
+				setFilteredProducts(data);
+			} else {
+				setFilteredProducts([]); // No products found
+			}
+		} catch (error) {
+			console.error('Error fetching data:', error);
+			setFilteredProducts([]); // In case of an error, set no products
+		}
+		setLoading(false);
+	};
+
+	// Fetch data initially
+	useEffect(() => {
 		fetchData();
 	}, []);
 
+	// Handle search
+	const handleSearch = () => {
+		fetchData(searchQuery); // Call API with the search query
+	};
+
+	const handleKeyPress = (e: React.KeyboardEvent) => {
+		if (e.key === 'Enter') {
+			handleSearch(); // Trigger search when Enter is pressed
+		}
+	};
+	useEffect(() => {
+		setCurrentPage(1); // Reset to page 1
+		setSearchQuery(''); // Clear search input
+		handleSearch()
+	}, [productType]);
 	const itemsPerPage = 15; // Tổng số sản phẩm hiển thị trên mỗi trang
 
 	// Filter products based on the selected product type
-	const filteredByType = productType
-		? filteredProducts.filter((product) => product.loaisp === productType)
-		: filteredProducts;
-
+	const filteredByType = productType === 'Tất Cả'
+		? filteredProducts
+		: filteredProducts.filter((product) => product.loaisp === productType);
 	// Lấy sản phẩm cho trang hiện tại
 	const currentProducts = filteredByType.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
 	const handlePriceChange = (value: string) => {
 		switch (value) {
 			case 'warranty_mobile':
@@ -102,13 +138,32 @@ const BodyOldAutumn = () => {
 				setSelectedPrice(selectedProduct?.item.price1 || 0); // Default to price1
 		}
 	};
+
 	return (
 		<div style={{ backgroundColor: '#FFFEED', padding: '20px 0' }}>
 			<div className='container'>
 				<div className='BodyOldAutumn-card'>
 					<h2 className='BodyOldAutumn-title'>THU CŨ ĐỔI MỚI - KHÔNG LO BÙ TIỀN</h2>
-
+					<div className="search-container">
+						<input
+							type="text"
+							placeholder="Tìm sản phẩm bạn cần thu cũ..."
+							className="search-input"
+							value={searchQuery}
+							onChange={(e) => setSearchQuery(e.target.value)} // Update search query state
+							onKeyPress={handleKeyPress} // Trigger search on Enter key
+						/>
+						<button className="search-button" onClick={handleSearch}> {/* Trigger search on button click */}
+							<img src={iconSearch.src} alt="Search" />
+						</button>
+					</div>
 					<div className='BodyOldAutumn-tab-button'>
+						<button
+							className={`BodyOldAutumn-button ${activeButton === 'Tất Cả' ? 'active' : ''}`}
+							onClick={() => handleChange('Tất Cả')}
+						>
+							Tất Cả
+						</button>
 						<button
 							className={`BodyOldAutumn-button ${activeButton === 'iPhone' ? 'active' : ''}`}
 							onClick={() => handleChange('iPhone')}
@@ -158,7 +213,7 @@ const BodyOldAutumn = () => {
 							Phụ Kiện Apple
 						</button>
 					</div>
-					{loading && (
+					{loading ? (
 						<div
 							className='loading container-spin flex items-center justify-center'
 							style={{
@@ -167,20 +222,26 @@ const BodyOldAutumn = () => {
 						>
 							<Spin />
 						</div>
+					) : currentProducts.length === 0 ? (
+						<div className='no-products-message'>
+							<img src={noProducts.src} alt='no-products' className='no-products-image' />
+							<span>Không có sản phẩm</span>
+						</div>
+					) : (
+						<div className='BodyOldAutumn-tab-item'>
+							{currentProducts.map((product: any, index: number) => (
+								<div key={index} onClick={() => showModal(product)}>
+									<CardProduct
+										name={product?.item.name}
+										image={product?.item.img}
+										price={Number(product?.item.price1)}
+									/>
+								</div>
+							))}
+						</div>
 					)}
-					<div className='BodyOldAutumn-tab-item'>
-						{currentProducts.map((product: any, index: number) => (
-							<div key={index} onClick={() => showModal(product)}>
-								{' '}
-								{/* Added onClick to show modal */}
-								<CardProduct
-									name={product?.item.name}
-									image={product?.item.img}
-									price={Number(product?.item.price1)}
-								/>
-							</div>
-						))}
-					</div>
+
+
 
 					<Pagination
 						style={{ padding: '20px 0', textAlign: "center", margin: "0 auto" }}
