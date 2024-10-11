@@ -2,7 +2,7 @@ import { default as ComboPhuKien } from '../app/Combo-Phu-Kien/page';
 import { default as Iphone16Series } from '../app/datgach-ip16/page';
 import { default as ThangYeuThuong } from '../app/thang-yeu-thuong/page';
 import { default as MayCuGiaRe } from '../app/may-cu-gia-re/page';
-import { default as ThuCuDoiMoi } from '../app/ThuCu/page';
+
 export const routingBachLongMobile = [
 	{
 		path: 'thang-yeu-thuong',
@@ -22,6 +22,6 @@ export const routingBachLongMobile = [
 	},
 	{
 		path: 'thu-cu-doi-moi',
-		component: <ThuCuDoiMoi />,
+		component: <ComboPhuKien />,
 	},
 ];
