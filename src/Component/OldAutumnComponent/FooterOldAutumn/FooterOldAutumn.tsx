@@ -221,7 +221,7 @@ const FooterOldAutumn = () => {
 						<button className='FooterOldAutumn-readMoreButton' onClick={toggleDescription}>
 							{isExpanded ? 'Thu gọn' : 'Xem thêm'}
 						</button> */}
-						<div contentEditable='true' dangerouslySetInnerHTML={{
+						<div contentEditable='false' dangerouslySetInnerHTML={{
 							__html: `<p><span style="font-weight: 400;"><img id="NE5R9WS" style="display: block; margin-left: auto; margin-right: auto;" src="https://beta-api.bachlongmobile.com/media/.renditions/wysiwyg/Gioi_thieu_BLM_1200x450_0810-2.jpg" alt="Thu cũ đổi mới"></span></p>
 <p style="text-align: justify;"><span style="font-weight: 400;"></br>Nhằm chào đón sự kiện ra mắt cửa hàng mới, từ ngày </span><strong>15/09 đến 31/10/2024</strong><span style="font-weight: 400;">, Bạch Long Mobile chính thức khởi động chương trình </span><strong>Thu Cũ Đổi Mới</strong><span style="font-weight: 400;"> cực kỳ hấp dẫn, mang đến cho khách hàng cơ hội nâng cấp thiết bị với hàng loạt ưu đãi và tiện ích vượt trội.</span></p>
 <h2 style="text-align: justify;"><strong>1. Thu Nhanh – Lên Đời Trong Tích Tắc</strong></h2>
