@@ -65,7 +65,7 @@ const ProductModal1: React.FC<ProductModalProps> = ({
 		setIsModalOpen2(true);
 		onCancel();
 	};
-	console.log('data modal 1', selectedConditionText);
+
 	return (
 		<>
 			<Modal visible={visible} onCancel={onCancel} footer={null} width={800} centered>

@@ -13,7 +13,7 @@ function CardProduct({ name, image, price }: Omit<Product, 'id'>) {
 			<figure className='product__img'>
 				<img className='product__img-detail' alt={name} src={image} />
 			</figure>
-			<div className='product__title' style={{ textDecoration: 'none' }}>
+			<div className='product__title_Card' style={{ textDecoration: 'none' }}>
 				{name}
 			</div>
 			<div className='product__groupPrice' style={{ textAlign: 'center' }}>

@@ -114,7 +114,7 @@ price_range {
 		});
 
 		const data = await response.json();
-		console.log('data máy mới', data);
+
 		setLoading(false);
 		return data.data.products.items as ProductData[];
 	};
@@ -162,7 +162,7 @@ price_range {
 		setIsModal3Open(true);
 		onCancelModal();
 	};
-	console.log('data detail', selectedCard);
+
 	return (
 		<>
 			<Modal visible={modalOpen} onCancel={onCancelModal} footer={null} width={1000} centered>

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './FooterOldAutumn.scss'; // Import the global SCSS
 import Image from 'next/image';
-import imageThuCu from '../../../../public/thucudoimoi.png';
+
 import imagePhone from '../../../../public/ic-phone-white.svg';
 import ModalForm from '../ModalInfoOldAutumn/ModalInfoOldAutumn';
 const FooterOldAutumn = () => {
@@ -31,7 +31,7 @@ const FooterOldAutumn = () => {
 							</button>
 						</div>
 
-						<p className='FooterOldAutumn-description'>
+						{/* <p className='FooterOldAutumn-description'>
 							Nhằm chào đón sự kiện ra mắt cửa hàng mới, từ ngày{' '}
 							<strong className='FooterOldAutumn-description-strong'>15/09 đến 31/10/2024</strong>, Bạch
 							Long Mobile chính thức khởi động chương trình{' '}
@@ -219,50 +219,101 @@ const FooterOldAutumn = () => {
 						</div>
 
 						<button className='FooterOldAutumn-readMoreButton' onClick={toggleDescription}>
-							{isExpanded ? 'Thu gọn' : 'Xem thêm'} {/* Change button text based on state */}
-						</button>
+							{isExpanded ? 'Thu gọn' : 'Xem thêm'}
+						</button> */}
+						<div contentEditable='true' dangerouslySetInnerHTML={{
+							__html: `<p><span style="font-weight: 400;"><img id="NE5R9WS" style="display: block; margin-left: auto; margin-right: auto;" src="https://beta-api.bachlongmobile.com/media/.renditions/wysiwyg/Gioi_thieu_BLM_1200x450_0810-2.jpg" alt="Thu cũ đổi mới"></span></p>
+<p style="text-align: justify;"><span style="font-weight: 400;"></br>Nhằm chào đón sự kiện ra mắt cửa hàng mới, từ ngày </span><strong>15/09 đến 31/10/2024</strong><span style="font-weight: 400;">, Bạch Long Mobile chính thức khởi động chương trình </span><strong>Thu Cũ Đổi Mới</strong><span style="font-weight: 400;"> cực kỳ hấp dẫn, mang đến cho khách hàng cơ hội nâng cấp thiết bị với hàng loạt ưu đãi và tiện ích vượt trội.</span></p>
+<h2 style="text-align: justify;"><strong>1. Thu Nhanh – Lên Đời Trong Tích Tắc</strong></h2>
+<p style="text-align: justify;"><span style="font-weight: 400;">Bạn lo lắng quá trình thu cũ đổi mới sẽ mất nhiều thời gian và phức tạp? Đừng lo! Tại Bạch Long Mobile, chúng tôi mang đến giải pháp nhanh gọn, tiện lợi nhất cho khách hàng.</span></p>
+<ul style="text-align: justify; list-style-type: circle;">
+<li style="font-weight: 400;" aria-level="1"><strong>Quy trình siêu nhanh chóng</strong><span style="font-weight: 400;">: Chỉ mất 15 phút để hoàn tất quá trình thu máy.</span></li>
+<li style="font-weight: 400;" aria-level="1"><strong>Không cần phụ kiện</strong><span style="font-weight: 400;">: Khách hàng chỉ cần đem máy, không cần quan tâm đến nguồn gốc, dù là hàng chính hãng hay nhập khẩu.</span></li>
+<li style="font-weight: 400;" aria-level="1"><strong>Trả góp 0%</strong><span style="font-weight: 400;">: Hỗ trợ trả góp với lãi suất ưu đãi, không phát sinh bất kỳ chi phí nào khác.</span></li>
+</ul>
+<p style="text-align: justify;"><span style="font-weight: 400;">Với quy trình đơn giản, bạn sẽ có ngay thiết bị mới mà không cần chờ đợi lâu.</span></p>
+<h2 style="text-align: justify;"><strong>2. Trợ Giá Cao Nhất Thị Trường – Thu 100% Giá Trị Máy</strong></h2>
+<p style="text-align: justify;"><span style="font-weight: 400;">Để mang đến cơ hội sở hữu các sản phẩm công nghệ mới nhất, Bạch Long Mobile hỗ trợ mức trợ giá cực kỳ hấp dẫn, thu 100% giá trị máy.</span></p>
+<ul style="text-align: justify; list-style-type: circle;">
+<li style="font-weight: 400;" aria-level="1"><strong>iPhone, iPad, Apple Watch, iMac, Macbook</strong><span style="font-weight: 400;">: Thu 100% giá trị máy.</span></li>
+<li style="font-weight: 400;" aria-level="1"><strong>Các dòng máy khác</strong><span style="font-weight: 400;">: Cũng nhận được trợ giá tương tự, thu 100% giá trị máy.</span></li>
+<li style="font-weight: 400;" aria-level="1"><strong>Ưu đãi độc quyền tại Bạch Long Mobile</strong><span style="font-weight: 400;">: Tặng ngay </span><strong>cốc sạc nhanh 20W</strong><span style="font-weight: 400;"> khi tham gia thu cũ đổi mới, cùng </span><strong>gói bảo hành toàn diện</strong><span style="font-weight: 400;"> cho máy mới.</span></li>
+</ul>
+<p style="text-align: justify;"><strong>Với mức trợ giá cao và nhiều ưu đãi độc quyền, đây chính là cơ hội tuyệt vời để bạn sở hữu thiết bị mới với chi phí thấp hơn bao giờ hết.</strong></p>
+<p><strong><img style="display: block; margin-left: auto; margin-right: auto;" src="https://beta-api.bachlongmobile.com/media/.renditions/wysiwyg/952x500_thu_c_i_m_i.png" alt="Thu cũ đổi mới"></strong></p>
+<h2 style="text-align: justify;"><strong>3. Dẫn Đầu Thu Đổi – Hoàn Tiền Nhân Đôi</strong></h2>
+<p style="text-align: justify;"><span style="font-weight: 400;">Bạch Long Mobile không chỉ dẫn đầu trong dịch vụ thu đổi, mà còn cam kết mang lại giá trị cao nhất cho khách hàng với chính sách hoàn tiền nhân đôi.</span></p>
+<ul style="text-align: justify; list-style-type: circle;">
+<li style="font-weight: 400;" aria-level="1"><strong>Hoàn tiền nhân đôi</strong><span style="font-weight: 400;"> nếu bạn tìm thấy nơi nào khác thu máy với giá cao hơn Bạch Long Mobile.</span></li>
+<li style="font-weight: 400;" aria-level="1"><strong>Giá bán rẻ nhất thị trường</strong><span style="font-weight: 400;"> cho các dòng điện thoại mới nhất.</span></li>
+<li style="font-weight: 400;" aria-level="1"><strong>Giảm ngay 700.000đ</strong><span style="font-weight: 400;"> khi chọn phương thức thanh toán trả góp.</span></li>
+</ul>
+<p style="text-align: justify;"><strong>Với cam kết mang lại giá trị tốt nhất cho khách hàng, bạn hoàn toàn yên tâm khi tham gia thu cũ đổi mới tại Bạch Long Mobile.</strong></p>
+<h2 style="text-align: justify;"><strong>4. Tiện Ích Kèm Theo – Ưu Đãi Không Thể Bỏ Lỡ</strong></h2>
+<p style="text-align: justify;"><span style="font-weight: 400;">Chương trình Thu Cũ Đổi Mới tại Bạch Long Mobile không chỉ dừng lại ở việc nâng cấp thiết bị mà còn đi kèm với hàng loạt tiện ích và ưu đãi hấp dẫn.</span></p>
+<ul style="text-align: justify; list-style-type: circle;">
+<li style="font-weight: 400;" aria-level="1"><a tabindex="0" href="https://bachlongmobile.com/bnews/mua-hang-lien-tay-hoan-ngay-den-500-000/" target="_blank" rel="noopener"><strong>Giảm 300.000đ</strong></a><span style="font-weight: 400;"> khi thanh toán 100% bằng hình thức chuyển khoản.</span></li>
+<li style="font-weight: 400;" aria-level="1"><a tabindex="0" href="https://bachlongmobile.com/news/khuyen-mai/giao-hang-sieu-toc-1h-tang-non-bao-hiem-cao-cap-bach-long-18-nam/" target="_blank" rel="noopener"><strong>Giao hàng siêu tốc trong 1 giờ</strong></a><span style="font-weight: 400;">, tặng nón bảo hiểm cao cấp phiên bản đặc biệt mừng kỷ niệm 18 năm của Bạch Long Mobile.</span></li>
+<li style="font-weight: 400;" aria-level="1"><strong>Giảm thêm 1.000.000đ</strong><span style="font-weight: 400;"> khi mua gói </span><a tabindex="0" href="https://bachlongmobile.com/bao-hanh-toan-dien" target="_blank" rel="noopener"><strong>Bảo Hành Toàn Diện</strong></a><span style="font-weight: 400;"> – lỗi đổi ngay trong tích tắc.</span></li>
+</ul>
+<p style="text-align: justify;"><span style="font-weight: 400;">Hàng loạt ưu đãi giá trị và dịch vụ tiện ích đang chờ đợi bạn tại Bạch Long Mobile, đảm bảo trải nghiệm mua sắm của bạn sẽ trọn vẹn hơn bao giờ hết.</span></p>
+<h2 style="text-align: justify;"><strong>5. Cơ Hội Trải Nghiệm Nhiều Dịch Vụ Đi Kèm</strong></h2>
+<p style="text-align: justify;"><span style="font-weight: 400;">Không chỉ giúp bạn nâng cấp thiết bị, Bạch Long Mobile còn mang đến các dịch vụ đi kèm với mức giá ưu đãi, nhằm giúp khách hàng có trải nghiệm tốt nhất.</span></p>
+<ul style="text-align: justify; list-style-type: circle;">
+<li style="font-weight: 400;" aria-level="1"><strong>Dán cường lực, ốp lưng, phụ kiện chính hãng</strong><span style="font-weight: 400;"> với giá ưu đãi.</span></li>
+<li style="font-weight: 400;" aria-level="1"><strong>Giảm giá sâu</strong><span style="font-weight: 400;"> cho các dịch vụ đi kèm như bảo vệ màn hình, phụ kiện, hay nâng cấp máy.</span></li>
+</ul>
+<p style="text-align: justify;"><span style="font-weight: 400;">Hãy tận dụng các dịch vụ tiện ích kèm theo để bảo vệ và tối ưu hóa thiết bị của bạn một cách tốt nhất.</span></p>
+<h2 style="text-align: justify;"><strong>6. Lưu Ý</strong></h2>
+<p style="text-align: justify;"><span style="font-weight: 400;">Để tham gia chương trình một cách suôn sẻ, hãy nắm rõ các điều kiện và lưu ý dưới đây:</span></p>
+<ul style="text-align: justify; list-style-type: circle;">
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Chương trình áp dụng từ </span><strong>15/09 đến 31/10/2024</strong><span style="font-weight: 400;">.</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Trợ giá chỉ áp dụng cho các sản phẩm có giá trị thu từ</span><strong> 5 triệu</strong><span style="font-weight: 400;"> đồng trở lên.</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Điều kiện và quy định có thể thay đổi tùy từng thời điểm. Để biết thêm thông tin chi tiết, vui lòng liên hệ </span><strong>CSKH: 1900.63.64.69</strong><span style="font-weight: 400;">.</span></li>
+</ul>
+<p style="text-align: justify;"><span style="font-weight: 400;">Đừng bỏ lỡ cơ hội hiếm có để nâng cấp thiết bị của bạn với chương trình Thu Cũ Đổi Mới tại </span><strong>Bạch Long Mobile!</strong></p>` }}></div><div className='FooterOldAutumn-extraSection'>
+							<div className='FooterOldAutumn-extraSection-videoSection'>
+								<iframe
+									className='FooterOldAutumn-extraSection-videoSection-item'
+									src='https://www.youtube.com/embed/eoLHZmo5XrA'
+									title='HƯỚNG DẪN QUY TRÌNH THU CŨ ĐỔI MỚI TẠI BẠCH LONG MOBILE'
+									allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+								></iframe>
+							</div>
+							<div className='FooterOldAutumn-contactSection'>
+								<p className='FooterOldAutumn-contactSection-card'>
+									<span>
+										<Image
+											className='FooterOldAutumn-contactSection-card-images'
+											src={imagePhone}
+											alt=''
+										/>
+									</span>
+									<span>Liên hệ tư vấn:</span>{' '}
+									<span className='FooterOldAutumn-hotline'>1900.63.64.69</span>
+								</p>
+								<ul
+									style={{
+										marginTop: '10px',
+										lineHeight: '1.5',
+										padding: '10px 30px',
+										backgroundColor: '#ecfdf5',
+										border: '1px solid #10b981',
+										borderRadius: '10px',
+									}}
+								>
+									<li>Gọi qua hotline</li>
+									<li>Chat với nhân viên tư vấn.</li>
+									<li>
+										Để lại bình luận bên dưới trang hoặc tại
+										<br className='FooterOldAutumn-hotline-br' /> trang sản phẩm muốn thu cũ lên đời.
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 
-					<div className='FooterOldAutumn-extraSection'>
-						<div className='FooterOldAutumn-extraSection-videoSection'>
-							<iframe
-								className='FooterOldAutumn-extraSection-videoSection-item'
-								src='https://www.youtube.com/embed/eoLHZmo5XrA'
-								title='HƯỚNG DẪN QUY TRÌNH THU CŨ ĐỔI MỚI TẠI BẠCH LONG MOBILE'
-								allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-							></iframe>
-						</div>
-						<div className='FooterOldAutumn-contactSection'>
-							<p className='FooterOldAutumn-contactSection-card'>
-								<span>
-									<Image
-										className='FooterOldAutumn-contactSection-card-images'
-										src={imagePhone}
-										alt=''
-									/>
-								</span>
-								<span>Liên hệ tư vấn:</span>{' '}
-								<span className='FooterOldAutumn-hotline'>1900.63.64.69</span>
-							</p>
-							<ul
-								style={{
-									marginTop: '10px',
-									lineHeight: '1.5',
-									padding: '10px 30px',
-									backgroundColor: '#ecfdf5',
-									border: '1px solid #10b981',
-									borderRadius: '10px',
-								}}
-							>
-								<li>Gọi qua hotline</li>
-								<li>Chat với nhân viên tư vấn.</li>
-								<li>
-									Để lại bình luận bên dưới trang hoặc tại
-									<br className='FooterOldAutumn-hotline-br' /> trang sản phẩm muốn thu cũ lên đời.
-								</li>
-							</ul>
-						</div>
-					</div>
+
 				</footer>
 			</div>
 			<ModalForm visible={isModalVisible} onCancel={handleModalCancel} />
