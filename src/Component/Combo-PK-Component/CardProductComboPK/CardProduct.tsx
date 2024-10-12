@@ -34,7 +34,7 @@ function CardProduct({ name, url_key, image, price_range }: Omit<Product, 'id'>)
 								300000 -
 								price_range.minimum_price.final_price.value) /
 								(price_range.minimum_price.final_price.value + 300000)) *
-								100
+							100
 						)}
 						%
 					</p>
@@ -42,7 +42,7 @@ function CardProduct({ name, url_key, image, price_range }: Omit<Product, 'id'>)
 				<figure className='product__img'>
 					<img className='product__img-detail' alt={name} src={image.url} />
 				</figure>
-				<div className='product__title' style={{ textDecoration: 'none' }}>
+				<div className='product__titleCombo' style={{ textDecoration: 'none' }}>
 					{name}
 				</div>
 				<div className='product__groupPrice' style={{ background: '0' }}>

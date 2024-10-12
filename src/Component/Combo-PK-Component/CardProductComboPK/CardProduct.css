@@ -103,12 +103,12 @@
   background-repeat: no-repeat;
 }
 
-.product__title {
+.product__titleCombo {
   text-decoration: none;
   text-align: center;
   color: #000;
   font-weight: bold;
-  line-height: 1;
+  line-height: 1.1;
   padding: 10px 4px;
   height: 45px;
   margin-bottom: 10px;
