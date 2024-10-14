@@ -94,8 +94,9 @@ const BodyOldAutumn = () => {
 
 				// Extract product types (this should not depend on search results)
 				if (query === '') { // Only set product types when it's not a search
-					const uniqueProductTypes = [...new Set(data.map((product: Product) => product.loaisp))]
-						.filter((type): type is string => typeof type === 'string');
+					const uniqueProductTypes = Array.from(
+						new Set(data.map((product: Product) => product.loaisp))
+					).filter((type): type is string => typeof type === 'string')
 					setProductTypes(['Tất Cả', ...uniqueProductTypes]);
 				}
 			} else {

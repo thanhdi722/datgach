@@ -6,12 +6,7 @@ import Image from 'next/image';
 import imagePhone from '../../../../public/ic-phone-white.svg';
 import ModalForm from '../ModalInfoOldAutumn/ModalInfoOldAutumn';
 const FooterOldAutumn = () => {
-	const [isExpanded, setIsExpanded] = useState(false); // State to manage expansion
 	const [isModalVisible, setIsModalVisible] = useState(false);
-	const toggleDescription = () => {
-		setIsExpanded(!isExpanded); // Toggle the expanded state
-	};
-
 	const showModal = () => {
 		setIsModalVisible(true); // Show the modal
 	};
