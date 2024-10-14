@@ -6,7 +6,8 @@ import CardProduct from '../CardProductOldAutumn/CardProductOldAutumn';
 import { Spin, Pagination } from 'antd';
 import ProductModal from '../ProductModalComponent1/ProductModalComponent1';
 import iconSearch from "../../../../public/ic-search.png";
-import noProducts from "../../../../public/img-no-pro-matching.webp"
+import noProducts from "../../../../public/img-no-pro-matching.webp";
+
 export interface ProductData {
 	id: number;
 	name: string;
@@ -45,14 +46,20 @@ const BodyOldAutumn = () => {
 	const [selectedPrice, setSelectedPrice] = useState<number>(0);
 	const [loading, setLoading] = useState(false);
 	const [searchQuery, setSearchQuery] = useState<string>(''); // New state for search query
+	const [productTypes, setProductTypes] = useState<string[]>([]); // State for product types
+	const [activeButton, setActiveButton] = useState<string>('Tất Cả');
+
+	const productTypeMapping: { [key: string]: string } = {
+		'PhuKienApple': 'Phụ Kiện Apple', // Add more mappings as needed
+		'Tất Cả': 'Tất Cả',
+		"AppleWatch": "Apple Watch",
+		// You can add other mappings here if necessary
+	};
 
 	const handleChange = (value: string) => {
 		setProductType(value);
 		setActiveButton(value || 'Tất Cả');
-
 	};
-
-	const [activeButton, setActiveButton] = useState<string>('Tất Cả');
 
 	const showModal = (product: Product) => {
 		setSelectedProduct(product);
@@ -81,15 +88,28 @@ const BodyOldAutumn = () => {
 			const response = await fetch(url);
 			const data = await response.json();
 
-			// If the API returns an error status or no products are found
 			if (response.ok && data.length > 0) {
+				// Set filtered products based on search query
 				setFilteredProducts(data);
+
+				// Extract product types (this should not depend on search results)
+				if (query === '') { // Only set product types when it's not a search
+					const uniqueProductTypes = [...new Set(data.map((product: Product) => product.loaisp))]
+						.filter((type): type is string => typeof type === 'string');
+					setProductTypes(['Tất Cả', ...uniqueProductTypes]);
+				}
 			} else {
-				setFilteredProducts([]); // No products found
+				setFilteredProducts([]);
+				if (query === '') {
+					setProductTypes(['Tất Cả']); // Reset product types only when it's not a search
+				}
 			}
 		} catch (error) {
 			console.error('Error fetching data:', error);
-			setFilteredProducts([]); // In case of an error, set no products
+			setFilteredProducts([]);
+			if (query === '') {
+				setProductTypes(['Tất Cả']); // Reset product types only when it's not a search
+			}
 		}
 		setLoading(false);
 	};
@@ -109,18 +129,21 @@ const BodyOldAutumn = () => {
 			handleSearch(); // Trigger search when Enter is pressed
 		}
 	};
+
 	useEffect(() => {
 		setCurrentPage(1); // Reset to page 1
 		setSearchQuery(''); // Clear search input
-		handleSearch()
+		handleSearch();
 	}, [productType]);
-	const itemsPerPage = 15; // Tổng số sản phẩm hiển thị trên mỗi trang
+
+	const itemsPerPage = 15; // Total products displayed per page
 
 	// Filter products based on the selected product type
 	const filteredByType = productType === 'Tất Cả'
 		? filteredProducts
 		: filteredProducts.filter((product) => product.loaisp === productType);
-	// Lấy sản phẩm cho trang hiện tại
+
+	// Get products for the current page
 	const currentProducts = filteredByType.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
 	const handlePriceChange = (value: string) => {
@@ -158,61 +181,17 @@ const BodyOldAutumn = () => {
 						</button>
 					</div>
 					<div className='BodyOldAutumn-tab-button'>
-						<button
-							className={`BodyOldAutumn-button ${activeButton === 'Tất Cả' ? 'active' : ''}`}
-							onClick={() => handleChange('Tất Cả')}
-						>
-							Tất Cả
-						</button>
-						<button
-							className={`BodyOldAutumn-button ${activeButton === 'iPhone' ? 'active' : ''}`}
-							onClick={() => handleChange('iPhone')}
-						>
-							iPhone
-						</button>
-						<button
-							className={`BodyOldAutumn-button ${activeButton === 'Samsung' ? 'active' : ''}`}
-							onClick={() => handleChange('Samsung')}
-						>
-							Samsung
-						</button>
-						<button
-							className={`BodyOldAutumn-button ${activeButton === 'AppleWatch' ? 'active' : ''}`}
-							onClick={() => handleChange('AppleWatch')}
-						>
-							Apple Watch
-						</button>
-						<button
-							className={`BodyOldAutumn-button ${activeButton === 'iPad' ? 'active' : ''}`}
-							onClick={() => handleChange('iPad')}
-						>
-							iPad
-						</button>
-						<button
-							className={`BodyOldAutumn-button ${activeButton === 'Oppo' ? 'active' : ''}`}
-							onClick={() => handleChange('Oppo')}
-						>
-							Oppo
-						</button>
-						<button
-							className={`BodyOldAutumn-button ${activeButton === 'iMac' ? 'active' : ''}`}
-							onClick={() => handleChange('iMac')}
-						>
-							iMac
-						</button>
-						<button
-							className={`BodyOldAutumn-button ${activeButton === 'MacbookLaptop' ? 'active' : ''}`}
-							onClick={() => handleChange('MacbookLaptop')}
-						>
-							Macbook
-						</button>
-						<button
-							className={`BodyOldAutumn-button ${activeButton === 'PhuKienApple' ? 'active' : ''}`}
-							onClick={() => handleChange('PhuKienApple')}
-						>
-							Phụ Kiện Apple
-						</button>
+						{productTypes.map((type) => (
+							<button
+								key={type}
+								className={`BodyOldAutumn-button ${activeButton === type ? 'active' : ''}`}
+								onClick={() => handleChange(type)}
+							>
+								{productTypeMapping[type] || type} {/* Use mapping for display */}
+							</button>
+						))}
 					</div>
+
 					{loading ? (
 						<div
 							className='loading container-spin flex items-center justify-center'
@@ -241,15 +220,13 @@ const BodyOldAutumn = () => {
 						</div>
 					)}
 
-
-
 					<Pagination
 						style={{ padding: '20px 0', textAlign: "center", margin: "0 auto" }}
 						align='center'
 						current={currentPage}
 						total={filteredByType.length}
 						pageSize={itemsPerPage}
-						onChange={(page) => setCurrentPage(page)} // Cập nhật trang hiện tại
+						onChange={(page) => setCurrentPage(page)} // Update current page
 					/>
 				</div>
 				<ProductModal

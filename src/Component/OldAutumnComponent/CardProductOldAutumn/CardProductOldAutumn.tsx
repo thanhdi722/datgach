@@ -9,7 +9,7 @@ export interface Product {
 }
 function CardProduct({ name, image, price }: Omit<Product, 'id'>) {
 	return (
-		<div className='CardProduct'>
+		<div className='CardProductOldAutumn'>
 			<figure className='product__img'>
 				<img className='product__img-detail' alt={name} src={image} />
 			</figure>
