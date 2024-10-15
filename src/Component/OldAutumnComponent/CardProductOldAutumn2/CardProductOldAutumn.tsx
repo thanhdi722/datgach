@@ -17,7 +17,7 @@ function CardProduct({ name, images, price1, selectedPrice }: Omit<Product, 'id'
 				{name}
 			</div>
 			<div className='CardProductOldAutumn2__groupPrice' style={{ textAlign: 'center' }}>
-				<p className='CardProductOldAutumn2__price'>Đang bán: </p>
+				<p className='CardProductOldAutumn2__price'>Giá bán: </p>
 				<p className='CardProductOldAutumn2__priceSpecial'>{price1.toLocaleString()}VND</p>
 			</div>
 			<div className='CardProductOldAutumn2__groupPrice' style={{ textAlign: 'center' }}>

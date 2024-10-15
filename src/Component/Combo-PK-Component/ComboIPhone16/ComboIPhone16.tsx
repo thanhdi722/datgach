@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { Button, Form, Spin, Modal, Select, message } from 'antd';
 import './ComboIPhone16.scss';
@@ -7,6 +7,10 @@ import images1 from '../../../../public/combo-01-16.png';
 import images2 from '../../../../public/combo-02-16.png';
 import images3 from '../../../../public/combo-03-16.png';
 import images4 from '../../../../public/combo-04-16.png';
+import { notification } from 'antd';
+import type { NotificationArgsProps } from 'antd';
+const Context = React.createContext({ name: 'Default' });
+type NotificationPlacement = NotificationArgsProps['placement'];
 interface ProductCombo16 {
 	combo: string;
 	persen: string;
@@ -33,7 +37,18 @@ const ComboIPhone16: React.FC = () => {
 	const [loading, setLoading] = useState(false);
 	const [form] = Form.useForm();
 	const [totalPrice, setTotalPrice] = useState<number>(0);
+	const [api, contextHolder] = notification.useNotification();
+	const openNotification = (placement: NotificationPlacement) => {
+		api.success({
+			message: `Đăng ký thành công`,
+			description: (
+				<Context.Consumer>{({ }) => <span>Chúc mừng bạn đã đăng ký thành công</span>}</Context.Consumer>
+			),
+			placement,
+		});
+	};
 
+	const contextValue = useMemo(() => ({ name: 'Ant Design' }), []);
 	const fetchData = async () => {
 		setLoading(true);
 		const response = await fetch(
@@ -108,6 +123,8 @@ const ComboIPhone16: React.FC = () => {
 			console.error('Error:', error);
 		} finally {
 			setLoading(false);
+			setModalIsOpenTest(false)
+			openNotification('topRight');
 		}
 	};
 
@@ -125,6 +142,8 @@ const ComboIPhone16: React.FC = () => {
 	};
 	const images = [images1, images2, images3, images4];
 	return (
+		<Context.Provider value={contextValue}>
+				{contextHolder}
 		<>
 			<div className='banner-slide'>
 				<div className='container'>
@@ -240,6 +259,7 @@ const ComboIPhone16: React.FC = () => {
 				</div>
 			</div>
 		</>
+		</Context.Provider>
 	);
 };
 
