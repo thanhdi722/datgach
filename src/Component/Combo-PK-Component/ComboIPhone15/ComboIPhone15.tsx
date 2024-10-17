@@ -40,9 +40,9 @@ const ComboIPhone15: React.FC = () => {
 	const [api, contextHolder] = notification.useNotification();
 	const openNotification = (placement: NotificationPlacement) => {
 		api.success({
-			message: `Đăng ký thành công`,
+			message: `Cám ơn bạn đã đặt hàng`,
 			description: (
-				<Context.Consumer>{({ }) => <span>Chúc mừng bạn đã đăng ký thành công</span>}</Context.Consumer>
+				<Context.Consumer>{({ }) => <span>Chúng tôi sẽ liên hệ sớm nhất!!!</span>}</Context.Consumer>
 			),
 			placement,
 		});
