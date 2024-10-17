@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './ComboIPhone15.scss';
 import Image from 'next/image';
 import { Button, Form, Spin, message, Modal, Select } from 'antd';
@@ -7,6 +7,10 @@ import images1 from '../../../../public/combo-01-15.png';
 import images2 from '../../../../public/combo-02-15.png';
 import images3 from '../../../../public/combo-03-15.png';
 import images4 from '../../../../public/combo-04-15.png';
+import { notification } from 'antd';
+import type { NotificationArgsProps } from 'antd';
+const Context = React.createContext({ name: 'Default' });
+type NotificationPlacement = NotificationArgsProps['placement'];
 interface ProductCombo16 {
 	combo: string;
 	items: {
@@ -30,9 +34,21 @@ const ComboIPhone15: React.FC = () => {
 	const [selectedCombo, setSelectedCombo] = useState<ProductCombo16 | null>(null);
 	const [modalIsOpenTest, setModalIsOpenTest] = useState(false);
 	const [loading, setLoading] = useState(false);
+	const [loading1, setLoading1] = useState(false);
 	const [form] = Form.useForm();
 	const [totalPrice, setTotalPrice] = useState<number>(0);
+	const [api, contextHolder] = notification.useNotification();
+	const openNotification = (placement: NotificationPlacement) => {
+		api.success({
+			message: `Đăng ký thành công`,
+			description: (
+				<Context.Consumer>{({ }) => <span>Chúc mừng bạn đã đăng ký thành công</span>}</Context.Consumer>
+			),
+			placement,
+		});
+	};
 
+	const contextValue = useMemo(() => ({ name: 'Ant Design' }), []);
 	const fetchData = async () => {
 		setLoading(true);
 		const response = await fetch(
@@ -62,7 +78,7 @@ const ComboIPhone15: React.FC = () => {
 	};
 
 	const onFinish = async (values: FieldType) => {
-		setLoading(true);
+		setLoading1(true);
 
 		const selectedProducts = selectedCombo?.items.map((item) => values[item.type]).filter(Boolean);
 		const productString = selectedProducts?.join(', ');
@@ -100,7 +116,9 @@ const ComboIPhone15: React.FC = () => {
 		} catch (error) {
 			console.error('Error:', error);
 		} finally {
-			setLoading(false);
+			setLoading1(false);
+			setModalIsOpenTest(false)
+			openNotification('topRight');
 		}
 	};
 
@@ -118,6 +136,8 @@ const ComboIPhone15: React.FC = () => {
 	};
 	const images = [images1, images2, images3, images4];
 	return (
+		<Context.Provider value={contextValue}>
+				{contextHolder}
 		<div className='banner-slide'>
 			<div className='container'>
 				<h1 className='title-combo-15'>COMBO PHỤ KIỆN IPHONE 15</h1>
@@ -212,8 +232,8 @@ const ComboIPhone15: React.FC = () => {
 								<h3 className='modal-price'>{totalPrice.toLocaleString()} VND</h3>
 							</div>
 							<Form.Item wrapperCol={{ span: 16 }} className='modal-btn-wrap'>
-								<Button type='primary' htmlType='submit' loading={loading} className='modal-btn'>
-									{loading ? 'Đang đặt hàng...' : 'Đặt hàng ngay'}
+								<Button type='primary' htmlType='submit' loading={loading1} className='modal-btn'>
+									{loading1 ? 'Đang đặt hàng...' : 'Đặt hàng ngay'}
 								</Button>
 							</Form.Item>
 						</Form>
@@ -221,6 +241,7 @@ const ComboIPhone15: React.FC = () => {
 				</Modal>
 			</div>
 		</div>
+		</Context.Provider>
 	);
 };
 

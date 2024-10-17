@@ -1,4 +1,4 @@
-.CardProduct {
+.CardProductOldAutumn {
   /* border-color: #f47700; */
   /* width: 20%; */
   /* border: 4px solid #f47700; */
@@ -6,8 +6,11 @@
   overflow: hidden;
   background-color: white;
   transition: all 0.3s ease-in-out;
+  border: 2px solid transparent;
 }
-
+.CardProductOldAutumn:hover {
+  border: 2px solid red;
+}
 /* .swiper-slide {
   flex-shrink: 0;
   height: 100%;
@@ -103,15 +106,14 @@
   background-repeat: no-repeat;
 }
 
-.product__titleCombo {
+.product__title_Card {
   text-decoration: none;
   text-align: center;
   color: #000;
   font-weight: bold;
-  line-height: 1.1;
-  padding: 10px 4px;
-  height: 45px;
-  margin-bottom: 10px;
+  line-height: 1.2;
+  padding: 0px 10px;
+  font-size: 14px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -129,13 +131,13 @@
 }
 .product__price {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   color: #000;
 }
 
 .product__priceSpecial {
   color: red;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
 }
 .product__priceRegular {

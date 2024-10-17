@@ -4,11 +4,11 @@ import Link from 'next/link';
 import './category.scss';
 import Category01 from '../../../../public/old/category-01.webp';
 import Category02 from '../../../../public/old/category-02.webp';
-import Category03 from '../../../../public/old/category-05.webp';
+import Category03 from '../../../../public/old/category-04.webp';
 import Category04 from '../../../../public/old/category-03.webp';
-import Category05 from '../../../../public/old/category-04.webp';
+import Category05 from '../../../../public/old/category-05.webp';
 
-const categoryTexts = ['iPhone cũ', 'iPad cũ', 'Đồng hồ cũ', 'Lap, MAC cũ', 'Samsung cũ'];
+const categoryTexts = ['iPhone cũ', 'iPad cũ', 'Samsung cũ', 'Lap, MAC cũ', 'Đồng hồ cũ'];
 
 const Category = () => {
 	const categoryImages = [Category01, Category02, Category03, Category04, Category05];
@@ -72,11 +72,11 @@ const Category = () => {
 						: index === 1
 						? handleClickiPad
 						: index === 2
-						? handleClickWatch
+						? handleClickAirpods
 						: index === 3
 						? handleClickMac
 						: index === 4
-						? handleClickAirpods
+						? handleClickWatch
 						: index === 5
 						? handleClickAccess
 						: undefined
