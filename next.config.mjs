@@ -17,6 +17,11 @@ const nextConfig = {
         hostname: "bachlongmobile.com",
         pathname: "/media/catalog/product/**",
       },
+      {
+        protocol: "https",
+        hostname: "static-alepay.nganluong.vn",
+        pathname: "/static/images/**",
+      },
     ],
   },
 };

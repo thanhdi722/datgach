@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Spin } from 'antd';
 import ProductBanner from '../../../../public/old/product-banner-04.png';
 import './product-mac.scss';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface Product {
 	id: number;
