@@ -315,7 +315,7 @@ export default function PostDetail() {
               title: <Link href="https://bachlongmobile.com/">Trang Chủ</Link>,
             },
             {
-              title: <Link href="/bnews">Tin tức</Link>,
+              title: <Link href="/tin-cong-nghe">Tin tức</Link>,
             },
             {
               title: (

@@ -4,7 +4,7 @@ import { default as ThangYeuThuong } from "../app/thang-yeu-thuong/page";
 import { default as MayCuGiaRe } from "../app/product-old/page";
 import { default as ThuCuDoiMoi } from "../app/ThuCu/page";
 import { default as TraGopKhongLaiSuat } from "../app/xemkyhan/page";
-import { default as BNews } from "../app/bnews/page";
+import { default as BNews } from "../app/tin-cong-nghe/page";
 export const routingBachLongMobile = [
   {
     path: "thang-yeu-thuong",
@@ -31,7 +31,7 @@ export const routingBachLongMobile = [
     component: <TraGopKhongLaiSuat />,
   },
   {
-    path: "bnews",
+    path: "tin-cong-nghe",
     component: <BNews/>,
   },
 ];
