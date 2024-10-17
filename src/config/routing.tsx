@@ -9,7 +9,7 @@ export const routingBachLongMobile = [
 		component: <ThangYeuThuong />,
 	},
 	{
-		path: 'may-cu-gia-re',
+		path: 'product-old',
 		component: <MayCuGiaRe />,
 	},
 	{
