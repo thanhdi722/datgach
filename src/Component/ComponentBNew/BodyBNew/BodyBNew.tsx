@@ -141,8 +141,13 @@ export default function BodyBNew() {
                 activeTab === tab ? "active" : ""
               }`}
               onClick={() => {
-                setActiveTab(tab);
-                setActiveTab2(tabIds[tab]);
+                if (tab === "Tuyển Dụng") {
+                  // Chuyển hướng đến liên kết khác khi nhấn vào tab "Tuyển Dụng"
+                  window.location.href = "https://vieclam.bachlongmobile.com/"; // Thay đổi liên kết này
+                } else {
+                  setActiveTab(tab);
+                  setActiveTab2(tabIds[tab]);
+                }
               }}
             >
               {tab}
