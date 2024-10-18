@@ -1,19 +1,21 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { queryBNewDetail } from "../utils/utils";
+import { queryBNewDetail } from "../../utils/utils";
 import "./NewSub.scss";
-import icBachLong from "../../../public/ic-bachlong.webp";
+import icBachLong from "../../../../public/ic-bachlong.webp";
 import { Col, Row, Spin, Breadcrumb } from "antd";
-import { BlogPost, queryBNew } from "../utils/utils";
+import { BlogPost, queryBNew } from "../../utils/utils";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useRouter } from "next/navigation";
 import { Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
-import icUser from "../../../public/ic-user-4.svg";
+import icUser from "../../../../public/ic-user-4.svg";
 import Link from "next/link";
+import { useParams } from "next/navigation";
+
 export interface Author {
   author_id: number;
   author_url: string;
@@ -150,21 +152,17 @@ export default function PostDetail() {
     "Tin Tức Sự Kiện": 27,
     "Tuyển Dụng": 21,
   };
+  const params = useParams<{ id: string }>();
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Check if running in the browser
-      const queryParams = new URLSearchParams(window.location.search);
-      const dataValue = queryParams.get("page");
-      const activeTab2Value = queryParams.get("activeTab2");
-      setDataParam(dataValue);
-      setActiveTab2(activeTab2Value ? parseInt(activeTab2Value) : 19);
+      setDataParam(params.id);
     }
   }, [typeof window !== "undefined" ? window.location.search : null]); // Update only if in the browser
 
+  console.log("param", params.id);
   useEffect(() => {
     if (dataParam) {
-      // Kiểm tra nếu dataParam không null
-      fetchBlogPostsData(); // Gọi hàm fetchBlogPostsData khi dataParam thay đổi
+      fetchBlogPostsData();
     }
   }, [dataParam]);
   console.log(dataParam);
@@ -301,9 +299,9 @@ export default function PostDetail() {
     setVisibleItems((prev) => prev + 5); // Load 5 more items
   };
   const handlePostClick = (postUrl: string) => {
-    const newDataParam = new URL(postUrl).pathname.split("/").pop() || "";
+    const newDataParam = postUrl;
     setDataParam(newDataParam); // Update dataParam immediately
-    router.push(`/chi-tiet-tin-tuc?page=${newDataParam}`); // Updated to remove activeTab2 from the URL
+    router.push(`/tin-cong-nghe/${newDataParam}`); // Updated to remove activeTab2 from the URL
     setVisibleItems(5);
   };
   return (
@@ -318,22 +316,7 @@ export default function PostDetail() {
               title: <Link href="/tin-cong-nghe">Tin tức</Link>,
             },
             {
-              title: (
-                <Link
-                  href=""
-                  style={
-                    {
-                      // whiteSpace: "nowrap",
-                      // overflow: "hidden",
-                      // textOverflow: "ellipsis",
-                      // display: "block",
-                      // maxWidth: "100%",
-                    }
-                  }
-                >
-                  {newsData?.title || "Loading..."}
-                </Link>
-              ), // Chỉ hiển thị dòng đầu tiên
+              title: <Link href="">Chi tiết tin tức</Link>, // Chỉ hiển thị dòng đầu tiên
             },
           ]}
         />
@@ -390,7 +373,7 @@ export default function PostDetail() {
               className="NewSub-box-container-Col"
               style={{ position: "relative" }}
             >
-              <div className="sticky-col">
+              <div className="">
                 <h2
                   className="newSubHot-newTitle"
                   style={{ padding: "0px 10px 10px" }}
@@ -410,7 +393,7 @@ export default function PostDetail() {
                       <div
                         key={index}
                         className="NewSub-NewHot"
-                        onClick={() => handlePostClick(post.post_url)}
+                        onClick={() => handlePostClick(post.identifier)}
                       >
                         <img
                           style={{ borderRadius: "10px" }}
@@ -478,7 +461,7 @@ export default function PostDetail() {
                 .sort((a, b) => b.views_count - a.views_count)
                 .map((post, index) => (
                   <SwiperSlide key={index}>
-                    <a onClick={() => handlePostClick(post.post_url)}>
+                    <a onClick={() => handlePostClick(post.identifier)}>
                       <div className="NewSubHot-cardPostView">
                         <img
                           className="NewSubHot-cardPostView-img"

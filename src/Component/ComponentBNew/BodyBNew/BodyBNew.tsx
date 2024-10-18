@@ -169,13 +169,7 @@ export default function BodyBNew() {
                           <a
                             className="inner-img"
                             onClick={() =>
-                              router.push(
-                                `/chi-tiet-tin-tuc?page=${new URL(
-                                  post.post_url
-                                ).pathname
-                                  .split("/")
-                                  .pop()}`
-                              )
+                              router.push(`/tin-cong-nghe/${post.identifier}`)
                             }
                           >
                             <img alt={post.title} src={post.first_image} />
@@ -187,7 +181,7 @@ export default function BodyBNew() {
                               className="inner-img"
                               onClick={() =>
                                 router.push(
-                                  `/chi-tiet-tin-tuc?page=${new URL(
+                                  `/tin-cong-nghe/chi-tiet-tin-tuc?page=${new URL(
                                     post.post_url
                                   ).pathname
                                     .split("/")
@@ -212,11 +206,7 @@ export default function BodyBNew() {
                         className="header-BodyBNew-card-a"
                         onClick={() =>
                           router.push(
-                            `/chi-tiet-tin-tuc?page=${new URL(
-                              newsData[0].post_url
-                            ).pathname
-                              .split("/")
-                              .pop()}`
+                            `/tin-cong-nghe/${newsData[0].identifier}`
                           )
                         }
                       >
@@ -232,11 +222,7 @@ export default function BodyBNew() {
                             className="header-BodyBNew-card-a2"
                             onClick={() =>
                               router.push(
-                                `/chi-tiet-tin-tuc?page=${new URL(
-                                  newsData[newsData.length].post_url
-                                ).pathname
-                                  .split("/")
-                                  .pop()}`
+                                `/tin-cong-nghe/${newsData[0].identifier}`
                               )
                             }
                           >
@@ -278,13 +264,7 @@ export default function BodyBNew() {
                           <a
                             className="inner-img"
                             onClick={() =>
-                              router.push(
-                                `/chi-tiet-tin-tuc?page=${new URL(
-                                  post.post_url
-                                ).pathname
-                                  .split("/")
-                                  .pop()}`
-                              )
+                              router.push(`/tin-cong-nghe/${post.identifier}`)
                             }
                           >
                             <img alt={post.title} src={post.first_image} />
@@ -296,7 +276,7 @@ export default function BodyBNew() {
                               className="inner-img"
                               onClick={() =>
                                 router.push(
-                                  `/chi-tiet-tin-tuc?page=${new URL(
+                                  `/tin-cong-nghe/chi-tiet-tin-tuc?page=${new URL(
                                     post.post_url
                                   ).pathname
                                     .split("/")
@@ -381,13 +361,7 @@ export default function BodyBNew() {
                           <SwiperSlide key={index}>
                             <a
                               onClick={() =>
-                                router.push(
-                                  `/chi-tiet-tin-tuc?page=${new URL(
-                                    post.post_url
-                                  ).pathname
-                                    .split("/")
-                                    .pop()}`
-                                )
+                                router.push(`/tin-cong-nghe/${post.identifier}`)
                               }
                             >
                               <div className="header-BodyBNew-cardPostView">

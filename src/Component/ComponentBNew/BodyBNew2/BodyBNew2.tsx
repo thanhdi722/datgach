@@ -136,13 +136,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                       <a
                         style={{ display: "flex" }}
                         onClick={() =>
-                          router.push(
-                            `/chi-tiet-tin-tuc?page=${new URL(
-                              post.post_url
-                            ).pathname
-                              .split("/")
-                              .pop()}`
-                          )
+                          router.push(`/tin-cong-nghe/${post.identifier}`)
                         }
                       >
                         <img
@@ -215,13 +209,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                             <a
                               style={{ display: "flex" }}
                               onClick={() =>
-                                router.push(
-                                  `/chi-tiet-tin-tuc?page=${new URL(
-                                    post.post_url
-                                  ).pathname
-                                    .split("/")
-                                    .pop()}`
-                                )
+                                router.push(`/tin-cong-nghe/${post.identifier}`)
                               }
                             >
                               <img
