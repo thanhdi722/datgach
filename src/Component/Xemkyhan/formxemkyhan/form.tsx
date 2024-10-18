@@ -15,7 +15,7 @@ import { Navigation } from "swiper/modules";
 import kredivo from "../../../../public/Images/kredivo-logo-freelogovectors.net_.png";
 import mudeee from "../../../../public/Images/muadee_payment.webp";
 import shinhan from "../../../../public/Images/shinhan.webp";
-import mcredit from "../../../../public/Images/1.png";
+import mcredit from "../../../../public/Images/1copy.png";
 import hdsaigon from "../../../../public/Images/hd-saison.webp";
 import homecredit from "../../../../public/Images/homecredit.png";
 interface Card {
@@ -640,7 +640,7 @@ query GetInstallmentInfo(
                     Chọn 1 trong {selectedCard.periods.length} gói tham khảo
                   </h2>
                   <Swiper
-                    navigation={true}
+                    // navigation={true}
                     modules={[Navigation]}
                     className="mySwiper"
                     slidesPerView="auto"
