@@ -405,7 +405,7 @@ export default function PostDetail() {
                     ))}
 
                 <div style={{ textAlign: "center", marginTop: "0px" }}>
-                  <Link href="/TinTuc">
+                  <Link href="/tin-cong-nghe">
                     <button
                       style={{
                         color: "red",
