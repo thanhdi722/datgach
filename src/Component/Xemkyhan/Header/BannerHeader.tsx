@@ -5,10 +5,12 @@ import "../../../style/styleheaderbanner.css";
 import banner1 from "../../../../public/Images/Gioi_thieu_BLM_1200x450_0810-3.jpg";
 import banner2 from "../../../../public/Images/BOX-TRAGOP-8-150624.png";
 import banner3 from "../../../../public/Images/tragop.png";
-import banner4 from "../../../../public/Images/BOX-TRAGOP-2-150624.png";
-import banner5 from "../../../../public/Images/Homepaylt.png";
-import banner6 from "../../../../public/Images/kredivo.png";
-import banner7 from "../../../../public/Images/banner7.png";
+import banner4 from "../../../../public/Images/muadee1.png";
+import banner5 from "../../../../public/Images/mpos1.png";
+import banner6 from "../../../../public/Images/kredivo1.png";
+import banner7 from "../../../../public/Images/hompaylater1.png";
+import banner12 from "../../../../public/Images/hdsaigon1.png";
+import banner13 from "../../../../public/Images/cathemienphi1.png";
 import banner8 from "../../../../public/Images/BOX-TRAGOP-4-150624.png";
 import banner9 from "../../../../public/Images/BOX-TRAGOP-5-150624 (1).png";
 import banner10 from "../../../../public/Images/040924-BANNER-TRA-GOP-3-KHONG-1200.png";
@@ -57,15 +59,13 @@ export default function BannerHeader() {
           height={675}
         />
         <div className="wrapper-banner2">
-          <Link href={`https://bachlongmobile.com/promotion/tra-gop-kredivo`}>
+          <Link href={`#`}>
             <div
               style={{
                 display: "flex",
-                gap: "20px",
                 justifyContent: "center",
-                flexDirection: "column",
-                border: "1px solid #333",
-                backgroundColor: "#fff",
+                // backgroundColor: "#fff",
+                gap: "10px",
               }}
             >
               <Image
@@ -76,7 +76,7 @@ export default function BannerHeader() {
                 className="bannerline1"
               />
               <Image
-                src={banner6}
+                src={banner5}
                 alt=""
                 width={1000}
                 height={1000}
@@ -84,19 +84,17 @@ export default function BannerHeader() {
               />
             </div>
           </Link>
-          <Link href={`https://bachlongmobile.com/promotion/home-pay-later`}>
+          <Link href={`#`}>
             <div
               style={{
                 display: "flex",
-                gap: "20px",
                 justifyContent: "center",
-                flexDirection: "column",
-                border: "1px solid #333",
-                backgroundColor: "#fff",
+                // backgroundColor: "#fff",
+                gap: "10px",
               }}
             >
               <Image
-                src={banner5}
+                src={banner6}
                 className="bannerline2"
                 alt=""
                 width={1000}
@@ -104,6 +102,31 @@ export default function BannerHeader() {
               />
               <Image
                 src={banner7}
+                alt=""
+                width={1000}
+                height={1000}
+                className="bannerline2"
+              />
+            </div>
+          </Link>
+          <Link href={`#`}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                // backgroundColor: "#fff",
+                gap: "10px",
+              }}
+            >
+              <Image
+                src={banner12}
+                className="bannerline2"
+                alt=""
+                width={1000}
+                height={1000}
+              />
+              <Image
+                src={banner13}
                 alt=""
                 width={1000}
                 height={1000}
