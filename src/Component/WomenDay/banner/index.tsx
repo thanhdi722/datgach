@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import './banner.scss';
 import Image from 'next/image';
-import banner from '../../../../public/women-day/banner-women.png';
+import banner from '../../../../public/women-day/banner-women.jpg';
 import countdown from '../../../../public/women-day/decor-countdown.png';
 
 interface TimeLeft {
