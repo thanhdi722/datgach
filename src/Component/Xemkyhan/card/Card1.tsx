@@ -41,7 +41,7 @@ export default function CardProduct(props: Props) {
   const termGradient = gradients[index % gradients.length];
   const color = colors[index % colors.length];
 
-  console.log("check data card", data);
+  // console.log("check data card", data);
   return (
     <div
       className={styles.card}

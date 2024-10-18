@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import DecorProduct from '../../../../public/women-day/decor-product.png';
-import DecorWomen from '../../../../public/women-day/decor-women-04.png';
+import DecorWomen from '../../../../public/women-day/decor-women-02.png';
 import FrameProduct from '../../../../public/women-day/frame-product.png';
 import { Spin } from 'antd';
 import './apple.scss';
