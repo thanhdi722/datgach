@@ -4,12 +4,9 @@ import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Spin } from 'antd';
 import DecorProduct from '../../../../../public/women-day/decor-product.png';
-import DecorWomen from '../../../../../public/women-day/decor-women-01.png';
 import FrameProduct from '../../../../../public/women-day/frame-product.png';
+import { useProductSaleData } from '../../../../hooksWomen/useProductSaleData';
 import './acess-women.scss';
-import Gift from '../../../../../public/old/gift.png';
-import { useProductSaleData } from '@/app/hooksWomen/useProductSaleData';
-import { useFilteredProductPrice } from '@/app/hooksWomen/useFilteredProductPrice';
 
 export interface Product {
 	id: number;

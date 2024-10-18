@@ -7,7 +7,7 @@ import { Spin } from 'antd';
 import './apple.scss';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useProductSaleData } from '@/app/hooksWomen/useProductSaleData';
+import { useProductSaleData } from '../../../hooksWomen/useProductSaleData';
 
 export interface Product {
 	id: number;

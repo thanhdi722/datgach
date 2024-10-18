@@ -6,7 +6,7 @@ import { Spin } from 'antd';
 import DecorProduct from '../../../../../public/women-day/decor-product.png';
 import FrameProduct from '../../../../../public/women-day/frame-product.png';
 import './acess-women.scss';
-import { useProductSaleData } from '@/app/hooksWomen/useProductSaleData';
+import { useProductSaleData } from '../../../../hooksWomen/useProductSaleData';
 
 export interface Product {
 	id: number;

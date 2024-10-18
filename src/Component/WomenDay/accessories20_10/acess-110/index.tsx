@@ -8,7 +8,7 @@ import DecorWomen from '../../../../../public/women-day/decor-women-01.png';
 import FrameProduct from '../../../../../public/women-day/frame-product.png';
 import './acess-women.scss';
 import Gift from '../../../../../public/old/gift.png';
-import { useProductSaleData } from '@/app/hooksWomen/useProductSaleData';
+import { useProductSaleData } from '../../../../hooksWomen/useProductSaleData';
 
 export interface Product {
 	id: number;
