@@ -25,7 +25,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-<<<<<<< HEAD
   return (
     <html lang="en">
       <body
@@ -39,17 +38,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-=======
-	return (
-		<html lang='en'>
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-				{/* <AntdRegistry> */}
-				{/* <Provider> */}
-				{children}
-				{/* </Provider> */}
-				{/* </AntdRegistry> */}
-			</body>
-		</html>
-	);
->>>>>>> b051b1957b8cb282235e06f94f6bf93ad031eacf
 }

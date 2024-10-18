@@ -43,7 +43,7 @@ const colors = [
 ];
 export default function CardProduct(props: Props) {
   const { data, index, priceorigin } = props;
-  console.log("check data card", data);
+  // console.log("check data card", data);
 
   const termGradient = gradients[index % gradients.length];
   const color = colors[index % colors.length];

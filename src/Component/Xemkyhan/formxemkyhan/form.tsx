@@ -189,7 +189,7 @@ query GetInstallmentInfo(
     payment_method_code: selectedBank2?.bankCode,
     total_amount: parseInt(value),
   };
-  console.log("check variables", variables.loan_amount);
+  // console.log("check variables", variables.loan_amount);
 
   useEffect(() => {
     const fetchBanks = async () => {
@@ -210,7 +210,7 @@ query GetInstallmentInfo(
             }
           );
           const responseData = await response.json();
-          console.log("check respons1 ", responseData);
+          // console.log("check respons1 ", responseData);
           if (
             responseData.data &&
             responseData.data.getInstallmentInfoByCredit
@@ -229,7 +229,7 @@ query GetInstallmentInfo(
             }
           }
         } catch (error) {
-          console.error("Error fetching bank data:", error);
+          // console.error("Error fetching bank data:", error);
         } finally {
           setLoading(false);
         }
@@ -238,7 +238,7 @@ query GetInstallmentInfo(
 
     fetchBanks();
   }, [triggerSearch, variable2]);
-  console.log("check data bankkkkkk", banks);
+  // console.log("check data bankkkkkk", banks);
   useEffect(() => {
     const fetchBanks2 = async () => {
       if (triggerSearch) {
@@ -262,7 +262,7 @@ query GetInstallmentInfo(
           if (responseData.data && responseData.data) {
             const bankData = responseData.data.getInstallmentInfo;
             setBanks2(bankData);
-            console.log(">>>>>>>>>>>>>BANK 2 ", banks2);
+            // console.log(">>>>>>>>>>>>>BANK 2 ", banks2);
           }
         } catch (error) {
           console.error("Error fetching bank data:", error);
@@ -306,7 +306,7 @@ query GetInstallmentInfo(
     };
     fetchBank3();
   }, [triggerSearch, selectedBank3?.endpoint, selectedBank3?.price]);
-  console.log("check bank3>?????????", banks3);
+  // console.log("check bank3>?????????", banks3);
   const handleSearch = async () => {
     if (value) {
       setTriggerSearch(true);
@@ -352,7 +352,7 @@ query GetInstallmentInfo(
           }
         }
       } catch (error) {
-        console.error("Error fetching updated data:", error);
+        // console.error("Error fetching updated data:", error);
       } finally {
         setLoading(false);
         setTriggerSearch(false);
@@ -375,7 +375,7 @@ query GetInstallmentInfo(
   };
   const handleCardSelection = (card: any) => {
     setSelectedCard(card);
-    console.log("check card1", card);
+    // console.log("check card1", card);
   };
   const handleBankSelection2 = (bank2: any) => {
     setSelectedBank2(bank2);
@@ -390,7 +390,7 @@ query GetInstallmentInfo(
     }
   };
   const handleBankSelection3 = (bank3: any) => {
-    console.log("check select3 bank", bank3);
+    // console.log("check select3 bank", bank3);
 
     setSelectedBank3(bank3);
   };
@@ -421,7 +421,7 @@ query GetInstallmentInfo(
       setShowFinancialCompanies(false);
       setSelectedBank2(null);
       setSelectedBank3(null);
-      console.log("hi");
+      // console.log("hi");
     }
   };
   // console.log("check bank3--------------", banks3);
@@ -429,8 +429,8 @@ query GetInstallmentInfo(
   // console.log("check bank2" + banks2);
   // console.log("check bank3", banks3);
   // console.log("check select bank2", selectedBank2);
-  console.log("check data1", data1);
-  console.log("check select bank3", selectedBank3);
+  // console.log("check data1", data1);
+  // console.log("check select bank3", selectedBank3);
   const steps: TourProps["steps"] =
     activeButton === 1
       ? [
