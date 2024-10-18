@@ -15,12 +15,6 @@
 		@media screen and (max-width: 768px) {
 			width: 16%;
 		}
-
-		img {
-			display: block;
-			width: 100%;
-			object-fit: cover;
-		}
 	}
 
 	&-header {
@@ -40,7 +34,6 @@
 	}
 	&-list-privilege {
 		display: flex;
-		flex-wrap: wrap;
 		padding: 1.2rem 0;
 		align-items: center;
 		width: 100%;
