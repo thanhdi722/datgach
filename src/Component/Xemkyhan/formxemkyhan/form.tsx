@@ -787,7 +787,7 @@ query GetInstallmentInfo(
                     Chọn 1 trong {banks2?.length} gói tham khảo
                   </h2>
                   <Swiper
-                    navigation={true}
+                    // navigation={true}
                     modules={[Navigation]}
                     className="mySwiper"
                     style={{ display: "flex" }}
@@ -835,7 +835,7 @@ query GetInstallmentInfo(
                     Chọn 1 trong {banks3.item.length} gói tham khảo
                   </h2>
                   <Swiper
-                    navigation={true}
+                    // navigation={true}
                     modules={[Navigation]}
                     className="mySwiper"
                     style={{ display: "flex" }}
