@@ -150,7 +150,7 @@ export default function BannerHeader() {
           width={1200}
           height={675}
         />
-        <div className="doublebanner">
+        {/* <div className="doublebanner">
           <Link
             className="BuyInInstallments-S1-Image"
             href={`https://bachlongmobile.com/news/news/sieu-uu-dai-tra-gop-apple/`}
@@ -163,7 +163,7 @@ export default function BannerHeader() {
           >
             <Image src={banner11} alt="" width={1200} height={675} />
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );
