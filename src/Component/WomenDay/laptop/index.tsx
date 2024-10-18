@@ -7,6 +7,7 @@ import DecorProduct from '../../../../public/women-day/decor-product.png';
 import DecorWomen from '../../../../public/women-day/decor-women-05.png';
 import FrameProduct from '../../../../public/women-day/frame-product.png';
 import './apple.scss';
+import { useProductSaleData } from '@/app/hooksWomen/useProductSaleData';
 
 export interface Product {
 	id: number;
@@ -94,11 +95,31 @@ async function fetchProductListData() {
 }
 
 const LaptopList: React.FC = () => {
-	const { data, error, isLoading } = useQuery<Product[]>({
+	const {
+		data: dataLaptop,
+		error,
+		isLoading,
+	} = useQuery<Product[]>({
 		queryKey: ['productLaptop'],
 		queryFn: fetchProductListData,
 		staleTime: 300000,
 	});
+
+	const { data } = useProductSaleData();
+	const productSale = data?.[0]?.items;
+
+	const productSaleNames = productSale?.map((productSale: any) => productSale.product.name);
+	const productSalePrices = productSale?.map((productSale: any) => productSale.sale_price);
+
+	const getProductSalePrice = (productName: string, originalPrice: number) => {
+		if (productSaleNames && productSalePrices) {
+			const saleIndex = productSaleNames.findIndex((name: string) => name === productName);
+			if (saleIndex !== -1) {
+				return productSalePrices[saleIndex].toLocaleString('vi-VN');
+			}
+		}
+		return originalPrice.toLocaleString('vi-VN');
+	};
 
 	const [activeTab, setActiveTab] = useState<string>('LG');
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
@@ -114,17 +135,17 @@ const LaptopList: React.FC = () => {
 	];
 
 	useEffect(() => {
-		let filtered = data || [];
+		let filtered = dataLaptop || [];
 
 		if (activeTab === 'Phụ Kiện') {
 			filtered =
-				data?.filter((product) => {
+				dataLaptop?.filter((product) => {
 					const hasAccessoryAttribute = product.attributes.some((attr: any) => attr.value === 'Phụ Kiện');
 					return product.name.includes('Phụ Kiện') || hasAccessoryAttribute;
 				}) || [];
 		} else {
 			filtered =
-				data?.filter((product) => {
+				dataLaptop?.filter((product) => {
 					const matchesTab =
 						activeTab === 'iPhone 16'
 							? product.name.startsWith('iPhone 16') &&
@@ -152,7 +173,7 @@ const LaptopList: React.FC = () => {
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
-	}, [data, activeTab]);
+	}, [dataLaptop, activeTab]);
 
 	if (isLoading) {
 		return (
@@ -255,8 +276,9 @@ const LaptopList: React.FC = () => {
 										<h4 className='upgrade-item-content-tt'>{product.name}</h4>
 										<div className='upgrade-item-content-body'>
 											<div className='upgrade-item-content-body-price'>
-												{product.price_range.minimum_price.final_price.value.toLocaleString(
-													'vi-VN'
+												{getProductSalePrice(
+													product.name,
+													product.price_range.minimum_price.final_price.value
 												)}{' '}
 												{product.price_range.minimum_price.final_price.currency}
 											</div>

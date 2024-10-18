@@ -7,6 +7,7 @@ import './product.scss';
 import DecorProduct from '../../../../public/women-day/decor-product.png';
 import DecorWomen from '../../../../public/women-day/decor-women-03.png';
 import FrameProduct from '../../../../public/women-day/frame-product.png';
+import { useProductSaleData } from '@/app/hooksWomen/useProductSaleData';
 
 export interface Product {
 	id: number;
@@ -193,11 +194,31 @@ async function fetchProductListData() {
 }
 
 const ProductPercent: React.FC = () => {
-	const { data, error, isLoading } = useQuery<Product[]>({
+	const {
+		data: DataPercent,
+		error,
+		isLoading,
+	} = useQuery<Product[]>({
 		queryKey: ['productPercentData'],
 		queryFn: fetchProductListData,
 		staleTime: 300000,
 	});
+
+	const { data } = useProductSaleData();
+	const productSale = data?.[0]?.items;
+
+	const productSaleNames = productSale?.map((productSale: any) => productSale.product.name);
+	const productSalePrices = productSale?.map((productSale: any) => productSale.sale_price);
+
+	const getProductSalePrice = (productName: string, originalPrice: number) => {
+		if (productSaleNames && productSalePrices) {
+			const saleIndex = productSaleNames.findIndex((name: string) => name === productName);
+			if (saleIndex !== -1) {
+				return productSalePrices[saleIndex].toLocaleString('vi-VN');
+			}
+		}
+		return originalPrice.toLocaleString('vi-VN');
+	};
 
 	const [activeTab, setActiveTab] = useState<string>('iPhone');
 	const [activeSubTab, setActiveSubTab] = useState<string>('');
@@ -214,7 +235,7 @@ const ProductPercent: React.FC = () => {
 	];
 
 	useEffect(() => {
-		const filtered = data?.filter((product) => {
+		const filtered = DataPercent?.filter((product) => {
 			const matchesTab =
 				(activeTab === 'iPhone 16' && activeSubTab === 'iPhone 16') ||
 				(activeTab === 'iPhone 15' && activeSubTab === 'iPhone 15') ||
@@ -250,7 +271,7 @@ const ProductPercent: React.FC = () => {
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
-	}, [data, activeTab, activeSubTab]);
+	}, [DataPercent, activeTab, activeSubTab]);
 
 	if (isLoading) {
 		return (
@@ -376,8 +397,9 @@ const ProductPercent: React.FC = () => {
 										<h4 className='upgrade-item-content-tt'>{product.name}</h4>
 										<div className='upgrade-item-content-body'>
 											<div className='upgrade-item-content-body-price'>
-												{product.price_range.minimum_price.final_price.value.toLocaleString(
-													'vi-VN'
+												{getProductSalePrice(
+													product.name,
+													product.price_range.minimum_price.final_price.value
 												)}{' '}
 												{product.price_range.minimum_price.final_price.currency}
 											</div>
