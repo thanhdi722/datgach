@@ -31,8 +31,9 @@
 } */
  .icon-card-product-autumn{
  width: 120px;
-  top: 5px;
-  left: 5px;
+  top: 10px;
+  left: 10px;
+  position: absolute;
   z-index: 99;
   border-radius: 5px;
  }
@@ -47,6 +48,7 @@
   margin: 10px auto;
   padding: 10px 0px;
   transition: all 0.3s ease-in-out;
+  margin-top: 30px;
 }
 .product__img-detail-card-OldAutumn:hover {
   transform: scale(1.1);
