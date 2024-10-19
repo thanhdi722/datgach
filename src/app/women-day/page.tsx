@@ -145,7 +145,11 @@ const WomenDay = () => {
 				</div>
 				<div className='category-mobile'>
 					<Swiper
+						centeredSlides={true}
+						slideToClickedSlide={true}
 						spaceBetween={10}
+						watchSlidesProgress={true} // Track slide progress to update center
+						onSlideChange={(swiper) => setActiveCategory(categories[swiper.activeIndex].id)} // Set active category on change
 						breakpoints={{
 							300: {
 								slidesPerView: 2.5,

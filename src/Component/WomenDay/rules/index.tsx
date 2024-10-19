@@ -146,7 +146,7 @@ const Rules = () => {
 						</li>
 					</ul>
 
-					<h2 className='rules-section-title'>
+					<h2 className='rules-section-title-cus text-italic'>
 						TIN KHUYẾN MÃI TỪ BẠCH LONG MOBILE - HỆ THỐNG UỶ QUYỀN CHÍNH HÃNG APPLE
 					</h2>
 					<ul className='rules-list'>

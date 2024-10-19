@@ -40,9 +40,18 @@
 		color: #e74c3c;
 		margin-bottom: 1.2rem;
 	}
+	.rules-section-title-cus {
+		font-size: 18px;
+		font-weight: 600;
+		color: #e74c3c;
+		margin-bottom: 1.2rem;
+	}
+	.text-italic {
+		font-style: italic;
+	}
 	.rules-content {
 		.rules-list {
-			list-style-type: none; /* Loại bỏ bullet points */
+			list-style-type: none;
 			padding: 0;
 			margin: 0 0 30px;
 			.li-cus {
