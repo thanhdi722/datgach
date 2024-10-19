@@ -3,7 +3,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #f9f9f9;
+	background-color: #fff;
 }
 
 .category-container-old {
@@ -15,7 +15,7 @@
 	padding: 0 1rem;
 
 	@media (max-width: 576px) {
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(3, 1fr);
 	}
 }
 

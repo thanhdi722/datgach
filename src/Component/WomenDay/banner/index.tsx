@@ -19,7 +19,7 @@ interface TimeLineProps {
 
 const Banner: React.FC<TimeLineProps> = ({ onScrollToRules }) => {
 	const calculateTimeLeft = (): TimeLeft => {
-		const eventDate = new Date('2024-10-20T00:00:00');
+		const eventDate = new Date('2024-10-20T21:30:00');
 		const currentTime = new Date();
 		const difference = eventDate.getTime() - currentTime.getTime();
 

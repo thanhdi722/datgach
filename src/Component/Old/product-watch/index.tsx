@@ -1,30 +1,30 @@
-"use client";
+'use client';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
-import { Spin } from "antd";
-import ProductBanner from "../../../../public/old/product-banner-03.png";
-import "./product-watch.scss";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useQuery } from '@tanstack/react-query';
+import Link from 'next/link';
+import { Spin } from 'antd';
+import ProductBanner from '../../../../public/old/product-banner-03.png';
+import './product-watch.scss';
 
 export interface Product {
-  id: number;
-  name: string;
-  url_key: string;
-  image: {
-    url: string;
-  };
-  attributes: any;
-  price_range: {
-    minimum_price: {
-      final_price: {
-        value: number;
-        currency: string;
-      };
-    };
-  };
+	id: number;
+	name: string;
+	url_key: string;
+	image: {
+		url: string;
+	};
+	attributes: any;
+	price_range: {
+		minimum_price: {
+			final_price: {
+				value: number;
+				currency: string;
+			};
+		};
+	};
 }
 
 const query = `
@@ -168,160 +168,161 @@ fragment ProductPriceField on ProductPrice {
 `;
 
 const variables = {
-  filter: {
-    category_uid: {
-      eq: "MTQz",
-    },
-  },
-  pageSize: 200,
-  currentPage: 1,
+	filter: {
+		category_uid: {
+			eq: 'MTQz',
+		},
+	},
+	pageSize: 200,
+	currentPage: 1,
 };
 
 async function fetchProductListData() {
-  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
+	const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			query,
+			variables,
+		}),
+	});
 
-  const data = await response.json();
-  return data.data.products.items as Product[];
+	const data = await response.json();
+	return data.data.products.items as Product[];
 }
 
 const ProductWatch: React.FC = () => {
-  const { data, error, isLoading } = useQuery<Product[]>({
-    queryKey: ["productWatchData"],
-    queryFn: fetchProductListData,
-    staleTime: 300000,
-  });
+	const { data, error, isLoading } = useQuery<Product[]>({
+		queryKey: ['productWatchData'],
+		queryFn: fetchProductListData,
+		staleTime: 300000,
+	});
 
-  const [visibleCount, setVisibleCount] = useState<number>(10); // Initial visible product count
+	const [visibleCount, setVisibleCount] = useState<number>(10); // Initial visible product count
 
-  useEffect(() => {
-    // Adjust visible count based on window size
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setVisibleCount(4); // Show 4 items if screen width < 768px
-      } else {
-        setVisibleCount(10); // Show 10 items if screen width >= 768px
-      }
-    };
+	useEffect(() => {
+		// Adjust visible count based on window size
+		const handleResize = () => {
+			if (window.innerWidth < 768) {
+				setVisibleCount(4); // Show 4 items if screen width < 768px
+			} else {
+				setVisibleCount(10); // Show 10 items if screen width >= 768px
+			}
+		};
 
-    handleResize(); // Initial check
-    window.addEventListener("resize", handleResize); // Update count on resize
+		handleResize(); // Initial check
+		window.addEventListener('resize', handleResize); // Update count on resize
 
-    return () => {
-      window.removeEventListener("resize", handleResize); // Clean up the event listener
-    };
-  }, []);
+		return () => {
+			window.removeEventListener('resize', handleResize); // Clean up the event listener
+		};
+	}, []);
 
-  if (isLoading) {
-    return (
-      <div className="loading container-spin">
-        <Spin />
-      </div>
-    );
-  }
+	if (isLoading) {
+		return (
+			<div className='loading container-spin'>
+				<Spin />
+			</div>
+		);
+	}
 
-  if (error) {
-    return <div>Error loading data</div>;
-  }
+	if (error) {
+		return <div>Error loading data</div>;
+	}
 
-  // Get visible products based on the visibleCount
-  const visibleProducts = data?.slice(0, visibleCount) || [];
+	// Get visible products based on the visibleCount
+	const visibleProducts = data?.slice(0, visibleCount) || [];
 
-  const loadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 5); // Load 5 more items on each click
-  };
+	const loadMore = () => {
+		setVisibleCount((prevCount) => prevCount + 5); // Load 5 more items on each click
+	};
 
-  return (
-    <div className="product-list">
-      <div className="upgrade-list">
-        <div className="container">
-          <Image
-            src={ProductBanner}
-            width={1820}
-            height={1200}
-            alt="product-banner-03"
-            className=""
-          />
-          <div className="upgrade">
-            {visibleProducts.map((product, index) => (
-              <Link
-                key={index}
-                href={`https://bachlongmobile.com/products/${product.url_key}`}
-                passHref
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                <div className="upgrade-item">
-                  <div className="upgrade-item-img">
-                    <Image
-                      src={product.image.url}
-                      width={1400}
-                      height={1200}
-                      quality={100}
-                      alt={`product-${index}`}
-                    />
-                  </div>
-                  <div className="upgrade-item-content">
-                    <h4 className="upgrade-item-content-tt">{product.name}</h4>
-                    <div className="upgrade-item-content-body">
-                      <div className="upgrade-item-content-body-price">
-                        {product.price_range.minimum_price.final_price.value.toLocaleString(
-                          "vi-VN"
-                        )}{" "}
-                        {product.price_range.minimum_price.final_price.currency}
-                      </div>
-                      <div className="upgrade-item-content-body-reduced">
-                        <div className="price-reduced">
-                          {product.attributes && product.attributes[0]?.value
-                            ? Number(
-                                product.attributes[0].value
-                              ).toLocaleString("vi-VN")
-                            : ""}{" "}
-                          {product.attributes[0].value &&
-                            product.price_range.minimum_price.final_price
-                              .currency}
-                        </div>
+	return (
+		<div className='product-list'>
+			<div className='container'>
+				<div className='upgrade-list bg-05'>
+					<div className='upgrade-list-tt'>
+						<span>Watch</span>
+					</div>
+					<div className='upgrade'>
+						{visibleProducts.map((product, index) => (
+							<Link
+								key={index}
+								href={`https://bachlongmobile.com/products/${product.url_key}`}
+								passHref
+								target='_blank'
+								rel='noopener noreferrer'
+								style={{ textDecoration: 'none', color: 'black' }}
+							>
+								<div className='upgrade-item'>
+									<div className='upgrade-item-header'>
+										<div className='percent'>
+											<span>Trả góp 0%</span>
+										</div>
 
-                        {product.attributes[0].value && (
-                          <div className="percent">
-                            -
-                            {Math.ceil(
-                              ((product.attributes[0].value -
-                                product.price_range.minimum_price.final_price
-                                  .value) /
-                                product.attributes[0].value) *
-                                100
-                            )}
-                            %
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-          {visibleCount < (data?.length || 0) && (
-            <div style={{ textAlign: "center", marginTop: "20px" }}>
-              <button onClick={loadMore} className="button">
-                <span className="button-content">Xem thêm</span>
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+										{product.attributes[0].value && (
+											<div className='percent-sale'>
+												<span>
+													-
+													{Math.ceil(
+														((product.attributes[0].value -
+															product.price_range.minimum_price.final_price.value) /
+															product.attributes[0].value) *
+															100
+													)}
+													%
+												</span>
+											</div>
+										)}
+									</div>
+									<div className='upgrade-item-img'>
+										<div className='img-content'>
+											<Image
+												src={product.image.url}
+												width={1400}
+												height={1200}
+												quality={100}
+												alt={`product-${index}`}
+											/>
+										</div>
+									</div>
+									<div className='upgrade-item-content'>
+										<h4 className='upgrade-item-content-tt'>{product.name}</h4>
+										<div className='upgrade-item-content-body'>
+											<div className='upgrade-item-content-body-price'>
+												{product.price_range.minimum_price.final_price.value.toLocaleString(
+													'vi-VN'
+												)}{' '}
+												{product.price_range.minimum_price.final_price.currency}
+											</div>
+											<div className='upgrade-item-content-body-reduced'>
+												<div className='price-reduced'>
+													{product.attributes && product.attributes[0]?.value
+														? Number(product.attributes[0].value).toLocaleString('vi-VN')
+														: ''}{' '}
+													{product.attributes[0].value &&
+														product.price_range.minimum_price.final_price.currency}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</Link>
+						))}
+					</div>
+					{visibleCount < (data?.length || 0) && (
+						<div style={{ textAlign: 'center', marginTop: '20px' }}>
+							<button onClick={loadMore} className='button'>
+								<span className='button-content'>Xem thêm</span>
+							</button>
+						</div>
+					)}
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default ProductWatch;

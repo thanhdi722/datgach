@@ -242,9 +242,31 @@ const ProductIpad: React.FC = () => {
 
 	return (
 		<div className='product-list'>
-			<div className='upgrade-list'>
-				<div className='container'>
-					<Image src={ProductBanner} width={1820} height={1200} alt='product-banner-02' />
+			<div className='container'>
+				<div className='upgrade-list bg-02'>
+					<div className='upgrade-list-tt'>
+						<span>iPad</span>
+						<div className='tabs'>
+							{tabs.map((tab) => (
+								<button
+									key={tab}
+									onClick={() => setActiveTab(tab)}
+									className={activeTab === tab ? 'tab active' : 'tab'}
+									style={{
+										color: activeTab === tab ? 'white' : '#000',
+										backgroundColor: activeTab === tab ? '#ef373e' : '#f1f1f1',
+										border: activeTab === tab ? '1px solid #ef373e' : '1px solid #ccc',
+										padding: '10px 20px',
+										margin: '5px',
+										borderRadius: '5px',
+										cursor: 'pointer',
+									}}
+								>
+									{tab}
+								</button>
+							))}
+						</div>
+					</div>
 
 					{isLoading && (
 						<div className='loading container-spin'>
@@ -254,33 +276,13 @@ const ProductIpad: React.FC = () => {
 
 					{!isLoading && (
 						<>
-							<div className='tabs'>
-								{tabs.map((tab) => (
-									<button
-										key={tab}
-										onClick={() => setActiveTab(tab)}
-										className={activeTab === tab ? 'tab active' : 'tab'}
-										style={{
-											color: activeTab === tab ? 'white' : '#000',
-											backgroundColor: activeTab === tab ? '#ef373e' : '#f1f1f1',
-											border: activeTab === tab ? '1px solid #ef373e' : '1px solid #ccc',
-											padding: '10px 20px',
-											margin: '5px',
-											borderRadius: '5px',
-											cursor: 'pointer',
-										}}
-									>
-										{tab}
-									</button>
-								))}
-							</div>
 							<Swiper
 								spaceBetween={16}
 								slidesPerView='auto'
 								navigation={true}
 								modules={[Navigation]}
 								breakpoints={{
-									768: {
+									350: {
 										slidesPerView: 2,
 									},
 									850: {
@@ -302,14 +304,37 @@ const ProductIpad: React.FC = () => {
 											style={{ textDecoration: 'none', color: 'black' }}
 										>
 											<div className='upgrade-item'>
+												<div className='upgrade-item-header'>
+													<div className='percent'>
+														<span>Trả góp 0%</span>
+													</div>
+
+													{product.attributes[0].value && (
+														<div className='percent-sale'>
+															<span>
+																-
+																{Math.ceil(
+																	((product.attributes[0].value -
+																		product.price_range.minimum_price.final_price
+																			.value) /
+																		product.attributes[0].value) *
+																		100
+																)}
+																%
+															</span>
+														</div>
+													)}
+												</div>
 												<div className='upgrade-item-img'>
-													<Image
-														src={product.image.url}
-														width={1400}
-														height={1200}
-														quality={100}
-														alt={`product-${index}`}
-													/>
+													<div className='img-content'>
+														<Image
+															src={product.image.url}
+															width={1400}
+															height={1200}
+															quality={100}
+															alt={`product-${index}`}
+														/>
+													</div>
 												</div>
 												<div className='upgrade-item-content'>
 													<h4 className='upgrade-item-content-tt'>{product.name}</h4>
@@ -331,20 +356,6 @@ const ProductIpad: React.FC = () => {
 																	product.price_range.minimum_price.final_price
 																		.currency}
 															</div>
-
-															{product.attributes[0].value && (
-																<div className='percent'>
-																	-
-																	{Math.ceil(
-																		((product.attributes[0].value -
-																			product.price_range.minimum_price
-																				.final_price.value) /
-																			product.attributes[0].value) *
-																			100
-																	)}
-																	%
-																</div>
-															)}
 														</div>
 													</div>
 												</div>

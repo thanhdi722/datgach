@@ -302,61 +302,26 @@ const ProductList: React.FC = () => {
 
 	return (
 		<div className='product-list'>
-			<div className='upgrade-list'>
-				<div className='container'>
-					<Image src={ProductBanner} width={1820} height={1200} alt='product-banner-01' className='' />
-
-					{isLoading && (
-						<div className='loading container-spin'>
-							<Spin />
-						</div>
-					)}
-					{!isLoading && (
-						<>
-							<div className='tabs'>
-								{window.innerWidth < 768 ? (
-									<Swiper
-										spaceBetween={10}
-										slidesPerView='auto'
-										breakpoints={{
-											375: {
-												slidesPerView: 3.7,
-											},
-											768: {
-												slidesPerView: 3.2,
-											},
-										}}
-									>
-										{tabs.map((tab) => (
-											<SwiperSlide key={tab.name}>
-												<button
-													onClick={() => {
-														setActiveTab(tab.name);
-														setActiveSubTab('');
-													}}
-													className={activeTab === tab.name ? 'tab active' : 'tab'}
-													style={{
-														color: activeTab === tab.name ? 'white' : '#000',
-														backgroundColor: activeTab === tab.name ? '#ef373e' : '#f1f1f1',
-														border:
-															activeTab === tab.name
-																? '1px solid #ef373e'
-																: '1px solid #ccc',
-														padding: '10px 20px',
-														margin: '5px',
-														borderRadius: '5px',
-														cursor: 'pointer',
-														fontSize: '1.2rem',
-													}}
-												>
-													{tab.name}
-												</button>
-											</SwiperSlide>
-										))}
-									</Swiper>
-								) : (
-									tabs.map((tab) => (
-										<div key={tab.name} style={{ marginBottom: '10px' }}>
+			<div className='container'>
+				<div className='upgrade-list bg-01'>
+					<div className='upgrade-list-tt'>
+						<span>iPhone</span>
+						<div className='tabs'>
+							{window.innerWidth < 768 ? (
+								<Swiper
+									spaceBetween={10}
+									slidesPerView='auto'
+									breakpoints={{
+										375: {
+											slidesPerView: 6.5,
+										},
+										768: {
+											slidesPerView: 3.2,
+										},
+									}}
+								>
+									{tabs.map((tab) => (
+										<SwiperSlide key={tab.name}>
 											<button
 												onClick={() => {
 													setActiveTab(tab.name);
@@ -372,14 +337,48 @@ const ProductList: React.FC = () => {
 													margin: '5px',
 													borderRadius: '5px',
 													cursor: 'pointer',
+													fontSize: '1.2rem',
 												}}
 											>
 												{tab.name}
 											</button>
-										</div>
-									))
-								)}
-							</div>
+										</SwiperSlide>
+									))}
+								</Swiper>
+							) : (
+								tabs.map((tab) => (
+									<div key={tab.name}>
+										<button
+											onClick={() => {
+												setActiveTab(tab.name);
+												setActiveSubTab('');
+											}}
+											className={activeTab === tab.name ? 'tab active' : 'tab'}
+											style={{
+												color: activeTab === tab.name ? 'white' : '#000',
+												backgroundColor: activeTab === tab.name ? '#ef373e' : '#f1f1f1',
+												border: activeTab === tab.name ? '1px solid #ef373e' : '1px solid #ccc',
+												padding: '10px 20px',
+												margin: '5px',
+												borderRadius: '5px',
+												cursor: 'pointer',
+											}}
+										>
+											{tab.name}
+										</button>
+									</div>
+								))
+							)}
+						</div>
+					</div>
+
+					{isLoading && (
+						<div className='loading container-spin'>
+							<Spin />
+						</div>
+					)}
+					{!isLoading && (
+						<>
 							{(tabs.find((tab) => tab.name === activeTab)?.subTabs?.length ?? 0) > 0 && (
 								<div style={{ display: 'flex', marginBottom: '12px' }} className='sub-tab-list'>
 									{tabs
@@ -396,8 +395,9 @@ const ProductList: React.FC = () => {
 														activeSubTab === subTab
 															? '1px solid #ef373e'
 															: '1px solid #ccc',
-													padding: '5px 10px',
+													padding: '10px 20px',
 													margin: '5px',
+													fontSize: '12px',
 													borderRadius: '5px',
 													cursor: 'pointer',
 												}}
@@ -420,17 +420,36 @@ const ProductList: React.FC = () => {
 									>
 										<div className='upgrade-item'>
 											<div className='upgrade-item-header'>
-												<span className='percent'>Trả góp 0%</span>
-												{/* <Image src={Author} width={60} height={20} quality={100} alt='author' /> */}
+												<div className='percent'>
+													<span>Trả góp 0%</span>
+												</div>
+
+												{product.attributes[0].value && (
+													<div className='percent-sale'>
+														<span>
+															-
+															{Math.ceil(
+																((product.attributes[0].value -
+																	product.price_range.minimum_price.final_price
+																		.value) /
+																	product.attributes[0].value) *
+																	100
+															)}
+															%
+														</span>
+													</div>
+												)}
 											</div>
 											<div className='upgrade-item-img'>
-												<Image
-													src={product.image.url}
-													width={1400}
-													height={1200}
-													quality={100}
-													alt={`product-${index}`}
-												/>
+												<div className='img-content'>
+													<Image
+														src={product.image.url}
+														width={1400}
+														height={1200}
+														quality={100}
+														alt={`product-${index}`}
+													/>
+												</div>
 											</div>
 											<div className='upgrade-item-content'>
 												<h4 className='upgrade-item-content-tt'>{product.name}</h4>
@@ -451,20 +470,6 @@ const ProductList: React.FC = () => {
 															{product.attributes[0].value &&
 																product.price_range.minimum_price.final_price.currency}
 														</div>
-
-														{product.attributes[0].value && (
-															<div className='percent'>
-																-
-																{Math.ceil(
-																	((product.attributes[0].value -
-																		product.price_range.minimum_price.final_price
-																			.value) /
-																		product.attributes[0].value) *
-																		100
-																)}
-																%
-															</div>
-														)}
 													</div>
 												</div>
 												<div className='gift'>
