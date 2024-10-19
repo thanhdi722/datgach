@@ -31,15 +31,13 @@ async function fetchContentData() {
 const Content = () => {
 	const [isExpanded, setIsExpanded] = useState(false);
 
-	const { data, error, isLoading } = useQuery({
+	const { data } = useQuery({
 		queryKey: ['contentData'],
 		queryFn: fetchContentData,
 		staleTime: 300000,
 	});
 
 	const contentData = data?.[0]?.description;
-
-	console.log('contentData: ', contentData);
 
 	const toggleExpand = () => {
 		setIsExpanded(!isExpanded);

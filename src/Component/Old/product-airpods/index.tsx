@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Spin } from 'antd';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import ProductBanner from '../../../../public/old/product-banner-05.png';
 import './product-airpods.scss';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -204,6 +203,11 @@ const ProductAirPods: React.FC = () => {
 	const [activeSubTab, setActiveSubTab] = useState<string>('');
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
 	const [visibleCount, setVisibleCount] = useState<number>(10);
+	const [isClient, setIsClient] = useState<boolean>(false);
+
+	useEffect(() => {
+		setIsClient(true);
+	}, []);
 
 	type Tab = {
 		name: string;
@@ -254,21 +258,24 @@ const ProductAirPods: React.FC = () => {
 		});
 		setFilteredData(filtered || []);
 
-		const handleResize = () => {
-			if (window.innerWidth < 768) {
-				setVisibleCount(4);
-			} else {
-				setVisibleCount(10);
-			}
-		};
+		if (isClient) {
+			// Only run this code on the client
+			const handleResize = () => {
+				if (window.innerWidth < 768) {
+					setVisibleCount(4);
+				} else {
+					setVisibleCount(10);
+				}
+			};
 
-		handleResize();
-		window.addEventListener('resize', handleResize);
+			handleResize();
+			window.addEventListener('resize', handleResize);
 
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
-	}, [data, activeTab, activeSubTab]);
+			return () => {
+				window.removeEventListener('resize', handleResize);
+			};
+		}
+	}, [data, activeTab, activeSubTab, isClient]);
 
 	if (error) {
 		return <div>Error loading data</div>;
@@ -287,7 +294,7 @@ const ProductAirPods: React.FC = () => {
 					<div className='upgrade-list-tt'>
 						<span>Samsung</span>
 						<div className='tabs'>
-							{window.innerWidth < 768 ? (
+							{isClient && window?.innerWidth < 768 ? (
 								<Swiper
 									spaceBetween={10}
 									slidesPerView='auto'

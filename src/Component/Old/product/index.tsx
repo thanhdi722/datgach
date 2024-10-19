@@ -1,10 +1,10 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Spin } from 'antd';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import ProductBanner from '../../../../public/old/product-banner-01.png';
 import Gift from '../../../../public/old/gift.png';
 import 'swiper/css';
 import './product.scss';
@@ -205,6 +205,11 @@ const ProductList: React.FC = () => {
 	const [activeSubTab, setActiveSubTab] = useState<string>('');
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
 	const [visibleCount, setVisibleCount] = useState<number>(10);
+	const [isClient, setIsClient] = useState<boolean>(false);
+
+	useEffect(() => {
+		setIsClient(true);
+	}, []);
 
 	const tabs = [
 		{
@@ -274,21 +279,24 @@ const ProductList: React.FC = () => {
 		});
 		setFilteredData(filtered || []);
 
-		const handleResize = () => {
-			if (window.innerWidth < 768) {
-				setVisibleCount(4);
-			} else {
-				setVisibleCount(10);
-			}
-		};
+		if (isClient) {
+			// Only run this code on the client
+			const handleResize = () => {
+				if (window.innerWidth < 768) {
+					setVisibleCount(4);
+				} else {
+					setVisibleCount(10);
+				}
+			};
 
-		handleResize();
-		window.addEventListener('resize', handleResize);
+			handleResize();
+			window.addEventListener('resize', handleResize);
 
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
-	}, [data, activeTab, activeSubTab]);
+			return () => {
+				window.removeEventListener('resize', handleResize);
+			};
+		}
+	}, [data, activeTab, activeSubTab, isClient]);
 
 	if (error) {
 		return <div>Error loading data</div>;
@@ -307,7 +315,7 @@ const ProductList: React.FC = () => {
 					<div className='upgrade-list-tt'>
 						<span>iPhone</span>
 						<div className='tabs'>
-							{window.innerWidth < 768 ? (
+							{isClient && window?.innerWidth < 768 ? (
 								<Swiper
 									spaceBetween={10}
 									slidesPerView='auto'
