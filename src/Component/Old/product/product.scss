@@ -198,7 +198,7 @@
 
 						@media screen and (max-width: 768px) {
 							font-size: 1.2rem;
-							height: 1.5rem;
+							min-height: auto !important;
 						}
 
 						&:hover {

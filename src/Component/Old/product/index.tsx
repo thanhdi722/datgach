@@ -321,7 +321,7 @@ const ProductList: React.FC = () => {
 									slidesPerView='auto'
 									breakpoints={{
 										375: {
-											slidesPerView: 6.5,
+											slidesPerView: 4.5,
 										},
 										768: {
 											slidesPerView: 3.2,

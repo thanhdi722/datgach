@@ -300,7 +300,7 @@ const ProductAirPods: React.FC = () => {
 									slidesPerView='auto'
 									breakpoints={{
 										375: {
-											slidesPerView: 5.5,
+											slidesPerView: 4.2,
 										},
 										768: {
 											slidesPerView: 3.2,
