@@ -174,7 +174,9 @@ export default function BodyBNew() {
                           <a
                             className="inner-img"
                             onClick={() =>
-                              router.push(`/tin-cong-nghe/${post.identifier}`)
+                              router.push(
+                                `/news/${post.categories[0].identifier}/${post.identifier}`
+                              )
                             }
                           >
                             <img alt={post.title} src={post.first_image} />
@@ -186,9 +188,9 @@ export default function BodyBNew() {
                               className="inner-img"
                               onClick={() =>
                                 router.push(
-                                  `/tin-cong-nghe/chi-tiet-tin-tuc?page=${new URL(
-                                    post.post_url
-                                  ).pathname
+                                  `/news/${
+                                    post.categories[0].identifier
+                                  }/${new URL(post.post_url).pathname
                                     .split("/")
                                     .pop()}`
                                 )
@@ -211,7 +213,7 @@ export default function BodyBNew() {
                         className="header-BodyBNew-card-a"
                         onClick={() =>
                           router.push(
-                            `/tin-cong-nghe/${newsData[0].identifier}`
+                            `/news/${newsData[0].categories[0].identifier}/${newsData[0].identifier}`
                           )
                         }
                       >
@@ -227,7 +229,7 @@ export default function BodyBNew() {
                             className="header-BodyBNew-card-a2"
                             onClick={() =>
                               router.push(
-                                `/tin-cong-nghe/${newsData[0].identifier}`
+                                `/news/${newsData[0].categories[0].identifier}/${newsData[0].identifier}`
                               )
                             }
                           >
@@ -269,7 +271,9 @@ export default function BodyBNew() {
                           <a
                             className="inner-img"
                             onClick={() =>
-                              router.push(`/tin-cong-nghe/${post.identifier}`)
+                              router.push(
+                                `/news/${post.categories[0].identifier}/${post.identifier}`
+                              )
                             }
                           >
                             <img alt={post.title} src={post.first_image} />
@@ -281,9 +285,9 @@ export default function BodyBNew() {
                               className="inner-img"
                               onClick={() =>
                                 router.push(
-                                  `/tin-cong-nghe/chi-tiet-tin-tuc?page=${new URL(
-                                    post.post_url
-                                  ).pathname
+                                  `/news/${
+                                    post.categories[0].identifier
+                                  }/${new URL(post.post_url).pathname
                                     .split("/")
                                     .pop()}`
                                 )
@@ -366,7 +370,9 @@ export default function BodyBNew() {
                           <SwiperSlide key={index}>
                             <a
                               onClick={() =>
-                                router.push(`/tin-cong-nghe/${post.identifier}`)
+                                router.push(
+                                  `/news/${post.categories[0].identifier}/${post.identifier}`
+                                )
                               }
                             >
                               <div className="header-BodyBNew-cardPostView">
@@ -387,7 +393,7 @@ export default function BodyBNew() {
                                       src={icUser}
                                     />
                                   </div>
-                                  <span>{post.author.name}</span>
+                                  {/* <span>{post.author.name}</span> */}
                                   <div>
                                     <span>
                                       {new Date(
