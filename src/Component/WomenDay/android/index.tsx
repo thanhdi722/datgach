@@ -7,6 +7,7 @@ import './product.scss';
 import DecorProduct from '../../../../public/women-day/decor-product.png';
 import DecorWomen from '../../../../public/women-day/decor-women-04.png';
 import FrameProduct from '../../../../public/women-day/frame-product.png';
+import { useProductSaleData } from '../../../hooksWomen/useProductSaleData';
 
 export interface Product {
 	id: number;
@@ -193,11 +194,31 @@ async function fetchProductListData() {
 }
 
 const AndroidList: React.FC = () => {
-	const { data, error, isLoading } = useQuery<Product[]>({
+	const {
+		data: DataAndroid,
+		error,
+		isLoading,
+	} = useQuery<Product[]>({
 		queryKey: ['androidData'],
 		queryFn: fetchProductListData,
 		staleTime: 300000,
 	});
+
+	const { data } = useProductSaleData();
+	const productSale = data?.[0]?.items;
+
+	const productSaleNames = productSale?.map((productSale: any) => productSale.product.name);
+	const productSalePrices = productSale?.map((productSale: any) => productSale.sale_price);
+
+	const getProductSalePrice = (productName: string, originalPrice: number) => {
+		if (productSaleNames && productSalePrices) {
+			const saleIndex = productSaleNames.findIndex((name: string) => name === productName);
+			if (saleIndex !== -1) {
+				return productSalePrices[saleIndex].toLocaleString('vi-VN');
+			}
+		}
+		return originalPrice.toLocaleString('vi-VN');
+	};
 
 	const [activeTab, setActiveTab] = useState<string>('Xiaomi');
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
@@ -213,7 +234,7 @@ const AndroidList: React.FC = () => {
 	];
 
 	useEffect(() => {
-		const filtered = data?.filter((product) => {
+		const filtered = DataAndroid?.filter((product) => {
 			const matchesTab = product.name.toLowerCase().includes(activeTab.toLowerCase());
 
 			return matchesTab;
@@ -235,7 +256,7 @@ const AndroidList: React.FC = () => {
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
-	}, [data, activeTab]);
+	}, [DataAndroid, activeTab]);
 
 	if (isLoading) {
 		return (
@@ -361,8 +382,9 @@ const AndroidList: React.FC = () => {
 										<h4 className='upgrade-item-content-tt'>{product.name}</h4>
 										<div className='upgrade-item-content-body'>
 											<div className='upgrade-item-content-body-price'>
-												{product.price_range.minimum_price.final_price.value.toLocaleString(
-													'vi-VN'
+												{getProductSalePrice(
+													product.name,
+													product.price_range.minimum_price.final_price.value
 												)}{' '}
 												{product.price_range.minimum_price.final_price.currency}
 											</div>

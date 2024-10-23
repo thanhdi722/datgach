@@ -7,6 +7,7 @@ import { Spin } from 'antd';
 import './apple.scss';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useProductSaleData } from '../../../hooksWomen/useProductSaleData';
 
 export interface Product {
 	id: number;
@@ -94,11 +95,31 @@ async function fetchProductListData() {
 }
 
 const AppleList: React.FC = () => {
-	const { data, error, isLoading } = useQuery<Product[]>({
+	const {
+		data: dataApple,
+		error,
+		isLoading,
+	} = useQuery<Product[]>({
 		queryKey: ['productApple'],
 		queryFn: fetchProductListData,
 		staleTime: 300000,
 	});
+
+	const { data } = useProductSaleData();
+	const productSale = data?.[0]?.items;
+
+	const productSaleNames = productSale?.map((productSale: any) => productSale.product.name);
+	const productSalePrices = productSale?.map((productSale: any) => productSale.sale_price);
+
+	const getProductSalePrice = (productName: string, originalPrice: number) => {
+		if (productSaleNames && productSalePrices) {
+			const saleIndex = productSaleNames.findIndex((name: string) => name === productName);
+			if (saleIndex !== -1) {
+				return productSalePrices[saleIndex].toLocaleString('vi-VN');
+			}
+		}
+		return originalPrice.toLocaleString('vi-VN');
+	};
 
 	const [activeTab, setActiveTab] = useState<string>('iPhone');
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
@@ -114,17 +135,17 @@ const AppleList: React.FC = () => {
 	];
 
 	useEffect(() => {
-		let filtered = data || [];
+		let filtered = dataApple || [];
 
 		if (activeTab === 'Phụ Kiện') {
 			filtered =
-				data?.filter((product) => {
+				dataApple?.filter((product) => {
 					const hasAccessoryAttribute = product.attributes.some((attr: any) => attr.value === 'Phụ Kiện');
 					return product.name.includes('Phụ Kiện') || hasAccessoryAttribute;
 				}) || [];
 		} else {
 			filtered =
-				data?.filter((product) => {
+				dataApple?.filter((product) => {
 					const matchesTab =
 						activeTab === 'iPhone 16'
 							? product.name.startsWith('iPhone 16') &&
@@ -152,7 +173,7 @@ const AppleList: React.FC = () => {
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
-	}, [data, activeTab]);
+	}, [dataApple, activeTab]);
 
 	if (isLoading) {
 		return (
@@ -254,8 +275,9 @@ const AppleList: React.FC = () => {
 										<h4 className='upgrade-item-content-tt'>{product.name}</h4>
 										<div className='upgrade-item-content-body'>
 											<div className='upgrade-item-content-body-price'>
-												{product.price_range.minimum_price.final_price.value.toLocaleString(
-													'vi-VN'
+												{getProductSalePrice(
+													product.name,
+													product.price_range.minimum_price.final_price.value
 												)}{' '}
 												{product.price_range.minimum_price.final_price.currency}
 											</div>

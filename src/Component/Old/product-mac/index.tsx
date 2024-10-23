@@ -240,9 +240,11 @@ const ProductMac: React.FC = () => {
 
 	return (
 		<div className='product-list'>
-			<div className='upgrade-list'>
-				<div className='container'>
-					<Image src={ProductBanner} width={1820} height={1200} alt='product-banner-03' className='' />
+			<div className='container'>
+				<div className='upgrade-list bg-04'>
+					<div className='upgrade-list-tt'>
+						<span>Mac</span>
+					</div>
 					<div className='upgrade'>
 						{visibleProducts.map((product, index) => (
 							<Link
@@ -254,14 +256,36 @@ const ProductMac: React.FC = () => {
 								style={{ textDecoration: 'none', color: 'black' }}
 							>
 								<div className='upgrade-item'>
+									<div className='upgrade-item-header'>
+										<div className='percent'>
+											<span>Trả góp 0%</span>
+										</div>
+
+										{product.attributes[0].value && (
+											<div className='percent-sale'>
+												<span>
+													-
+													{Math.ceil(
+														((product.attributes[0].value -
+															product.price_range.minimum_price.final_price.value) /
+															product.attributes[0].value) *
+															100
+													)}
+													%
+												</span>
+											</div>
+										)}
+									</div>
 									<div className='upgrade-item-img'>
-										<Image
-											src={product.image.url}
-											width={1400}
-											height={1200}
-											quality={100}
-											alt={`product-${index}`}
-										/>
+										<div className='img-content'>
+											<Image
+												src={product.image.url}
+												width={1400}
+												height={1200}
+												quality={100}
+												alt={`product-${index}`}
+											/>
+										</div>
 									</div>
 									<div className='upgrade-item-content'>
 										<h4 className='upgrade-item-content-tt'>{product.name}</h4>
@@ -280,19 +304,6 @@ const ProductMac: React.FC = () => {
 													{product.attributes[0].value &&
 														product.price_range.minimum_price.final_price.currency}
 												</div>
-
-												{product.attributes[0].value && (
-													<div className='percent'>
-														-
-														{Math.ceil(
-															((product.attributes[0].value -
-																product.price_range.minimum_price.final_price.value) /
-																product.attributes[0].value) *
-																100
-														)}
-														%
-													</div>
-												)}
 											</div>
 										</div>
 									</div>

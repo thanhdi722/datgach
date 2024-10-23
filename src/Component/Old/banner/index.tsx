@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import './banner.scss';
-import bannerDesktop from '../../../../public/old/banner-apple.png';
+import bannerDesktop from '../../../../public/old/banner-apple.jpg';
 import bannerMobile from '../../../../public/old/banner-mobile.jpg';
 
 const Banner: React.FC = () => {

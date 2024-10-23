@@ -8,6 +8,7 @@ import DecorWomen from '../../../../../public/women-day/decor-women-01.png';
 import FrameProduct from '../../../../../public/women-day/frame-product.png';
 import './acess-women.scss';
 import Gift from '../../../../../public/old/gift.png';
+import { useProductSaleData } from '../../../../hooksWomen/useProductSaleData';
 
 export interface Product {
 	id: number;
@@ -194,17 +195,36 @@ async function fetchProductListData() {
 }
 
 const Access110: React.FC = () => {
-	const { data, error, isLoading } = useQuery<Product[]>({
+	const {
+		data: Access110,
+		error,
+		isLoading,
+	} = useQuery<Product[]>({
 		queryKey: ['Access110Data'],
 		queryFn: fetchProductListData,
 		staleTime: 300000,
 	});
+	const { data } = useProductSaleData();
+	const productSale = data?.[0]?.items;
 
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
 	const [visibleCount, setVisibleCount] = useState<number>(10);
 
+	const productSaleNames = productSale?.map((productSale: any) => productSale.product.name);
+	const productSalePrices = productSale?.map((productSale: any) => productSale.sale_price);
+
+	const getProductSalePrice = (productName: string, originalPrice: number) => {
+		if (productSaleNames && productSalePrices) {
+			const saleIndex = productSaleNames.findIndex((name: string) => name === productName);
+			if (saleIndex !== -1) {
+				return productSalePrices[saleIndex].toLocaleString('vi-VN');
+			}
+		}
+		return originalPrice.toLocaleString('vi-VN');
+	};
+
 	useEffect(() => {
-		setFilteredData(data || []);
+		setFilteredData(Access110 || []);
 
 		const handleResize = () => {
 			if (window.innerWidth < 768) {
@@ -220,7 +240,7 @@ const Access110: React.FC = () => {
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
-	}, [data]);
+	}, [Access110]);
 
 	if (isLoading) {
 		return (
@@ -289,7 +309,10 @@ const Access110: React.FC = () => {
 								<h4 className='upgrade-item-content-tt'>{product.name}</h4>
 								<div className='upgrade-item-content-body'>
 									<div className='upgrade-item-content-body-price'>
-										{product.price_range.minimum_price.final_price.value.toLocaleString('vi-VN')}{' '}
+										{getProductSalePrice(
+											product.name,
+											product.price_range.minimum_price.final_price.value
+										)}{' '}
 										{product.price_range.minimum_price.final_price.currency}
 									</div>
 									<div className='upgrade-item-content-body-reduced'>

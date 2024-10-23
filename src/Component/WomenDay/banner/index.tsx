@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './banner.scss';
 import Image from 'next/image';
 import banner from '../../../../public/women-day/banner-women.jpg';
+import mobileBanner from '../../../../public/women-day/banner-women-mobile.jpg';
 import countdown from '../../../../public/women-day/decor-countdown.png';
 
 interface TimeLeft {
@@ -18,7 +19,7 @@ interface TimeLineProps {
 
 const Banner: React.FC<TimeLineProps> = ({ onScrollToRules }) => {
 	const calculateTimeLeft = (): TimeLeft => {
-		const eventDate = new Date('2024-10-20T00:00:00');
+		const eventDate = new Date('2024-10-20T21:30:00');
 		const currentTime = new Date();
 		const difference = eventDate.getTime() - currentTime.getTime();
 
@@ -55,6 +56,7 @@ const Banner: React.FC<TimeLineProps> = ({ onScrollToRules }) => {
 	return (
 		<div className='banner'>
 			<Image src={banner} alt='banner' width={1920} height={1200} className='banner-img' />
+			<Image src={mobileBanner} alt='banner' width={768} height={1024} className='banner-img-mobile' />
 			<div className='container'>
 				<div className='countdown-wrap'>
 					<div className='countdown'>

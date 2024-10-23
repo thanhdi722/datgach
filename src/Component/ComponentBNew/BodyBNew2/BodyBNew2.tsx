@@ -18,7 +18,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
   const router = useRouter();
   const [newsData2, setNewsData2] = useState<BlogPost[] | null>(null);
   const [newsData3, setNewsData3] = useState<BlogPost[] | null>(null);
-  const [visibleCount, setVisibleCount] = useState(5); // State to track the number of visible posts
+  const [visibleCount, setVisibleCount] = useState(6); // Start with 6 visible products
   const [visibleCountProduct, setVisibleCountProduct] = useState(5); // State to track the number of visible product posts
   const query = `query blogPosts( $filter: BlogPostsFilterInput $pageSize: Int $currentPage: Int $sortFiled: String $allPosts: Boolean $sort: [String] ) { blogPosts( filter: $filter pageSize: $pageSize currentPage: $currentPage sortFiled: $sortFiled allPosts: $allPosts sort: $sort ) { items { author { author_id author_url content creation_time custom_theme_to facebook_page_url featured_image filtered_content identifier instagram_page_url is_active layout_update_xml linkedin_page_url meta_description meta_title name page_layout relative_url title twitter_page_url type url } author_id canonical_url category_id content_heading creation_time end_time featured_image featured_img_alt featured_list_image featured_list_img_alt first_image identifier is_active page_layout position post_id post_url publish_time search title type update_time views_count categories { canonical_url category_id category_level category_url category_url_path content content_heading custom_layout custom_layout_update_xml custom_theme custom_theme_from custom_theme_to display_mode featured_img identifier include_in_menu is_active layout_update_xml meta_description meta_keywords meta_title page_layout parent_category_id path position posts_count posts_sort_by relative_url title type breadcrumbs { category_id category_level category_name category_uid category_url_key category_url_path } } filtered_content media_gallery { url } meta_description meta_keywords meta_title promotion_image tags { content custom_layout custom_layout_update_xml custom_theme custom_theme_from custom_theme_to identifier is_active layout_update_xml meta_description meta_keywords meta_robots meta_title page_layout relative_url tag_id tag_url title type } tag_id short_content short_filtered_content } total_count total_pages type } }`;
   const queryTest = `query blogPosts( $filter: BlogPostsFilterInput $pageSize: Int $currentPage: Int $sortFiled: String $allPosts: Boolean $sort: [String] ) { blogPosts( filter: $filter pageSize: $pageSize currentPage: $currentPage sortFiled: $sortFiled allPosts: $allPosts sort: $sort ) { items { author { author_id author_url content creation_time custom_theme_to facebook_page_url featured_image filtered_content identifier instagram_page_url is_active layout_update_xml linkedin_page_url meta_description meta_title name page_layout relative_url title twitter_page_url type url } author_id canonical_url category_id content_heading creation_time end_time featured_image featured_img_alt featured_list_image featured_list_img_alt first_image identifier is_active page_layout position post_id post_url publish_time search title type update_time views_count categories { canonical_url category_id category_level category_url category_url_path content content_heading custom_layout custom_layout_update_xml custom_theme custom_theme_from custom_theme_to display_mode featured_img identifier include_in_menu is_active layout_update_xml meta_description meta_keywords meta_title page_layout parent_category_id path position posts_count posts_sort_by relative_url title type breadcrumbs { category_id category_level category_name category_uid category_url_key category_url_path } } filtered_content media_gallery { url } meta_description meta_keywords meta_title promotion_image tags { content custom_layout custom_layout_update_xml custom_theme custom_theme_from custom_theme_to identifier is_active layout_update_xml meta_description meta_keywords meta_robots meta_title page_layout relative_url tag_id tag_url title type } tag_id short_content short_filtered_content } total_count total_pages type } }`;
@@ -82,7 +82,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
   }
 
   const loadMorePosts = () => {
-    setVisibleCount((prevCount) => prevCount + 5); // Increase the count by 3
+    setVisibleCount((prevCount) => prevCount + 6); // Increase the count by 3
   };
 
   const loadMoreProductPosts = () => {
@@ -91,7 +91,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
 
   useEffect(() => {
     fetchBlogPostsDataNew();
-    setVisibleCount(5);
+    setVisibleCount(6);
     fetchBlogPostsDataProduct();
   }, [activeTab2]);
 
@@ -124,7 +124,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
           >
             <Col span={14} className="header-BodyBNew2-CardCol">
               {newsData2 &&
-                newsData2.slice(5, newsData2.length).map(
+                newsData2.slice(5, 5 + visibleCount).map(
                   (
                     post,
                     index // Chỉnh sửa ở đây
@@ -136,7 +136,9 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                       <a
                         style={{ display: "flex" }}
                         onClick={() =>
-                          router.push(`/tin-cong-nghe/${post.identifier}`)
+                          router.push(
+                            `/news/${post.categories[0].identifier}/${post.identifier}`
+                          )
                         }
                       >
                         <img
@@ -158,7 +160,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                                 src={icUser}
                               />
                             </div>
-                            <span>{post.author.name}</span>
+                            {/* <span>{post.author.name}</span> */}
                             <div>
                               <span>
                                 {new Date(
@@ -175,6 +177,14 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                     </div>
                   )
                 )}
+              {visibleCount < newsData2.length - 6 && ( // Check if more products are available
+                <button
+                  onClick={loadMorePosts}
+                  className="header-BodyBNew2-cardPostView-load-more-button"
+                >
+                  Xem thêm
+                </button>
+              )}
             </Col>
             <Col
               span={10}
@@ -209,7 +219,9 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                             <a
                               style={{ display: "flex" }}
                               onClick={() =>
-                                router.push(`/tin-cong-nghe/${post.identifier}`)
+                                router.push(
+                                  `/news/${post.categories[0].identifier}/${post.identifier}`
+                                )
                               }
                             >
                               <img

@@ -106,9 +106,11 @@
 	}
 
 	.swiper-slide {
+		transition: transform 0.3s ease, opacity 0.3s ease;
+
 		&.active {
-			position: relative;
-			padding: 0.5rem;
+			transform: scale(1.1); // Enlarge the active item
+			opacity: 1;
 
 			&::before {
 				content: '';
@@ -133,8 +135,8 @@
 		}
 
 		&.default {
-			background-color: white;
-			padding: 0.5rem;
+			transform: scale(0.9); // Shrink the non-active items
+			opacity: 0.5;
 		}
 	}
 

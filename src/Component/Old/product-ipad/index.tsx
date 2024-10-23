@@ -6,9 +6,13 @@ import Link from 'next/link';
 import { Spin } from 'antd';
 import './product-ipad.scss';
 import ProductBanner from '../../../../public/old/product-banner-02.png';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+
 export interface Product {
 	/* eslint-disable @typescript-eslint/no-explicit-any */
-
 	id: number;
 	name: string;
 	url_key: string;
@@ -226,14 +230,6 @@ const ProductIpad: React.FC = () => {
 		};
 	}, [data, activeTab]);
 
-	if (isLoading) {
-		return (
-			<div className='loading container-spin'>
-				<Spin />
-			</div>
-		);
-	}
-
 	if (error) {
 		return <div>Error loading data</div>;
 	}
@@ -246,92 +242,136 @@ const ProductIpad: React.FC = () => {
 
 	return (
 		<div className='product-list'>
-			<div className='upgrade-list'>
-				<div className='container'>
-					<Image src={ProductBanner} width={1820} height={1200} alt='product-banner-02' className='' />
-					<div className='tabs'>
-						{tabs.map((tab) => (
-							<button
-								key={tab}
-								onClick={() => setActiveTab(tab)}
-								className={activeTab === tab ? 'tab active' : 'tab'}
-								style={{
-									color: activeTab === tab ? 'white' : '#000',
-									backgroundColor: activeTab === tab ? '#ef373e' : '#f1f1f1',
-									border: activeTab === tab ? '1px solid #ef373e' : '1px solid #ccc',
-									padding: '10px 20px',
-									margin: '5px',
-									borderRadius: '5px',
-									cursor: 'pointer',
-								}}
-							>
-								{tab}
-							</button>
-						))}
-					</div>
-					<div className='upgrade'>
-						{visibleProducts.map((product, index) => (
-							<Link
-								key={index}
-								href={`https://bachlongmobile.com/products/${product.url_key}`}
-								passHref
-								target='_blank'
-								rel='noopener noreferrer'
-								style={{ textDecoration: 'none', color: 'black' }}
-							>
-								<div className='upgrade-item'>
-									<div className='upgrade-item-img'>
-										<Image
-											src={product.image.url}
-											width={1400}
-											height={1200}
-											quality={100}
-											alt={`product-${index}`}
-										/>
-									</div>
-									<div className='upgrade-item-content'>
-										<h4 className='upgrade-item-content-tt'>{product.name}</h4>
-										<div className='upgrade-item-content-body'>
-											<div className='upgrade-item-content-body-price'>
-												{product.price_range.minimum_price.final_price.value.toLocaleString(
-													'vi-VN'
-												)}{' '}
-												{product.price_range.minimum_price.final_price.currency}
-											</div>
-											<div className='upgrade-item-content-body-reduced'>
-												<div className='price-reduced'>
-													{product.attributes && product.attributes[0]?.value
-														? Number(product.attributes[0].value).toLocaleString('vi-VN')
-														: ''}{' '}
-													{product.attributes[0].value &&
-														product.price_range.minimum_price.final_price.currency}
-												</div>
-
-												{product.attributes[0].value && (
-													<div className='percent'>
-														-
-														{Math.ceil(
-															((product.attributes[0].value -
-																product.price_range.minimum_price.final_price.value) /
-																product.attributes[0].value) *
-																100
-														)}
-														%
-													</div>
-												)}
-											</div>
-										</div>
-									</div>
-								</div>
-							</Link>
-						))}
-					</div>
-					{visibleCount < filteredData.length && (
-						<div style={{ textAlign: 'center', marginTop: '20px' }}>
-							<button onClick={loadMore} className='button'>
-								<span className='button-content'>Xem thêm</span>
-							</button>
+			<div className='container'>
+				<div className='upgrade-list bg-02'>
+					<div className='upgrade-list-tt'>
+						<span>iPad</span>
+						<div className='tabs'>
+							{tabs.map((tab) => (
+								<button
+									key={tab}
+									onClick={() => setActiveTab(tab)}
+									className={activeTab === tab ? 'tab active' : 'tab'}
+									style={{
+										color: activeTab === tab ? 'white' : '#000',
+										backgroundColor: activeTab === tab ? '#ef373e' : '#f1f1f1',
+										border: activeTab === tab ? '1px solid #ef373e' : '1px solid #ccc',
+										padding: '10px 20px',
+										margin: '5px',
+										borderRadius: '5px',
+										cursor: 'pointer',
+									}}
+								>
+									{tab}
+								</button>
+							))}
 						</div>
+					</div>
+
+					{isLoading && (
+						<div className='loading container-spin'>
+							<Spin />
+						</div>
+					)}
+
+					{!isLoading && (
+						<>
+							<Swiper
+								spaceBetween={16}
+								slidesPerView='auto'
+								navigation={true}
+								modules={[Navigation]}
+								breakpoints={{
+									350: {
+										slidesPerView: 2,
+									},
+									850: {
+										slidesPerView: 3,
+									},
+									1200: {
+										slidesPerView: 5,
+									},
+								}}
+								className='swiper upgrade'
+							>
+								{visibleProducts.map((product, index) => (
+									<SwiperSlide key={index}>
+										<Link
+											href={`https://bachlongmobile.com/products/${product.url_key}`}
+											passHref
+											target='_blank'
+											rel='noopener noreferrer'
+											style={{ textDecoration: 'none', color: 'black' }}
+										>
+											<div className='upgrade-item'>
+												<div className='upgrade-item-header'>
+													<div className='percent'>
+														<span>Trả góp 0%</span>
+													</div>
+
+													{product.attributes[0].value && (
+														<div className='percent-sale'>
+															<span>
+																-
+																{Math.ceil(
+																	((product.attributes[0].value -
+																		product.price_range.minimum_price.final_price
+																			.value) /
+																		product.attributes[0].value) *
+																		100
+																)}
+																%
+															</span>
+														</div>
+													)}
+												</div>
+												<div className='upgrade-item-img'>
+													<div className='img-content'>
+														<Image
+															src={product.image.url}
+															width={1400}
+															height={1200}
+															quality={100}
+															alt={`product-${index}`}
+														/>
+													</div>
+												</div>
+												<div className='upgrade-item-content'>
+													<h4 className='upgrade-item-content-tt'>{product.name}</h4>
+													<div className='upgrade-item-content-body'>
+														<div className='upgrade-item-content-body-price'>
+															{product.price_range.minimum_price.final_price.value.toLocaleString(
+																'vi-VN'
+															)}{' '}
+															{product.price_range.minimum_price.final_price.currency}
+														</div>
+														<div className='upgrade-item-content-body-reduced'>
+															<div className='price-reduced'>
+																{product.attributes && product.attributes[0]?.value
+																	? Number(
+																			product.attributes[0].value
+																	  ).toLocaleString('vi-VN')
+																	: ''}{' '}
+																{product.attributes[0].value &&
+																	product.price_range.minimum_price.final_price
+																		.currency}
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</Link>
+									</SwiperSlide>
+								))}
+							</Swiper>
+							{visibleCount < filteredData.length && (
+								<div style={{ textAlign: 'center', marginTop: '20px' }}>
+									<button onClick={loadMore} className='button'>
+										<span className='button-content'>Xem thêm</span>
+									</button>
+								</div>
+							)}
+						</>
 					)}
 				</div>
 			</div>

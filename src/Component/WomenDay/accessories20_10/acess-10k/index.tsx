@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Spin } from 'antd';
 import DecorProduct from '../../../../../public/women-day/decor-product.png';
-import DecorWomen from '../../../../../public/women-day/decor-women-01.png';
 import FrameProduct from '../../../../../public/women-day/frame-product.png';
+import { useProductSaleData } from '../../../../hooksWomen/useProductSaleData';
 import './acess-women.scss';
-import Gift from '../../../../../public/old/gift.png';
 
 export interface Product {
 	id: number;
@@ -194,17 +193,31 @@ async function fetchProductListData() {
 }
 
 const Access10k: React.FC = () => {
-	const { data, error, isLoading } = useQuery<Product[]>({
+	const {
+		data: dataAccess,
+		error,
+		isLoading,
+	} = useQuery<Product[]>({
 		queryKey: ['access10kData'],
 		queryFn: fetchProductListData,
 		staleTime: 300000,
 	});
 
+	const { data } = useProductSaleData();
+	const productSale = data?.[0]?.items;
+
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
 	const [visibleCount, setVisibleCount] = useState<number>(10);
 
+	const productSaleNames = productSale?.map((productSale: any) => productSale.product.name);
+	const productSalePrices = productSale?.map((productSale: any) => productSale.sale_price);
+
 	useEffect(() => {
-		setFilteredData(data || []);
+		setFilteredData(
+			(dataAccess || []).sort(
+				(a, b) => a.price_range.minimum_price.final_price.value - b.price_range.minimum_price.final_price.value
+			)
+		);
 
 		const handleResize = () => {
 			if (window.innerWidth < 768) {
@@ -220,7 +233,7 @@ const Access10k: React.FC = () => {
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
-	}, [data]);
+	}, [dataAccess]);
 
 	if (isLoading) {
 		return (
@@ -235,6 +248,16 @@ const Access10k: React.FC = () => {
 	}
 
 	const visibleProducts = filteredData.slice(0, visibleCount);
+
+	const getProductSalePrice = (productName: string, originalPrice: number) => {
+		if (productSaleNames && productSalePrices) {
+			const saleIndex = productSaleNames.findIndex((name: string) => name === productName);
+			if (saleIndex !== -1) {
+				return productSalePrices[saleIndex].toLocaleString('vi-VN');
+			}
+		}
+		return originalPrice.toLocaleString('vi-VN');
+	};
 
 	const loadMore = () => {
 		setVisibleCount((prevCount) => prevCount + 10);
@@ -289,7 +312,10 @@ const Access10k: React.FC = () => {
 								<h4 className='upgrade-item-content-tt'>{product.name}</h4>
 								<div className='upgrade-item-content-body'>
 									<div className='upgrade-item-content-body-price'>
-										{product.price_range.minimum_price.final_price.value.toLocaleString('vi-VN')}{' '}
+										{getProductSalePrice(
+											product.name,
+											product.price_range.minimum_price.final_price.value
+										)}{' '}
 										{product.price_range.minimum_price.final_price.currency}
 									</div>
 									<div className='upgrade-item-content-body-reduced'>
