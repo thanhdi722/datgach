@@ -7,6 +7,8 @@ import { Spin } from 'antd';
 import './product-ipad.scss';
 import ProductBanner from '../../../../public/old/product-banner-02.png';
 export interface Product {
+	/* eslint-disable @typescript-eslint/no-explicit-any */
+
 	id: number;
 	name: string;
 	url_key: string;

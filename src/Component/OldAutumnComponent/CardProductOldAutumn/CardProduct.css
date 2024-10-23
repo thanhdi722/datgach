@@ -7,6 +7,7 @@
   background-color: white;
   transition: all 0.3s ease-in-out;
   border: 2px solid transparent;
+  position: relative;
 }
 .CardProductOldAutumn:hover {
   border: 2px solid red;
@@ -28,17 +29,28 @@
   margin-bottom: 10px;
   margin-top: 5px !important;
 } */
-.product__img-detail {
+ .icon-card-product-autumn{
+ width: 120px;
+  top: 10px;
+  left: 10px;
+  position: absolute;
+  z-index: 99;
+  border-radius: 5px;
+ }
+ .product__img-card-OldAutumn{
+  /* margin-top: 20px; */
+ }
+.product__img-detail-card-OldAutumn {
   object-fit: contain;
   max-width: 180px;
   height: 180px;
   display: block;
-  margin: auto;
-  margin-top: 20px;
+  margin: 10px auto;
   padding: 10px 0px;
   transition: all 0.3s ease-in-out;
+  margin-top: 30px;
 }
-.product__img-detail:hover {
+.product__img-detail-card-OldAutumn:hover {
   transform: scale(1.1);
 }
 .product__price__percent {
@@ -191,7 +203,7 @@
     font-size: 15px;
     font-weight: bold;
   }
-  .product__img-detail {
+  .product__img-detail-card-OldAutumn {
     max-width: 150px;
     height: 150px;
   }

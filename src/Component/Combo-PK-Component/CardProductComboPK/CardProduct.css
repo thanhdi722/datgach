@@ -6,6 +6,7 @@
   overflow: hidden;
   background-color: white;
   transition: all 0.3s ease-in-out;
+  position: relative;
 }
 
 /* .swiper-slide {
@@ -38,7 +39,9 @@
 .product__img-detail:hover {
   transform: scale(1.1);
 }
-.product__price__percent {
+.product__price__percent-cardCombo {
+  left: 10px;
+  top: 10px;
   position: absolute;
   width: 50px;
   height: 30px;
@@ -176,7 +179,7 @@
   }
 }
 @media (max-width: 767px) {
-  .product__price__percent {
+  .product__price__percent-cardCombo {
     position: absolute;
     width: 50px;
     height: 30px;

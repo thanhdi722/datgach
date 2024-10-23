@@ -31,7 +31,6 @@ export default function RootLayout({
         {/* <AntdRegistry> */}
         {/* <Provider> */}
         {children}
-
         {/* </Provider> */}
         {/* </AntdRegistry> */}
       </body>
