@@ -29,6 +29,7 @@ const categories = [
 
 export default function HalloweenPage() {
 	const categoryRef = useRef(null);
+	const swiperRef = useRef<any>(null);
 	const [isStickyVisible, setIsStickyVisible] = useState(false);
 	const [activeCategory, setActiveCategory] = useState<string | null>(null);
 	const scrollThreshold = 500;
@@ -69,7 +70,7 @@ export default function HalloweenPage() {
 		);
 
 		const observeSections = () => {
-			categories.forEach((category) => {
+			categories.forEach((category, index) => {
 				const element = document.getElementById(category.id);
 				if (element) {
 					sectionObserver.observe(element);
@@ -91,6 +92,15 @@ export default function HalloweenPage() {
 			});
 		};
 	}, []);
+
+	useEffect(() => {
+		if (swiperRef.current) {
+			const activeIndex = categories.findIndex((category) => category.id === activeCategory);
+			if (activeIndex !== -1) {
+				swiperRef.current.slideTo(activeIndex, 300, true);
+			}
+		}
+	}, [activeCategory]);
 
 	return (
 		<div className='halloween'>
@@ -192,8 +202,14 @@ export default function HalloweenPage() {
 						centeredSlides={true}
 						slideToClickedSlide={true}
 						spaceBetween={10}
-						watchSlidesProgress={true} // Track slide progress to update center
-						onSlideChange={(swiper) => setActiveCategory(categories[swiper.activeIndex].id)} // Set active category on change
+						watchSlidesProgress={true}
+						onSwiper={(swiperInstance) => {
+							swiperRef.current = swiperInstance; // Store swiper instance in ref
+						}}
+						onSlideChange={(swiperInstance) => {
+							setActiveCategory(categories[swiperInstance.activeIndex].id);
+							swiperInstance.slideTo(swiperInstance.activeIndex, 300, true); // Center the active slide when scrolling
+						}}
 						breakpoints={{
 							300: {
 								slidesPerView: 3.5,
@@ -203,9 +219,16 @@ export default function HalloweenPage() {
 							},
 						}}
 						slidesPerView='auto'
+						initialSlide={0}
 					>
 						{categories.map((category, index) => (
-							<SwiperSlide key={index} onClick={() => handleClick(category.id)}>
+							<SwiperSlide
+								key={index}
+								onClick={() => {
+									setActiveCategory(category.id);
+									swiperRef.current?.slideTo(index, 300, true); // Center the clicked slide
+								}}
+							>
 								<div
 									className={`swiper-slide ${activeCategory === category.id ? 'active' : 'default'}`}
 								>
