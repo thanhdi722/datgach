@@ -114,7 +114,7 @@ export default function BodyBNew() {
     fetchBlogPostsData(); // Fetch main posts when activeTab changes
     fetchBlogPostsDataNew(); // Fetch new posts based on activeTab2
   }, [activeTab, activeTab2]);
-
+  console.log("data newss", newsData2);
   const tabs = [
     "Trang Chủ",
     "Tin Công Nghệ",
@@ -393,7 +393,7 @@ export default function BodyBNew() {
                                       src={icUser}
                                     />
                                   </div>
-                                  {/* <span>{post.author.name}</span> */}
+                                  <span>{post.author.name}</span>
                                   <div>
                                     <span>
                                       {new Date(

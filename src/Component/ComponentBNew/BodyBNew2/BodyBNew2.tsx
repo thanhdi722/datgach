@@ -160,7 +160,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                                 src={icUser}
                               />
                             </div>
-                            {/* <span>{post.author.name}</span> */}
+                            <span>{post.author.name}</span>
                             <div>
                               <span>
                                 {new Date(
