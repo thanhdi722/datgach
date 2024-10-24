@@ -52,7 +52,7 @@ const BannerHalloween = () => {
 	};
 
 	const handleClickAccess = () => {
-		const Access = document.getElementById('item-toy');
+		const Access = document.getElementById('item-access');
 		if (Access) {
 			Access.scrollIntoView({ behavior: 'smooth' });
 		}
