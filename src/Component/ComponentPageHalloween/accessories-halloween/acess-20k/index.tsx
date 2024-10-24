@@ -6,7 +6,7 @@ import { Spin } from 'antd';
 import DecorProduct from '../../../../../public/halloween/ic-to.png';
 import DecorProduct2 from '../../../../../public/halloween/ICON-DRAGON.png';
 import FrameProduct from '../../../../../public/halloween/frame-product.png';
-import { useProductSaleData } from '../../../../hooksHalloween/useProductSaleData';
+import { useProductSaleData } from '../../../../hooksWomen/useProductSaleData';
 import './acess-women.scss';
 
 export interface Product {
@@ -205,7 +205,8 @@ const Access20k: React.FC = () => {
 	});
 
 	const { data } = useProductSaleData();
-	const productSale = data?.[0]?.items;
+	const filteredItem = data?.find((item: any) => item.title === 'Sale For Product');
+	const productSale = filteredItem?.items || [];
 
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
 	const [visibleCount, setVisibleCount] = useState<number>(10);

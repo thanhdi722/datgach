@@ -205,7 +205,8 @@ const Access310: React.FC = () => {
 	});
 
 	const { data } = useProductSaleData();
-	const productSale = data?.[0]?.items;
+	const filteredItem = data?.find((item: any) => item.title === 'Sale For Product');
+	const productSale = filteredItem?.items || [];
 
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
 	const [visibleCount, setVisibleCount] = useState<number>(10);
