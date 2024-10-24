@@ -221,11 +221,9 @@ const IpadList: React.FC = () => {
 		return originalPrice.toLocaleString('vi-VN');
 	};
 
-	const [activeTab, setActiveTab] = useState<string>('Pro');
+	const [activeTab, setActiveTab] = useState<string>('');
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
 	const [visibleCount, setVisibleCount] = useState<number>(10);
-
-	const tabs = ['Pro', 'Air', 'Gen'];
 
 	useEffect(() => {
 		const filtered = DataIpad?.filter((product) => {
@@ -285,27 +283,6 @@ const IpadList: React.FC = () => {
 						<div className='women-decor'>
 							<Image src={DecorWomen} width={1920} height={1200} alt='product-banner-01' className='' />
 						</div>
-						<div className='tabs'>
-							{tabs.map((tab) => (
-								<button
-									key={tab}
-									onClick={() => setActiveTab(tab)}
-									className={activeTab === tab ? 'tab active' : 'tab'}
-									style={{
-										color: activeTab === tab ? 'white' : '#000',
-										backgroundColor: activeTab === tab ? '#ff7518' : '#fff',
-										border: activeTab === tab ? '1px solid #ef373e' : '1px solid #ccc',
-										padding: '10px 20px',
-										margin: '5px',
-										borderRadius: '5px',
-										cursor: 'pointer',
-									}}
-								>
-									{tab}
-								</button>
-							))}
-						</div>
-
 						{/* <div style={{ display: 'flex', marginBottom: '12px' }} className='sub-tab-list'>
 						{tabs
 							.find((tab) => tab.name === activeTab)
