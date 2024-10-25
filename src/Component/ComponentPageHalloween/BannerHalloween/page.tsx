@@ -123,7 +123,7 @@ const BannerHalloween = () => {
 					<Image src={Cloud5} alt='cloud-5' style={{ '--i': 5 } as any} width={1820} height={1500} />
 				</div> */}
 				<Image src={BgHallo} width={1820} height={1500} alt='bg-hallo' className='bg-hallo' />
-				<div className='overlay'></div>
+				{/* <div className='overlay'></div> */}
 				{/* <div className='sky'>
 					<div className='moon' />
 					<div className='clouds'>

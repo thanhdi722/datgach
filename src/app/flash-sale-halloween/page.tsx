@@ -154,37 +154,6 @@ export default function HalloweenPage() {
 					fill='url(#A)'
 				/>
 			</svg>
-			<BannerHalloween />
-			<HeaderHalloween onScrollToRules={handleScrollToRules} />
-			<BodyHallowween />
-			<div id='item-hot'>
-				<ProductList />
-			</div>
-			<div id='item-access'>
-				<AccessoriesList />
-			</div>
-			<div id='item-iphone'>
-				<AppleList />
-			</div>
-			<div id='item-airpods'>
-				<ProductPercent />
-			</div>
-			<div id='item-ipad'>
-				<IpadList />
-			</div>
-			<div id='item-mac'>
-				<LaptopList />
-			</div>
-			<div className='item-watch'>
-				<AndroidList />
-			</div>
-			<div id='item-toy'>
-				<ToyList />
-			</div>
-			<div id='item-rules'>
-				<Rules />
-			</div>
-
 			<div className={`sticky-category ${isStickyVisible ? 'visible' : 'hidden'}`}>
 				<div className='category-desktop'>
 					{categories.map((category, index) => (
@@ -227,6 +196,7 @@ export default function HalloweenPage() {
 								onClick={() => {
 									setActiveCategory(category.id);
 									swiperRef.current?.slideTo(index, 300, true); // Center the clicked slide
+									handleClick(category.id);
 								}}
 							>
 								<div
@@ -238,6 +208,36 @@ export default function HalloweenPage() {
 						))}
 					</Swiper>
 				</div>
+			</div>
+			<BannerHalloween />
+			<HeaderHalloween onScrollToRules={handleScrollToRules} />
+			<BodyHallowween />
+			<div id='item-hot'>
+				<ProductList />
+			</div>
+			<div id='item-access'>
+				<AccessoriesList />
+			</div>
+			<div id='item-iphone'>
+				<AppleList />
+			</div>
+			<div id='item-airpods'>
+				<ProductPercent />
+			</div>
+			<div id='item-ipad'>
+				<IpadList />
+			</div>
+			<div id='item-mac'>
+				<LaptopList />
+			</div>
+			<div className='item-watch'>
+				<AndroidList />
+			</div>
+			<div id='item-toy'>
+				<ToyList />
+			</div>
+			<div id='item-rules'>
+				<Rules />
 			</div>
 		</div>
 	);
