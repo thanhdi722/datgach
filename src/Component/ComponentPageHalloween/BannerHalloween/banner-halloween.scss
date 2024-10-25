@@ -168,6 +168,10 @@
 		.head-hallo {
 			position: relative;
 			display: block;
+			height: 100%;
+			img {
+				height: 100%;
+			}
 			@media screen and (max-width: 850px) {
 				display: none;
 			}

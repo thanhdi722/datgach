@@ -87,13 +87,17 @@ const ProductList: React.FC = () => {
 			date: new Date('2024-10-31'),
 		},
 	];
-	const initialActiveTab = tabs.findIndex((tab) => currentDate <= tab.date);
+	const initialActiveTab = tabs.findIndex((tab) => currentDate === tab.date);
 	const [activeTab, setActiveTab] = useState<number>(initialActiveTab === -1 ? 0 : initialActiveTab);
 	const [isMobile, setIsMobile] = useState<boolean>(false);
 	const [disabledTabs, setDisabledTabs] = useState<number[]>([]);
 
 	useEffect(() => {
-		const disabled = tabs.filter((tab) => currentDate > tab.date).map((tab) => tab.index);
+		const disabled = tabs
+			.filter(
+				(tab) => currentDate > new Date(tab.date.getFullYear(), tab.date.getMonth(), tab.date.getDate() + 1)
+			)
+			.map((tab) => tab.index);
 		setDisabledTabs(disabled);
 
 		const handleResize = () => {
@@ -133,7 +137,6 @@ const ProductList: React.FC = () => {
 										className={activeTab === tab.index ? 'tab-halloween active' : 'tab-halloween'}
 										style={{
 											width: '100%',
-											color: activeTab === tab.index ? '#fff' : '#333',
 											backgroundColor: activeTab === tab.index ? '#f8f412' : '#fff',
 											border: activeTab === tab.index ? '2px solid #ff4d4f' : '2px solid #eee',
 											borderRadius: '8px',
