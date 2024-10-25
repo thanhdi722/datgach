@@ -110,7 +110,7 @@ const ProductList: React.FC = () => {
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
-	}, [tabs]);
+	}, []);
 
 	return (
 		<div className='product-list-halloween'>
