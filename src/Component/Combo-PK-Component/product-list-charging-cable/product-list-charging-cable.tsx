@@ -167,7 +167,7 @@ const Section5: React.FC = () => {
         <div className="OldForNew-Section-Container-charging-cable">
           <div className="header-table-combo-pk">
             <div style={{ paddingBottom: "10px" }}>
-              <h2 className="title-table-combo-pk">Phụ Kiện Cáp Sạc</h2>
+              <h2 className="title-table-combo-pk">Phụ Kiện Cốc Cáp Sạc</h2>
             </div>
             <div className="tab-button-table-combo-pk">
               <button
