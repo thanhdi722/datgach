@@ -28,8 +28,9 @@
 } */
 .product__img-detail {
   object-fit: contain;
-  max-width: 180px;
-  height: 180px;
+  max-width: 200px;
+  min-width: 200px;
+  height: 200px;
   display: block;
   margin: auto;
   margin-top: 20px;
@@ -39,26 +40,22 @@
 .product__img-detail:hover {
   transform: scale(1.1);
 }
-.product__price__percent-cardCombo {
-  left: 10px;
-  top: 10px;
-  position: absolute;
-  width: 50px;
-  height: 30px;
+.product__price__percent-cardComboPK {
+  width: max-content;
+  height: max-content;
   color: #ff4530;
   font-weight: bold;
   font-size: 12px;
   text-align: center;
   line-height: 1;
-  border: 2px solid #ff4530;
-  margin: auto;
+  border: 1px solid #ff4530;
   z-index: 100;
-  justify-content: center;
   display: flex;
   border-radius: 5px;
 }
 .product__price--percent-detail {
   justify-content: center;
+  padding: 5px;
   display: flex;
   align-items: center;
 }
@@ -138,7 +135,7 @@
 
 .product__priceSpecial {
   color: red;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
 }
 .product__priceRegular {
@@ -149,8 +146,10 @@
 }
 .product__price_gach {
   text-decoration: line-through;
-  font-size: 14px;
-  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 6px;
+  color: #7a7a7a;
 }
 @media (max-width: 1000px) {
   .OldForNew-Section1-bg2 {
@@ -179,8 +178,7 @@
   }
 }
 @media (max-width: 767px) {
-  .product__price__percent-cardCombo {
-    position: absolute;
+  .product__price__percent-cardComboPK {
     width: 50px;
     height: 30px;
     font-size: 12px;
@@ -188,13 +186,19 @@
   .sticker-combo-requare {
     left: 55%;
   }
+  .product__price_gach {
+
+    font-size: 14px;
+
+  }
   .product__priceSpecial {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
   }
   .product__img-detail {
     max-width: 150px;
     height: 150px;
+    min-width: 150px;
   }
   .product__con-hang {
     padding: 5px;

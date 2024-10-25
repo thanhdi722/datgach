@@ -6,9 +6,6 @@ const query = `
 
 const variables = {
 	filter: {
-		end_date: {
-			gteq: '2024-09-29 21:30:00',
-		},
 		sale_type: {
 			eq: 'sale-multiple-product',
 		},
@@ -17,7 +14,7 @@ const variables = {
 	currentPage: 1,
 };
 
-async function fetchProductSaleData() {
+async function fetchProductSaleWomenData() {
 	const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
 		method: 'POST',
 		headers: {
@@ -35,8 +32,8 @@ async function fetchProductSaleData() {
 
 export const useProductSaleData = () => {
 	return useQuery({
-		queryKey: ['productSale'],
-		queryFn: fetchProductSaleData,
+		queryKey: ['productSaleWomen'],
+		queryFn: fetchProductSaleWomenData,
 		staleTime: 300000,
 	});
 };
