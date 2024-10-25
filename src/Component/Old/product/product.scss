@@ -31,6 +31,8 @@
 
 			@media screen and (max-width: 768px) {
 				padding: 0 !important;
+				flex-direction: column;
+				align-items: flex-start;
 			}
 		}
 		.women-decor {

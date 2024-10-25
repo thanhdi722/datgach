@@ -23,6 +23,7 @@ const categories = [
 
 const Old = () => {
 	const categoryRef = useRef(null);
+	const swiperRef = useRef<any>(null);
 	const [isStickyVisible, setIsStickyVisible] = useState(false);
 	const [activeCategory, setActiveCategory] = useState<string | null>(null);
 	const scrollThreshold = 500;
@@ -75,6 +76,15 @@ const Old = () => {
 		};
 	}, []);
 
+	useEffect(() => {
+		if (swiperRef.current) {
+			const activeIndex = categories.findIndex((category) => category.id === activeCategory);
+			if (activeIndex !== -1) {
+				swiperRef.current.slideTo(activeIndex, 300, true);
+			}
+		}
+	}, [activeCategory]);
+
 	return (
 		<div className='apple'>
 			<Banner />
@@ -120,13 +130,28 @@ const Old = () => {
 								slidesPerView: 5,
 							},
 						}}
+						centeredSlides={true}
+						slideToClickedSlide={true}
 						slidesPerView='auto'
+						watchSlidesProgress={true}
+						onSwiper={(swiperInstance) => {
+							swiperRef.current = swiperInstance; // Store swiper instance in ref
+						}}
+						onSlideChange={(swiperInstance) => {
+							setActiveCategory(categories[swiperInstance.activeIndex].id);
+							swiperInstance.slideTo(swiperInstance.activeIndex, 300, true); // Center the active slide when scrolling
+						}}
+						initialSlide={0}
 					>
 						{categories.map((category, index) => (
 							<SwiperSlide key={index}>
 								<div
 									className={`swiper-slide ${activeCategory === category.id ? 'active' : 'default'}`}
-									onClick={() => handleClick(category.id)}
+									onClick={() => {
+										setActiveCategory(category.id);
+										swiperRef.current?.slideTo(index, 300, true); // Center the clicked slide
+										handleClick(category.id);
+									}}
 								>
 									{category.name}
 								</div>

@@ -196,7 +196,6 @@ export default function HalloweenPage() {
 								onClick={() => {
 									setActiveCategory(category.id);
 									swiperRef.current?.slideTo(index, 300, true); // Center the clicked slide
-									handleClick(category.id);
 								}}
 							>
 								<div
