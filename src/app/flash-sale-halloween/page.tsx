@@ -154,60 +154,6 @@ export default function HalloweenPage() {
 					fill='url(#A)'
 				/>
 			</svg>
-			<div className={`sticky-category ${isStickyVisible ? 'visible' : 'hidden'}`}>
-				<div className='category-desktop'>
-					{categories.map((category, index) => (
-						<div
-							key={index}
-							className={`category-item ${activeCategory === category.id ? 'active' : 'default'}`}
-							onClick={() => handleClick(category.id)}
-						>
-							<span className='category-name'>{category.name}</span>
-						</div>
-					))}
-				</div>
-				<div className='category-mobile'>
-					<Swiper
-						// centeredSlides={true}
-						slideToClickedSlide={true}
-						spaceBetween={10}
-						watchSlidesProgress={true}
-						onSwiper={(swiperInstance) => {
-							swiperRef.current = swiperInstance; // Store swiper instance in ref
-						}}
-						onSlideChange={(swiperInstance) => {
-							setActiveCategory(categories[swiperInstance.activeIndex].id);
-							swiperInstance.slideTo(swiperInstance.activeIndex, 300, true); // Center the active slide when scrolling
-						}}
-						breakpoints={{
-							300: {
-								slidesPerView: 3.5,
-							},
-							850: {
-								slidesPerView: 5,
-							},
-						}}
-						slidesPerView='auto'
-						initialSlide={0}
-					>
-						{categories.map((category, index) => (
-							<SwiperSlide
-								key={index}
-								onClick={() => {
-									setActiveCategory(category.id);
-									swiperRef.current?.slideTo(index, 300, true); // Center the clicked slide
-								}}
-							>
-								<div
-									className={`swiper-slide ${activeCategory === category.id ? 'active' : 'default'}`}
-								>
-									<span className='category-name'>{category.name}</span>
-								</div>
-							</SwiperSlide>
-						))}
-					</Swiper>
-				</div>
-			</div>
 			<BannerHalloween />
 			<HeaderHalloween onScrollToRules={handleScrollToRules} />
 			<BodyHallowween />
@@ -237,6 +183,61 @@ export default function HalloweenPage() {
 			</div>
 			<div id='item-rules'>
 				<Rules />
+			</div>
+
+			<div className={`sticky-category ${isStickyVisible ? 'visible' : 'hidden'}`}>
+				<div className='category-desktop'>
+					{categories.map((category, index) => (
+						<div
+							key={index}
+							className={`category-item ${activeCategory === category.id ? 'active' : 'default'}`}
+							onClick={() => handleClick(category.id)}
+						>
+							<span className='category-name'>{category.name}</span>
+						</div>
+					))}
+				</div>
+				<div className='category-mobile'>
+					<Swiper
+						slideToClickedSlide={true}
+						spaceBetween={10}
+						watchSlidesProgress={true}
+						onSwiper={(swiperInstance) => {
+							swiperRef.current = swiperInstance; // Store swiper instance in ref
+						}}
+						onSlideChange={(swiperInstance) => {
+							setActiveCategory(categories[swiperInstance.activeIndex].id);
+							swiperInstance.slideTo(swiperInstance.activeIndex, 300, true); // Center the active slide when scrolling
+						}}
+						breakpoints={{
+							300: {
+								slidesPerView: 3.5,
+							},
+							850: {
+								slidesPerView: 5,
+							},
+						}}
+						slidesPerView='auto'
+						initialSlide={0}
+					>
+						{categories.map((category, index) => (
+							<SwiperSlide
+								key={index}
+								onClick={() => {
+									setActiveCategory(category.id);
+									swiperRef.current?.slideTo(index, 300, true); // Center the clicked slide
+									handleClick(category.id);
+								}}
+							>
+								<div
+									className={`swiper-slide ${activeCategory === category.id ? 'active' : 'default'}`}
+								>
+									<span className='category-name'>{category.name}</span>
+								</div>
+							</SwiperSlide>
+						))}
+					</Swiper>
+				</div>
 			</div>
 		</div>
 	);
