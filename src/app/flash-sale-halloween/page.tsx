@@ -168,7 +168,7 @@ export default function HalloweenPage() {
 				</div>
 				<div className='category-mobile'>
 					<Swiper
-						centeredSlides={true}
+						// centeredSlides={true}
 						slideToClickedSlide={true}
 						spaceBetween={10}
 						watchSlidesProgress={true}

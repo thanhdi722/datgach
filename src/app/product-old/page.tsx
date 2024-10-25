@@ -130,7 +130,7 @@ const Old = () => {
 								slidesPerView: 5,
 							},
 						}}
-						centeredSlides={true}
+						// centeredSlides={true}
 						slideToClickedSlide={true}
 						slidesPerView='auto'
 						watchSlidesProgress={true}

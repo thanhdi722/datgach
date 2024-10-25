@@ -131,7 +131,7 @@
 	}
 
 	.banner-hallo {
-		position: relative;
+		position: absolute;
 		top: 0;
 		right: 0;
 		z-index: 50;
@@ -145,12 +145,11 @@
 
 		&-table {
 			position: absolute;
-			top: 58%;
-			left: 38%;
+			top: 50%;
+			left: 48%;
 			display: flex;
 			transform: translate(-50%, 0);
-			z-index: 20;
-			width: 50%;
+			z-index: 30;
 			@media screen and (max-width: 850px) {
 				display: none;
 			}
