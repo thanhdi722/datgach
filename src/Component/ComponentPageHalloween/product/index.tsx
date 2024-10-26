@@ -87,7 +87,7 @@ const ProductList: React.FC = () => {
 			date: new Date('2024-10-31'),
 		},
 	];
-	const initialActiveTab = tabs.findIndex((tab) => currentDate === tab.date);
+	const initialActiveTab = tabs.findIndex((tab) => currentDate.toDateString() === tab.date.toDateString());
 	const [activeTab, setActiveTab] = useState<number>(initialActiveTab === -1 ? 0 : initialActiveTab);
 	const [isMobile, setIsMobile] = useState<boolean>(false);
 	const [disabledTabs, setDisabledTabs] = useState<number[]>([]);
