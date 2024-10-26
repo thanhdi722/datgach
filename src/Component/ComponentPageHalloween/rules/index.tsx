@@ -10,7 +10,7 @@ const Rules = () => {
 						className='rules-title'
 						style={{ display: 'flex', flexDirection: 'column', gap: '10px', color: 'red' }}
 					>
-						<span>HALLOWEEN KÌ BÍ</span> <span>Khuyến Mãi Mê Ly</span>
+						<span>HALLOWEEN KỲ BÍ</span> <span>Khuyến Mãi Mê Ly</span>
 					</p>
 					<p className='rules-description'>
 						Thời gian: <span className='rules-section-title-hot'>25/10 - 31/10/2024</span> tại hệ thống Bạch
@@ -19,7 +19,7 @@ const Rules = () => {
 				</div>
 
 				<div className='rules-content'>
-					<h2 className='rules-section-title'>I/ HALLOWEEN – LỂ HỘI ‘MA’, ƯU ĐÃI THẢ GA</h2>
+					<h2 className='rules-section-title'>I/ HALLOWEEN – LỄ HỘI ‘MA’, ƯU ĐÃI THẢ GA</h2>
 					<ul className='rules-list'>
 						<li>Giảm giá tất cả các sản phẩm Apple MỚI - CŨ lên đến 50%</li>
 						<li>Hoàn 100% chi phí di chuyển cho khách hàng trong nội thành TP.HCM (tối đa 300.000Đ)</li>
