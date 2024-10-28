@@ -106,10 +106,7 @@ const LaptopList: React.FC = () => {
 		staleTime: 300000,
 	});
 
-	const currentDate = new Date();
-	const targetDate = new Date('2024-10-26');
-	const shouldFetch = currentDate <= targetDate;
-	const { data } = useProductSaleData(shouldFetch);
+	const { data } = useProductSaleData();
 	const productSale = data?.[0]?.items;
 
 	const productSaleNames = productSale?.map((productSale: any) => productSale.product.name);
