@@ -248,7 +248,7 @@ export default function BodyBNew() {
                               src={icUser}
                             />
                           </div>
-                          <span>{newsData[0].author.name}</span>
+                          <span>{newsData[0].author?.name}</span>
                           <div>
                             <span>
                               {new Date(
@@ -308,7 +308,7 @@ export default function BodyBNew() {
                                 src={icUser}
                               />
                             </div>
-                            <span>{post.author.name}</span>
+                            <span>{post.author?.name}</span>
                             <div>
                               <span>
                                 {new Date(
@@ -393,7 +393,7 @@ export default function BodyBNew() {
                                       src={icUser}
                                     />
                                   </div>
-                                  <span>{post.author.name}</span>
+                                  <span>{post.author?.name}</span>
                                   <div>
                                     <span>
                                       {new Date(
