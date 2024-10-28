@@ -39,7 +39,7 @@
   }
   ul li {
     text-decoration: none;
-    // list-style-type: none;
+    list-style: unset !important;
   }
   a {
     span {
