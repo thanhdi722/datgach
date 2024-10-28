@@ -181,15 +181,15 @@ const Section5: React.FC = () => {
               <div className="OldForNew-Section5-ItemSlider">
                 {filteredData.slice(0, visibleProducts).map((product) => (
                   <CardProduct
-                    key={product.id}
-                    name={product.name}
-                    url_key={product.url_key}
-                    image={product.image}
-                    price_range={product.price_range}
+                    key={product?.id}
+                    name={product?.name}
+                    url_key={product?.url_key}
+                    image={product?.image}
+                    price_range={product?.price_range}
                   />
                 ))}
               </div>
-              {visibleCount < (data?.length || 0) && ( // Check if more products are available
+              {visibleCount < (filteredData?.length || 0) && ( // Check if more products are available
                 <div className="load-more-container">
                   <button onClick={loadMorePosts}>Xem thêm</button>
                 </div>
