@@ -30,10 +30,11 @@ async function fetchProductSaleData() {
 	return data.data.DailySales.items;
 }
 
-export const useProductSaleData = () => {
+export const useProductSaleData = (shouldFetch: boolean) => {
 	return useQuery({
 		queryKey: ['productSale'],
 		queryFn: fetchProductSaleData,
+		enabled: shouldFetch,
 		staleTime: 5000,
 	});
 };

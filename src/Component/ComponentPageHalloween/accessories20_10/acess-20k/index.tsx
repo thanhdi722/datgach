@@ -41,12 +41,12 @@ const formatPriceWithCondition = (salePrice: number) => {
 };
 
 const Access20k: React.FC = () => {
-	const { data, isLoading } = useProductSaleData();
-	const filteredItem = data?.find((item: any) => item.title === 'Giá sốc ngày 2');
-	const productSale = filteredItem?.items || [];
-
 	const currentDate = new Date();
 	const targetDate = new Date('2024-10-26');
+	const shouldFetch = currentDate <= targetDate;
+	const { data, isLoading } = useProductSaleData(shouldFetch);
+	const filteredItem = data?.find((item: any) => item.title === 'Giá sốc ngày 2');
+	const productSale = filteredItem?.items || [];
 
 	return (
 		<div className='upgrade-list'>
