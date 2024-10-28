@@ -1,7 +1,8 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperClass } from 'swiper/types';
 import DecorWomen from '../../../../public/halloween/decor-women-01.png';
 import Access10k from '../accessories20_10/acess-10k/index';
 import Access20k from '../accessories20_10/acess-20k/index';
@@ -13,86 +14,29 @@ import Access210 from '../accessories20_10/acess-210/index';
 import 'swiper/css';
 import './product.scss';
 
+// Define the current date outside the component to avoid re-calculation on each render
+const currentDate = new Date();
+
 const ProductList: React.FC = () => {
-	const currentDate = new Date();
+	const swiperRef = useRef<SwiperClass | null>(null);
+
 	const tabs = [
-		{
-			index: 0,
-			name: (
-				<span>
-					<span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 25/10</span>
-				</span>
-			),
-			component: <Access10k />,
-			date: new Date('2024-10-25'),
-		},
-		{
-			index: 1,
-			name: (
-				<span>
-					<span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 26/10</span>
-				</span>
-			),
-			component: <Access20k />,
-			date: new Date('2024-10-26'),
-		},
-		{
-			index: 2,
-			name: (
-				<span>
-					<span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 27/10</span>
-				</span>
-			),
-			component: <Access110 />,
-			date: new Date('2024-10-27'),
-		},
-		{
-			index: 3,
-			name: (
-				<span>
-					<span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 28/10</span>
-				</span>
-			),
-			component: <Access210 />,
-			date: new Date('2024-10-28'),
-		},
-		{
-			index: 4,
-			name: (
-				<span>
-					<span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 29/10</span>
-				</span>
-			),
-			component: <Access310 />,
-			date: new Date('2024-10-29'),
-		},
-		{
-			index: 5,
-			name: (
-				<span>
-					<span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 30/10</span>
-				</span>
-			),
-			component: <AccessTo210 />,
-			date: new Date('2024-10-30'),
-		},
-		{
-			index: 6,
-			name: (
-				<span>
-					<span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 31/10</span>
-				</span>
-			),
-			component: <Access290 />,
-			date: new Date('2024-10-31'),
-		},
+		{ index: 0, name: <span>NGÀY 25/10</span>, component: <Access10k />, date: new Date('2024-10-25') },
+		{ index: 1, name: <span>NGÀY 26/10</span>, component: <Access20k />, date: new Date('2024-10-26') },
+		{ index: 2, name: <span>NGÀY 27/10</span>, component: <Access110 />, date: new Date('2024-10-27') },
+		{ index: 3, name: <span>NGÀY 28/10</span>, component: <Access210 />, date: new Date('2024-10-28') },
+		{ index: 4, name: <span>NGÀY 29/10</span>, component: <Access310 />, date: new Date('2024-10-29') },
+		{ index: 5, name: <span>NGÀY 30/10</span>, component: <AccessTo210 />, date: new Date('2024-10-30') },
+		{ index: 6, name: <span>NGÀY 31/10</span>, component: <Access290 />, date: new Date('2024-10-31') },
 	];
+
 	const initialActiveTab = tabs.findIndex((tab) => currentDate.toDateString() === tab.date.toDateString());
 	const [activeTab, setActiveTab] = useState<number>(initialActiveTab === -1 ? 0 : initialActiveTab);
 	const [isMobile, setIsMobile] = useState<boolean>(false);
 	const [disabledTabs, setDisabledTabs] = useState<number[]>([]);
 
 	useEffect(() => {
+		// Determine which tabs should be disabled based on the current date
 		const disabled = tabs
 			.filter(
 				(tab) => currentDate > new Date(tab.date.getFullYear(), tab.date.getMonth(), tab.date.getDate() + 1)
@@ -100,17 +44,25 @@ const ProductList: React.FC = () => {
 			.map((tab) => tab.index);
 		setDisabledTabs(disabled);
 
+		// Set up a listener to detect if the screen width changes
 		const handleResize = () => {
 			setIsMobile(window.innerWidth < 768);
 		};
 
-		handleResize();
+		handleResize(); // Initial check for mobile view
 		window.addEventListener('resize', handleResize);
 
 		return () => {
-			window.removeEventListener('resize', handleResize);
+			window.removeEventListener('resize', handleResize); // Clean up listener
 		};
-	}, []);
+	}, []); // Remove dependencies that could cause re-renders
+
+	useEffect(() => {
+		// Scroll to the active tab on mobile if swiperRef is available
+		if (isMobile && swiperRef.current) {
+			swiperRef.current.slideTo(activeTab);
+		}
+	}, [isMobile, activeTab]);
 
 	return (
 		<div className='product-list-halloween'>
@@ -129,7 +81,11 @@ const ProductList: React.FC = () => {
 					</div>
 
 					{isMobile ? (
-						<Swiper spaceBetween={10} slidesPerView={2.8}>
+						<Swiper
+							spaceBetween={10}
+							slidesPerView={2.8}
+							onSwiper={(swiper) => (swiperRef.current = swiper)}
+						>
 							{tabs.map((tab) => (
 								<SwiperSlide key={tab.index} style={{ padding: '1.2rem 0' }}>
 									<button
