@@ -227,9 +227,6 @@ const ProductAirPods: React.FC = () => {
 		{
 			name: 'Galaxy Tab',
 		},
-		{
-			name: 'Galaxy Watch',
-		},
 	];
 
 	useEffect(() => {
