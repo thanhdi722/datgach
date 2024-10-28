@@ -43,10 +43,9 @@ const formatPriceWithCondition = (salePrice: number) => {
 };
 
 const Access310: React.FC = () => {
+	const { data, isLoading } = useProductSaleData();
 	const currentDate = new Date();
 	const targetDate = new Date('2024-10-29');
-	const shouldFetch = currentDate <= targetDate;
-	const { data, isLoading } = useProductSaleData(shouldFetch);
 	const filteredItem = data?.find((item: any) => item.title === 'Giá sốc ngày 5');
 	const productSale = filteredItem?.items || [];
 
