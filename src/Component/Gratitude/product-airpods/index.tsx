@@ -4,7 +4,10 @@ import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Spin } from 'antd';
-import ProductBanner from '../../../../public/apple/product-banner-05.png';
+import ProductBanner from '../../../../public/gratitude/product-banner-05.png';
+import FrameProduct from '../../../../public/gratitude/frame-product.png';
+import BestSeller from '../../../../public/gratitude/best-seller.png';
+import HostPrice from '../../../../public/gratitude/hot-price.png';
 import './product-airpods.scss';
 
 export interface Product {
@@ -216,6 +219,18 @@ const ProductAirPods: React.FC = () => {
 
 	const visibleProducts = filteredData.slice(0, visibleCount);
 
+	const hostData: any = data;
+	const filterFlashSaleItems = (data: Product[] | undefined) => {
+		if (!data) return [];
+
+		return data.filter((item) => {
+			return item.attributes.some((attribute: { attribute_code: string; value: string }) => {
+				return attribute.attribute_code === 'flash_sale_hot' && attribute.value?.toLowerCase() === 'yes';
+			});
+		});
+	};
+	const flashSaleItems = filterFlashSaleItems(hostData).slice(0, 2);
+
 	const loadMore = () => {
 		setVisibleCount((prevCount) => prevCount + 5);
 	};
@@ -224,81 +239,197 @@ const ProductAirPods: React.FC = () => {
 		<div className='product-list'>
 			<div className='upgrade-list'>
 				<div className='container'>
-					<Image src={ProductBanner} width={1820} height={1200} alt='product-banner-05' className='' />
-					<div className='upgrade'>
-						{visibleProducts.map((product, index) => (
-							<Link
-								key={index}
-								href={`https://bachlongmobile.com/products/${product.url_key}`}
-								passHref
-								target='_blank'
-								rel='noopener noreferrer'
-								style={{ textDecoration: 'none', color: 'black' }}
-							>
-								<div className='upgrade-item'>
-									<div className='upgrade-item-img'>
-										<Image
-											src={product.image.url}
-											width={1400}
-											height={1200}
-											quality={100}
-											alt={`product-${index}`}
-										/>
-									</div>
-									<div className='upgrade-item-content'>
-										<h4 className='upgrade-item-content-tt'>{product.name}</h4>
-										<div className='upgrade-item-content-body'>
-											<div className='upgrade-item-content-body-price'>
-												{product.price_range.minimum_price.final_price.value.toLocaleString(
-													'vi-VN'
-												)}{' '}
-												{product.price_range.minimum_price.final_price.currency}
-											</div>
-											<div className='upgrade-item-content-body-reduced'>
-												<div className='price-reduced'>
-													{product.attributes && product.attributes[0]?.value
-														? Number(product.attributes[0].value).toLocaleString('vi-VN')
-														: ''}{' '}
-													{product.attributes[0].value &&
-														product.price_range.minimum_price.final_price.currency}
+					<div className='upgrade-hot-wrap'>
+						<Image src={ProductBanner} width={1820} height={1200} alt='product-banner-01' className='' />
+						<div className='upgrade-hot'>
+							{flashSaleItems.map((product, index) => (
+								<Link
+									key={index}
+									href={`https://bachlongmobile.com/products/${product.url_key}`}
+									passHref
+									target='_blank'
+									rel='noopener noreferrer'
+									style={{ textDecoration: 'none', color: 'black' }}
+									className='hot-item'
+								>
+									<div className='upgrade-hot-item'>
+										<div className='upgrade-hot-item-wrap'>
+											<div className='upgrade-hot-item-img'>
+												<div className='img-content'>
+													<Image
+														src={product.image.url}
+														width={1400}
+														height={1200}
+														quality={100}
+														alt={`product-${index}`}
+													/>
 												</div>
-
-												{product.attributes[0].value && (
-													<div className='percent'>
-														-
-														{Math.ceil(
-															((product.attributes[0].value -
-																product.price_range.minimum_price.final_price.value) /
-																product.attributes[0].value) *
-																100
-														)}
-														%
+												<div className='frame-product'>
+													<Image
+														src={FrameProduct}
+														width={500}
+														height={500}
+														quality={100}
+														alt='frame-product'
+													/>
+												</div>
+											</div>
+										</div>
+										<div className='upgrade-hot-item-content'>
+											<div className='upgrade-hot-item-header'>
+												<span></span>
+												<span className='percent'>Trả góp 0%</span>
+											</div>
+											<div className='upgrade-hot-best-seller'>
+												<Image src={BestSeller} width={300} height={90} alt='best-seller' />
+											</div>
+											<h4 className='upgrade-hot-item-content-tt'>{product.name}</h4>
+											<div className='upgrade-hot-item-content-body'>
+												<div className='upgrade-hot-item-content-body-price'>
+													{product.price_range.minimum_price.final_price.value.toLocaleString(
+														'vi-VN'
+													)}{' '}
+													{product.price_range.minimum_price.final_price.currency}
+												</div>
+												<div className='upgrade-hot-item-content-body-reduced'>
+													<div className='price-reduced'>
+														{product.attributes && product.attributes[0]?.value
+															? Number(product.attributes[0].value).toLocaleString(
+																	'vi-VN'
+															  )
+															: ''}{' '}
+														{product.attributes[0].value &&
+															product.price_range.minimum_price.final_price.currency}
 													</div>
-												)}
+
+													{product.attributes[0].value && (
+														<div className='percent'>
+															-
+															{Math.ceil(
+																((product.attributes[0].value -
+																	product.price_range.minimum_price.final_price
+																		.value) /
+																	product.attributes[0].value) *
+																	100
+															)}
+															%
+														</div>
+													)}
+												</div>
+											</div>
+											<div className='upgrade-wrap-footer'>
+												<div className='upgrade-hot-footer'>
+													Giá thu bằng giá bán - Trợ giá lên đến 100%
+												</div>
+												<Image
+													src={HostPrice}
+													width={90}
+													height={20}
+													quality={100}
+													alt='hot-price'
+													className='hot-price'
+												/>
 											</div>
 										</div>
 									</div>
-								</div>
-							</Link>
-						))}
-					</div>
-					{visibleCount < filteredData.length && (
-						<div style={{ textAlign: 'center', marginTop: '20px' }}>
-							<button
-								onClick={loadMore}
-								style={{
-									backgroundColor: '#ef373e',
-									color: 'white',
-									border: 'none',
-									padding: '10px 20px',
-									borderRadius: '5px',
-									cursor: 'pointer',
-								}}
-							>
-								Xem thêm
-							</button>
+								</Link>
+							))}
 						</div>
-					)}
+						<div className='upgrade-list'>
+							<div className='upgrade'>
+								{visibleProducts.map((product, index) => (
+									<Link
+										key={index}
+										href={`https://bachlongmobile.com/products/${product.url_key}`}
+										passHref
+										target='_blank'
+										rel='noopener noreferrer'
+										style={{ textDecoration: 'none', color: 'black' }}
+									>
+										<div className='upgrade-item'>
+											<div className='upgrade-item-header'>
+												<span></span>
+												<span className='percent'>Trả góp 0%</span>
+											</div>
+											<div className='upgrade-item-img'>
+												<div className='img-content'>
+													<Image
+														src={product.image.url}
+														width={1400}
+														height={1200}
+														quality={100}
+														alt={`product-${index}`}
+													/>
+												</div>
+												<div className='frame-product'>
+													<Image
+														src={FrameProduct}
+														width={500}
+														height={500}
+														quality={100}
+														alt='frame-product'
+													/>
+												</div>
+											</div>
+											<div className='upgrade-item-content'>
+												<h4 className='upgrade-item-content-tt'>{product.name}</h4>
+												<div className='upgrade-item-content-body'>
+													<div className='upgrade-item-content-body-price'>
+														{product.price_range.minimum_price.final_price.value.toLocaleString(
+															'vi-VN'
+														)}{' '}
+														{product.price_range.minimum_price.final_price.currency}
+													</div>
+													<div className='upgrade-item-content-body-reduced'>
+														<div className='price-reduced'>
+															{product.attributes && product.attributes[0]?.value
+																? Number(product.attributes[0].value).toLocaleString(
+																		'vi-VN'
+																  )
+																: ''}{' '}
+															{product.attributes[0].value &&
+																product.price_range.minimum_price.final_price.currency}
+														</div>
+
+														{product.attributes[0].value && (
+															<div className='percent'>
+																-
+																{Math.ceil(
+																	((product.attributes[0].value -
+																		product.price_range.minimum_price.final_price
+																			.value) /
+																		product.attributes[0].value) *
+																		100
+																)}
+																%
+															</div>
+														)}
+													</div>
+												</div>
+											</div>
+										</div>
+									</Link>
+								))}
+							</div>
+							{visibleCount < filteredData.length && (
+								<div style={{ textAlign: 'center', marginTop: '20px' }}>
+									<button
+										onClick={loadMore}
+										style={{
+											backgroundColor: '#ef373e',
+											color: 'white',
+											border: 'none',
+											padding: '10px 20px',
+											borderRadius: '5px',
+											cursor: 'pointer',
+										}}
+									>
+										Xem thêm
+									</button>
+								</div>
+							)}
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

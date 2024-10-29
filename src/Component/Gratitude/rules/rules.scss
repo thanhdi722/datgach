@@ -1,12 +1,14 @@
 .rules {
 	padding: 40px 0;
-	background-color: #f4f4f4; /* Nền nhẹ nhàng, tinh tế */
+	// background-color: #f4f4f4; /* Nền nhẹ nhàng, tinh tế */
 	font-family: 'Roboto', sans-serif;
 
-	.container {
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 0 20px;
+	.content-item {
+		padding: 2.4rem;
+		border-radius: 1.2rem;
+		background-color: #fff;
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+		border: 2px #e74c3c dashed;
 	}
 
 	.rules-header {

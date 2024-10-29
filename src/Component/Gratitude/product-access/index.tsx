@@ -4,8 +4,11 @@ import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Spin } from 'antd';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import FrameProduct from '../../../../public/gratitude/frame-product.png';
+import ProductBanner from '../../../../public/gratitude/product-banner-06.png';
 import './product-access.scss';
-import ProductBanner from '../../../../public/apple/product-banner-06.png';
 
 export interface Product {
 	id: number;
@@ -43,34 +46,7 @@ const query = `
     items {
       ...ProductInterfaceField
     }
-    aggregations {
-      attribute_code
-      count
-      label
-      options {
-        count
-        label
-        value
-        swatch_data {
-          type
-          value
-        }
-      }
-      position
-    }
-    sort_fields {
-      default
-      options {
-        label
-        value
-      }
-    }
-    total_count
-    page_info {
-      current_page
-      page_size
-      total_pages
-    }  }
+  }
 }
 fragment ProductInterfaceField on ProductInterface {
  image_banner
@@ -82,85 +58,17 @@ fragment ProductInterfaceField on ProductInterface {
   url_suffix
   canonical_url
   stock_status
-  categories {
-    __typename
-    name
-    url_key
-    url_path
-    level
-    uid
-    position
-    icon_image
-    image
-    path
-  }
   id
-  meta_description
-  meta_keyword
-  meta_title
-  new_from_date
-  new_to_date
-  rating_summary
-  review_count
-  thumbnail {
-    url
-    position
-  }
   image {
     url
   }
   price_range {
-    ...PriceRangeField
-  }
-  ...CustomField
-}
-fragment CustomField on ProductInterface {
-  color
-  country_of_manufacture
-  daily_sale {
-    end_date
-    entity_id
-    sale_price
-    sale_qty
-    saleable_qty
-    sold_qty
-    start_date
-    __typename
-  }
-  rating_summary_start {
-    star_1
-    star_2
-    star_3
-    star_4
-    star_5
-  }
-  attributes {
-    attribute_code
-    label
-    value
-  }
-}
-fragment PriceRangeField on PriceRange {
-  __typename
-  maximum_price {
-    ...ProductPriceField
-  }
-  minimum_price {
-    ...ProductPriceField
-  }
-}
-fragment ProductPriceField on ProductPrice {
-  discount {
-    amount_off
-    percent_off
-  }
-  final_price {
-    currency
-    value
-  }
-  regular_price {
-    currency
-    value
+    minimum_price {
+      final_price {
+        currency
+        value
+      }
+    }
   }
 }
 `;
@@ -188,7 +96,6 @@ async function fetchProductListData() {
 	});
 
 	const data = await response.json();
-
 	return data.data.products.items as Product[];
 }
 
@@ -202,6 +109,7 @@ const ProductAccess: React.FC = () => {
 	const [activeTab, setActiveTab] = useState<string>('All');
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
 	const [visibleCount, setVisibleCount] = useState<number>(10);
+	const [isMobile, setIsMobile] = useState<boolean>(false);
 
 	const tabs = ['All', 'Cường lực', 'Ốp lưng', 'AirPods', 'Magic Keyboard', 'Magic Mouse', 'Cáp sạc', 'Apple Pencil'];
 
@@ -214,11 +122,8 @@ const ProductAccess: React.FC = () => {
 		}
 
 		const handleResize = () => {
-			if (window.innerWidth < 768) {
-				setVisibleCount(4);
-			} else {
-				setVisibleCount(10);
-			}
+			setIsMobile(window.innerWidth < 992);
+			setVisibleCount(window.innerWidth < 768 ? 4 : 10);
 		};
 
 		handleResize();
@@ -251,27 +156,53 @@ const ProductAccess: React.FC = () => {
 		<div className='product-list'>
 			<div className='upgrade-list'>
 				<div className='container'>
-					<Image src={ProductBanner} width={1820} height={1200} alt='product-banner-06' className='' />
+					<Image src={ProductBanner} width={1820} height={1200} alt='product-banner-06' />
+
 					<div className='tabs'>
-						{tabs.map((tab) => (
-							<button
-								key={tab}
-								onClick={() => setActiveTab(tab)}
-								className={activeTab === tab ? 'tab active' : 'tab'}
-								style={{
-									color: activeTab === tab ? 'white' : '#000',
-									backgroundColor: activeTab === tab ? '#ef373e' : '#f1f1f1',
-									border: activeTab === tab ? '1px solid #ef373e' : '1px solid #ccc',
-									padding: '10px 20px',
-									margin: '5px',
-									borderRadius: '5px',
-									cursor: 'pointer',
-								}}
-							>
-								{tab}
-							</button>
-						))}
+						{isMobile ? (
+							<Swiper spaceBetween={10} slidesPerView='auto'>
+								{tabs.map((tab) => (
+									<SwiperSlide key={tab} style={{ width: 'auto' }}>
+										<button
+											onClick={() => setActiveTab(tab)}
+											className={activeTab === tab ? 'tab active' : 'tab'}
+											style={{
+												color: activeTab === tab ? 'white' : '#000',
+												backgroundColor: activeTab === tab ? '#ef373e' : '#f1f1f1',
+												border: activeTab === tab ? '1px solid #ef373e' : '1px solid #ccc',
+												padding: '10px 20px',
+												margin: '5px',
+												borderRadius: '5px',
+												cursor: 'pointer',
+											}}
+										>
+											{tab}
+										</button>
+									</SwiperSlide>
+								))}
+							</Swiper>
+						) : (
+							tabs.map((tab) => (
+								<button
+									key={tab}
+									onClick={() => setActiveTab(tab)}
+									className={activeTab === tab ? 'tab active' : 'tab'}
+									style={{
+										color: activeTab === tab ? 'white' : '#000',
+										backgroundColor: activeTab === tab ? '#ef373e' : '#f1f1f1',
+										border: activeTab === tab ? '1px solid #ef373e' : '1px solid #ccc',
+										padding: '10px 20px',
+										margin: '5px',
+										borderRadius: '5px',
+										cursor: 'pointer',
+									}}
+								>
+									{tab}
+								</button>
+							))
+						)}
 					</div>
+
 					<div className='upgrade'>
 						{visibleProducts.map((product, index) => (
 							<Link
@@ -284,13 +215,24 @@ const ProductAccess: React.FC = () => {
 							>
 								<div className='upgrade-item'>
 									<div className='upgrade-item-img'>
-										<Image
-											src={product.image.url}
-											width={1400}
-											height={1200}
-											quality={100}
-											alt={`product-${index}`}
-										/>
+										<div className='img-content'>
+											<Image
+												src={product.image.url}
+												width={1400}
+												height={1200}
+												quality={100}
+												alt={`product-${index}`}
+											/>
+										</div>
+										<div className='frame-product'>
+											<Image
+												src={FrameProduct}
+												width={500}
+												height={500}
+												quality={100}
+												alt='frame-product'
+											/>
+										</div>
 									</div>
 									<div className='upgrade-item-content'>
 										<h4 className='upgrade-item-content-tt'>{product.name}</h4>
@@ -306,11 +248,12 @@ const ProductAccess: React.FC = () => {
 													{product.attributes && product.attributes[0]?.value
 														? Number(product.attributes[0].value).toLocaleString('vi-VN')
 														: ''}{' '}
-													{product.attributes[0].value &&
+													{product.attributes &&
+														product.attributes[0]?.value &&
 														product.price_range.minimum_price.final_price.currency}
 												</div>
 
-												{product.attributes[0].value && (
+												{product.attributes && product.attributes[0]?.value && (
 													<div className='percent'>
 														-
 														{Math.ceil(
@@ -329,6 +272,7 @@ const ProductAccess: React.FC = () => {
 							</Link>
 						))}
 					</div>
+
 					{visibleCount < filteredData.length && (
 						<div style={{ textAlign: 'center', marginTop: '20px' }}>
 							<button

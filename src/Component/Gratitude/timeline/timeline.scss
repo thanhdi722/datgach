@@ -1,30 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Gloria+Hallelujah&display=swap');
 .timeline {
 	.HeaderHalloween-time-line-container {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		padding: 4.8rem 0;
-
-		@media screen and (max-width: 1200px) {
-			padding: 2.4rem 0;
-		}
+		padding: 2.4rem 0;
 		// SCSS Styling
 		.teacher-day-button {
 			padding: 12px 24px;
 			font-size: 16px;
 			font-weight: bold;
-			background-color: #f5a623; // warm orange
-			color: #fff;
+			background-color: #ffda75; // warm orange
+			color: #d04900;
 			border: none;
 			border-radius: 8px;
 			cursor: pointer;
 			transition: all 0.3s ease;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			border: 2px #fff dashed;
+			text-transform: uppercase;
 
 			&:hover {
-				background-color: #e0891b; // darker shade for hover effect
+				background-color: #ffda75; // darker shade for hover effect
 				box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 			}
 
@@ -46,7 +43,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		background-image: url('../../../../public/gratitude/table-teacher.png');
+		background-image: url('/gratitude/table-teacher.png');
 		background-size: cover;
 		background-repeat: no-repeat;
 		position: relative;
@@ -61,7 +58,7 @@
 		}
 		@media screen and (max-width: 576px) {
 			width: 10rem;
-			height: 10rem;
+			height: 8rem;
 		}
 	}
 
@@ -79,18 +76,16 @@
 	}
 
 	.HeaderHalloween-time-line-count {
-		font-size: 3rem; // text-6xl
+		font-size: 3rem;
 		font-weight: bold;
-		color: #fff; // amber-100
+		color: #fff;
 		text-align: center;
+		font-family: 'Gloria Hallelujah', cursive;
 		@media screen and (max-width: 1200px) {
 			font-size: 2rem;
 		}
 		@media screen and (max-width: 768px) {
 			font-size: 1.6rem;
-		}
-		@media screen and (max-width: 576px) {
-			margin-top: 2rem;
 		}
 	}
 	.HeaderHalloween-time-line-card-key {
@@ -98,7 +93,7 @@
 		grid-template-columns: repeat(4, 1fr);
 		gap: 20px;
 		@media (max-width: 768px) {
-			gap: 6px;
+			gap: 0px;
 		}
 	}
 	.HeaderHalloween-time-line-subtext,
@@ -108,6 +103,7 @@
 		font-weight: 500;
 		font-size: 18px; // text-xs
 		color: #fff; // amber-200
+		font-family: 'Gloria Hallelujah', cursive;
 		@media screen and (max-width: 1200px) {
 			font-size: 1.4rem;
 		}
