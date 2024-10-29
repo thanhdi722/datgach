@@ -6,8 +6,6 @@ import { Spin } from 'antd';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 import './acess-women.scss';
 import DecorProduct from '../../../../../public/halloween/ic-to.png';
 import DecorProduct2 from '../../../../../public/halloween/ICON-DRAGON.png';
@@ -62,13 +60,7 @@ const Access290: React.FC = () => {
 			) : (
 				<div className=''>
 					{productSale.length > 5 ? (
-						<Swiper
-							modules={[Navigation, Pagination]}
-							spaceBetween={10}
-							slidesPerView={5}
-							navigation
-							pagination={{ clickable: true }}
-						>
+						<Swiper spaceBetween={10} slidesPerView={5}>
 							{productSale.map((item: any, index: number) => (
 								<SwiperSlide key={index}>
 									<Link

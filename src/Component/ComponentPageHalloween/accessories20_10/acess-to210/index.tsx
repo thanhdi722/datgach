@@ -8,10 +8,7 @@ import DecorProduct2 from '../../../../../public/halloween/ICON-DRAGON.png';
 import FrameProduct from '../../../../../public/halloween/frame-product.png';
 import { useProductSaleData } from '../../../../hooksHalloween/useProductSaleData';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 import './acess-women.scss';
 
 export interface Product {
@@ -61,13 +58,7 @@ const AccessTo210: React.FC = () => {
 			) : (
 				<div className=''>
 					{productSale.length > 5 ? (
-						<Swiper
-							modules={[Navigation, Pagination]}
-							spaceBetween={10}
-							slidesPerView={5}
-							navigation
-							pagination={{ clickable: true }}
-						>
+						<Swiper spaceBetween={10} slidesPerView={5}>
 							{productSale.map((item: any, index: number) => (
 								<SwiperSlide key={index}>
 									<Link
