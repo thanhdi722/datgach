@@ -338,7 +338,7 @@ const ProductList: React.FC = () => {
 									</div>
 									<div className='upgrade-hot-item-content'>
 										<div className='upgrade-hot-item-header'>
-											<Image src={Author} width={60} height={20} quality={100} alt='author' />
+											<Image src={Author} width={80} height={20} quality={100} alt='author' />
 											<span className='percent'>Trả góp 0%</span>
 										</div>
 										<div className='upgrade-hot-best-seller'>
