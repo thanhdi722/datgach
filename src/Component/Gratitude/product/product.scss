@@ -252,9 +252,6 @@
 					margin-left: auto;
 					margin-right: auto;
 				}
-				@media screen and (max-width: 768px) {
-					width: 100%;
-				}
 
 				.upgrade-fire {
 					position: absolute;
@@ -273,6 +270,13 @@
 			&-header {
 				display: flex;
 				justify-content: space-between;
+
+				.author {
+					img {
+						max-width: 100%;
+						width: fit-content;
+					}
+				}
 			}
 			.upgrade-hot-best-seller {
 				margin-left: auto;
@@ -338,7 +342,8 @@
 					}
 
 					@media screen and (max-width: 768px) {
-						font-size: 1.2rem;
+						font-size: 1.2rem !important;
+						font-weight: 600 !important;
 					}
 
 					&:hover {
@@ -365,7 +370,8 @@
 							font-size: 1.6rem;
 						}
 						@media screen and (max-width: 768px) {
-							font-size: 1.4rem;
+							font-size: 1.8rem !important;
+							font-weight: 600 !important;
 						}
 					}
 

@@ -2,16 +2,16 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import './apple.scss';
 
 import itemAccess from '../../../public/apple/category-fixed-06.png';
-import 'swiper/css';
 import itemIphone from '../../../public/apple/category-fixed-01.png';
 import itemIpad from '../../../public/apple/category-fixed-02.png';
 import itemWatch from '../../../public/apple/category-fixed-03.png';
 import itemMac from '../../../public/apple/category-fixed-04.png';
 import itemAirPods from '../../../public/apple/category-fixed-05.png';
 
-import './apple.scss';
 import Banner from '../../Component/Gratitude/banner';
 import TimeLine from '../../Component/Gratitude/timeline';
 import Promotion from '../../Component/Gratitude/promotion';
@@ -35,6 +35,7 @@ const categories = [
 
 const Apple = () => {
 	const categoryRef = useRef(null);
+	const swiperRef = useRef<any>(null);
 	const [isStickyVisible, setIsStickyVisible] = useState(false);
 	const [activeCategory, setActiveCategory] = useState<string | null>(null);
 	const scrollThreshold = 1500;
@@ -54,7 +55,7 @@ const Apple = () => {
 	};
 
 	const handleScrollToRules = () => {
-		const customOffset = 300;
+		const customOffset = 500;
 		handleClick('item-rules', customOffset);
 	};
 
@@ -75,7 +76,7 @@ const Apple = () => {
 		);
 
 		const observeSections = () => {
-			categories.forEach((category) => {
+			categories.forEach((category, index) => {
 				const element = document.getElementById(category.id);
 				if (element) {
 					sectionObserver.observe(element);
@@ -97,6 +98,15 @@ const Apple = () => {
 			});
 		};
 	}, []);
+
+	useEffect(() => {
+		if (swiperRef.current) {
+			const activeIndex = categories.findIndex((category) => category.id === activeCategory);
+			if (activeIndex !== -1) {
+				swiperRef.current.slideTo(activeIndex, 300, true);
+			}
+		}
+	}, [activeCategory]);
 
 	return (
 		<div className='apple'>
@@ -127,6 +137,7 @@ const Apple = () => {
 			<div id='item-rules'>
 				<Rules />
 			</div>
+
 			<div className={`sticky-category ${isStickyVisible ? 'visible' : 'hidden'}`}>
 				<div className='category-desktop'>
 					{categories.map((category, index) => (
@@ -141,22 +152,38 @@ const Apple = () => {
 				</div>
 				<div className='category-mobile'>
 					<Swiper
+						slideToClickedSlide={true}
 						spaceBetween={10}
+						watchSlidesProgress={true}
+						onSwiper={(swiperInstance) => {
+							swiperRef.current = swiperInstance; // Store swiper instance in ref
+						}}
+						onSlideChange={(swiperInstance) => {
+							setActiveCategory(categories[swiperInstance.activeIndex].id);
+							swiperInstance.slideTo(swiperInstance.activeIndex, 300, true); // Center the active slide when scrolling
+						}}
 						breakpoints={{
 							300: {
 								slidesPerView: 5,
 							},
-							1200: {
-								slidesPerView: 6,
+							850: {
+								slidesPerView: 5,
 							},
 						}}
 						slidesPerView='auto'
+						initialSlide={0}
 					>
 						{categories.map((category, index) => (
-							<SwiperSlide key={index}>
+							<SwiperSlide
+								key={index}
+								onClick={() => {
+									setActiveCategory(category.id);
+									swiperRef.current?.slideTo(index, 300, true);
+									handleClick(category.id);
+								}}
+							>
 								<div
 									className={`swiper-slide ${activeCategory === category.id ? 'active' : 'default'}`}
-									onClick={() => handleClick(category.id)}
 								>
 									<Image src={category.src} width={400} height={500} alt={category.alt} />
 								</div>
