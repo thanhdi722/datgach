@@ -158,7 +158,7 @@
   width: 600px;
   height: 400px;
   display: block;
-  @media (max-width: 767px){
+  @media (max-width: 767px) {
     width: 100%;
     height: 100%;
   }
@@ -213,6 +213,7 @@
 
 .header-BodyBNew-news-image img {
   height: 175px;
+  width: 100%;
   border-radius: 10px;
   margin-bottom: 10px;
   @media (max-width: 1240px) {

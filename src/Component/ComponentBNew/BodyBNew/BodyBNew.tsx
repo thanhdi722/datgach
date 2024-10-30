@@ -34,11 +34,14 @@ export default function BodyBNew() {
 
   const [newsData, setNewsData] = useState<BlogPost[] | null>(null);
   const [newsData2, setNewsData2] = useState<BlogPost[] | null>(null);
-
+  const selectedTabIds =
+    activeTab === "Trang Chủ"
+      ? [19, 9, 12, 14, 20, 27, 21]
+      : [tabIds[activeTab]];
   const variables = {
     filter: {
       category_id: {
-        eq: tabIds[activeTab], // Updated to handle multiple IDs
+        in: selectedTabIds, // Change `eq` to `in` for array-based filtering
       },
     },
     pageSize: 100,
