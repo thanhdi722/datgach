@@ -110,7 +110,7 @@
 					flex-grow: 1;
 					display: flex;
 					flex-direction: column;
-					gap: 1.2rem;
+					gap: 0.4rem !important;
 					justify-content: space-between; /* Đảm bảo nội dung phân bổ đều */
 
 					&-tt {
@@ -226,20 +226,6 @@
 				flex-direction: row !important;
 			}
 
-			.hot-price {
-				position: absolute;
-				right: 0.5rem;
-				bottom: 0.5rem;
-
-				img {
-					width: initial !important;
-				}
-
-				@media screen and (max-width: 850px) {
-					display: none;
-				}
-			}
-
 			.upgrade-hot-best-seller {
 				position: relative;
 			}
@@ -272,10 +258,8 @@
 				justify-content: space-between;
 
 				.author {
-					img {
-						max-width: 100%;
-						width: fit-content;
-					}
+					max-width: 100% !important;
+					width: fit-content !important;
 				}
 			}
 			.upgrade-hot-best-seller {
@@ -422,12 +406,23 @@
 	}
 }
 
+.hot-price {
+	position: absolute;
+	right: 0.5rem;
+	bottom: 0.5rem;
+	width: initial !important;
+
+	@media screen and (max-width: 850px) {
+		display: none;
+	}
+}
+
 @keyframes bestSellerFlash {
 	0%,
 	100% {
 		transform: scale(1);
 	}
 	50% {
-		transform: scale(1.1);
+		transform: scale(1.07);
 	}
 }
