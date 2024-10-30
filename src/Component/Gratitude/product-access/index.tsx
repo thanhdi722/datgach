@@ -156,7 +156,13 @@ const ProductAccess: React.FC = () => {
 		<div className='product-list'>
 			<div className='upgrade-list'>
 				<div className='container'>
-					<Image src={ProductBanner} width={1820} height={1200} alt='product-banner-06' />
+					<Image
+						src={ProductBanner}
+						width={1820}
+						height={1200}
+						alt='product-banner-06'
+						className='product-banner'
+					/>
 
 					<div className='tabs'>
 						{isMobile ? (

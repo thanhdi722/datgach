@@ -265,7 +265,13 @@ const ProductMac: React.FC = () => {
 			<div className='upgrade-list'>
 				<div className='container'>
 					<div className='upgrade-hot-wrap'>
-						<Image src={ProductBanner} width={1820} height={1200} alt='product-banner-01' className='' />
+						<Image
+							src={ProductBanner}
+							width={1820}
+							height={1200}
+							alt='product-banner-01'
+							className='product-banner'
+						/>
 						<div className='upgrade-hot'>
 							{flashSaleItems.map((product, index) => (
 								<Link

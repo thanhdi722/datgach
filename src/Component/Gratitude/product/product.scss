@@ -417,6 +417,16 @@
 	}
 }
 
+.product-banner {
+	width: 80% !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+
+	@media screen and (max-width: 768px) {
+		width: 100% !important;
+	}
+}
+
 @keyframes bestSellerFlash {
 	0%,
 	100% {
