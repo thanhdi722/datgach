@@ -53,10 +53,11 @@
 .productModal3-statusInput {
   background: blue;
   color: white;
-  height: 40px;
+  height: max-content;
   width: 100%;
   padding: 6px;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
   border-radius: 10px;
 }
 
