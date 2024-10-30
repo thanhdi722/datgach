@@ -10,7 +10,7 @@ import pklaptop from "../../../public/coc cap sac.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
-import imagesPK from "../../../../public/combo-pk/Phụ Kiện Cốc Cáp Sạc.png";
+import imagesPK from "../../../../public/combo-pk/capsacpc.png";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
 export interface Product {
   id: number;

@@ -15,15 +15,15 @@ import iconloa from "../../../../public/icon-loa.png";
 import Image from "next/image";
 import bannerSlider from "../../../../public/banner-pk-apple-1200-040624.png";
 import bannerSlider2 from "../../../../public/banner-slide-01.png";
-import images1 from "../../../../public/combo-pk/1200x450_ ROUTER , BỘ KÍCH WIFI , CHUỘT , CAMERA.png";
-import images2 from "../../../../public/combo-pk/1200x450_Balo túi chống sốc.png";
-import images3 from "../../../../public/combo-pk/1200x450_BỘ 3 AIRPODS.png";
-import images4 from "../../../../public/combo-pk/1200x450_XẢ KHO , RẺ NHẤT.png";
-import images5 from "../../../../public/combo-pk/1200x450_chuột , bàn phím tồn kho.png";
-import images6 from "../../../../public/combo-pk/1200x450_cốc cáp sạc.png";
-import images7 from "../../../../public/combo-pk/1200x450_dán màn hình.png";
-import images8 from "../../../../public/combo-pk/1200x450_sạc dự phòng.png";
-import images9 from "../../../../public/combo-pk/1200x450_Âm Thanh Cực Đỉnh.png";
+import images1 from "../../../../public/combo-pk/image1.png";
+import images2 from "../../../../public/combo-pk/image2.png";
+import images3 from "../../../../public/combo-pk/image3.png";
+import images4 from "../../../../public/combo-pk/image4.png";
+import images5 from "../../../../public/combo-pk/image5.png";
+import images6 from "../../../../public/combo-pk/image6.png";
+import images7 from "../../../../public/combo-pk/image7.png";
+import images8 from "../../../../public/combo-pk/image8.png";
+import images9 from "../../../../public/combo-pk/image9.png";
 
 import Link from "next/link";
 type FieldType = {

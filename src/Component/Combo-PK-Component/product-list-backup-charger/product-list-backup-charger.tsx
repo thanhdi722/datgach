@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
-import imagesPK from "../../../../public/combo-pk/Phụ Kiện Sạc Dự Phòng.png";
+import imagesPK from "../../../../public/combo-pk/sacduphongpc.png";
 export interface Product {
   id: number;
   name: string;
