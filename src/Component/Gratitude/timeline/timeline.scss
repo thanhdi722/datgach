@@ -83,6 +83,7 @@
 		font-weight: bold;
 		color: #fff;
 		text-align: center;
+		margin-top: 0 !important;
 		@media screen and (max-width: 1200px) {
 			font-size: 2rem;
 		}
@@ -100,7 +101,7 @@
 	}
 	.HeaderHalloween-time-line-subtext,
 	.HeaderHalloween-time-line-subtext-small {
-		margin-top: 0.5rem; // mt-2
+		margin-top: 0 !important; // mt-2
 		text-align: center;
 		font-weight: 500;
 		font-size: 18px; // text-xs

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import './apple.scss';
+import './gratitude.scss';
 
 import itemAccess from '../../../public/apple/category-fixed-06.png';
 import itemIphone from '../../../public/apple/category-fixed-01.png';
@@ -109,7 +109,7 @@ const Apple = () => {
 	}, [activeCategory]);
 
 	return (
-		<div className='apple'>
+		<div className='gratitude'>
 			<Banner />
 			<TimeLine onScrollToRules={handleScrollToRules} />
 			<Promotion onScrollToRules={handleScrollToRules} />

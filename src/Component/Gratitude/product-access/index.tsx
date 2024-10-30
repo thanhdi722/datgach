@@ -156,146 +156,151 @@ const ProductAccess: React.FC = () => {
 		<div className='product-list'>
 			<div className='upgrade-list'>
 				<div className='container'>
-					<Image
-						src={ProductBanner}
-						width={1820}
-						height={1200}
-						alt='product-banner-06'
-						className='product-banner'
-					/>
+					<div className='upgrade-hot-wrap'>
+						<Image
+							src={ProductBanner}
+							width={1820}
+							height={1200}
+							alt='product-banner-06'
+							className='product-banner'
+						/>
 
-					<div className='tabs'>
-						{isMobile ? (
-							<Swiper spaceBetween={10} slidesPerView='auto'>
-								{tabs.map((tab) => (
-									<SwiperSlide key={tab} style={{ width: 'auto' }}>
-										<button
-											onClick={() => setActiveTab(tab)}
-											className={activeTab === tab ? 'tab active' : 'tab'}
-											style={{
-												color: activeTab === tab ? 'white' : '#000',
-												backgroundColor: activeTab === tab ? '#ef373e' : '#f1f1f1',
-												border: activeTab === tab ? '1px solid #ef373e' : '1px solid #ccc',
-												padding: '10px 20px',
-												margin: '5px',
-												borderRadius: '5px',
-												cursor: 'pointer',
-											}}
-										>
-											{tab}
-										</button>
-									</SwiperSlide>
-								))}
-							</Swiper>
-						) : (
-							tabs.map((tab) => (
+						<div className='tabs'>
+							{isMobile ? (
+								<Swiper spaceBetween={10} slidesPerView='auto'>
+									{tabs.map((tab) => (
+										<SwiperSlide key={tab} style={{ width: 'auto' }}>
+											<button
+												onClick={() => setActiveTab(tab)}
+												className={activeTab === tab ? 'tab active' : 'tab'}
+												style={{
+													color: activeTab === tab ? 'white' : '#000',
+													backgroundColor: activeTab === tab ? '#ef373e' : '#f1f1f1',
+													border: activeTab === tab ? '1px solid #ef373e' : '1px solid #ccc',
+													padding: '10px 20px',
+													margin: '5px',
+													borderRadius: '5px',
+													cursor: 'pointer',
+												}}
+											>
+												{tab}
+											</button>
+										</SwiperSlide>
+									))}
+								</Swiper>
+							) : (
+								tabs.map((tab) => (
+									<button
+										key={tab}
+										onClick={() => setActiveTab(tab)}
+										className={activeTab === tab ? 'tab active' : 'tab'}
+										style={{
+											color: activeTab === tab ? 'white' : '#000',
+											backgroundColor: activeTab === tab ? '#ef373e' : '#f1f1f1',
+											border: activeTab === tab ? '1px solid #ef373e' : '1px solid #ccc',
+											padding: '10px 20px',
+											margin: '5px',
+											borderRadius: '5px',
+											cursor: 'pointer',
+										}}
+									>
+										{tab}
+									</button>
+								))
+							)}
+						</div>
+
+						<div className='upgrade'>
+							{visibleProducts.map((product, index) => (
+								<Link
+									key={index}
+									href={`https://bachlongmobile.com/products/${product.url_key}`}
+									passHref
+									target='_blank'
+									rel='noopener noreferrer'
+									style={{ textDecoration: 'none', color: 'black' }}
+								>
+									<div className='upgrade-item'>
+										<div className='upgrade-item-img'>
+											<div className='img-content'>
+												<Image
+													src={product.image.url}
+													width={1400}
+													height={1200}
+													quality={100}
+													alt={`product-${index}`}
+												/>
+											</div>
+											<div className='frame-product'>
+												<Image
+													src={FrameProduct}
+													width={500}
+													height={500}
+													quality={100}
+													alt='frame-product'
+												/>
+											</div>
+										</div>
+										<div className='upgrade-item-content'>
+											<h4 className='upgrade-item-content-tt'>{product.name}</h4>
+											<div className='upgrade-item-content-body'>
+												<div className='upgrade-item-content-body-price'>
+													{product.price_range.minimum_price.final_price.value.toLocaleString(
+														'vi-VN'
+													)}{' '}
+													{product.price_range.minimum_price.final_price.currency}
+												</div>
+												<div className='upgrade-item-content-body-reduced'>
+													<div className='price-reduced'>
+														{product.attributes && product.attributes[0]?.value
+															? Number(product.attributes[0].value).toLocaleString(
+																	'vi-VN'
+															  )
+															: ''}{' '}
+														{product.attributes &&
+															product.attributes[0]?.value &&
+															product.price_range.minimum_price.final_price.currency}
+													</div>
+
+													{product.attributes && product.attributes[0]?.value && (
+														<div className='percent'>
+															-
+															{Math.ceil(
+																((product.attributes[0].value -
+																	product.price_range.minimum_price.final_price
+																		.value) /
+																	product.attributes[0].value) *
+																	100
+															)}
+															%
+														</div>
+													)}
+												</div>
+											</div>
+										</div>
+									</div>
+								</Link>
+							))}
+						</div>
+
+						{visibleCount < filteredData.length && (
+							<div style={{ textAlign: 'center', marginTop: '20px' }}>
 								<button
-									key={tab}
-									onClick={() => setActiveTab(tab)}
-									className={activeTab === tab ? 'tab active' : 'tab'}
+									onClick={loadMore}
 									style={{
-										color: activeTab === tab ? 'white' : '#000',
-										backgroundColor: activeTab === tab ? '#ef373e' : '#f1f1f1',
-										border: activeTab === tab ? '1px solid #ef373e' : '1px solid #ccc',
+										backgroundColor: '#ef373e',
+										color: 'white',
+										border: 'none',
 										padding: '10px 20px',
-										margin: '5px',
 										borderRadius: '5px',
 										cursor: 'pointer',
 									}}
 								>
-									{tab}
+									Xem thêm
 								</button>
-							))
+							</div>
 						)}
 					</div>
-
-					<div className='upgrade'>
-						{visibleProducts.map((product, index) => (
-							<Link
-								key={index}
-								href={`https://bachlongmobile.com/products/${product.url_key}`}
-								passHref
-								target='_blank'
-								rel='noopener noreferrer'
-								style={{ textDecoration: 'none', color: 'black' }}
-							>
-								<div className='upgrade-item'>
-									<div className='upgrade-item-img'>
-										<div className='img-content'>
-											<Image
-												src={product.image.url}
-												width={1400}
-												height={1200}
-												quality={100}
-												alt={`product-${index}`}
-											/>
-										</div>
-										<div className='frame-product'>
-											<Image
-												src={FrameProduct}
-												width={500}
-												height={500}
-												quality={100}
-												alt='frame-product'
-											/>
-										</div>
-									</div>
-									<div className='upgrade-item-content'>
-										<h4 className='upgrade-item-content-tt'>{product.name}</h4>
-										<div className='upgrade-item-content-body'>
-											<div className='upgrade-item-content-body-price'>
-												{product.price_range.minimum_price.final_price.value.toLocaleString(
-													'vi-VN'
-												)}{' '}
-												{product.price_range.minimum_price.final_price.currency}
-											</div>
-											<div className='upgrade-item-content-body-reduced'>
-												<div className='price-reduced'>
-													{product.attributes && product.attributes[0]?.value
-														? Number(product.attributes[0].value).toLocaleString('vi-VN')
-														: ''}{' '}
-													{product.attributes &&
-														product.attributes[0]?.value &&
-														product.price_range.minimum_price.final_price.currency}
-												</div>
-
-												{product.attributes && product.attributes[0]?.value && (
-													<div className='percent'>
-														-
-														{Math.ceil(
-															((product.attributes[0].value -
-																product.price_range.minimum_price.final_price.value) /
-																product.attributes[0].value) *
-																100
-														)}
-														%
-													</div>
-												)}
-											</div>
-										</div>
-									</div>
-								</div>
-							</Link>
-						))}
-					</div>
-
-					{visibleCount < filteredData.length && (
-						<div style={{ textAlign: 'center', marginTop: '20px' }}>
-							<button
-								onClick={loadMore}
-								style={{
-									backgroundColor: '#ef373e',
-									color: 'white',
-									border: 'none',
-									padding: '10px 20px',
-									borderRadius: '5px',
-									cursor: 'pointer',
-								}}
-							>
-								Xem thêm
-							</button>
-						</div>
-					)}
 				</div>
 			</div>
 		</div>
