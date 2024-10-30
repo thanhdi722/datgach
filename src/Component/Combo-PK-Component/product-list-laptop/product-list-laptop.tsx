@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
 import CardProduct from "../CardProductComboPK/CardProduct";
+import imagesPK from "../../../../public/combo-pk/Đồ Chơi Công Nghệ.png";
 export interface Product {
   id: number;
   name: string;
@@ -68,7 +69,7 @@ price_range {
 const variablesCategory1 = {
   filter: {
     category_uid: {
-      eq: "NjU=", // First category
+      eq: "NzA=", // First category
     },
   },
   pageSize: 200,
@@ -78,13 +79,21 @@ const variablesCategory1 = {
 const variablesCategory2 = {
   filter: {
     category_uid: {
-      eq: "NjY=", // Second category
+      eq: "NzE=", // Second category
     },
   },
   pageSize: 200,
   currentPage: 1,
 };
-
+const variablesCategory3 = {
+  filter: {
+    category_uid: {
+      eq: "NzM=", // Second category
+    },
+  },
+  pageSize: 200,
+  currentPage: 1,
+};
 async function fetchProductListDataLaptop() {
   const response1 = await fetch("https://beta-api.bachlongmobile.com/graphql", {
     method: "POST",
@@ -107,15 +116,25 @@ async function fetchProductListDataLaptop() {
       variables: variablesCategory2,
     }),
   });
-
+  const response3 = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: variablesCategory3,
+    }),
+  });
   const data1 = await response1.json();
   const data2 = await response2.json();
-
+  const data3 = await response3.json();
+  console.log("data 1", data1);
   // Merge the two sets of data
   const productsCategory1 = data1.data.products.items as Product[];
   const productsCategory2 = data2.data.products.items as Product[];
-
-  return [...productsCategory1, ...productsCategory2];
+  const productsCategory3 = data3.data.products.items as Product[];
+  return [...productsCategory1, ...productsCategory2, ...productsCategory3];
 }
 
 const Section5: React.FC = () => {
@@ -125,17 +144,17 @@ const Section5: React.FC = () => {
     staleTime: 300000,
   });
 
-  const [activeTab, setActiveTab] = useState<string>("All");
+  const [activeTab, setActiveTab] = useState<string>("");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-
+  const [visibleCount, setVisibleCount] = useState(10);
   useEffect(() => {
     if (activeTab === "All") {
       setFilteredData(data || []);
     } else {
       const filtered = data?.filter((product) =>
-        product?.name.toLowerCase().includes(activeTab.toLowerCase())
+        product.name.toLowerCase().includes(activeTab.toLowerCase())
       );
       setFilteredData(filtered || []);
     }
@@ -168,7 +187,7 @@ const Section5: React.FC = () => {
   if (error) {
     return <div>Error loading data</div>;
   }
-  const [visibleCount, setVisibleCount] = useState(10);
+
   const loadMorePosts = () => {
     setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
     setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
@@ -177,9 +196,10 @@ const Section5: React.FC = () => {
     <div className="OldForNew-Section-laptop" id="item-laptop">
       <div className="container">
         <div className="OldForNew-Section-Container-laptop">
-          <div style={{ paddingBottom: "10px" }}>
+          <Image src={imagesPK} alt="PK" className="images-pk" />
+          {/* <div style={{ paddingBottom: "10px" }}>
             <h2 className="title-table-combo-pk">Đồ Chơi Công Nghệ</h2>
-          </div>{" "}
+          </div>{" "} */}
           {isLoading && (
             <div
               className="loading container-spin flex h-28 items-center justify-center"

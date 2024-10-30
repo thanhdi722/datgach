@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
+import imagesPK from "../../../../public/combo-pk/Phụ Kiện Sạc Dự Phòng.png";
 export interface Product {
   id: number;
   name: string;
@@ -99,11 +100,11 @@ const Section5: React.FC = () => {
     staleTime: 300000,
   });
 
-  const [activeTab, setActiveTab] = useState<string>("All");
+  const [activeTab, setActiveTab] = useState<string>("Pisen");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-
+  const [visibleCount, setVisibleCount] = useState(10);
   useEffect(() => {
     if (activeTab === "All") {
       setFilteredData(data || []);
@@ -113,26 +114,34 @@ const Section5: React.FC = () => {
       );
       setFilteredData(filtered || []);
     }
+
+    setVisibleCount(10);
     setVisibleProducts(10);
     setIsExpanded(false);
   }, [activeTab, data]);
   useEffect(() => {
     switch (activeTab) {
-      case "Samsung":
-        variables.filter.category_uid.eq = "ODE=";
-        break;
       case "Pisen":
         variables.filter.category_uid.eq = "MjMz";
         break;
       case "Innostyle":
         variables.filter.category_uid.eq = "MjMy";
         break;
+      case "Energizer":
+        variables.filter.category_uid.eq = "MTQx";
+        break;
       case "Khác":
         variables.filter.category_uid.eq = "MjM0";
         break;
+      case "Samsung":
+        variables.filter.category_uid.eq = "ODE=";
+        break;
+
       default:
-        variables.filter.category_uid.eq = "MTk=";
+        variables.filter.category_uid.eq = "MjMz";
     }
+    setVisibleCount(10);
+    setVisibleProducts(10);
   }, [activeTab]);
   const toggleProducts = () => {
     if (isExpanded) {
@@ -159,7 +168,7 @@ const Section5: React.FC = () => {
   if (error) {
     return <div>Error loading data</div>;
   }
-  const [visibleCount, setVisibleCount] = useState(10);
+
   const loadMorePosts = () => {
     setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
     setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
@@ -168,19 +177,13 @@ const Section5: React.FC = () => {
     <div className="OldForNew-Section-backup-charger" id="item-backup-charger">
       <div className="container">
         <div className="OldForNew-Section-Container-backup-charger">
+          <Image src={imagesPK} alt="PK" className="images-pk" />
           <div className="header-table-combo-pk">
-            <div style={{ paddingBottom: "10px" }}>
+            {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện Sạc Dự Phòng</h2>
-            </div>
+            </div> */}
             <div className="tab-button-table-combo-pk">
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "SamSung" ? "btn-tab-buyPhone_active" : ""
-                }`}
-                onClick={() => setActiveTab("Samsung")}
-              >
-                Samsung
-              </button>
+              {" "}
               <button
                 className={`btn-tab-buyPhone ${
                   activeTab === "Pisen" ? "btn-tab-buyPhone_active" : ""
@@ -191,20 +194,27 @@ const Section5: React.FC = () => {
               </button>
               <button
                 className={`btn-tab-buyPhone ${
+                  activeTab === "Energizer" ? "btn-tab-buyPhone_active" : ""
+                }`}
+                onClick={() => setActiveTab("Energizer")}
+              >
+                Energizer
+              </button>
+              <button
+                className={`btn-tab-buyPhone ${
                   activeTab === "Innostyle" ? "btn-tab-buyPhone_active" : ""
                 }`}
                 onClick={() => setActiveTab("Innostyle")}
               >
                 Innostyle
               </button>
-
               <button
                 className={`btn-tab-buyPhone ${
-                  activeTab === "All" ? "btn-tab-buyPhone_active" : ""
+                  activeTab === "Samsung" ? "btn-tab-buyPhone_active" : ""
                 }`}
-                onClick={() => setActiveTab("All")}
+                onClick={() => setActiveTab("Samsung")}
               >
-                Tất cả
+                Samsung
               </button>
             </div>
           </div>

@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
+import imagesPK from "../../../../public/combo-pk/bao da pc.png";
 export interface Product {
   id: number;
   name: string;
@@ -63,7 +64,6 @@ price_range {
 }
 }
 `;
-
 const variables = {
   filter: {
     category_uid: {
@@ -91,65 +91,66 @@ async function fetchProductListDataBaoDa() {
   return data.data.products.items as Product[];
 }
 
-const Section5: React.FC = () => {
+const SectionBaoDa: React.FC = () => {
   const { data, error, isLoading } = useQuery<Product[]>({
     queryKey: ["productListDataBaoDa", variables.filter.category_uid.eq], // Thêm category_uid vào queryKey
     queryFn: fetchProductListDataBaoDa,
     staleTime: 300000,
   });
 
-  const [activeTab, setActiveTab] = useState<string>("IPhone 16 Series");
+  const [activeTab, setActiveTab] = useState<string>("Apple"); // Đặt giá trị mặc định là "All"
   const [filteredData, setFilteredData] = useState<Product[]>([]);
+  const [filteredDataSub, setFilteredDataSub] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [visibleCount, setVisibleCount] = useState(10);
+  // Danh sách các hãng
+  const brands = ["Apple", "Jinya", "Mipow", "UNIQ", "Spigen"];
+  const [subActiveTab, setSubActiveTab] = useState<string>("16");
+  useEffect(() => {
+    setSubActiveTab("16");
+  }, []);
 
   useEffect(() => {
-    if (activeTab === "All") {
-      setFilteredData(data || []);
-    } else {
-      const filtered = data?.filter((product) =>
-        product?.name.toLowerCase().includes(activeTab.toLowerCase())
-      );
-      setFilteredData(filtered || []);
-    }
+    const filtered = data?.filter(
+      (product) =>
+        product?.name.toLowerCase().includes(activeTab.toLowerCase()) ||
+        (activeTab === "Apple" &&
+          (product?.name.toLowerCase().includes("Silicone") ||
+            product?.name.toLowerCase().includes("finewoven") ||
+            product?.name.toLowerCase().includes("silicon")))
+    );
+    setFilteredData(filtered || []);
+    setVisibleCount(10);
     setVisibleProducts(10);
     setIsExpanded(false);
+    setSubActiveTab("16"); // Ensure subActiveTab is set correctly
+    console.log("t test", filtered);
   }, [activeTab, data]);
+
+  // New useEffect to filter by subActiveTab
+
   useEffect(() => {
-    switch (activeTab) {
-      case "IPhone 16 Series":
-        variables.filter.category_uid.eq = "MzE0"; // Set for 'Cường Lực'
-        break;
-      case "IPhone 15 Series":
-        variables.filter.category_uid.eq = "MjEx"; // Set for 'Bao da, Ốp lưng'
-        break;
+    let filtered = filteredData.filter((product) =>
+      product?.name.toLowerCase().includes(subActiveTab.toLowerCase())
+    );
 
-      default:
-        variables.filter.category_uid.eq = "MTg="; // Default to 'All'
+    // If there are no products for iPhone 16, fall back to iPhone 15
+    if (subActiveTab === "16" && filtered.length === 0) {
+      setSubActiveTab("15");
+      filtered = filteredData.filter((product) =>
+        product?.name.toLowerCase().includes("15")
+      );
     }
-  }, [activeTab]);
-  const toggleProducts = () => {
-    if (isExpanded) {
-      setVisibleProducts(10);
-      setIsExpanded(false);
-    } else {
-      setVisibleProducts(filteredData.length);
-      setIsExpanded(true);
-    }
-  };
 
-  // if (isLoading) {
-  // 	return (
-  // 		<div className='loading container-spin'>
-  // 			<Spin />
-  // 		</div>
-  // 	);
-  // }
-
+    setFilteredDataSub(filtered || []);
+    setVisibleCount(10);
+    setVisibleProducts(10);
+  }, [subActiveTab, filteredData]);
   if (error) {
     return <div>Error loading data</div>;
   }
-  const [visibleCount, setVisibleCount] = useState(10);
+
   const loadMorePosts = () => {
     setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
     setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
@@ -157,42 +158,82 @@ const Section5: React.FC = () => {
   return (
     <div className="OldForNew-Section-leather-case" id="item-leather-case">
       <div className="container">
-        {/* <Image src={pklaptop} alt="no-products" className="images-pk" /> */}
-
         <div className="OldForNew-Section-Container-leather-case">
+          <Image src={imagesPK} alt="PK" className="images-pk" />
           <div className="header-table-combo-pk">
-            <div style={{ paddingBottom: "10px" }}>
+            {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện Bao Da, Ốp Lưng</h2>
-            </div>
-            <div className="tab-button-table-combo-pk">
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "IPhone 16 Series"
-                    ? "btn-tab-buyPhone_active"
-                    : ""
-                }`}
-                onClick={() => setActiveTab("IPhone 16 Series")}
-              >
-                IPhone 16 Series
-              </button>
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "IPhone 15 Series"
-                    ? "btn-tab-buyPhone_active"
-                    : ""
-                }`}
-                onClick={() => setActiveTab("IPhone 15 Series")}
-              >
-                IPhone 15 Series
-              </button>
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "All" ? "btn-tab-buyPhone_active" : ""
-                }`}
-                onClick={() => setActiveTab("All")}
-              >
-                Tất cả
-              </button>
+            </div> */}
+            <div>
+              <div className="tab-button-table-combo-pk">
+                {brands.map((brand) => (
+                  <button
+                    key={brand}
+                    className={`btn-tab-buyPhone ${
+                      activeTab === brand ? "btn-tab-buyPhone_active" : ""
+                    }`}
+                    onClick={() => {
+                      setActiveTab(brand);
+                      setSubActiveTab("All"); // Reset sub-tab when changing main tab
+                    }}
+                  >
+                    {brand}
+                  </button>
+                ))}
+              </div>
+
+              <div className="tab-button-table-combo-pk-sub">
+                {filteredData &&
+                  filteredData.length > 0 && ( // Check if there is data
+                    <>
+                      {filteredData.some((product) =>
+                        product.name.toLowerCase().includes("16")
+                      ) && ( // Check for iPhone 16
+                        <button
+                          key="16"
+                          className={`btn-tab-buyPhone-sub ${
+                            subActiveTab === "16"
+                              ? "btn-tab-buyPhone_active"
+                              : ""
+                          }`}
+                          onClick={() => setSubActiveTab("16")}
+                        >
+                          iPhone 16
+                        </button>
+                      )}
+                      {filteredData.some((product) =>
+                        product.name.toLowerCase().includes("15")
+                      ) && ( // Check for iPhone 15
+                        <button
+                          key="15"
+                          className={`btn-tab-buyPhone-sub ${
+                            subActiveTab === "15"
+                              ? "btn-tab-buyPhone_active"
+                              : ""
+                          }`}
+                          onClick={() => setSubActiveTab("15")}
+                        >
+                          iPhone 15
+                        </button>
+                      )}
+                      {filteredData.some((product) =>
+                        product.name.toLowerCase().includes("14")
+                      ) && ( // Check for iPhone 14
+                        <button
+                          key="14"
+                          className={`btn-tab-buyPhone-sub ${
+                            subActiveTab === "14"
+                              ? "btn-tab-buyPhone_active"
+                              : ""
+                          }`}
+                          onClick={() => setSubActiveTab("14")}
+                        >
+                          iPhone 14
+                        </button>
+                      )}
+                    </>
+                  )}
+              </div>
             </div>
           </div>
           {isLoading && (
@@ -205,7 +246,7 @@ const Section5: React.FC = () => {
               <Spin />
             </div>
           )}
-          {data && data.length === 0 && !isLoading ? (
+          {filteredDataSub && filteredDataSub.length === 0 && !isLoading ? (
             <div className="no-products-message">
               <Image
                 src={noProducts}
@@ -217,7 +258,7 @@ const Section5: React.FC = () => {
           ) : (
             <>
               <div className="OldForNew-Section5-ItemSlider">
-                {data?.slice(0, visibleProducts).map((product) => (
+                {filteredDataSub?.slice(0, visibleProducts).map((product) => (
                   <CardProduct
                     key={product?.id}
                     name={product?.name}
@@ -228,7 +269,7 @@ const Section5: React.FC = () => {
                 ))}
               </div>
 
-              {visibleCount < (data?.length || 0) && ( // Check if more products are available
+              {visibleCount < (filteredDataSub?.length || 0) && ( // Check if more products are available
                 <div className="load-more-container">
                   <button onClick={loadMorePosts}>Xem thêm</button>
                 </div>
@@ -241,4 +282,4 @@ const Section5: React.FC = () => {
   );
 };
 
-export default Section5;
+export default SectionBaoDa;

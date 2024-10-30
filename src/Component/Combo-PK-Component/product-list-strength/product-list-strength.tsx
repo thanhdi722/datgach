@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
+import imagesPK from "../../../../public/combo-pk/Phụ Kiện Cường Lực.png";
 export interface Product {
   id: number;
   name: string;
@@ -88,45 +89,66 @@ async function fetchProductListDataCuongLuc() {
   });
 
   const data = await response.json();
+
   return data.data.products.items as Product[];
 }
 
 const Section5: React.FC = () => {
+  // Moved useState hooks to the top level to avoid conditional calls
+
+  const [activeTab, setActiveTab] = useState<string>("Mipow"); // Đặt giá trị mặc định là "All"
+  const [filteredData, setFilteredData] = useState<Product[]>([]);
+  const [filteredDataSub, setFilteredDataSub] = useState<Product[]>([]);
+  const [visibleProducts, setVisibleProducts] = useState<number>(10);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [visibleCount, setVisibleCount] = useState(10);
+
+  const brands = ["Mipow", "UNIQ", "Jcpal", "Pisen", "BAGI", "ZEELOT"];
   const { data, error, isLoading } = useQuery<Product[]>({
     queryKey: ["productListDataCuongLuc", variables.filter.category_uid.eq],
     queryFn: fetchProductListDataCuongLuc,
     staleTime: 300000,
   });
 
-  const [activeTab, setActiveTab] = useState<string>("iPhone");
-  const [filteredData, setFilteredData] = useState<Product[]>([]);
-  const [visibleProducts, setVisibleProducts] = useState<number>(10);
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [subActiveTab, setSubActiveTab] = useState<string>("16"); // Initialize subActiveTab
 
   useEffect(() => {
-    if (activeTab === "All") {
-      setFilteredData(data || []);
-    } else {
-      const filtered = data?.filter((product) =>
-        product?.name.toLowerCase().includes(activeTab.toLowerCase())
-      );
-      setFilteredData(filtered || []);
-    }
-    setVisibleProducts(10);
-    setIsExpanded(false);
-  }, [activeTab, data]);
+    setSubActiveTab("16"); // Set default subActiveTab
+  }, []);
+
   useEffect(() => {
-    switch (activeTab) {
-      case "iPhone":
-        variables.filter.category_uid.eq = "MTI3";
-        break;
-      case "iPad":
-        variables.filter.category_uid.eq = "MjQy";
-        break;
-      default:
-        variables.filter.category_uid.eq = "MjQ=";
+    const filtered = data?.filter(
+      (product) =>
+        product?.name.toLowerCase().includes(activeTab.toLowerCase()) || // Include products based on activeTab
+        (activeTab === "Apple" &&
+          product?.name.toLowerCase().includes("iphone")) ||
+        product?.name.toLowerCase().includes("KINGKONG")
+    );
+    setFilteredData(filtered || []);
+    setIsExpanded(false);
+    setVisibleCount(10);
+    setVisibleProducts(10);
+    setSubActiveTab("16"); // Reset subActiveTab when changing main tab
+  }, [activeTab, data]);
+  console.log("data a2", filteredData);
+  // New useEffect to filter by subActiveTab
+  useEffect(() => {
+    let filtered = filteredData.filter((product) =>
+      product?.name.toLowerCase().includes(subActiveTab.toLowerCase())
+    );
+
+    // If there are no products for iPhone 16, fall back to iPhone 15
+    if (subActiveTab === "16" && filtered.length === 0) {
+      setSubActiveTab("15");
+      filtered = filteredData.filter((product) =>
+        product?.name.toLowerCase().includes("15")
+      );
     }
-  }, [activeTab]);
+
+    setFilteredDataSub(filtered || []);
+    setVisibleCount(10);
+    setVisibleProducts(10);
+  }, [subActiveTab, filteredData]);
   const toggleProducts = () => {
     if (isExpanded) {
       setVisibleProducts(10);
@@ -148,44 +170,91 @@ const Section5: React.FC = () => {
   if (error) {
     return <div>Error loading data</div>;
   }
-  const [visibleCount, setVisibleCount] = useState(10);
+
   const loadMorePosts = () => {
     setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
     setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
   };
+
   return (
     <div className="OldForNew-Section-strength" id="item-strength">
       <div className="container">
         <div className="OldForNew-Section-Container-strength">
+          <Image src={imagesPK} alt="PK" className="images-pk" />
           <div className="header-table-combo-pk">
-            <div style={{ paddingBottom: "10px" }}>
+            {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện Cường Lực</h2>
-            </div>
-            <div className="tab-button-table-combo-pk">
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "iPhone" ? "btn-tab-buyPhone_active" : ""
-                }`}
-                onClick={() => setActiveTab("iPhone")}
-              >
-                iPhone
-              </button>
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "iPad" ? "btn-tab-buyPhone_active" : ""
-                }`}
-                onClick={() => setActiveTab("iPad")}
-              >
-                iPad
-              </button>
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "All" ? "btn-tab-buyPhone_active" : ""
-                }`}
-                onClick={() => setActiveTab("All")}
-              >
-                Tất cả
-              </button>
+            </div> */}
+            <div>
+              <div className="tab-button-table-combo-pk">
+                {brands.map((brand) => (
+                  <button
+                    key={brand}
+                    className={`btn-tab-buyPhone ${
+                      activeTab === brand ? "btn-tab-buyPhone_active" : ""
+                    }`}
+                    onClick={() => {
+                      setActiveTab(brand);
+                      setSubActiveTab("All"); // Reset sub-tab when changing main tab
+                    }}
+                  >
+                    {brand}
+                  </button>
+                ))}
+              </div>
+
+              <div className="tab-button-table-combo-pk-sub">
+                {filteredData &&
+                  filteredData.length > 0 && ( // Check if there is data
+                    <>
+                      {filteredData.some((product) =>
+                        product.name.toLowerCase().includes("16")
+                      ) && ( // Check for iPhone 16
+                        <button
+                          key="16"
+                          className={`btn-tab-buyPhone-sub ${
+                            subActiveTab === "16"
+                              ? "btn-tab-buyPhone_active"
+                              : ""
+                          }`}
+                          onClick={() => setSubActiveTab("16")}
+                        >
+                          iPhone 16
+                        </button>
+                      )}
+                      {filteredData.some((product) =>
+                        product.name.toLowerCase().includes("15")
+                      ) && ( // Check for iPhone 15
+                        <button
+                          key="15"
+                          className={`btn-tab-buyPhone-sub ${
+                            subActiveTab === "15"
+                              ? "btn-tab-buyPhone_active"
+                              : ""
+                          }`}
+                          onClick={() => setSubActiveTab("15")}
+                        >
+                          iPhone 15
+                        </button>
+                      )}
+                      {filteredData.some((product) =>
+                        product.name.toLowerCase().includes("14")
+                      ) && ( // Check for iPhone 14
+                        <button
+                          key="14"
+                          className={`btn-tab-buyPhone-sub ${
+                            subActiveTab === "14"
+                              ? "btn-tab-buyPhone_active"
+                              : ""
+                          }`}
+                          onClick={() => setSubActiveTab("14")}
+                        >
+                          iPhone 14
+                        </button>
+                      )}
+                    </>
+                  )}
+              </div>
             </div>
           </div>
           {isLoading && (
@@ -198,7 +267,7 @@ const Section5: React.FC = () => {
               <Spin />
             </div>
           )}
-          {data && data.length === 0 && !isLoading ? (
+          {filteredDataSub && filteredDataSub.length === 0 && !isLoading ? (
             <div className="no-products-message">
               <Image
                 src={noProducts}
@@ -210,7 +279,7 @@ const Section5: React.FC = () => {
           ) : (
             <>
               <div className="OldForNew-Section5-ItemSlider">
-                {data?.slice(0, visibleProducts).map((product) => (
+                {filteredDataSub?.slice(0, visibleProducts).map((product) => (
                   <CardProduct
                     key={product?.id}
                     name={product?.name}
@@ -221,7 +290,7 @@ const Section5: React.FC = () => {
                 ))}
               </div>
 
-              {visibleCount < (data?.length || 0) && ( // Check if more products are available
+              {visibleCount < (filteredDataSub?.length || 0) && ( // Check if more products are available
                 <div className="load-more-container">
                   <button onClick={loadMorePosts}>Xem thêm</button>
                 </div>

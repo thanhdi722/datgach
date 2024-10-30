@@ -10,6 +10,7 @@ import pklaptop from "../../../public/coc cap sac.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
+import imagesPK from "../../../../public/combo-pk/Phụ Kiện Cốc Cáp Sạc.png";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
 export interface Product {
   id: number;
@@ -99,11 +100,11 @@ const Section5: React.FC = () => {
     staleTime: 300000,
   });
 
-  const [activeTab, setActiveTab] = useState<string>("All");
+  const [activeTab, setActiveTab] = useState<string>("Apple");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-
+  const [visibleCount, setVisibleCount] = useState(10);
   useEffect(() => {
     if (activeTab === "All") {
       setFilteredData(data || []);
@@ -113,6 +114,7 @@ const Section5: React.FC = () => {
       );
       setFilteredData(filtered || []);
     }
+    setVisibleCount(10);
     setVisibleProducts(10);
     setIsExpanded(false);
   }, [activeTab, data]);
@@ -124,12 +126,17 @@ const Section5: React.FC = () => {
       case "Củ sạc":
         variables.filter.category_uid.eq = "MjQw";
         break;
+      case "Apple":
+        variables.filter.category_uid.eq = "NDAy";
+        break;
       case "Bộ sạc":
         variables.filter.category_uid.eq = "MjQx";
         break;
       default:
         variables.filter.category_uid.eq = "Mjc=";
     }
+    setVisibleCount(10);
+    setVisibleProducts(10);
   }, [activeTab]);
   const toggleProducts = () => {
     if (isExpanded) {
@@ -156,20 +163,30 @@ const Section5: React.FC = () => {
   if (error) {
     return <div>Error loading data</div>;
   }
-  const [visibleCount, setVisibleCount] = useState(10);
+
   const loadMorePosts = () => {
     setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
     setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
   };
+  console.log("data check", data);
   return (
     <div className="OldForNew-Section-charging-cable" id="item-charging-cable">
       <div className="container">
         <div className="OldForNew-Section-Container-charging-cable">
+          <Image src={imagesPK} alt="PK" className="images-pk" />
           <div className="header-table-combo-pk">
-            <div style={{ paddingBottom: "10px" }}>
+            {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện Cốc Cáp Sạc</h2>
-            </div>
+            </div> */}
             <div className="tab-button-table-combo-pk">
+              <button
+                className={`btn-tab-buyPhone ${
+                  activeTab === "Apple" ? "btn-tab-buyPhone_active" : ""
+                }`}
+                onClick={() => setActiveTab("Apple")}
+              >
+                Apple
+              </button>
               <button
                 className={`btn-tab-buyPhone ${
                   activeTab === "Cáp sạc" ? "btn-tab-buyPhone_active" : ""
@@ -193,15 +210,6 @@ const Section5: React.FC = () => {
                 onClick={() => setActiveTab("Bộ sạc")}
               >
                 Bộ sạc
-              </button>
-
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "All" ? "btn-tab-buyPhone_active" : ""
-                }`}
-                onClick={() => setActiveTab("All")}
-              >
-                Tất cả
               </button>
             </div>
           </div>
