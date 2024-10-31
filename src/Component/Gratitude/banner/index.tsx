@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import './banner.scss';
-import bannerDesktop from '../../../../public/gratitude/head-teacher.png';
+import bannerDesktop from '../../../../public/gratitude/head-teacher.jpg';
 import bannerMobile from '../../../../public/gratitude/banner-mobile.jpg';
 
 const Banner: React.FC = () => {
