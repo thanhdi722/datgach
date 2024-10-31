@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
-import imagesTitle from "../../../../public/warehouse-discharge/PC_anroid giảm đến 8tr.png";
+import imagesTitle from "../../../../public/warehouse-discharge/androi.png";
 export interface Product {
   id: number;
   name: string;
