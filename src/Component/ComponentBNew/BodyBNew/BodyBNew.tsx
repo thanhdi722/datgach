@@ -89,6 +89,7 @@ export default function BodyBNew() {
     );
     const data = await response.json();
     setNewsData(data.data.blogPosts.items);
+    console.log("aaaaaaaaa", newsData);
     setLoading(false); // Set loading to false after fetching
   }
 
@@ -110,14 +111,14 @@ export default function BodyBNew() {
     );
     const data = await response.json();
     setNewsData2(data.data.blogPosts.items);
+
     setLoading(false); // Set loading to false after fetching
   }
-
+  console.log("check data tin", newsData2);
   useEffect(() => {
     fetchBlogPostsData(); // Fetch main posts when activeTab changes
     fetchBlogPostsDataNew(); // Fetch new posts based on activeTab2
   }, [activeTab, activeTab2]);
-  console.log("data newss", newsData2);
   const tabs = [
     "Trang Chủ",
     "Tin Công Nghệ",

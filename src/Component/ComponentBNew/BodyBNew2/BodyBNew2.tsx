@@ -22,11 +22,11 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
   const [visibleCountProduct, setVisibleCountProduct] = useState(5); // State to track the number of visible product posts
   const query = `query blogPosts( $filter: BlogPostsFilterInput $pageSize: Int $currentPage: Int $sortFiled: String $allPosts: Boolean $sort: [String] ) { blogPosts( filter: $filter pageSize: $pageSize currentPage: $currentPage sortFiled: $sortFiled allPosts: $allPosts sort: $sort ) { items { author { author_id author_url content creation_time custom_theme_to facebook_page_url featured_image filtered_content identifier instagram_page_url is_active layout_update_xml linkedin_page_url meta_description meta_title name page_layout relative_url title twitter_page_url type url } author_id canonical_url category_id content_heading creation_time end_time featured_image featured_img_alt featured_list_image featured_list_img_alt first_image identifier is_active page_layout position post_id post_url publish_time search title type update_time views_count categories { canonical_url category_id category_level category_url category_url_path content content_heading custom_layout custom_layout_update_xml custom_theme custom_theme_from custom_theme_to display_mode featured_img identifier include_in_menu is_active layout_update_xml meta_description meta_keywords meta_title page_layout parent_category_id path position posts_count posts_sort_by relative_url title type breadcrumbs { category_id category_level category_name category_uid category_url_key category_url_path } } filtered_content media_gallery { url } meta_description meta_keywords meta_title promotion_image tags { content custom_layout custom_layout_update_xml custom_theme custom_theme_from custom_theme_to identifier is_active layout_update_xml meta_description meta_keywords meta_robots meta_title page_layout relative_url tag_id tag_url title type } tag_id short_content short_filtered_content } total_count total_pages type } }`;
   const queryTest = `query blogPosts( $filter: BlogPostsFilterInput $pageSize: Int $currentPage: Int $sortFiled: String $allPosts: Boolean $sort: [String] ) { blogPosts( filter: $filter pageSize: $pageSize currentPage: $currentPage sortFiled: $sortFiled allPosts: $allPosts sort: $sort ) { items { author { author_id author_url content creation_time custom_theme_to facebook_page_url featured_image filtered_content identifier instagram_page_url is_active layout_update_xml linkedin_page_url meta_description meta_title name page_layout relative_url title twitter_page_url type url } author_id canonical_url category_id content_heading creation_time end_time featured_image featured_img_alt featured_list_image featured_list_img_alt first_image identifier is_active page_layout position post_id post_url publish_time search title type update_time views_count categories { canonical_url category_id category_level category_url category_url_path content content_heading custom_layout custom_layout_update_xml custom_theme custom_theme_from custom_theme_to display_mode featured_img identifier include_in_menu is_active layout_update_xml meta_description meta_keywords meta_title page_layout parent_category_id path position posts_count posts_sort_by relative_url title type breadcrumbs { category_id category_level category_name category_uid category_url_key category_url_path } } filtered_content media_gallery { url } meta_description meta_keywords meta_title promotion_image tags { content custom_layout custom_layout_update_xml custom_theme custom_theme_from custom_theme_to identifier is_active layout_update_xml meta_description meta_keywords meta_robots meta_title page_layout relative_url tag_id tag_url title type } tag_id short_content short_filtered_content } total_count total_pages type } }`;
+  const defaultCategoryIds = [19, 9, 12, 14, 20, 27, 21];
   const variablesNew = {
     filter: {
-      category_id: {
-        eq: activeTab2,
-      },
+      category_id:
+        activeTab2 === 19 ? { in: defaultCategoryIds } : { eq: activeTab2 },
     },
     pageSize: 100,
     currentPage: 1,
@@ -59,7 +59,6 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
       }
     );
     const data = await response.json();
-    console.log("2222222222222", data);
     setNewsData3(data.data.blogPosts.items);
   }
   async function fetchBlogPostsDataNew() {
@@ -77,7 +76,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
       }
     );
     const data = await response.json();
-    console.log("dataaaa1111", data);
+
     setNewsData2(data.data.blogPosts.items);
   }
 
@@ -95,7 +94,6 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
     fetchBlogPostsDataProduct();
   }, [activeTab2]);
 
-  console.log("New news data 3:>>>>>>>>>>>>>>>>>>", newsData2);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {

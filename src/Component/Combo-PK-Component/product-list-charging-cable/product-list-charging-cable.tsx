@@ -147,7 +147,13 @@ const Section5: React.FC = () => {
       setIsExpanded(true);
     }
   };
-
+  useEffect(() => {
+    if (data && data.length > 10) {
+      setVisibleProducts(10);
+    } else {
+      setVisibleProducts(5);
+    }
+  }, [data]);
   const loadMore = () => {
     setVisibleProducts((prevVisible) => prevVisible + 5);
   };
@@ -165,8 +171,9 @@ const Section5: React.FC = () => {
   }
 
   const loadMorePosts = () => {
-    setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
-    setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
+    setVisibleProducts(
+      (prevVisible) => prevVisible + (data && data.length > 10 ? 10 : 5)
+    );
   };
   console.log("data check", data);
   return (
@@ -246,7 +253,7 @@ const Section5: React.FC = () => {
                 ))}
               </div>
 
-              {visibleCount < (data?.length || 0) && ( // Check if more products are available
+              {visibleProducts < (data?.length || 0) && (
                 <div className="load-more-container">
                   <button onClick={loadMorePosts}>Xem thêm</button>
                 </div>

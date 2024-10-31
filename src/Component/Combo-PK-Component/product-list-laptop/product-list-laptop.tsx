@@ -2,15 +2,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "./product-list-laptop.scss";
-// import { Carousel } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
 import Image from "next/image";
-import "swiper/css";
-import "swiper/css/navigation";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
 import CardProduct from "../CardProductComboPK/CardProduct";
 import imagesPK from "../../../../public/combo-pk/dochoipc.png";
+
 export interface Product {
   id: number;
   name: string;
@@ -30,186 +28,184 @@ export interface Product {
 
 const query = `
 query getProducts(
-$search: String
-$filter: ProductAttributeFilterInput
-$sort: ProductAttributeSortInput
-$pageSize: Int
-$currentPage: Int
+  $search: String
+  $filter: ProductAttributeFilterInput
+  $sort: ProductAttributeSortInput
+  $pageSize: Int
+  $currentPage: Int
 ) {
-products(
-  search: $search
-  filter: $filter
-  sort: $sort
-  pageSize: $pageSize
-  currentPage: $currentPage
-) {
-  items {
-    ...ProductInterfaceField
-  }
-}
-}
-fragment ProductInterfaceField on ProductInterface {
-id
-name
-url_key
-image {
-  url
-}
-price_range {
-  minimum_price {
-    final_price {
-      value
-      currency
+  products(
+    search: $search
+    filter: $filter
+    sort: $sort
+    pageSize: $pageSize
+    currentPage: $currentPage
+  ) {
+    items {
+      ...ProductInterfaceField
     }
   }
 }
+fragment ProductInterfaceField on ProductInterface {
+  id
+  name
+  url_key
+  image {
+    url
+  }
+  price_range {
+    minimum_price {
+      final_price {
+        value
+        currency
+      }
+    }
+  }
 }
 `;
 
-const variablesCategory1 = {
+const variablesAppleCategories = [
+  {
+    filter: { category_uid: { eq: "NzA=" } },
+    pageSize: 200,
+    currentPage: 1,
+  },
+  {
+    filter: { category_uid: { eq: "NzE=" } },
+    pageSize: 200,
+    currentPage: 1,
+  },
+  {
+    filter: { category_uid: { eq: "NzM=" } },
+    pageSize: 200,
+    currentPage: 1,
+  },
+];
+
+const variablesNewCategory = {
   filter: {
     category_uid: {
-      eq: "NzA=", // First category
+      eq: "MTE5",
     },
   },
   pageSize: 200,
   currentPage: 1,
 };
 
-const variablesCategory2 = {
-  filter: {
-    category_uid: {
-      eq: "NzE=", // Second category
-    },
-  },
-  pageSize: 200,
-  currentPage: 1,
-};
-const variablesCategory3 = {
-  filter: {
-    category_uid: {
-      eq: "NzM=", // Second category
-    },
-  },
-  pageSize: 200,
-  currentPage: 1,
-};
-async function fetchProductListDataLaptop() {
-  const response1 = await fetch("https://beta-api.bachlongmobile.com/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables: variablesCategory1,
-    }),
-  });
+async function fetchProductListData() {
+  const responses = await Promise.all(
+    variablesAppleCategories.map((variables) =>
+      fetch("https://beta-api.bachlongmobile.com/graphql", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query, variables }),
+      })
+    )
+  );
 
-  const response2 = await fetch("https://beta-api.bachlongmobile.com/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables: variablesCategory2,
-    }),
-  });
-  const response3 = await fetch("https://beta-api.bachlongmobile.com/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables: variablesCategory3,
-    }),
-  });
-  const data1 = await response1.json();
-  const data2 = await response2.json();
-  const data3 = await response3.json();
-  console.log("data 1", data1);
-  // Merge the two sets of data
-  const productsCategory1 = data1.data.products.items as Product[];
-  const productsCategory2 = data2.data.products.items as Product[];
-  const productsCategory3 = data3.data.products.items as Product[];
-  return [...productsCategory1, ...productsCategory2, ...productsCategory3];
+  const responseNewCategory = await fetch(
+    "https://beta-api.bachlongmobile.com/graphql",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query,
+        variables: variablesNewCategory,
+      }),
+    }
+  );
+
+  const dataApple = await Promise.all(responses.map((res) => res.json()));
+  const dataNewCategory = await responseNewCategory.json();
+
+  const appleProducts = dataApple.flatMap(
+    (data) => data.data.products.items
+  ) as Product[];
+  const newCategoryProducts = dataNewCategory.data.products.items as Product[];
+
+  return {
+    apple: appleProducts,
+    newCategory: newCategoryProducts,
+  };
 }
 
 const Section5: React.FC = () => {
-  const { data, error, isLoading } = useQuery<Product[]>({
-    queryKey: ["productListDataLaptop"],
-    queryFn: fetchProductListDataLaptop,
+  const { data, error, isLoading } = useQuery<{
+    apple: Product[];
+    newCategory: Product[];
+  }>({
+    queryKey: ["productListData"],
+    queryFn: fetchProductListData,
     staleTime: 300000,
   });
 
-  const [activeTab, setActiveTab] = useState<string>("");
+  const [activeTab, setActiveTab] = useState<string>("Apple");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-  const [visibleCount, setVisibleCount] = useState(10);
+
   useEffect(() => {
-    if (activeTab === "All") {
-      setFilteredData(data || []);
+    if (activeTab === "Apple") {
+      setFilteredData(data?.apple || []);
     } else {
-      const filtered = data?.filter((product) =>
-        product.name.toLowerCase().includes(activeTab.toLowerCase())
-      );
-      setFilteredData(filtered || []);
+      setFilteredData(data?.newCategory || []);
     }
     setVisibleProducts(10);
     setIsExpanded(false);
   }, [activeTab, data]);
 
   const toggleProducts = () => {
-    if (isExpanded) {
-      setVisibleProducts(10);
-      setIsExpanded(false);
-    } else {
-      setVisibleProducts(filteredData.length);
-      setIsExpanded(true);
-    }
+    setVisibleProducts(isExpanded ? 10 : filteredData.length);
+    setIsExpanded(!isExpanded);
   };
 
-  const loadMore = () => {
-    setVisibleProducts((prevVisible) => prevVisible + 5);
-  };
-
-  // if (isLoading) {
-  // 	return (
-  // 		<div className='loading container-spin'>
-  // 			<Spin />
-  // 		</div>
-  // 	);
-  // }
+  if (isLoading) {
+    return (
+      <div
+        className="loading container-spin flex h-28 items-center justify-center"
+        style={{ height: "300px" }}
+      >
+        <Spin />
+      </div>
+    );
+  }
 
   if (error) {
     return <div>Error loading data</div>;
   }
-
   const loadMorePosts = () => {
-    setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
-    setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
+    setVisibleProducts(
+      (prevVisible) =>
+        prevVisible + (filteredData && filteredData.length > 10 ? 10 : 5)
+    );
   };
   return (
     <div className="OldForNew-Section-laptop" id="item-laptop">
       <div className="container">
         <div className="OldForNew-Section-Container-laptop">
           <Image src={imagesPK} alt="PK" className="images-pk" />
-          {/* <div style={{ paddingBottom: "10px" }}>
-            <h2 className="title-table-combo-pk">Đồ Chơi Công Nghệ</h2>
-          </div>{" "} */}
-          {isLoading && (
-            <div
-              className="loading container-spin flex h-28 items-center justify-center"
-              style={{
-                height: "300px",
-              }}
+          <div className="tab-button-table-combo-pk-dochoi">
+            <button
+              className={`btn-tab-buyPhone ${
+                activeTab === "Apple" ? "btn-tab-buyPhone_active" : ""
+              }`}
+              onClick={() => setActiveTab("Apple")}
             >
-              <Spin />
-            </div>
-          )}
+              Apple
+            </button>
+            <button
+              className={`btn-tab-buyPhone ${
+                activeTab === "NewCategory" ? "btn-tab-buyPhone_active" : ""
+              }`}
+              onClick={() => setActiveTab("NewCategory")}
+            >
+              Khác
+            </button>
+          </div>
           {filteredData.length === 0 && !isLoading ? (
             <div className="no-products-message">
               <Image
@@ -223,16 +219,10 @@ const Section5: React.FC = () => {
             <>
               <div className="OldForNew-Section5-ItemSlider">
                 {filteredData.slice(0, visibleProducts).map((product) => (
-                  <CardProduct
-                    key={product?.id}
-                    name={product?.name}
-                    url_key={product?.url_key}
-                    image={product?.image}
-                    price_range={product?.price_range}
-                  />
+                  <CardProduct key={product?.id} {...product} />
                 ))}
               </div>
-              {visibleCount < (data?.length || 0) && ( // Check if more products are available
+              {visibleProducts < (filteredData?.length || 0) && ( // Check if more products are available
                 <div className="load-more-container">
                   <button onClick={loadMorePosts}>Xem thêm</button>
                 </div>

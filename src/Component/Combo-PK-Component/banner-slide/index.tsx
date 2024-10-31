@@ -403,7 +403,7 @@ const BannerSlide = () => {
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
-              <p className="item-click-txt">Bao da, ốp lưng</p>
+              <p className="item-click-txt">Bao da/ốp lưng</p>
             </li>
             <li className="item-click" onClick={handleClickStrength}>
               <Image
@@ -411,7 +411,7 @@ const BannerSlide = () => {
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
-              <p className="item-click-txt">Cường lực</p>
+              <p className="item-click-txt">Dán màn hình</p>
             </li>
             <li className="item-click" onClick={handleClickBackupCharger}>
               <Image
@@ -419,7 +419,7 @@ const BannerSlide = () => {
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
-              <p className="item-click-txt">Sạc dự phòng</p>
+              <p className="item-click-txt">Pin dự phòng</p>
             </li>{" "}
             <li className="item-click" onClick={handleClickChargingCable}>
               <Image
@@ -427,7 +427,7 @@ const BannerSlide = () => {
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
-              <p className="item-click-txt">Cáp sạc</p>
+              <p className="item-click-txt">Cốc, cáp sạc</p>
             </li>{" "}
             {/* <li className="item-click" onClick={handleClickEarphone}>
               <Image
@@ -459,7 +459,7 @@ const BannerSlide = () => {
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
-              <p className="item-click-txt">Loa, Tai nghe</p>
+              <p className="item-click-txt">Tai nghe, loa</p>
             </li>
             <li className="item-click" onClick={handleClickLaptop}>
               <Image
