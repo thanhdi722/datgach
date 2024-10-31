@@ -7,7 +7,8 @@ import { Spin } from 'antd';
 import ProductBanner from '../../../../public/gratitude/product-banner-05.png';
 import FrameProduct from '../../../../public/gratitude/frame-product.png';
 import BestSeller from '../../../../public/gratitude/best-seller.png';
-import HostPrice from '../../../../public/gratitude/hot-price.png';
+import HostPrice from '../../../../public/gratitude/fire.gif';
+import HostPrice2 from '../../../../public/gratitude/hot-price.png';
 import './product-airpods.scss';
 
 export interface Product {
@@ -260,6 +261,9 @@ const ProductAirPods: React.FC = () => {
 								>
 									<div className='upgrade-hot-item'>
 										<div className='upgrade-hot-item-wrap'>
+											<div className='upgrade-hot-item-header'>
+												<span className='percent'>Trả góp 0%</span>
+											</div>
 											<div className='upgrade-hot-item-img'>
 												<div className='img-content'>
 													<Image
@@ -282,14 +286,20 @@ const ProductAirPods: React.FC = () => {
 											</div>
 										</div>
 										<div className='upgrade-hot-item-content'>
-											<div className='upgrade-hot-item-header'>
-												<span></span>
-												<span className='percent'>Trả góp 0%</span>
+											<div>
+												<div className='upgrade-hot-best-seller'>
+													<Image src={BestSeller} width={300} height={90} alt='best-seller' />
+													<Image
+														src={HostPrice}
+														width={90}
+														height={20}
+														quality={100}
+														alt='hot-price'
+														className='hot-price2'
+													/>
+												</div>
+												<h4 className='upgrade-hot-item-content-tt'>{product.name}</h4>
 											</div>
-											<div className='upgrade-hot-best-seller'>
-												<Image src={BestSeller} width={300} height={90} alt='best-seller' />
-											</div>
-											<h4 className='upgrade-hot-item-content-tt'>{product.name}</h4>
 											<div className='upgrade-hot-item-content-body'>
 												<div className='upgrade-hot-item-content-body-price'>
 													{product.price_range.minimum_price.final_price.value.toLocaleString(
@@ -325,16 +335,19 @@ const ProductAirPods: React.FC = () => {
 											</div>
 											<div className='upgrade-wrap-footer'>
 												<div className='upgrade-hot-footer'>
-													Giá thu bằng giá bán - Trợ giá lên đến 100%
+													<span>Giá thu bằng giá bán</span>
+													<span>Trợ giá lên đến 100%</span>
 												</div>
-												<Image
-													src={HostPrice}
-													width={90}
-													height={20}
-													quality={100}
-													alt='hot-price'
-													className='hot-price'
-												/>
+												<div className='upgrade-fire'>
+													<Image
+														src={HostPrice2}
+														width={200}
+														height={100}
+														quality={100}
+														alt='hot-price'
+														className='hot-price'
+													/>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -411,6 +424,11 @@ const ProductAirPods: React.FC = () => {
 															</div>
 														)}
 													</div>
+												</div>
+											</div>
+											<div className='upgrade-wrap-footer'>
+												<div className='upgrade-hot-footer'>
+													Giá thu bằng giá bán - Trợ giá lên đến 100%
 												</div>
 											</div>
 										</div>

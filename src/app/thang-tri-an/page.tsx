@@ -167,7 +167,7 @@ const Apple = () => {
 								slidesPerView: 5,
 							},
 							850: {
-								slidesPerView: 5,
+								slidesPerView: 6,
 							},
 						}}
 						slidesPerView='auto'
