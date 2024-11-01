@@ -243,6 +243,9 @@
 			&-wrap {
 				width: 35%;
 				position: relative;
+				display: flex !important;
+				flex-direction: column !important;
+				justify-content: space-between !important;
 
 				.upgrade-fire {
 					position: absolute;
