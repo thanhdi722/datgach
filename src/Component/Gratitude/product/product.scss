@@ -184,6 +184,7 @@
 			color: #ef373e;
 			position: relative !important;
 			z-index: 50 !important;
+			width: fit-content !important;
 		}
 	}
 
@@ -273,6 +274,18 @@
 				img {
 					height: 2.3rem !important;
 					width: 6.7rem !important;
+
+					@media screen and (max-width: 1200px) {
+						height: 2.3rem !important;
+						width: 5.7rem !important;
+					}
+				}
+				@media screen and (max-width: 1200px) {
+					gap: 0.4rem !important;
+				}
+
+				.percent {
+					width: fit-content !important;
 				}
 			}
 
