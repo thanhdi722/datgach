@@ -14,7 +14,7 @@ function page() {
     <div>
       <Banner />
       {/* <Header /> */}
-      <Body />
+      {/* <Body /> */}
       <BannerSlider />
       {/* <ProductIPhone /> */}
       <ProductIphoneNew />
