@@ -11,7 +11,7 @@ import ProductAndroidNew from "../../Component/ComponentXaKho/ProductAndroidNew/
 import BannerSlider from "../../Component/ComponentXaKho/banner-slide/index";
 function page() {
   return (
-    <div>
+    <div style={{ backgroundColor: "#d5b487" }}>
       <Banner />
       {/* <Header /> */}
       {/* <Body /> */}
