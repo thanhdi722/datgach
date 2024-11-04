@@ -26,7 +26,42 @@ export interface Product {
     };
   };
 }
+interface BannerItem {
+  banner_id: number;
+  caption: string;
+  link: string;
+  media: string;
+  media_alt: string;
+  name: string;
+  slider_id: number;
+}
 
+interface Banner {
+  __typename: string;
+  items: BannerItem[];
+  page_info: {
+    current_page: number;
+    page_size: number;
+    total_pages: number;
+  };
+}
+
+interface SliderItem {
+  title: string;
+  identifier: string;
+  Banner: Banner;
+}
+
+interface SliderData {
+  Slider: {
+    items: SliderItem[];
+    total_count: number;
+  };
+}
+
+interface ApiResponse {
+  data: SliderData;
+}
 const query = `
 query getProducts(
 $search: String
@@ -97,7 +132,7 @@ const SectionBaoDa: React.FC = () => {
     queryFn: fetchProductListDataBaoDa,
     staleTime: 300000,
   });
-
+  const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
   const [activeTab, setActiveTab] = useState<string>("Apple"); // Đặt giá trị mặc định là "All"
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [filteredDataSub, setFilteredDataSub] = useState<Product[]>([]);
@@ -159,11 +194,86 @@ const SectionBaoDa: React.FC = () => {
     setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
     setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
   };
+
+  const fetchBannerHeader = async () => {
+    try {
+      const response = await fetch(
+        "https://beta-api.bachlongmobile.com/graphql",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: `
+                  query getSlider($filter: SliderFilterInput) {
+                    Slider(filter: $filter) {
+                      items {
+                        title
+                        identifier
+                        Banner {
+                          __typename
+                          items {
+                            banner_id
+                            caption
+                            link
+                            media
+                            media_alt
+                            name
+                            slider_id
+                          }
+                          page_info {
+                            current_page
+                            page_size
+                            total_pages
+                          }
+                        }
+                      }
+                      total_count
+                    }
+                  }
+                `,
+            variables: {
+              filter: {
+                identifier: {
+                  eq: "banner-page-combo-phu-kien",
+                },
+              },
+            },
+          }),
+        }
+      );
+
+      const result = await response.json();
+      setDataTitle(result);
+    } catch (err) {}
+  };
+  useEffect(() => {
+    fetchBannerHeader();
+  }, []);
   return (
     <div className="OldForNew-Section-leather-case" id="item-leather-case">
       <div className="container">
         <div className="OldForNew-Section-Container-leather-case">
-          <Image src={imagesPK} alt="PK" className="images-pk" />
+          {dataTitle ? (
+            dataTitle?.data?.Slider?.items[0]?.Banner?.items
+              .filter((item) =>
+                item.name.includes("title bao da trang phụ kiện")
+              )
+              .map((item, index) => (
+                <div key={index}>
+                  <img
+                    src={item.media || ""}
+                    alt={`privilege-${index + 1}`}
+                    style={{ padding: "0px 10px 20px 10px" }}
+                  />
+                </div>
+              ))
+          ) : (
+            <Spin>
+              <div style={{ width: 200, height: 200 }} />
+            </Spin>
+          )}
           <div className="header-table-combo-pk">
             {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện Bao Da, Ốp Lưng</h2>

@@ -25,7 +25,42 @@ export interface Product {
     };
   };
 }
+interface BannerItem {
+  banner_id: number;
+  caption: string;
+  link: string;
+  media: string;
+  media_alt: string;
+  name: string;
+  slider_id: number;
+}
 
+interface Banner {
+  __typename: string;
+  items: BannerItem[];
+  page_info: {
+    current_page: number;
+    page_size: number;
+    total_pages: number;
+  };
+}
+
+interface SliderItem {
+  title: string;
+  identifier: string;
+  Banner: Banner;
+}
+
+interface SliderData {
+  Slider: {
+    items: SliderItem[];
+    total_count: number;
+  };
+}
+
+interface ApiResponse {
+  data: SliderData;
+}
 const query = `
 query getProducts(
   $search: String
@@ -147,7 +182,63 @@ const Section5: React.FC = () => {
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
+  const fetchBannerHeader = async () => {
+    try {
+      const response = await fetch(
+        "https://beta-api.bachlongmobile.com/graphql",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: `
+                  query getSlider($filter: SliderFilterInput) {
+                    Slider(filter: $filter) {
+                      items {
+                        title
+                        identifier
+                        Banner {
+                          __typename
+                          items {
+                            banner_id
+                            caption
+                            link
+                            media
+                            media_alt
+                            name
+                            slider_id
+                          }
+                          page_info {
+                            current_page
+                            page_size
+                            total_pages
+                          }
+                        }
+                      }
+                      total_count
+                    }
+                  }
+                `,
+            variables: {
+              filter: {
+                identifier: {
+                  eq: "banner-page-combo-phu-kien",
+                },
+              },
+            },
+          }),
+        }
+      );
 
+      const result = await response.json();
+      setDataTitle(result);
+    } catch (err) {}
+  };
+  useEffect(() => {
+    fetchBannerHeader();
+  }, []);
   useEffect(() => {
     if (activeTab === "Apple") {
       setFilteredData(data?.apple || []);
@@ -183,11 +274,30 @@ const Section5: React.FC = () => {
         prevVisible + (filteredData && filteredData.length > 10 ? 10 : 5)
     );
   };
+
   return (
     <div className="OldForNew-Section-laptop" id="item-laptop">
       <div className="container">
         <div className="OldForNew-Section-Container-laptop">
-          <Image src={imagesPK} alt="PK" className="images-pk" />
+          {dataTitle ? (
+            dataTitle?.data?.Slider?.items[0]?.Banner?.items
+              .filter((item) =>
+                item.name.includes("title đồ chơi công nghệ trang phụ kiện")
+              )
+              .map((item, index) => (
+                <div key={index}>
+                  <img
+                    src={item.media || ""}
+                    alt={`privilege-${index + 1}`}
+                    style={{ padding: "0px 10px 20px 10px" }}
+                  />
+                </div>
+              ))
+          ) : (
+            <Spin>
+              <div style={{ width: 200, height: 200 }} />
+            </Spin>
+          )}
           <div className="tab-button-table-combo-pk-dochoi">
             <button
               className={`btn-tab-buyPhone ${
