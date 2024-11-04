@@ -9,6 +9,7 @@ import { default as WomenDay } from "../app/women-day/page";
 import { default as HalloWeen } from "../app/flash-sale-halloween/page";
 import { default as XaKho } from "../app/xa-kho/page";
 import { default as BNews } from "../app/news/page";
+import { default as FlashSaleTuan } from "../app/flash-sale-tuan/page";
 export const routingBachLongMobile = [
   {
     path: "thang-yeu-thuong",
@@ -53,5 +54,9 @@ export const routingBachLongMobile = [
   {
     path: "xa-kho",
     component: <XaKho />,
+  },
+  {
+    path: "flash-sale-tuan",
+    component: <FlashSaleTuan />,
   },
 ];
