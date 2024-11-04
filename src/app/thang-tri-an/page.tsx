@@ -137,59 +137,62 @@ const Apple = () => {
 			<div id='item-rules'>
 				<Rules />
 			</div>
-
-			<div className={`sticky-category ${isStickyVisible ? 'visible' : 'hidden'}`}>
-				<div className='category-desktop'>
-					{categories.map((category, index) => (
-						<div
-							key={index}
-							className={`category-item ${activeCategory === category.id ? 'active' : 'default'}`}
-							onClick={() => handleClick(category.id)}
-						>
-							<Image src={category.src} width={400} height={500} alt={category.alt} />
-						</div>
-					))}
-				</div>
-				<div className='category-mobile'>
-					<Swiper
-						slideToClickedSlide={true}
-						spaceBetween={10}
-						watchSlidesProgress={true}
-						onSwiper={(swiperInstance) => {
-							swiperRef.current = swiperInstance; // Store swiper instance in ref
-						}}
-						onSlideChange={(swiperInstance) => {
-							setActiveCategory(categories[swiperInstance.activeIndex].id);
-							swiperInstance.slideTo(swiperInstance.activeIndex, 300, true); // Center the active slide when scrolling
-						}}
-						breakpoints={{
-							300: {
-								slidesPerView: 5,
-							},
-							850: {
-								slidesPerView: 6,
-							},
-						}}
-						slidesPerView='auto'
-						initialSlide={0}
-					>
+			<div className='container'>
+				<div className={`sticky-category ${isStickyVisible ? 'visible' : 'hidden'}`}>
+					<div className='category-desktop'>
 						{categories.map((category, index) => (
-							<SwiperSlide
+							<div
 								key={index}
-								onClick={() => {
-									setActiveCategory(category.id);
-									swiperRef.current?.slideTo(index, 300, true);
-									handleClick(category.id);
-								}}
+								className={`category-item ${activeCategory === category.id ? 'active' : 'default'}`}
+								onClick={() => handleClick(category.id)}
 							>
-								<div
-									className={`swiper-slide ${activeCategory === category.id ? 'active' : 'default'}`}
-								>
-									<Image src={category.src} width={400} height={500} alt={category.alt} />
-								</div>
-							</SwiperSlide>
+								<Image src={category.src} width={400} height={500} alt={category.alt} />
+							</div>
 						))}
-					</Swiper>
+					</div>
+					<div className='category-mobile'>
+						<Swiper
+							slideToClickedSlide={true}
+							spaceBetween={10}
+							watchSlidesProgress={true}
+							onSwiper={(swiperInstance) => {
+								swiperRef.current = swiperInstance; // Store swiper instance in ref
+							}}
+							onSlideChange={(swiperInstance) => {
+								setActiveCategory(categories[swiperInstance.activeIndex].id);
+								swiperInstance.slideTo(swiperInstance.activeIndex, 300, true); // Center the active slide when scrolling
+							}}
+							breakpoints={{
+								300: {
+									slidesPerView: 5,
+								},
+								850: {
+									slidesPerView: 6,
+								},
+							}}
+							slidesPerView='auto'
+							initialSlide={0}
+						>
+							{categories.map((category, index) => (
+								<SwiperSlide
+									key={index}
+									onClick={() => {
+										setActiveCategory(category.id);
+										swiperRef.current?.slideTo(index, 300, true);
+										handleClick(category.id);
+									}}
+								>
+									<div
+										className={`swiper-slide ${
+											activeCategory === category.id ? 'active' : 'default'
+										}`}
+									>
+										<Image src={category.src} width={400} height={500} alt={category.alt} />
+									</div>
+								</SwiperSlide>
+							))}
+						</Swiper>
+					</div>
 				</div>
 			</div>
 		</div>
