@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { FormProps, Carousel } from "antd";
+import { FormProps, Carousel, Spin } from "antd";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -32,10 +32,42 @@ type FieldType = {
   selectedOptions?: { [key: string]: string };
 };
 
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
+interface BannerItem {
+  banner_id: number;
+  caption: string;
+  link: string;
+  media: string;
+  media_alt: string;
+  name: string;
+  slider_id: number;
+}
 
+interface Banner {
+  __typename: string;
+  items: BannerItem[];
+  page_info: {
+    current_page: number;
+    page_size: number;
+    total_pages: number;
+  };
+}
+
+interface SliderItem {
+  title: string;
+  identifier: string;
+  Banner: Banner;
+}
+
+interface SliderData {
+  Slider: {
+    items: SliderItem[];
+    total_count: number;
+  };
+}
+
+interface ApiResponse {
+  data: SliderData;
+}
 const BannerSlide = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIsOpenTest, setModalIsOpenTest] = useState(false);
@@ -152,6 +184,71 @@ const BannerSlide = () => {
     setSelectedCombo(combo);
     setModalIsOpenTest(true);
   };
+
+  const [data, setData] = useState<ApiResponse | null>(null);
+
+  const fetchBannerHeader = async () => {
+    try {
+      const response = await fetch(
+        "https://beta-api.bachlongmobile.com/graphql",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: `
+                query getSlider($filter: SliderFilterInput) {
+                  Slider(filter: $filter) {
+                    items {
+                      title
+                      identifier
+                      Banner {
+                        __typename
+                        items {
+                          banner_id
+                          caption
+                          link
+                          media
+                          media_alt
+                          name
+                          slider_id
+                        }
+                        page_info {
+                          current_page
+                          page_size
+                          total_pages
+                        }
+                      }
+                    }
+                    total_count
+                  }
+                }
+              `,
+            variables: {
+              filter: {
+                identifier: {
+                  eq: "banner-page-combo-phu-kien",
+                },
+              },
+            },
+          }),
+        }
+      );
+
+      const result = await response.json();
+      setData(result);
+    } catch (err) {
+      console.error("Error fetching data", err);
+    }
+  };
+  useEffect(() => {
+    fetchBannerHeader();
+  }, []);
+  console.log("dataa check banner", data);
+  const sliderItems = data?.data?.Slider?.items[0]?.Banner?.items.filter(
+    (item) => item.name.includes("slider combo phụ kiện")
+  );
   return (
     <div className="banner-slide">
       <div className="container">
@@ -165,230 +262,63 @@ const BannerSlide = () => {
             padding: "20px 0px",
           }}
         >
-          <div className="OldForNew-Section1-imageSliderBanner">
-            <Carousel autoplay autoplaySpeed={2000} dots={false} arrows={true}>
-              {/* <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/"> */}
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images1}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
+          {loading ? (
+            <Spin>
+              <div style={{ width: 1820, height: 200 }} />
+            </Spin>
+          ) : sliderItems?.length ? (
+            <>
+              <div className="OldForNew-Section1-imageSliderBanner">
+                <Carousel
+                  autoplay
+                  autoplaySpeed={2000}
+                  dots={false}
+                  arrows={true}
+                >
+                  {sliderItems.map((item) => (
+                    <Link key={item.banner_id} href={item.link}>
+                      <div className="OldForNew-Section1-image">
+                        <Image
+                          src={item.media}
+                          alt={item.media_alt || ""}
+                          width={1200}
+                          height={600}
+                          className="OldForNew-Section1-imageItem"
+                        />
+                      </div>
+                    </Link>
+                  ))}
+                </Carousel>
               </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images2}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
+              <div className="OldForNew-Section1-imageSliderBanner">
+                <Carousel
+                  autoplay
+                  autoplaySpeed={2000}
+                  dots={false}
+                  arrows={true}
+                >
+                  {sliderItems
+                    .slice()
+                    .reverse()
+                    .map((item) => (
+                      <Link key={item.banner_id} href={item.link}>
+                        <div className="OldForNew-Section1-image">
+                          <Image
+                            src={item.media}
+                            alt={item.media_alt || ""}
+                            width={1200}
+                            height={600}
+                            className="OldForNew-Section1-imageItem"
+                          />
+                        </div>
+                      </Link>
+                    ))}
+                </Carousel>
               </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images3}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div
-                className="OldForNew-Section1-image"
-                onClick={handleClickLeatherCase}
-              >
-                <Image
-                  src={images4}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div
-                className="OldForNew-Section1-image"
-                onClick={handleClickLaptop}
-              >
-                <Image
-                  src={images5}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div
-                className="OldForNew-Section1-image"
-                onClick={handleClickChargingCable}
-              >
-                <Image
-                  src={images6}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div
-                className="OldForNew-Section1-image"
-                onClick={handleClickStrength}
-              >
-                <Image
-                  src={images7}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div
-                className="OldForNew-Section1-image"
-                onClick={handleClickBackupCharger}
-              >
-                <Image
-                  src={images8}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div
-                className="OldForNew-Section1-image"
-                onClick={handleClickLoudspeaker}
-              >
-                <Image
-                  src={images9}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              {/* </Link> */}
-
-              {/* <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/">
-                <div className="OldForNew-Section1-image">
-                  <Image
-                    src={bannerSlider2}
-                    alt=""
-                    className="OldForNew-Section1-imageItem"
-                  />
-                </div>
-              </Link>
-              <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/">
-                <div className="OldForNew-Section1-image">
-                  <Image
-                    src={bannerSlider}
-                    alt=""
-                    className="OldForNew-Section1-imageItem"
-                  />
-                </div>
-              </Link> */}
-            </Carousel>
-          </div>
-          <div className="OldForNew-Section1-imageSliderBanner">
-            <Carousel autoplay autoplaySpeed={2000} dots={false} arrows={true}>
-              {/* <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/">
-                <div className="OldForNew-Section1-image">
-                  <Image
-                    src={bannerSlider2}
-                    alt=""
-                    className="OldForNew-Section1-imageItem"
-                  />
-                </div>
-              </Link>
-              <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/">
-                <div className="OldForNew-Section1-image">
-                  <Image
-                    src={bannerSlider}
-                    alt=""
-                    className="OldForNew-Section1-imageItem"
-                  />
-                </div>
-              </Link>
-              <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/">
-                <div className="OldForNew-Section1-image">
-                  <Image
-                    src={bannerSlider2}
-                    alt=""
-                    className="OldForNew-Section1-imageItem"
-                  />
-                </div>
-              </Link> */}
-              <div
-                className="OldForNew-Section1-image"
-                onClick={handleClickLoudspeaker}
-              >
-                <Image
-                  src={images9}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div
-                className="OldForNew-Section1-image"
-                onClick={handleClickBackupCharger}
-              >
-                <Image
-                  src={images8}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div
-                className="OldForNew-Section1-image"
-                onClick={handleClickStrength}
-              >
-                <Image
-                  src={images7}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div
-                className="OldForNew-Section1-image"
-                onClick={handleClickChargingCable}
-              >
-                <Image
-                  src={images6}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div
-                className="OldForNew-Section1-image"
-                onClick={handleClickLaptop}
-              >
-                <Image
-                  src={images5}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div
-                className="OldForNew-Section1-image"
-                onClick={handleClickLeatherCase}
-              >
-                <Image
-                  src={images4}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <Link
-                className="OldForNew-Section1-image"
-                href="https://bachlongmobile.com/am-thanh/"
-              >
-                <Image
-                  src={images3}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </Link>
-              <Link
-                className="OldForNew-Section1-image"
-                href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/chu-t/chu-t-choi-game/balo-tui-ch-ng-s-c/"
-              >
-                <Image
-                  src={images2}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </Link>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images1}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-            </Carousel>
-          </div>
+            </>
+          ) : (
+            <p></p>
+          )}
         </div>
 
         <div>

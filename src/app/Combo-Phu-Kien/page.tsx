@@ -22,7 +22,7 @@ import ComboIPhone15 from "../../Component/Combo-PK-Component/ComboIPhone15/Comb
 export default function HomeCombo() {
   return (
     <div>
-      <div className="bg-page">
+      <div className="bg-page" style={{ backgroundColor: "#fefce3" }}>
         <Banner />
         <BannerSlide />
         <ComboIPhone16 />
