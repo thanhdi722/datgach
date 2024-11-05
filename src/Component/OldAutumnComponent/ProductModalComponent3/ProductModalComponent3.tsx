@@ -77,6 +77,7 @@ const ProductModal3: React.FC<ProductModalProps> = ({
           selectedPrice,
         productUse: ProductUse?.item.name || "",
         productName: selectedProduct.name || "",
+        tinhtrangmay: tinhtrangmay,
         priceThu: selectedPrice,
       }));
     }
@@ -108,7 +109,7 @@ const ProductModal3: React.FC<ProductModalProps> = ({
       setIsModal4Open(true);
     }
   };
-
+  console.log("tinh trang máy:", tinhtrangmay);
   return (
     <>
       <Modal
