@@ -234,14 +234,14 @@ const LaptopList: React.FC = () => {
                     >
                       <div className="upgrade-item">
                         <div className="upgrade-item-header">
-                          <Image
+                          {/* <Image
                             src={DecorProduct}
                             width={80}
                             height={80}
                             quality={100}
                             alt="decor-product"
                             className="decor-product"
-                          />
+                          /> */}
                           {/* <Image
                             src={DecorProduct2}
                             width={80}

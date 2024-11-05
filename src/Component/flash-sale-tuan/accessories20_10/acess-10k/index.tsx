@@ -45,7 +45,7 @@ const formatPriceWithCondition = (salePrice: number) => {
 };
 
 const Access10k: React.FC = () => {
-  const targetDate = new Date("2024-10-25");
+  const targetDate = new Date("2024-11-08");
   const currentDate = new Date();
   const { data, isLoading } = useProductSaleData();
   const filteredItem = data?.find(
@@ -72,14 +72,14 @@ const Access10k: React.FC = () => {
             >
               <div className="upgrade-item">
                 <div className="upgrade-item-header">
-                  <Image
+                  {/* <Image
                     src={DecorProduct}
                     width={80}
                     height={80}
                     quality={100}
                     alt="decor-product"
                     className="decor-product"
-                  />
+                  /> */}
                   {/* <Image
                     src={DecorProduct2}
                     width={80}

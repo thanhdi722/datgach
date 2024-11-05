@@ -23,33 +23,33 @@ const ProductList: React.FC = () => {
   const tabs = [
     {
       index: 0,
-      name: <span>NGÀY 03/11</span>,
+      name: <span>NGÀY 08/11</span>,
       component: <Access10k />,
-      date: new Date("2024-11-03"),
+      date: new Date("2024-11-08"),
     },
     {
       index: 1,
-      name: <span>NGÀY 04/11</span>,
+      name: <span>NGÀY 09/11</span>,
       component: <Access20k />,
-      date: new Date("2024-11-04"),
+      date: new Date("2024-11-09"),
     },
     {
       index: 2,
-      name: <span>NGÀY 05/11</span>,
+      name: <span>NGÀY 10/11</span>,
       component: <Access110 />,
-      date: new Date("2024-11-05"),
+      date: new Date("2024-11-10"),
     },
     {
       index: 3,
-      name: <span>NGÀY 06/11</span>,
+      name: <span>NGÀY 11/11</span>,
       component: <Access210 />,
-      date: new Date("2024-11-05"),
+      date: new Date("2024-11-11"),
     },
     {
       index: 4,
-      name: <span>NGÀY 07/11</span>,
+      name: <span>NGÀY 12/11</span>,
       component: <Access310 />,
-      date: new Date("2024-11-05"),
+      date: new Date("2024-11-12"),
     },
     // {
     //   index: 5,
