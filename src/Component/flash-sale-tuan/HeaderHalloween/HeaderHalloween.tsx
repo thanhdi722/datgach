@@ -14,7 +14,7 @@ import { Spin } from "antd";
 import Link from "next/link";
 
 function HeaderHalloween() {
-  const [endDate, setEndDate] = useState(new Date("2024-11-30T21:30:00"));
+  const [endDate, setEndDate] = useState(new Date("2024-11-12T21:30:00"));
   const [timeArray, setTimeArray] = useState([
     { date: endDate.toDateString(), days: 0, hours: 0, minutes: 0, seconds: 0 },
   ]);
@@ -140,7 +140,7 @@ function HeaderHalloween() {
   useEffect(() => {
     fetchBannerHeader();
   }, []);
-  console.log("data", data);
+
   return (
     <div className="HeaderHalloweens1">
       <div>
@@ -231,9 +231,17 @@ function HeaderHalloween() {
                   </div>
                 ))}
               </div>
-              <Link href="#item-rules">
-                <button className="Halloween-button">Xem thể lệ</button>
-              </Link>
+
+              <button
+                className="Halloween-button"
+                onClick={() =>
+                  document
+                    .getElementById("item-rules")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+              >
+                Xem thể lệ
+              </button>
             </div>
           </div>
         )}
@@ -254,21 +262,33 @@ function HeaderHalloween() {
                 style={{ cursor: "pointer" }}
               >
                 {item.link ? (
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
+                  <Link
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Image
                       src={item.media || ""}
                       alt={`privilege-${index + 1}`} // Adjust the alt text accordingly
                       width={1200}
                       height={1000}
                     />
-                  </a>
+                  </Link>
                 ) : (
-                  <Image
-                    src={item.media || ""}
-                    alt={`privilege-${index + 1}`} // Adjust the alt text accordingly
-                    width={1200}
-                    height={1000}
-                  />
+                  <div
+                    onClick={() =>
+                      document
+                        .getElementById("item-rules")
+                        ?.scrollIntoView({ behavior: "smooth" })
+                    }
+                  >
+                    <Image
+                      src={item.media || ""}
+                      alt={`privilege-${index + 1}`} // Adjust the alt text accordingly
+                      width={1200}
+                      height={1000}
+                    />
+                  </div>
                 )}
               </div>
             ))}
