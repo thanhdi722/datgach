@@ -17,6 +17,24 @@ const Promotion = ({ onScrollToRules }: PromotionProps) => {
 	return (
 		<div className='promotion'>
 			<div className='container'>
+				<div className='promotion-video'>
+					<iframe
+						src='https://www.youtube.com/embed/CePxugBFJUo?si=7OH5AdI4Nxl2RTcY'
+						title='YouTube video player'
+						frameBorder='0'
+						allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+						referrerPolicy='strict-origin-when-cross-origin'
+						allowFullScreen
+					></iframe>
+					<iframe
+						src='https://www.youtube.com/embed/mwpk61IZVLM?si=xKRewHx3x9xuWQdD'
+						title='YouTube video player'
+						frameBorder='0'
+						allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+						referrerPolicy='strict-origin-when-cross-origin'
+						allowFullScreen
+					></iframe>
+				</div>
 				<div className='promotion-header'>6 đặc quyền mua hàng tại Bạch Long Mobile</div>
 				<div className='promotion-list-privilege'>
 					<div onClick={onScrollToRules} style={{ cursor: 'pointer' }}>
