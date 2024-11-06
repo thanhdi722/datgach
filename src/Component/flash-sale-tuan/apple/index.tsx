@@ -27,6 +27,105 @@ export interface Product {
     };
   };
 }
+interface DailySalesData {
+  data: {
+    DailySales: {
+      items: DailySale[];
+      page_info: PageInfo;
+      total_count: number;
+    };
+  };
+}
+
+interface DailySale {
+  end_date: string;
+  start_date: string;
+  color_code: string;
+  meta_image: string;
+  meta_image_mobile: string;
+  meta_image_product?: string | null;
+  list_item: any[];
+  identifier?: string | null;
+  entity_id: number;
+  items: SaleItem[];
+  priority: string;
+  show_in_home?: boolean | null;
+  status: number;
+  title: string;
+}
+
+interface PageInfo {
+  current_page: number;
+  page_size: number;
+  total_pages: number;
+}
+
+interface SaleItem {
+  rating_summary_daily_sale?: string | null;
+  price_original: string;
+  entity_id: number;
+  product: Products;
+  product_id: number;
+  sale_price: number;
+  sale_qty: number;
+  saleable_qty: number;
+  sold_qty: number;
+  start_date?: string | null;
+  image_banner_sale?: string | null;
+}
+
+interface Products {
+  __typename: string;
+  sku: string;
+  uid: string;
+  name: string;
+  url_key: string;
+  categories: Category[];
+  new_from_date?: string | null;
+  new_to_date?: string | null;
+  rating_summary: number;
+  review_count: number;
+  image: ProductImage;
+  price_range: PriceRange;
+  color?: number | null;
+  country_of_manufacture?: string | null;
+  daily_sale?: any | null;
+}
+
+interface Category {
+  name: string;
+  url_key: string;
+  url_path: string;
+  level: number;
+  uid: string;
+  path: string;
+}
+
+interface ProductImage {
+  url: string;
+}
+
+interface PriceRange {
+  __typename: string;
+  maximum_price: PriceDetails;
+  minimum_price: PriceDetails;
+}
+
+interface PriceDetails {
+  discount: Discount;
+  final_price: Price;
+  regular_price: Price;
+}
+
+interface Discount {
+  amount_off: number;
+  percent_off: number;
+}
+
+interface Price {
+  currency: string;
+  value: number;
+}
 
 const query = `
  query getProducts(
@@ -79,36 +178,67 @@ const variables = {
   currentPage: 1,
 };
 
-async function fetchProductListData() {
-  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
+interface BannerItem {
+  banner_id: number;
+  caption: string;
+  link: string;
+  media: string;
+  media_alt: string;
+  name: string;
+  slider_id: number;
+}
 
-  const data = await response.json();
-  return data.data.products.items as Product[];
+interface Banner {
+  __typename: string;
+  items: BannerItem[];
+  page_info: {
+    current_page: number;
+    page_size: number;
+    total_pages: number;
+  };
+}
+
+interface SliderItem {
+  title: string;
+  identifier: string;
+  Banner: Banner;
+}
+
+interface SliderData {
+  Slider: {
+    items: SliderItem[];
+    total_count: number;
+  };
+}
+
+interface ApiResponse {
+  data: SliderData;
 }
 
 const AppleList: React.FC = () => {
-  const {
-    data: dataApple,
-    error,
-    isLoading,
-  } = useQuery<Product[]>({
-    queryKey: ["productApple"],
-    queryFn: fetchProductListData,
-    staleTime: 300000,
-  });
+  // const {
+  //   data: dataApple,
+  //   error,
+  //   isLoading,
+  // } = useQuery<DailySalesData[]>({
+  //   queryKey: ["productApple"],
+  //   queryFn: fetchProductListData,
+  //   staleTime: 300000,
+  // });
 
   const currentDate = new Date();
   const targetDate = new Date("2024-10-26");
   const { data } = useProductSaleData();
+  const filteredDatassss = data?.filter(
+    (item: DailySale) => item.title === "SP Flash Sale Tuần"
+  );
+  const filteredIphones = filteredDatassss?.[0]?.items.filter(
+    (product: any) => {
+      // Kiểm tra nếu tên sản phẩm chứa từ "iPhone"
+      return product.product.name.toLowerCase().includes("iphone");
+    }
+  );
+
   const productSale = data?.[0]?.items;
 
   const productSaleNames = productSale?.map(
@@ -133,60 +263,63 @@ const AppleList: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("iPhone");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
+  const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
+  const fetchBannerHeader = async () => {
+    try {
+      const response = await fetch(
+        "https://beta-api.bachlongmobile.com/graphql",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: `
+                  query getSlider($filter: SliderFilterInput) {
+                    Slider(filter: $filter) {
+                      items {
+                        title
+                        identifier
+                        Banner {
+                          __typename
+                          items {
+                            banner_id
+                            caption
+                            link
+                            media
+                            media_alt
+                            name
+                            slider_id
+                          }
+                          page_info {
+                            current_page
+                            page_size
+                            total_pages
+                          }
+                        }
+                      }
+                      total_count
+                    }
+                  }
+                `,
+            variables: {
+              filter: {
+                identifier: {
+                  eq: "banner-page-flash-sale-tuan",
+                },
+              },
+            },
+          }),
+        }
+      );
 
+      const result = await response.json();
+      setDataTitle(result);
+    } catch (err) {}
+  };
   useEffect(() => {
-    let filtered = dataApple || [];
-
-    if (activeTab === "Phụ Kiện") {
-      filtered =
-        dataApple?.filter((product) => {
-          const hasAccessoryAttribute = product.attributes.some(
-            (attr: any) => attr.value === "Phụ Kiện"
-          );
-          return product.name.includes("Phụ Kiện") || hasAccessoryAttribute;
-        }) || [];
-    } else {
-      filtered =
-        dataApple?.filter((product) => {
-          const matchesTab =
-            activeTab === "iPhone 16"
-              ? product.name.startsWith("iPhone 16") &&
-                !product.name.includes("Plus") &&
-                !product.name.includes("Pro")
-              : product.name.includes(activeTab);
-
-          return matchesTab;
-        }) || [];
-    }
-
-    setFilteredData(filtered);
-
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setVisibleCount(4);
-      } else {
-        setVisibleCount(10);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [dataApple, activeTab]);
-
-  if (isLoading) {
-    return (
-      <div className="container-spin">
-        <Spin size="large" />
-      </div>
-    );
-  }
-  if (error) {
-    return <div>Error loading data</div>;
-  }
+    fetchBannerHeader();
+  }, []);
 
   const visibleProducts = filteredData.slice(0, visibleCount);
 
@@ -213,117 +346,97 @@ const AppleList: React.FC = () => {
               }}
             >
               <div className="women-decor" style={{ paddingBottom: "20px" }}>
-                <Image
-                  src={DecorWomen}
-                  width={1920}
-                  height={1200}
-                  alt="product-banner-01"
-                  className=""
-                />
+                {dataTitle ? (
+                  dataTitle?.data?.Slider?.items[0]?.Banner?.items
+                    .filter((item) =>
+                      item.name.includes("title iphone flash sale tuần")
+                    )
+                    .map((item, index) => (
+                      <div key={index}>
+                        <img
+                          src={item.media || ""}
+                          alt={`privilege-${index + 1}`}
+                        />
+                      </div>
+                    ))
+                ) : (
+                  <Spin>
+                    <div style={{ width: 200, height: 200 }} />
+                  </Spin>
+                )}
               </div>
               <div className="upgrade">
-                {visibleProducts.map((product, index) => (
-                  <Link
-                    key={index}
-                    href={`https://bachlongmobile.com/products/${product.url_key}`}
-                    passHref
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    <div className="upgrade-item">
-                      <div className="upgrade-item-header">
-                        {/* <Image
-                          src={DecorProduct}
-                          width={80}
-                          height={80}
-                          quality={100}
-                          alt="decor-product"
-                          className="decor-product"
-                        /> */}
-                        {/* <Image
-                            src={DecorProduct2}
-                            width={80}
-                            height={80}
-                            quality={100}
-                            alt="decor-product"
-                            className="decor-product2"
-                          /> */}
-                        <span></span>
-                        {product.price_range.minimum_price.final_price.value >
-                          3000000 && (
-                          <span className="percent">Trả góp 0%</span>
-                        )}
-                      </div>
-                      <div className="upgrade-item-img">
-                        <div className="img-content">
-                          <Image
-                            src={product.image.url}
-                            width={1400}
-                            height={1200}
-                            quality={100}
-                            alt={`product-${index}`}
-                          />
+                {filteredIphones && filteredIphones.length > 0 ? (
+                  filteredIphones.map((product: any, index: number) => (
+                    <Link
+                      key={index}
+                      href={`https://bachlongmobile.com/products/${product.url_key}`}
+                      passHref
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <div className="upgrade-item">
+                        <div className="upgrade-item-header">
+                          <span></span>
                         </div>
-                        <div className="frame-product">
-                          <Image
-                            src={FrameProduct}
-                            width={500}
-                            height={500}
-                            quality={100}
-                            alt="frame-product"
-                          />
-                        </div>
-                      </div>
-                      <div className="upgrade-item-content">
-                        <h4 className="upgrade-item-content-tt">
-                          {product.name}
-                        </h4>
-                        <div className="upgrade-item-content-body">
-                          <div className="upgrade-item-content-body-price">
-                            {getProductSalePrice(
-                              product.name,
-                              product.price_range.minimum_price.final_price
-                                .value
-                            )}{" "}
-                            {
-                              product.price_range.minimum_price.final_price
-                                .currency
-                            }
+                        <div className="upgrade-item-img">
+                          <div className="img-content">
+                            <Image
+                              src={product?.product?.image?.url}
+                              width={1400}
+                              height={1200}
+                              quality={100}
+                              alt={`product-${index}`}
+                            />
                           </div>
-                          <div className="upgrade-item-content-body-reduced">
-                            <div className="price-reduced">
-                              {product.attributes &&
-                              product.attributes[0]?.value
-                                ? Number(
-                                    product.attributes[0].value
-                                  ).toLocaleString("vi-VN")
-                                : ""}{" "}
-                              {product.attributes[0].value &&
-                                product.price_range.minimum_price.final_price
-                                  .currency}
+                          <div className="frame-product">
+                            <Image
+                              src={FrameProduct}
+                              width={500}
+                              height={500}
+                              quality={100}
+                              alt="frame-product"
+                            />
+                          </div>
+                        </div>
+                        <div className="upgrade-item-content">
+                          <h4 className="upgrade-item-content-tt">
+                            {product?.product?.name}
+                          </h4>
+                          <div className="upgrade-item-content-body">
+                            <div className="upgrade-item-content-body-price">
+                              {product?.sale_price?.toLocaleString("vi-VN")}{" "}
                             </div>
-
-                            {product.attributes[0].value && (
+                            <div className="upgrade-item-content-body-reduced">
+                              <div className="price-reduced">
+                                {Number(
+                                  product?.price_original
+                                )?.toLocaleString("vi-VN")}
+                              </div>
                               <div className="percent">
                                 -
                                 {Math.ceil(
-                                  ((product.attributes[0].value -
-                                    product.price_range.minimum_price
-                                      .final_price.value) /
-                                    product.attributes[0].value) *
-                                    100
+                                  100 -
+                                    (product.sale_price /
+                                      product.price_original) *
+                                      100
                                 )}
                                 %
                               </div>
-                            )}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  ))
+                ) : (
+                  <Spin>
+                    <div style={{ width: 200, height: 200 }} />
+                  </Spin>
+                )}
               </div>
+
               {visibleCount < filteredData.length && (
                 <div style={{ textAlign: "center", marginTop: "20px" }}>
                   <button

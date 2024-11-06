@@ -27,7 +27,42 @@ export interface Product {
     };
   };
 }
+interface BannerItem {
+  banner_id: number;
+  caption: string;
+  link: string;
+  media: string;
+  media_alt: string;
+  name: string;
+  slider_id: number;
+}
 
+interface Banner {
+  __typename: string;
+  items: BannerItem[];
+  page_info: {
+    current_page: number;
+    page_size: number;
+    total_pages: number;
+  };
+}
+
+interface SliderItem {
+  title: string;
+  identifier: string;
+  Banner: Banner;
+}
+
+interface SliderData {
+  Slider: {
+    items: SliderItem[];
+    total_count: number;
+  };
+}
+
+interface ApiResponse {
+  data: SliderData;
+}
 const query = `
  query getProducts(
   $search: String
@@ -206,6 +241,18 @@ const IpadList: React.FC = () => {
   });
 
   const { data } = useProductSaleData();
+  const filteredDatas = data?.filter(
+    (item: any) => item.title === "SP Flash Sale Tuần"
+  );
+
+  const keywords = ["ipad", "watch", "macbook"];
+
+  const filteredProducts = filteredDatas?.[0]?.items.filter((product: any) => {
+    // Chuyển name của sản phẩm về chữ thường và kiểm tra với các từ khóa
+    const productName = product.product.name.toLowerCase();
+    return keywords.some((keyword) => productName.includes(keyword));
+  });
+
   const productSale = data?.[0]?.items;
 
   const productSaleNames = productSale?.map(
@@ -230,7 +277,63 @@ const IpadList: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
+  const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
+  const fetchBannerHeader = async () => {
+    try {
+      const response = await fetch(
+        "https://beta-api.bachlongmobile.com/graphql",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: `
+                  query getSlider($filter: SliderFilterInput) {
+                    Slider(filter: $filter) {
+                      items {
+                        title
+                        identifier
+                        Banner {
+                          __typename
+                          items {
+                            banner_id
+                            caption
+                            link
+                            media
+                            media_alt
+                            name
+                            slider_id
+                          }
+                          page_info {
+                            current_page
+                            page_size
+                            total_pages
+                          }
+                        }
+                      }
+                      total_count
+                    }
+                  }
+                `,
+            variables: {
+              filter: {
+                identifier: {
+                  eq: "banner-page-flash-sale-tuan",
+                },
+              },
+            },
+          }),
+        }
+      );
 
+      const result = await response.json();
+      setDataTitle(result);
+    } catch (err) {}
+  };
+  useEffect(() => {
+    fetchBannerHeader();
+  }, []);
   useEffect(() => {
     const filtered = DataIpad?.filter((product) => {
       const matchesTab = product.name
@@ -296,13 +399,24 @@ const IpadList: React.FC = () => {
             >
               <div style={{ padding: "10px" }}>
                 <div className="women-decor" style={{ paddingBottom: "20px" }}>
-                  <Image
-                    src={DecorWomen}
-                    width={1920}
-                    height={1200}
-                    alt="product-banner-01"
-                    className=""
-                  />
+                  {dataTitle ? (
+                    dataTitle?.data?.Slider?.items[0]?.Banner?.items
+                      .filter((item) =>
+                        item.name.includes("title ipad flash sale tuần")
+                      )
+                      .map((item, index) => (
+                        <div key={index}>
+                          <img
+                            src={item.media || ""}
+                            alt={`privilege-${index + 1}`}
+                          />
+                        </div>
+                      ))
+                  ) : (
+                    <Spin style={{ display: "flex", justifyContent: "center" }}>
+                      <div style={{ width: 200, height: 200 }} />
+                    </Spin>
+                  )}
                 </div>
                 {/* <div style={{ display: 'flex', marginBottom: '12px' }} className='sub-tab-list'>
 						{tabs
@@ -328,108 +442,75 @@ const IpadList: React.FC = () => {
 					</div> */}
 
                 <div className="upgrade">
-                  {visibleProducts.map((product, index) => (
-                    <Link
-                      key={index}
-                      href={`https://bachlongmobile.com/products/${product.url_key}`}
-                      passHref
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ textDecoration: "none", color: "black" }}
-                    >
-                      <div className="upgrade-item">
-                        <div className="upgrade-item-header">
-                          {/* <Image
-                            src={DecorProduct}
-                            width={80}
-                            height={80}
-                            quality={100}
-                            alt="decor-product"
-                            className="decor-product"
-                          /> */}
-                          {/* <Image
-                            src={DecorProduct2}
-                            width={80}
-                            height={80}
-                            quality={100}
-                            alt="decor-product"
-                            className="decor-product2"
-                          /> */}
-                          <span></span>
-                          {/* Only show "Trả góp 0%" if the product price is greater than 3,000,000 */}
-                          {product.price_range.minimum_price.final_price.value >
-                            3000000 && (
-                            <span className="percent">Trả góp 0%</span>
-                          )}
-                        </div>
-                        <div className="upgrade-item-img">
-                          <div className="img-content">
-                            <Image
-                              src={product.image.url}
-                              width={1400}
-                              height={1200}
-                              quality={100}
-                              alt={`product-${index}`}
-                            />
+                  {filteredProducts && filteredProducts.length > 0 ? (
+                    filteredProducts.map((product: any, index: number) => (
+                      <Link
+                        key={index}
+                        href={`https://bachlongmobile.com/products/${product.url_key}`}
+                        passHref
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
+                        <div className="upgrade-item">
+                          <div className="upgrade-item-header">
+                            <span></span>
                           </div>
-                          <div className="frame-product">
-                            <Image
-                              src={FrameProduct}
-                              width={500}
-                              height={500}
-                              quality={100}
-                              alt="frame-product"
-                            />
-                          </div>
-                        </div>
-                        <div className="upgrade-item-content">
-                          <h4 className="upgrade-item-content-tt">
-                            {product.name}
-                          </h4>
-                          <div className="upgrade-item-content-body">
-                            <div className="upgrade-item-content-body-price">
-                              {getProductSalePrice(
-                                product.name,
-                                product.price_range.minimum_price.final_price
-                                  .value
-                              )}{" "}
-                              {
-                                product.price_range.minimum_price.final_price
-                                  .currency
-                              }
+                          <div className="upgrade-item-img">
+                            <div className="img-content">
+                              <Image
+                                src={product?.product?.image?.url}
+                                width={1400}
+                                height={1200}
+                                quality={100}
+                                alt={`product-${index}`}
+                              />
                             </div>
-                            <div className="upgrade-item-content-body-reduced">
-                              <div className="price-reduced">
-                                {product.attributes &&
-                                product.attributes[0]?.value
-                                  ? Number(
-                                      product.attributes[0].value
-                                    ).toLocaleString("vi-VN")
-                                  : ""}{" "}
-                                {product.attributes[0].value &&
-                                  product.price_range.minimum_price.final_price
-                                    .currency}
+                            <div className="frame-product">
+                              <Image
+                                src={FrameProduct}
+                                width={500}
+                                height={500}
+                                quality={100}
+                                alt="frame-product"
+                              />
+                            </div>
+                          </div>
+                          <div className="upgrade-item-content">
+                            <h4 className="upgrade-item-content-tt">
+                              {product?.product?.name}
+                            </h4>
+                            <div className="upgrade-item-content-body">
+                              <div className="upgrade-item-content-body-price">
+                                {product?.sale_price?.toLocaleString("vi-VN")}{" "}
                               </div>
-
-                              {product.attributes[0].value && (
+                              <div className="upgrade-item-content-body-reduced">
+                                <div className="price-reduced">
+                                  {Number(
+                                    product?.price_original
+                                  )?.toLocaleString("vi-VN")}
+                                </div>
                                 <div className="percent">
                                   -
                                   {Math.ceil(
-                                    ((product.attributes[0].value -
-                                      product.price_range.minimum_price
-                                        .final_price.value) /
-                                      product.attributes[0].value) *
-                                      100
+                                    100 -
+                                      (product.sale_price /
+                                        product.price_original) *
+                                        100
                                   )}
                                   %
                                 </div>
-                              )}
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </Link>
-                  ))}
+                      </Link>
+                    ))
+                  ) : (
+                    <Spin>
+                      <div style={{ width: 200, height: 200 }} />
+                    </Spin>
+                  )}
                 </div>
                 {visibleCount < filteredData.length && (
                   <div style={{ textAlign: "center", marginTop: "20px" }}>
