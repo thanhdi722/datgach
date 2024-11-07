@@ -175,48 +175,12 @@ const ProductList: React.FC = () => {
   );
   const filteredIphones = filteredDatassss?.[0]?.items.filter(
     (product: any) => {
-      // Kiểm tra nếu tên sản phẩm chứa từ "iPhone"
       return product.product.name.toLowerCase().includes("iphone");
     }
   );
-  // useEffect(() => {
-  //   // Determine which tabs should be disabled based on the current date
-  //   const disabled = tabs
-  //     .filter(
-  //       (tab) =>
-  //         currentDate >
-  //         new Date(
-  //           tab.date.getFullYear(),
-  //           tab.date.getMonth(),
-  //           tab.date.getDate() + 1
-  //         )
-  //     )
-  //     .map((tab) => tab.index);
-  //   setDisabledTabs(disabled);
-
-  //   // Set up a listener to detect if the screen width changes
-  //   const handleResize = () => {
-  //     setIsMobile(window.innerWidth < 768);
-  //   };
-
-  //   handleResize(); // Initial check for mobile view
-  //   window.addEventListener("resize", handleResize);
-
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize); // Clean up listener
-  //   };
-  // }, []); // Remove dependencies that could cause re-renders
-
-  // useEffect(() => {
-  //   // Scroll to the active tab on mobile if swiperRef is available
-  //   if (isMobile && swiperRef.current) {
-  //     swiperRef.current.slideTo(activeTab);
-  //   }
-  // }, [isMobile, activeTab]);
-
   return (
     <div
-      className="product-list-sale"
+      className="product-20-11"
       style={
         {
           // background: 'linear-gradient(180deg, #372d62 0, var(--bg-gradient-white, #15001B) 90%)',
@@ -307,13 +271,13 @@ const ProductList: React.FC = () => {
             ))}
         </div> */}
 
-                <div className="upgrade">
-                  {filteredDatassss && filteredDatassss.length > 0 ? (
-                    filteredDatassss?.[0]?.items.map(
+                {filteredDatassss && filteredDatassss.length > 0 ? (
+                  <div className="upgrade">
+                    {filteredDatassss?.[0]?.items.map(
                       (product: any, index: number) => (
                         <Link
                           key={index}
-                          href={`https://bachlongmobile.com/products/${product.url_key}`}
+                          href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
                           passHref
                           target="_blank"
                           rel="noopener noreferrer"
@@ -350,12 +314,14 @@ const ProductList: React.FC = () => {
                               <div className="upgrade-item-content-body">
                                 <div className="upgrade-item-content-body-price">
                                   {product?.sale_price?.toLocaleString("vi-VN")}{" "}
+                                  VNĐ
                                 </div>
                                 <div className="upgrade-item-content-body-reduced">
                                   <div className="price-reduced">
                                     {Number(
                                       product?.price_original
-                                    )?.toLocaleString("vi-VN")}
+                                    )?.toLocaleString("vi-VN")}{" "}
+                                    VNĐ
                                   </div>
                                   <div className="percent">
                                     -
@@ -373,13 +339,21 @@ const ProductList: React.FC = () => {
                           </div>
                         </Link>
                       )
-                    )
-                  ) : (
-                    <Spin>
-                      <div style={{ width: 200, height: 200 }} />
-                    </Spin>
-                  )}
-                </div>
+                    )}
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "200px",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Spin />
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -381,7 +381,7 @@ const IpadList: React.FC = () => {
 
   return (
     <div
-      className="product-list-sale"
+      className="product-20-11"
       style={
         {
           // background: 'linear-gradient(180deg, #15001B 0, var(--bg-gradient-white, #5D0069) 90%)',
@@ -441,12 +441,12 @@ const IpadList: React.FC = () => {
 							))}
 					</div> */}
 
-                <div className="upgrade">
-                  {filteredProducts && filteredProducts.length > 0 ? (
-                    filteredProducts.map((product: any, index: number) => (
+                {filteredProducts && filteredProducts.length > 0 ? (
+                  <div className="upgrade">
+                    {filteredProducts.map((product: any, index: number) => (
                       <Link
                         key={index}
-                        href={`https://bachlongmobile.com/products/${product.url_key}`}
+                        href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
                         passHref
                         target="_blank"
                         rel="noopener noreferrer"
@@ -483,12 +483,14 @@ const IpadList: React.FC = () => {
                             <div className="upgrade-item-content-body">
                               <div className="upgrade-item-content-body-price">
                                 {product?.sale_price?.toLocaleString("vi-VN")}{" "}
+                                VNĐ
                               </div>
                               <div className="upgrade-item-content-body-reduced">
                                 <div className="price-reduced">
                                   {Number(
                                     product?.price_original
-                                  )?.toLocaleString("vi-VN")}
+                                  )?.toLocaleString("vi-VN")}{" "}
+                                  VNĐ
                                 </div>
                                 <div className="percent">
                                   -
@@ -505,13 +507,21 @@ const IpadList: React.FC = () => {
                           </div>
                         </div>
                       </Link>
-                    ))
-                  ) : (
-                    <Spin>
-                      <div style={{ width: 200, height: 200 }} />
-                    </Spin>
-                  )}
-                </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "200px",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Spin />
+                  </div>
+                )}
                 {visibleCount < filteredData.length && (
                   <div style={{ textAlign: "center", marginTop: "20px" }}>
                     <button

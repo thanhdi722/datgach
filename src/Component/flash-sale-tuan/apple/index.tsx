@@ -329,7 +329,7 @@ const AppleList: React.FC = () => {
 
   return (
     <div
-      className="product-list-sale"
+      className="product-20-11"
       style={
         {
           // background: 'linear-gradient(180deg, #372d62 0, var(--bg-gradient-white, #5D0069) 90%)',
@@ -365,12 +365,12 @@ const AppleList: React.FC = () => {
                   </Spin>
                 )}
               </div>
-              <div className="upgrade">
-                {filteredIphones && filteredIphones.length > 0 ? (
-                  filteredIphones.map((product: any, index: number) => (
+              {filteredIphones && filteredIphones.length > 0 ? (
+                <div className="upgrade">
+                  {filteredIphones.map((product: any, index: number) => (
                     <Link
                       key={index}
-                      href={`https://bachlongmobile.com/products/${product.url_key}`}
+                      href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
                       passHref
                       target="_blank"
                       rel="noopener noreferrer"
@@ -406,13 +406,14 @@ const AppleList: React.FC = () => {
                           </h4>
                           <div className="upgrade-item-content-body">
                             <div className="upgrade-item-content-body-price">
-                              {product?.sale_price?.toLocaleString("vi-VN")}{" "}
+                              {product?.sale_price?.toLocaleString("vi-VN")} VNĐ
                             </div>
                             <div className="upgrade-item-content-body-reduced">
                               <div className="price-reduced">
                                 {Number(
                                   product?.price_original
-                                )?.toLocaleString("vi-VN")}
+                                )?.toLocaleString("vi-VN")}{" "}
+                                VNĐ
                               </div>
                               <div className="percent">
                                 -
@@ -429,13 +430,21 @@ const AppleList: React.FC = () => {
                         </div>
                       </div>
                     </Link>
-                  ))
-                ) : (
-                  <Spin>
-                    <div style={{ width: 200, height: 200 }} />
-                  </Spin>
-                )}
-              </div>
+                  ))}
+                </div>
+              ) : (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "200px",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Spin />
+                </div>
+              )}
 
               {visibleCount < filteredData.length && (
                 <div style={{ textAlign: "center", marginTop: "20px" }}>
