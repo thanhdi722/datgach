@@ -21,8 +21,8 @@ const categories = [
   { id: "item-iphone", name: "iPhone" },
   { id: "item-airpods", name: "Máy 99%" },
   { id: "item-ipad", name: "iPad" },
-  { id: "item-mac", name: "Laptop" },
-  { id: "item-android", name: "Android" },
+  { id: "item-mac", name: "Samsung" },
+  { id: "item-android", name: "Laptop" },
   { id: "item-toy", name: "Phụ kiện Apple" },
 ];
 function Page() {

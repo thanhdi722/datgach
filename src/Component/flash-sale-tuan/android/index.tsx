@@ -501,7 +501,7 @@ const AndroidList: React.FC = () => {
                       >
                         <div className="upgrade-item">
                           <div className="upgrade-item-header">
-                            <span></span>
+                            <span className="percent">Trả góp 0%</span>
                           </div>
                           <div className="upgrade-item-img">
                             <div className="img-content">
@@ -549,6 +549,24 @@ const AndroidList: React.FC = () => {
                                   )}
                                   %
                                 </div>
+                              </div>
+                              <div
+                                style={{
+                                  backgroundColor: "rgba(215, 0, 24, .08)",
+                                  borderRadius: "0.4rem",
+                                  color: "#d70018",
+                                  padding: "0.8rem",
+                                  textAlign: "center",
+                                }}
+                              >
+                                <span
+                                  style={{
+                                    fontSize: "1.2rem",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  Giá thu bằng giá bán - Trợ giá lên đến 100%
+                                </span>
                               </div>
                             </div>
                           </div>

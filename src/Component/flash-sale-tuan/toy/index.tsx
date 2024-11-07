@@ -327,7 +327,7 @@ const ToyList: React.FC = () => {
                         >
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
-                              <span></span>
+                              <span className="percent">Trả góp 0%</span>
                             </div>
                             <div className="upgrade-item-img">
                               <div className="img-content">
