@@ -7,7 +7,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import './banner.scss';
-import bannerMobile from '../../../../public/old/banner-mobile.jpg';
 import { useQuery } from '@tanstack/react-query';
 
 const query = `
