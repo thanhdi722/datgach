@@ -41,11 +41,11 @@
 .bannerline1 {
   border: 1px solid #000;
 
-  width: 45% !important;
+  /* width: 45% !important; */
 }
 .bannerline2 {
   border: 1px solid #000;
-  width: 45% !important;
+  /* width: 45% !important; */
 }
 @media (max-width: 1000px) {
   .BuyInInstallments-Section1-bg2 {
@@ -71,10 +71,10 @@
     width: 100vw !important;
   }
   .bannerline1 {
-    width: 30% !important;
+    /* width: 30% !important; */
   }
   .bannerline2 {
-    width: 30% !important;
+    /* width: 30% !important; */
   }
   .BuyInInstallments-S1-Image {
     width: 45vw !important;
