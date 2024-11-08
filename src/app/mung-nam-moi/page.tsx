@@ -21,9 +21,9 @@ import ProductMac from '../../Component/NewYear/product-mac';
 import ProductAirPods from '../../Component/NewYear/product-airpods';
 import ProductAccess from '../../Component/NewYear/product-access';
 import Rules from '../../Component/NewYear/rules';
-import Promotion from '@/Component/NewYear/promotion';
-import TimeLine from '@/Component/NewYear/timeline';
-import Snowfall from '@/Component/NewYear/snow/Snowfall';
+import Promotion from '../../Component/NewYear/promotion';
+import TimeLine from '../../Component/NewYear/timeline';
+import Snowfall from '../../Component/NewYear/snow/Snowfall';
 
 const categories = [
 	{ id: 'item-iphone', src: itemIphone, alt: 'category-fixed-01' },
