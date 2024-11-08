@@ -232,7 +232,7 @@ function HeaderHalloween() {
                 ))}
               </div>
 
-              <button
+              {/* <button
                 className="Halloween-button"
                 onClick={() =>
                   document
@@ -241,7 +241,7 @@ function HeaderHalloween() {
                 }
               >
                 Xem thể lệ
-              </button>
+              </button> */}
             </div>
           </div>
         )}

@@ -138,9 +138,9 @@ function Page() {
       <div id="item-toy">
         <ToyList />
       </div>
-      <div>
+      {/* <div>
         <Rules />
-      </div>
+      </div> */}
       <div
         className={`sticky-category ${isStickyVisible ? "visible" : "hidden"}`}
       >
