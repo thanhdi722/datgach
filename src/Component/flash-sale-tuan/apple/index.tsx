@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
-import DecorWomen from "../../../../public/flase-sale/PC_iPhone.png";
+import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
 import FrameProduct from "../../../../public/flase-sale/f1.png";
 import { Spin } from "antd";
 import "./apple.scss";
@@ -379,6 +379,15 @@ const AppleList: React.FC = () => {
                       <div className="upgrade-item">
                         <div className="upgrade-item-header">
                           <span className="percent">Trả góp 0%</span>
+                          {/(iphone|ipad|macbook|watch)/i.test(
+                            product?.product?.name
+                          ) && (
+                            <Image
+                              className="ic-auth"
+                              src={DecorWomen}
+                              alt=""
+                            />
+                          )}
                         </div>
                         <div className="upgrade-item-img">
                           <div className="img-content">

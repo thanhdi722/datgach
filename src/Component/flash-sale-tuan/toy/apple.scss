@@ -217,6 +217,9 @@
         }
       }
     }
+    .ic-auth {
+      width: 60px;
+    }
     .percent {
       font-size: 1.2rem;
       border: 1px solid #ef373e;
@@ -225,7 +228,7 @@
       font-weight: 700;
       color: #ef373e;
       @media (max-width: 767px) {
-        display: none;
+        // display: none;
       }
     }
   }

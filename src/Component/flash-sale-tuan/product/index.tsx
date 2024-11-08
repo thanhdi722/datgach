@@ -3,14 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperClass } from "swiper/types";
-import DecorWomen from "../../../../public/flase-sale/giovang.png";
-import Access10k from "../accessories20_10/acess-10k/index";
-import Access20k from "../accessories20_10/acess-20k/index";
-import Access110 from "../accessories20_10/acess-110/index";
-import AccessTo210 from "../accessories20_10/acess-to210/index";
-import Access310 from "../accessories20_10/acess-310/index";
-import Access290 from "../accessories20_10/acess-290/index";
-import Access210 from "../accessories20_10/acess-210/index";
+import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
 import FrameProduct from "../../../../public/flase-sale/f1.png";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
 import "swiper/css";
@@ -59,59 +52,6 @@ interface ApiResponse {
 const ProductList: React.FC = () => {
   const swiperRef = useRef<SwiperClass | null>(null);
 
-  // const tabs = [
-  //   {
-  //     index: 0,
-  //     name: <span>NGÀY 08/11</span>,
-  //     component: <Access10k />,
-  //     date: new Date("2024-11-08"),
-  //   },
-  //   {
-  //     index: 1,
-  //     name: <span>NGÀY 09/11</span>,
-  //     component: <Access20k />,
-  //     date: new Date("2024-11-09"),
-  //   },
-  //   {
-  //     index: 2,
-  //     name: <span>NGÀY 10/11</span>,
-  //     component: <Access110 />,
-  //     date: new Date("2024-11-10"),
-  //   },
-  //   {
-  //     index: 3,
-  //     name: <span>NGÀY 11/11</span>,
-  //     component: <Access210 />,
-  //     date: new Date("2024-11-11"),
-  //   },
-  //   {
-  //     index: 4,
-  //     name: <span>NGÀY 12/11</span>,
-  //     component: <Access310 />,
-  //     date: new Date("2024-11-12"),
-  //   },
-  //   // {
-  //   //   index: 5,
-  //   //   name: <span>NGÀY 30/10</span>,
-  //   //   component: <AccessTo210 />,
-  //   //   date: new Date("2024-10-30"),
-  //   // },
-  //   // {
-  //   //   index: 6,
-  //   //   name: <span>NGÀY 31/10</span>,
-  //   //   component: <Access290 />,
-  //   //   date: new Date("2024-10-31"),
-  //   // },
-  // ];
-
-  // const initialActiveTab = tabs.findIndex(
-  //   (tab) => currentDate.toDateString() === tab.date.toDateString()
-  // );
-  // const [activeTab, setActiveTab] = useState<number>(
-  //   initialActiveTab === -1 ? 0 : initialActiveTab
-  // );
-  // const [isMobile, setIsMobile] = useState<boolean>(false);
-  // const [disabledTabs, setDisabledTabs] = useState<number[]>([]);
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
   const fetchBannerHeader = async () => {
     try {
@@ -217,59 +157,6 @@ const ProductList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-                {/* <div className="tabs">
-                {tabs.map((tab) => (
-                  <div key={tab.name}>
-                    <button
-                      onClick={() => {
-                        setActiveTab(tab.name);
-                      }}
-                      className={
-                        activeTab === tab.name ? "tab active" : "tab"
-                      }
-                      style={{
-                        color: activeTab === tab.name ? "#fff" : "#000",
-                        backgroundColor:
-                          activeTab === tab.name ? "#ff7518" : "#fff",
-                        padding: "12px 24px",
-                        margin: "8px",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                        transition: "all 0.3s ease",
-                        boxShadow:
-                          activeTab === tab.name
-                            ? "0 4px 8px rgba(0, 0, 0, 0.1)"
-                            : "none",
-                      }}
-                    >
-                      {tab.name}
-                    </button>
-                  </div>
-                ))}
-              </div> */}
-
-                {/* <div style={{ display: 'flex', marginBottom: '12px' }} className='sub-tab-list'>
-          {tabs
-            .find((tab) => tab.name === activeTab)
-            ?.subTabs.map((subTab) => (
-              <button
-                key={subTab}
-                onClick={() => setActiveSubTab(subTab)}
-                className={activeSubTab === subTab ? 'sub-tab active' : 'sub-tab'}
-                style={{
-                  color: activeSubTab === subTab ? 'white' : '#000',
-                  backgroundColor: activeSubTab === subTab ? '#ef373e' : '#f1f1f1',
-                  border: activeSubTab === subTab ? '1px solid #ef373e' : '1px solid #ccc',
-                  padding: '5px 10px',
-                  margin: '5px',
-                  borderRadius: '5px',
-                  cursor: 'pointer',
-                }}
-              >
-                {subTab}
-              </button>
-            ))}
-        </div> */}
 
                 {filteredDatassss && filteredDatassss.length > 0 ? (
                   <div className="upgrade">
@@ -286,6 +173,15 @@ const ProductList: React.FC = () => {
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
                               <span className="percent">Trả góp 0%</span>
+                              {/(iphone|ipad|macbook|watch)/i.test(
+                                product?.product?.name
+                              ) && (
+                                <Image
+                                  className="ic-auth"
+                                  src={DecorWomen}
+                                  alt=""
+                                />
+                              )}
                             </div>
                             <div className="upgrade-item-img">
                               <div className="img-content">
