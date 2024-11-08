@@ -8,7 +8,7 @@ import 'swiper/css/autoplay';
 import './banner.scss';
 import bannerDesktop from '../../../../public/gratitude/head-teacher.jpg';
 import bannerMobile from '../../../../public/gratitude/banner-mobile.jpg';
-import ShineEffect from '@/Component/NewYear/shine-effect';
+import ShineEffect from '../../../Component/NewYear/shine-effect';
 
 const Banner: React.FC = () => {
 	return (

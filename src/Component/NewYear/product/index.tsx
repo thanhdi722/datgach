@@ -355,10 +355,9 @@ const ProductList: React.FC = () => {
 										</div>
 									</div>
 									<div className='upgrade-hot-item-content'>
-										<div>
-											<div className='upgrade-hot-best-seller'>
-												<Image src={BestSeller} width={300} height={90} alt='best-seller' />
-												{/* <Image
+										<div className='upgrade-hot-best-seller'>
+											<Image src={BestSeller} width={300} height={90} alt='best-seller' />
+											{/* <Image
 													src={HostPrice}
 													width={90}
 													height={20}
@@ -366,7 +365,8 @@ const ProductList: React.FC = () => {
 													alt='hot-price'
 													className='hot-price2'
 												/> */}
-											</div>
+										</div>
+										<div>
 											<h4 className='upgrade-hot-item-content-tt'>{product.name}</h4>
 										</div>
 										<div className='upgrade-hot-item-content-body'>
