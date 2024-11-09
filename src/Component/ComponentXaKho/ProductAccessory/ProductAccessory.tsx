@@ -166,7 +166,10 @@ function CardProductAccessory() {
     fetchBannerHeader();
   }, []);
   return (
-    <div style={{ padding: "20px 0px", backgroundColor: "#D5B487" }}>
+    <div
+      style={{ padding: "20px 0px", backgroundColor: "#D5B487" }}
+      id="product-accessory"
+    >
       <div className="container">
         <div
           style={{
