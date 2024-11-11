@@ -19,6 +19,7 @@ export interface Product {
 	image: {
 		url: string;
 	};
+	image_banner: string;
 	attributes: any;
 	price_range: {
 		minimum_price: {
@@ -335,6 +336,17 @@ const ProductIpad: React.FC = () => {
 															alt={`product-${index}`}
 														/>
 													</div>
+													{product.image_banner && (
+														<div className='frame-product'>
+															<Image
+																src={product.image_banner}
+																width={500}
+																height={500}
+																quality={100}
+																alt='frame-product'
+															/>
+														</div>
+													)}
 												</div>
 												<div className='upgrade-item-content'>
 													<h4 className='upgrade-item-content-tt'>{product.name}</h4>

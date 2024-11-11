@@ -220,7 +220,7 @@ const ProductList: React.FC = () => {
 		},
 		{
 			name: 'iPhone 14',
-			subTabs: ['iPhone 14 Pro Max', 'iPhone 14 Pro', 'iPhone 14 Plus', 'iPhone 14'],
+			subTabs: [],
 		},
 		{
 			name: 'iPhone 13',
