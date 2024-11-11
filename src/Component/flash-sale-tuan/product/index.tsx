@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperClass } from "swiper/types";
 import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
-import FrameProduct from "../../../../public/flase-sale/f1.png";
+import FrameProduct from "../../../../public/flase-sale/f5.png";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
 import "swiper/css";
 import "./product.scss";

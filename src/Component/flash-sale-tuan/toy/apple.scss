@@ -219,6 +219,11 @@
     }
     .ic-auth {
       width: 60px;
+      object-fit: unset !important;
+      @media (max-width: 767px) {
+        height: 20px;
+        width: 40px;
+      }
     }
     .percent {
       font-size: 1.2rem;

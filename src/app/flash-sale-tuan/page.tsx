@@ -23,7 +23,7 @@ const categories = [
   { id: "item-ipad", name: "iPad" },
   { id: "item-mac", name: "Samsung" },
   { id: "item-android", name: "Laptop" },
-  { id: "item-toy", name: "Phụ kiện Apple" },
+  { id: "item-toy", name: "Phụ kiện" },
 ];
 function Page() {
   const categoryRef = useRef(null);
