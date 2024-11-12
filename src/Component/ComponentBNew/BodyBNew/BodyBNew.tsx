@@ -34,6 +34,7 @@ export default function BodyBNew() {
 
   const [newsData, setNewsData] = useState<BlogPost[] | null>(null);
   const [newsData2, setNewsData2] = useState<BlogPost[] | null>(null);
+  const [newsData3, setNewsData3] = useState<BlogPost[] | null>(null);
   const selectedTabIds =
     activeTab === "Trang Chủ"
       ? [19, 9, 12, 14, 20, 27, 21]
@@ -50,20 +51,19 @@ export default function BodyBNew() {
     allPosts: false,
     sort: ["DESC"],
   };
-
+  const variablesProduct = {
+    filter: { category_id: { eq: 22 } },
+    pageSize: 1000,
+    currentPage: 1,
+    allPosts: false,
+    sort: ["DESC"],
+    sortFiled: "publish_time",
+  };
   const variablesNew = {
     filter: {
       category_id: {
-        eq: tabIds[activeTab], // này truyền cứng id của danh mục bài viết
+        eq: 12,
       },
-      ...(tabIds[activeTab] === 19
-        ? {}
-        : {
-            // Kiểm tra nếu activeTab là 19
-            is_featured: {
-              eq: 1, //set cứng là 1 để để ra bài viết nổi bật
-            },
-          }),
     },
     pageSize: 1000,
     currentPage: 1,
@@ -71,6 +71,7 @@ export default function BodyBNew() {
     allPosts: false,
     sort: ["DESC"],
   };
+
   // Fetch data for the main blog posts based on the active tab
   async function fetchBlogPostsData() {
     setLoading(true); // Set loading to true before fetching
@@ -89,11 +90,29 @@ export default function BodyBNew() {
     );
     const data = await response.json();
     setNewsData(data.data.blogPosts.items);
-    console.log("aaaaaaaaa", newsData);
+    setLoading(false); // Set loading to false after fetching
+  }
+  async function fetchBlogPostsDatass() {
+    setLoading(true); // Set loading to true before fetching
+    const response = await fetch(
+      "https://beta-api.bachlongmobile.com/graphql",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: `query blogPosts( $filter: BlogPostsFilterInput $pageSize: Int $currentPage: Int $sortFiled: String $allPosts: Boolean $sort: [String] ) { blogPosts( filter: $filter pageSize: $pageSize currentPage: $currentPage sortFiled: $sortFiled allPosts: $allPosts sort: $sort ) { items { author { author_id author_url content creation_time custom_theme_to facebook_page_url featured_image filtered_content identifier instagram_page_url is_active layout_update_xml linkedin_page_url meta_description meta_title name page_layout relative_url title twitter_page_url type url } author_id canonical_url category_id content_heading creation_time end_time featured_image featured_img_alt featured_list_image featured_list_img_alt first_image identifier is_active page_layout position post_id post_url publish_time search title type update_time views_count categories { canonical_url category_id category_level category_url category_url_path content content_heading custom_layout custom_layout_update_xml custom_theme custom_theme_from custom_theme_to display_mode featured_img identifier include_in_menu is_active layout_update_xml meta_description meta_keywords meta_title page_layout parent_category_id path position posts_count posts_sort_by relative_url title type breadcrumbs { category_id category_level category_name category_uid category_url_key category_url_path } } filtered_content media_gallery { url } meta_description meta_keywords meta_title promotion_image tags { content custom_layout custom_layout_update_xml custom_theme custom_theme_from custom_theme_to identifier is_active layout_update_xml meta_description meta_keywords meta_robots meta_title page_layout relative_url tag_id tag_url title type } tag_id short_content short_filtered_content } total_count total_pages type } }`,
+          variablesProduct,
+        }),
+      }
+    );
+    const data = await response.json();
+    setNewsData3(data.data.blogPosts.items);
+
     setLoading(false); // Set loading to false after fetching
   }
 
-  // Fetch data for the new blog posts based on the active tab2
   async function fetchBlogPostsDataNew() {
     setLoading(true); // Set loading to true before fetching
     const response = await fetch(
@@ -114,10 +133,11 @@ export default function BodyBNew() {
 
     setLoading(false); // Set loading to false after fetching
   }
-  console.log("check data tin", newsData2);
+
   useEffect(() => {
     fetchBlogPostsData(); // Fetch main posts when activeTab changes
     fetchBlogPostsDataNew(); // Fetch new posts based on activeTab2
+    fetchBlogPostsDatass(); // Fetch new posts based on activeTab2
   }, [activeTab, activeTab2]);
   const tabs = [
     "Trang Chủ",
@@ -134,9 +154,9 @@ export default function BodyBNew() {
     <div className="header-BodyBNew">
       <nav>
         <ul className="BodyBNew-tab-list">
-          <Link href="https://bachlongmobile.com/">
+          {/* <Link href="https://bachlongmobile.com/">
             <img src={logo.src} alt="Logo" className="BodyBNew-tab-list-img" />
-          </Link>
+          </Link> */}
 
           {tabs.map((tab) => (
             <li
@@ -171,12 +191,12 @@ export default function BodyBNew() {
             <div className="header-BodyBNew-CardRow-test">
               <div className="header-BodyBNew-CardRow">
                 <div className="header-BodyBNew-CardRow-col-6">
-                  {newsData &&
-                    newsData.slice(3, 5).map((post, index) => (
-                      <div key={index} className="header-BodyBNew-news-box">
-                        <div className="header-BodyBNew-news-image">
+                  {newsData3 &&
+                    newsData3.reverse().map((post, index) => (
+                      <Row key={index} className="data-bnew-khuyen-mai">
+                        <Col span={12} className="data-bnew-khuyen-mai-image">
                           <a
-                            className="inner-img"
+                            className="data-bnew-khuyen-mai-inner-img"
                             onClick={() =>
                               router.push(
                                 `/news/${post.categories[0].identifier}/${post.identifier}`
@@ -185,11 +205,11 @@ export default function BodyBNew() {
                           >
                             <img alt={post.title} src={post.first_image} />
                           </a>
-                        </div>
-                        <div className="header-BodyBNew-news-content">
-                          <h2 className="news-title relative">
+                        </Col>
+                        <Col span={12} className="data-bnew-khuyen-mai-content">
+                          <h2 className="data-bnew-khuyen-mai-title">
                             <a
-                              className="inner-img"
+                              className="data-bnew-khuyen-mai-inner-img"
                               onClick={() =>
                                 router.push(
                                   `/news/${
@@ -206,9 +226,14 @@ export default function BodyBNew() {
                           <p style={{ padding: "6px 0px", color: "blue" }}>
                             {post.categories[0].meta_title}
                           </p>
-                        </div>
-                      </div>
+                        </Col>
+                      </Row>
                     ))}
+                  <Link href="https://bachlongmobile.com/promotion/">
+                    <button className="header-BodyBNew2-cardPostView-load-more-button">
+                      Xem thêm
+                    </button>
+                  </Link>
                 </div>
                 <div className="header-BodyBNew-CardCol">
                   {newsData && newsData.length > 0 && (
@@ -303,7 +328,7 @@ export default function BodyBNew() {
                           <p style={{ padding: "6px 0px", color: "blue" }}>
                             {post.categories[0].meta_title}
                           </p>
-                          {/* <div className="header-BodyBNew-news-first-created2">
+                          <div className="header-BodyBNew-news-first-created2">
                             <div className="author">
                               <Image
                                 alt=""
@@ -312,15 +337,15 @@ export default function BodyBNew() {
                                 src={icUser}
                               />
                             </div>
-                            <span>{post.author?.name}</span>
+                            <span>{post?.author?.name}</span>
                             <div>
                               <span>
                                 {new Date(
-                                  post.creation_time
+                                  post?.creation_time
                                 ).toLocaleDateString()}
                               </span>
                             </div>
-                          </div> */}
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -332,7 +357,7 @@ export default function BodyBNew() {
               {newsData2 &&
                 newsData2.length > 0 && ( // Check if newsData2 has items
                   <>
-                    <h2 className="header-BodyBNew-titleNew">TIN NỔI BẬT</h2>
+                    <h2 className="header-BodyBNew-titleNew">ĐÁNH GIÁ</h2>
                     <Swiper
                       breakpoints={{
                         240: {

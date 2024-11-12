@@ -34,14 +34,35 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
     allPosts: false,
     sort: ["DESC"],
   };
-
+  const tabIds: { [key: string]: number } = {
+    "Trang Chủ": 19,
+    "Tin Công Nghệ": 9,
+    // "Khám Phá": 10,
+    "Đánh Giá": 12,
+    "Thủ Thuật, Q&A": 14,
+    "Khuyến Mãi": 20,
+    "Tin Tức Sự Kiện": 27,
+    "Tuyển Dụng": 21,
+  };
   const variablesProduct = {
-    filter: { category_id: { eq: 22 } },
+    filter: {
+      category_id: {
+        eq: activeTab2, // này truyền cứng id của danh mục bài viết
+      },
+      ...(activeTab2 === 19
+        ? {}
+        : {
+            // Kiểm tra nếu activeTab là 19
+            is_featured: {
+              eq: 1, //set cứng là 1 để để ra bài viết nổi bật
+            },
+          }),
+    },
     pageSize: 1000,
     currentPage: 1,
+    sortFiled: "publish_time",
     allPosts: false,
     sort: ["DESC"],
-    sortFiled: "publish_time",
   };
 
   async function fetchBlogPostsDataProduct() {
@@ -109,6 +130,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [scrolled]);
+  console.log("check data tin", newsData2);
   return (
     <div className="header-BodyBNew2">
       {newsData2 && newsData2.length > 0 ? (
@@ -122,7 +144,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
           >
             <Col span={14} className="header-BodyBNew2-CardCol">
               {newsData2 &&
-                newsData2.slice(5, 5 + visibleCount).map(
+                newsData2.slice(3, 5 + visibleCount).map(
                   (
                     post,
                     index // Chỉnh sửa ở đây
@@ -201,7 +223,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                           padding: "10px 0",
                         }}
                       >
-                        ƯU ĐÃI THANH TOÁN
+                        TIN NỔI BẬT
                       </h2>
                       {newsData3
                         .slice(0, visibleCountProduct)
@@ -239,11 +261,12 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                           </div>
                         ))}
                       {visibleCountProduct < newsData3.length && (
-                        <Link href="https://bachlongmobile.com/promotion/">
-                          <button className="header-BodyBNew2-cardPostView-load-more-button">
-                            Xem thêm
-                          </button>
-                        </Link>
+                        <button
+                          className="header-BodyBNew2-cardPostView-load-more-button"
+                          onClick={loadMoreProductPosts}
+                        >
+                          Xem thêm
+                        </button>
                       )}
                     </>
                   ) : (

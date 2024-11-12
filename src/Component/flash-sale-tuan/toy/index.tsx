@@ -315,8 +315,9 @@ const ToyList: React.FC = () => {
 
                 {filteredDatassss && filteredDatassss.length > 0 ? (
                   <div className="upgrade">
-                    {filteredDatassss?.[0]?.items.map(
-                      (product: any, index: number) => (
+                    {filteredDatassss?.[0]?.items
+                      .slice(0, visibleCount)
+                      .map((product: any, index: number) => (
                         <Link
                           key={index}
                           href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
@@ -380,8 +381,7 @@ const ToyList: React.FC = () => {
                             </div>
                           </div>
                         </Link>
-                      )
-                    )}
+                      ))}
                   </div>
                 ) : (
                   <div
@@ -396,7 +396,7 @@ const ToyList: React.FC = () => {
                     <Spin />
                   </div>
                 )}
-                {visibleCount < filteredData.length && (
+                {visibleCount < filteredDatassss?.[0]?.items.length && (
                   <div style={{ textAlign: "center", marginTop: "20px" }}>
                     <button
                       onClick={loadMore}

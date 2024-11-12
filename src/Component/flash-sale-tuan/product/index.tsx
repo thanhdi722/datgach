@@ -53,6 +53,8 @@ const ProductList: React.FC = () => {
   const swiperRef = useRef<SwiperClass | null>(null);
 
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
+  const [visibleCount, setVisibleCount] = useState(10);
+
   const fetchBannerHeader = async () => {
     try {
       const response = await fetch(
@@ -118,6 +120,10 @@ const ProductList: React.FC = () => {
       return product.product.name.toLowerCase().includes("iphone");
     }
   );
+
+  const handleSeeMore = () => {
+    setVisibleCount((prevCount) => prevCount + 5);
+  };
   return (
     <div
       className="product-20-11"
@@ -160,8 +166,9 @@ const ProductList: React.FC = () => {
 
                 {filteredDatassss && filteredDatassss.length > 0 ? (
                   <div className="upgrade">
-                    {filteredDatassss?.[0]?.items.map(
-                      (product: any, index: number) => (
+                    {filteredDatassss?.[0]?.items
+                      .slice(0, visibleCount)
+                      .map((product: any, index: number) => (
                         <Link
                           key={index}
                           href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
@@ -252,7 +259,21 @@ const ProductList: React.FC = () => {
                             </div>
                           </div>
                         </Link>
-                      )
+                      ))}
+                    {visibleCount < filteredDatassss[0].items.length && (
+                      <button
+                        style={{
+                          backgroundColor: "#ff7518",
+                          color: "white",
+                          border: "none",
+                          padding: "10px 20px",
+                          borderRadius: "5px",
+                          cursor: "pointer",
+                        }}
+                        onClick={handleSeeMore}
+                      >
+                        Xem thêm
+                      </button>
                     )}
                   </div>
                 ) : (

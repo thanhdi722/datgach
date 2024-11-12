@@ -103,7 +103,29 @@
     }
   }
 }
-
+.data-bnew-khuyen-mai {
+  display: flex;
+  padding: 10px;
+  img {
+    width: 200px;
+    height: 100px;
+  }
+  .data-bnew-khuyen-mai-content {
+    padding-left: 10px;
+  }
+  .data-bnew-khuyen-mai-title a {
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-height: 1.2;
+    /* Limit to 2 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
 .header-BodyBNew-news-tabAuthor {
   display: block;
 
@@ -362,5 +384,22 @@
   }
   .header-BodyBNew-CardRow-col-6 {
     order: 3;
+  }
+}
+.header-BodyBNew2-cardPostView-load-more-button {
+  border: 2px solid red; // Viền đỏ
+  background-color: transparent; // Nền trong suốt
+  color: red; // Màu chữ đỏ
+  padding: 10px 20px; // Khoảng cách bên trong
+  cursor: pointer; // Con trỏ chuột khi hover
+  transition: background-color 0.3s, color 0.3s; // Hiệu ứng chuyển tiếp
+  border-radius: 10px;
+  margin: 10px auto;
+  justify-content: center;
+  display: flex;
+
+  &:hover {
+    background-color: red; // Màu nền khi hover
+    color: white; // Màu chữ khi hover
   }
 }
