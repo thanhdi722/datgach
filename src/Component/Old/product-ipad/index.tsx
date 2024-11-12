@@ -238,7 +238,7 @@ const ProductIpad: React.FC = () => {
 	const visibleProducts = filteredData.slice(0, visibleCount);
 
 	const loadMore = () => {
-		setVisibleCount((prevCount) => prevCount + 5); // Load 5 more items on each click
+		setVisibleCount((prevCount) => prevCount + 5);
 	};
 
 	return (
@@ -376,7 +376,8 @@ const ProductIpad: React.FC = () => {
 									</SwiperSlide>
 								))}
 							</Swiper>
-							{visibleCount < filteredData.length && (
+							{/* Conditional display of the load more button */}
+							{visibleProducts.length > 5 && visibleProducts.length < 10 && (
 								<div style={{ textAlign: 'center', marginTop: '20px' }}>
 									<button onClick={loadMore} className='button'>
 										<span className='button-content'>Xem thêm</span>

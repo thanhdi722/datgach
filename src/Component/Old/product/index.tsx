@@ -492,7 +492,7 @@ const ProductList: React.FC = () => {
 														</div>
 													</div>
 												</div>
-												<div className='gift'>
+												{/* <div className='gift'>
 													<Image
 														src={Gift}
 														width={100}
@@ -501,7 +501,7 @@ const ProductList: React.FC = () => {
 														className='gift-img'
 													/>
 													<span className='gift-text'>Tặng bộ sạc cao cấp 20W</span>
-												</div>
+												</div> */}
 											</div>
 										</div>
 									</Link>

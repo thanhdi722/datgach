@@ -6,10 +6,9 @@ import Link from 'next/link';
 import { Spin } from 'antd';
 import './product-ipad.scss';
 import ProductBanner from '../../../../public/gratitude/product-banner-02.png';
-import HostPrice from '../../../../public/gratitude/fire.gif';
 import HostPrice2 from '../../../../public/gratitude/hot-price.png';
 import FrameProduct from '../../../../public/gratitude/frame-product.png';
-import BestSeller from '../../../../public/gratitude/best-seller.png';
+import BestSeller from '../../../../public/new-year/best-seller.png';
 import Author from '../../../../public/apple/author.webp';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -322,14 +321,6 @@ const ProductIpad: React.FC = () => {
 											<div>
 												<div className='upgrade-hot-best-seller'>
 													<Image src={BestSeller} width={300} height={90} alt='best-seller' />
-													<Image
-														src={HostPrice}
-														width={90}
-														height={20}
-														quality={100}
-														alt='hot-price'
-														className='hot-price2'
-													/>
 												</div>
 												<h4 className='upgrade-hot-item-content-tt'>{product.name}</h4>
 											</div>

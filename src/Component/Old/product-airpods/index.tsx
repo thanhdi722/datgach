@@ -279,7 +279,7 @@ const ProductAirPods: React.FC = () => {
 		return <div>Error loading data</div>;
 	}
 
-	const visibleProducts = filteredData.slice(0, visibleCount);
+	const visibleProducts = filteredData.slice(0, visibleCount).sort((a, b) => a.name.localeCompare(b.name));
 
 	const loadMore = () => {
 		setVisibleCount((prevCount) => prevCount + 5);
