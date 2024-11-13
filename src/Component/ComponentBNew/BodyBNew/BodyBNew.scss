@@ -109,10 +109,7 @@
 .data-bnew-khuyen-mai {
   display: flex;
   padding: 10px;
-  img {
-    width: 200px;
-    height: 100px;
-  }
+
   .data-bnew-khuyen-mai-content {
     padding-left: 10px;
   }
@@ -122,7 +119,7 @@
     font-weight: 500;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 2;
     line-height: 1.2;
     /* Limit to 2 lines */
     overflow: hidden;

@@ -195,7 +195,7 @@ export default function BodyBNew() {
                   {newsDataKM &&
                     newsDataKM
                       .reverse()
-                      .slice(0, 4)
+                      .slice(0, 6)
                       .map((post, index) => (
                         <Row key={index} className="data-bnew-khuyen-mai">
                           <Col span={12} className="data-bnew-khuyen-mai-image">
