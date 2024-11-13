@@ -228,7 +228,7 @@ const BannerSlide = () => {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-page-xa-kho",
+                  eq: "home-page-big",
                 },
               },
             },
@@ -246,9 +246,8 @@ const BannerSlide = () => {
     fetchBannerHeader();
   }, []);
 
-  const sliderItems = data?.data?.Slider?.items[0]?.Banner?.items.filter(
-    (item) => item.name === "Slider Xả Kho"
-  );
+  const sliderItems = data?.data?.Slider?.items[0]?.Banner?.items;
+  console.log("sliderItems", sliderItems);
   return (
     <div className="banner-slide-page-warehouse-discharge">
       <div className="container">

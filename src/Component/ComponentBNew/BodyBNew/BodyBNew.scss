@@ -48,6 +48,9 @@
     &::-webkit-scrollbar {
       display: none;
     }
+    img {
+      object-fit: fill !important;
+    }
   }
   .BodyBNew-tab-list-img {
     height: 40px;

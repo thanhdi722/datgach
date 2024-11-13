@@ -34,7 +34,7 @@ export default function BodyBNew() {
 
   const [newsData, setNewsData] = useState<BlogPost[] | null>(null);
   const [newsData2, setNewsData2] = useState<BlogPost[] | null>(null);
-  const [newsData3, setNewsData3] = useState<BlogPost[] | null>(null);
+  const [newsDataKM, setNewsDataKM] = useState<BlogPost[] | null>(null);
   const selectedTabIds =
     activeTab === "Trang Chủ"
       ? [19, 9, 12, 14, 20, 27, 21]
@@ -108,7 +108,7 @@ export default function BodyBNew() {
       }
     );
     const data = await response.json();
-    setNewsData3(data.data.blogPosts.items);
+    setNewsDataKM(data.data.blogPosts.items);
 
     setLoading(false); // Set loading to false after fetching
   }
@@ -191,44 +191,50 @@ export default function BodyBNew() {
             <div className="header-BodyBNew-CardRow-test">
               <div className="header-BodyBNew-CardRow">
                 <div className="header-BodyBNew-CardRow-col-6">
-                  {newsData3 &&
-                    newsData3.reverse().map((post, index) => (
-                      <Row key={index} className="data-bnew-khuyen-mai">
-                        <Col span={12} className="data-bnew-khuyen-mai-image">
-                          <a
-                            className="data-bnew-khuyen-mai-inner-img"
-                            onClick={() =>
-                              router.push(
-                                `/news/${post.categories[0].identifier}/${post.identifier}`
-                              )
-                            }
-                          >
-                            <img alt={post.title} src={post.first_image} />
-                          </a>
-                        </Col>
-                        <Col span={12} className="data-bnew-khuyen-mai-content">
-                          <h2 className="data-bnew-khuyen-mai-title">
+                  {newsDataKM &&
+                    newsDataKM
+                      .reverse()
+                      .slice(0, 4)
+                      .map((post, index) => (
+                        <Row key={index} className="data-bnew-khuyen-mai">
+                          <Col span={12} className="data-bnew-khuyen-mai-image">
                             <a
                               className="data-bnew-khuyen-mai-inner-img"
                               onClick={() =>
                                 router.push(
-                                  `/news/${
-                                    post.categories[0].identifier
-                                  }/${new URL(post.post_url).pathname
-                                    .split("/")
-                                    .pop()}`
+                                  `/news/${post.categories[0].identifier}/${post.identifier}`
                                 )
                               }
                             >
-                              {post.title}
+                              <img alt={post.title} src={post.first_image} />
                             </a>
-                          </h2>
-                          <p style={{ padding: "6px 0px", color: "blue" }}>
-                            {post.categories[0].meta_title}
-                          </p>
-                        </Col>
-                      </Row>
-                    ))}
+                          </Col>
+                          <Col
+                            span={12}
+                            className="data-bnew-khuyen-mai-content"
+                          >
+                            <h2 className="data-bnew-khuyen-mai-title">
+                              <a
+                                className="data-bnew-khuyen-mai-inner-img"
+                                onClick={() =>
+                                  router.push(
+                                    `/news/${
+                                      post.categories[0].identifier
+                                    }/${new URL(post.post_url).pathname
+                                      .split("/")
+                                      .pop()}`
+                                  )
+                                }
+                              >
+                                {post.title}
+                              </a>
+                            </h2>
+                            <p style={{ padding: "6px 0px", color: "blue" }}>
+                              {post.categories[0].meta_title}
+                            </p>
+                          </Col>
+                        </Row>
+                      ))}
                   <Link href="https://bachlongmobile.com/promotion/">
                     <button className="header-BodyBNew2-cardPostView-load-more-button">
                       Xem thêm

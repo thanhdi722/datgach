@@ -10,6 +10,7 @@ import { default as HalloWeen } from "../app/flash-sale-halloween/page";
 import { default as XaKho } from "../app/xa-kho/page";
 import { default as BNews } from "../app/news/page";
 import { default as FlashSaleTuan } from "../app/flash-sale-tuan/page";
+import { default as NhaGiaoVietNam } from "../app/nha-giao-viet-nam/page";
 export const routingBachLongMobile = [
   {
     path: "thang-yeu-thuong",
@@ -58,5 +59,9 @@ export const routingBachLongMobile = [
   {
     path: "flash-sale-tuan",
     component: <FlashSaleTuan />,
+  },
+  {
+    path: "nha-giao-viet-nam",
+    component: <NhaGiaoVietNam />,
   },
 ];
