@@ -7,7 +7,7 @@ import { Spin } from "antd";
 import "./product.scss";
 import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
 import DecorWomen from "../../../../public/flase-sale/maycu.png";
-import FrameProduct from "../../../../public/flase-sale/f5.png";
+import FrameProduct from "../../../../public/2011/f1v1.png";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
 import DecorProduct2 from "../../../../public/halloween/ICON-DRAGON.png";
 export interface Product {

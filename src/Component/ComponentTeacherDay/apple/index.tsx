@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
 import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
-import FrameProduct from "../../../../public/flase-sale/f5.png";
+import FrameProduct from "../../../../public/2011/f1v1.png";
 import { Spin } from "antd";
 import "./apple.scss";
 import Link from "next/link";
