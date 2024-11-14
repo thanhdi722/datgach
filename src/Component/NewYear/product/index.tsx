@@ -180,6 +180,43 @@ const variables = {
 	currentPage: 1,
 };
 
+interface BannerItem {
+	banner_id: number;
+	caption: string;
+	link: string;
+	media: string;
+	media_alt: string;
+	name: string;
+	slider_id: number;
+}
+
+interface Banner {
+	__typename: string;
+	items: BannerItem[];
+	page_info: {
+		current_page: number;
+		page_size: number;
+		total_pages: number;
+	};
+}
+
+interface SliderItem {
+	title: string;
+	identifier: string;
+	Banner: Banner;
+}
+
+interface SliderData {
+	Slider: {
+		items: SliderItem[];
+		total_count: number;
+	};
+}
+
+interface ApiResponse {
+	data: SliderData;
+}
+
 async function fetchProductListData() {
 	const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
 		method: 'POST',
@@ -202,6 +239,62 @@ const ProductList: React.FC = () => {
 		queryFn: fetchProductListData,
 		staleTime: 300000,
 	});
+
+	const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
+	const fetchBannerHeader = async () => {
+		try {
+			const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					query: `
+                  query getSlider($filter: SliderFilterInput) {
+                    Slider(filter: $filter) {
+                      items {
+                        title
+                        identifier
+                        Banner {
+                          __typename
+                          items {
+                            banner_id
+                            caption
+                            link
+                            media
+                            media_alt
+                            name
+                            slider_id
+                          }
+                          page_info {
+                            current_page
+                            page_size
+                            total_pages
+                          }
+                        }
+                      }
+                      total_count
+                    }
+                  }
+                `,
+					variables: {
+						filter: {
+							identifier: {
+								eq: 'banner-mung-nam-moi',
+							},
+						},
+					},
+				}),
+			});
+
+			const result = await response.json();
+			setDataTitle(result);
+		} catch (err) {}
+	};
+
+	useEffect(() => {
+		fetchBannerHeader();
+	}, []);
 
 	const [activeTab, setActiveTab] = useState<string>('iPhone 16');
 	const [activeSubTab, setActiveSubTab] = useState<string>('');
@@ -302,13 +395,23 @@ const ProductList: React.FC = () => {
 		<div className='product-list'>
 			<div className='container'>
 				<div className='upgrade-hot-wrap'>
-					<Image
-						src={ProductBanner}
-						width={1820}
-						height={1200}
-						alt='product-banner-01'
-						className='product-banner'
-					/>
+					{dataTitle ? (
+						dataTitle?.data?.Slider?.items[0]?.Banner?.items
+							.filter((item) => item.name.includes('Title iPhone'))
+							.map((item, index) => (
+								<div key={index}>
+									<img
+										src={item.media || ''}
+										alt={`privilege-${index + 1}`}
+										className='product-banner'
+									/>
+								</div>
+							))
+					) : (
+						<Spin>
+							<div style={{ width: 200, height: 200 }} />
+						</Spin>
+					)}
 					<div className='upgrade-hot'>
 						{flashSaleItems.map((product, index) => (
 							<Link
