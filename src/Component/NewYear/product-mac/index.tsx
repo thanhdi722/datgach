@@ -202,6 +202,62 @@ const ProductMac: React.FC = () => {
 		staleTime: 300000,
 	});
 
+	const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
+	const fetchBannerHeader = async () => {
+		try {
+			const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					query: `
+                  query getSlider($filter: SliderFilterInput) {
+                    Slider(filter: $filter) {
+                      items {
+                        title
+                        identifier
+                        Banner {
+                          __typename
+                          items {
+                            banner_id
+                            caption
+                            link
+                            media
+                            media_alt
+                            name
+                            slider_id
+                          }
+                          page_info {
+                            current_page
+                            page_size
+                            total_pages
+                          }
+                        }
+                      }
+                      total_count
+                    }
+                  }
+                `,
+					variables: {
+						filter: {
+							identifier: {
+								eq: 'banner-mung-nam-moi',
+							},
+						},
+					},
+				}),
+			});
+
+			const result = await response.json();
+			setDataTitle(result);
+		} catch (err) {}
+	};
+
+	useEffect(() => {
+		fetchBannerHeader();
+	}, []);
+
 	const [activeTab, setActiveTab] = useState<string>('Macbook Pro');
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
 	const [visibleCount, setVisibleCount] = useState<number>(10); // Initial visible product count
@@ -266,13 +322,23 @@ const ProductMac: React.FC = () => {
 			<div className='upgrade-list'>
 				<div className='container'>
 					<div className='upgrade-hot-wrap'>
-						<Image
-							src={ProductBanner}
-							width={1820}
-							height={1200}
-							alt='product-banner-01'
-							className='product-banner'
-						/>
+						{dataTitle ? (
+							dataTitle?.data?.Slider?.items[0]?.Banner?.items
+								.filter((item) => item.name.includes('Title Mac'))
+								.map((item, index) => (
+									<div key={index}>
+										<img
+											src={item.media || ''}
+											alt={`privilege-${index + 1}`}
+											className='product-banner'
+										/>
+									</div>
+								))
+						) : (
+							<Spin>
+								<div style={{ width: 200, height: 200 }} />
+							</Spin>
+						)}
 						<div className='upgrade-hot'>
 							{flashSaleItems.map((product, index) => (
 								<Link
