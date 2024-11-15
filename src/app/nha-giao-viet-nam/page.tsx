@@ -113,67 +113,7 @@ export default function Page() {
         backgroundColor: "#D1BB99",
       }}
     >
-      {/* <Image className="book" src={img} alt="" />
-      <Image className="book2" src={img} alt="" /> */}
-
-      {/* <div id="item-hot">
-        <ProductList />
-      </div> */}
       <div style={{ position: "relative", overflow: "hidden" }}>
-        {/* <div className="leaf">
-          <div>
-            <img src={img10.src} height="75px" width="75px" alt="fall leaves" />
-          </div>
-          <div>
-            <img
-              src={img11.src}
-              height="75px"
-              width="75px"
-              alt="autumn leaves collage"
-            />
-          </div>
-          <div>
-            <img
-              src={img12.src}
-              height="75px"
-              width="75px"
-              alt="fall leaves clip art"
-            />
-          </div>
-          <div>
-            <img
-              src={img13.src}
-              height="75px"
-              width="75px"
-              alt="green leaves"
-            />
-          </div>
-          <div>
-            <img
-              src={img14.src}
-              height="75px"
-              width="75px"
-              alt="falling autumn leaves"
-            />
-          </div>
-          <div>
-            <img
-              src={img10.src}
-              height="75px"
-              width="75px"
-              alt="realistic fall leaves"
-            />
-          </div>
-          <div>
-            <img
-              src={img11.src}
-              height="75px"
-              width="75px"
-              alt="realistic fall leaves"
-            />
-          </div>
-        </div> */}
-
         <div className="leaf leaf1">
           <div>
             <img src={img12.src} height="75px" width="75px" alt="fall leaves" />
