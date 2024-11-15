@@ -1,4 +1,6 @@
 .product-list-sale {
+  z-index: 99;
+  position: relative;
   .tabs {
     display: flex;
     justify-content: center;
@@ -177,7 +179,7 @@
           &-body {
             display: flex;
             align-items: start;
-            gap: 1.2rem;
+            gap: 0;
             flex-direction: column;
 
             &-tt {
@@ -211,7 +213,7 @@
       }
     }
     .percent {
-      font-size: 1.2rem;
+      font-size: 1rem;
       border: 1px solid #ef373e;
       padding: 0.2rem;
       border-radius: 0.4rem;

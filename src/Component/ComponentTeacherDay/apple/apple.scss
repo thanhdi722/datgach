@@ -1,4 +1,6 @@
 .product-20-11 {
+  z-index: 99;
+  position: relative;
   .tabs {
     display: flex;
     justify-content: center;
@@ -185,7 +187,7 @@
           &-body {
             display: flex;
             align-items: start;
-            gap: 1.2rem;
+            gap: 0rem;
             flex-direction: column;
 
             &-tt {
@@ -228,9 +230,9 @@
       }
     }
     .percent {
-      font-size: 1.2rem;
+      font-size: 1rem;
       border: 1px solid #ef373e;
-      padding: 1rem;
+      padding: 0.5rem;
       border-radius: 0.4rem;
       color: #ef373e;
     }
