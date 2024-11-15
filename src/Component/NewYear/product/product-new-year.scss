@@ -240,6 +240,9 @@
 			@media screen and (max-width: 850px) {
 				flex-direction: row !important;
 			}
+			@media screen and (max-width: 440px) {
+				flex-direction: column !important;
+			}
 
 			&-wrap {
 				width: 35%;
@@ -263,6 +266,9 @@
 					width: 50%;
 					margin-left: auto;
 					margin-right: auto;
+				}
+				@media screen and (max-width: 440px) {
+					width: 70% !important;
 				}
 			}
 

@@ -50,10 +50,10 @@
 
 .flake-wrapper {
 	position: absolute;
-	z-index: 999;
+	z-index: 200;
 }
 
-@keyframes falling {
+@keyframes falling-snow {
 	0% {
 		top: -50px;
 		opacity: 1;

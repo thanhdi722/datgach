@@ -7,15 +7,15 @@ const Snowfall: React.FC = () => {
 	const createSnowflake = () => {
 		const flakeWrapper = document.createElement('div');
 		flakeWrapper.className = 'flake-wrapper';
-		const flakeSize = Math.random() + 0.1; // scale between 0.1 and 1
-		const flakePos = Math.random() * 90 + 4; // position between 4% and 94%
-		const fallingTime = Math.floor(Math.random() * 10) + 5; // between 5s and 15s
+		const flakeSize = Math.random() + 0.1;
+		const flakePos = Math.random() * 90 + 4;
+		const fallingTime = Math.floor(Math.random() * 10) + 5;
 
 		flakeWrapper.style.width = '40px';
 		flakeWrapper.style.height = '40px';
 		flakeWrapper.style.left = `${flakePos}%`;
 		flakeWrapper.style.transform = `scale(${flakeSize})`;
-		flakeWrapper.style.animation = `falling ${fallingTime}s linear infinite`;
+		flakeWrapper.style.animation = `falling-snow ${fallingTime}s linear infinite`;
 
 		flakeWrapper.innerHTML = flakeSvg;
 		document.querySelector('.background')?.appendChild(flakeWrapper);

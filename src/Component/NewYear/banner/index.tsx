@@ -11,6 +11,7 @@ import bannerMobile from '../../../../public/gratitude/banner-mobile.jpg';
 import ShineEffect from '../../../Component/NewYear/shine-effect';
 import { useQuery } from '@tanstack/react-query';
 import { Spin } from 'antd';
+import NewYearEffect from '@/Component/NewYear/new-year-effect/NewYearEffect';
 
 const query = `
 query getSlider($filter: SliderFilterInput) {
@@ -82,7 +83,8 @@ const Banner: React.FC = () => {
 	return (
 		// <ShineEffect />
 		<div className='banner'>
-			<div className='banner-desktop'>
+			<NewYearEffect />
+			{/* <div className='banner-desktop'>
 				{isLoading ? (
 					<Spin>
 						<div style={{ width: 1820, height: 500 }} />
@@ -113,7 +115,7 @@ const Banner: React.FC = () => {
 						/>
 					)
 				)}
-			</div>
+			</div> */}
 		</div>
 	);
 };

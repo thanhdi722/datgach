@@ -24,6 +24,7 @@ import Rules from '../../Component/NewYear/rules';
 import Promotion from '../../Component/NewYear/promotion';
 import TimeLine from '../../Component/NewYear/timeline';
 import Snowfall from '../../Component/NewYear/snow/Snowfall';
+import MoneyBag from '@/Component/NewYear/money-bag/MoneyBag';
 
 const categories = [
 	{ id: 'item-iphone', src: itemIphone, alt: 'category-fixed-01' },
@@ -115,6 +116,7 @@ const NewYear = () => {
 			<Banner />
 			<TimeLine onScrollToRules={handleScrollToRules} />
 			<Promotion onScrollToRules={handleScrollToRules} />
+			<MoneyBag />
 			<div ref={categoryRef}>
 				<Category />
 			</div>
