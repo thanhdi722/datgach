@@ -9,7 +9,7 @@ interface TimeLineProps {
 }
 
 const TimeLine: React.FC<TimeLineProps> = ({ onScrollToRules }) => {
-	const [endDate, setEndDate] = useState(new Date('2024-11-20T21:30:00'));
+	const [endDate, setEndDate] = useState(new Date('2024-12-31T21:30:00'));
 	const [timeArray, setTimeArray] = useState([
 		{ date: endDate.toDateString(), days: 0, hours: 0, minutes: 0, seconds: 0 },
 	]);
