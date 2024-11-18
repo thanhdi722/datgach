@@ -107,16 +107,16 @@
 	}
 
 	.HeaderHalloween-time-line-count {
-		font-size: 4rem;
+		font-size: 3rem;
 		font-weight: bold;
 		color: #000;
 		text-align: center;
 		margin-top: 0 !important;
 		@media screen and (max-width: 1200px) {
-			font-size: 4rem;
+			font-size: 3rem;
 		}
 		@media screen and (max-width: 576px) {
-			font-size: 3rem;
+			font-size: 2rem;
 		}
 	}
 	.HeaderHalloween-time-line-card-key {
@@ -142,7 +142,7 @@
 		margin-top: 0 !important;
 		text-align: center;
 		font-weight: 500;
-		font-size: 18px;
+		font-size: 18px !important;
 		color: #000;
 		@media screen and (max-width: 1200px) {
 			font-size: 1.4rem;
