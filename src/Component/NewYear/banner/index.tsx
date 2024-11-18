@@ -11,7 +11,6 @@ import bannerMobile from '../../../../public/gratitude/banner-mobile.jpg';
 import ShineEffect from '../../../Component/NewYear/shine-effect';
 import { useQuery } from '@tanstack/react-query';
 import { Spin } from 'antd';
-import NewYearEffect from '@/Component/NewYear/new-year-effect/NewYearEffect';
 
 const query = `
 query getSlider($filter: SliderFilterInput) {
