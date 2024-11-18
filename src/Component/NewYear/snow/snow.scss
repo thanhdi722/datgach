@@ -16,6 +16,10 @@
 	pointer-events: none;
 	overflow: hidden;
 	z-index: 1000;
+
+	@media screen and (max-width: 768px) {
+		display: none;
+	}
 }
 
 .background h1,
