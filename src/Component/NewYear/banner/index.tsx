@@ -92,7 +92,7 @@ const Banner: React.FC = () => {
 						<Image
 							src={bannerDesktopData.media}
 							alt={bannerDesktopData.media_alt || 'banner desktop'}
-							width={2200}
+							width={3000}
 							height={2000}
 							quality={100}
 						/>
@@ -109,8 +109,8 @@ const Banner: React.FC = () => {
 						<Image
 							src={bannerMobileData.media}
 							alt={bannerMobileData.media_alt || 'banner desktop'}
-							width={1820}
-							height={1400}
+							width={3000}
+							height={2000}
 							quality={100}
 						/>
 					)
