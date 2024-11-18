@@ -50,7 +50,7 @@ const TimeLine: React.FC<TimeLineProps> = ({ onScrollToRules }) => {
 								justifyContent: 'center',
 								alignItems: 'center',
 								padding: '40px 0px',
-								color: '#ff000e',
+								color: '#fff',
 								fontSize: '32px',
 								fontWeight: '600',
 							}}
