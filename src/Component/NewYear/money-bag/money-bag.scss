@@ -34,7 +34,7 @@ body {
 	height: 100vh;
 	@include flex-center;
 	overflow: hidden;
-	z-index: 400;
+	z-index: 0;
 	// background: linear-gradient(to bottom, #fee2e2, #fecaca);
 }
 
@@ -43,9 +43,15 @@ body {
 	right: 10rem;
 	bottom: 5rem;
 	width: 16rem;
+	transition: all 0.5s all;
+	cursor: pointer;
 
 	@media (min-width: 640px) {
 		width: 20rem;
+	}
+
+	&:hover {
+		scale: 1.05;
 	}
 
 	&__opening {
