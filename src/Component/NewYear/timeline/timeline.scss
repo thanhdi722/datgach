@@ -1,11 +1,11 @@
 // @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Gloria+Hallelujah&display=swap');
 .timeline-new-year {
-	background: #a80011 !important;
+	background: linear-gradient(to right, #bb0a0a, #c0140b, #b9400b, #c4540e, #bd2710);
 	padding: 0 !important;
 	position: relative;
 	.cloud-new-year {
 		position: absolute;
-		top: 0;
+		top: -10%;
 		left: 0;
 		height: 100%;
 	}
@@ -21,8 +21,8 @@
 			padding: 12px 24px;
 			font-size: 16px;
 			font-weight: bold;
-			background-color: #ffe066;
-			color: #b22222;
+			background-color: #ef373e;
+			color: white;
 			border: none;
 			border-radius: 8px;
 			cursor: pointer;

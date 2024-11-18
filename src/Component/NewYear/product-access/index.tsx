@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Spin } from 'antd';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import FrameProduct from '../../../../public/gratitude/frame-product.png';
+import FrameProduct from '../../../../public/new-year/frame-product.png';
 import ProductBanner from '../../../../public/gratitude/product-banner-06.png';
 import './product-access.scss';
 

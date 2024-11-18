@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import './promotion-new-year.scss';
+import Link from 'next/link';
 
 interface BannerItem {
 	banner_id: number;
@@ -121,21 +122,29 @@ const Promotion = ({ onScrollToRules }: PromotionProps) => {
 						.map((item, index) => (
 							<div key={index} className='privilege-img' style={{ cursor: 'pointer' }}>
 								{item.link ? (
-									<a href={item.link} target='_blank' rel='noopener noreferrer'>
+									<Link href={item.link} target='_blank' rel='noopener noreferrer'>
 										<Image
 											src={item.media || ''}
 											alt={`privilege-${index + 1}`} // Adjust the alt text accordingly
 											width={1200}
 											height={1000}
 										/>
-									</a>
+									</Link>
 								) : (
-									<Image
-										src={item.media || ''}
-										alt={`privilege-${index + 1}`} // Adjust the alt text accordingly
-										width={1200}
-										height={1000}
-									/>
+									<div
+										onClick={() =>
+											document
+												.getElementById('item-rules')
+												?.scrollIntoView({ behavior: 'smooth' })
+										}
+									>
+										<Image
+											src={item.media || ''}
+											alt={`privilege-${index + 1}`} // Adjust the alt text accordingly
+											width={1200}
+											height={1000}
+										/>
+									</div>
 								)}
 							</div>
 						))}

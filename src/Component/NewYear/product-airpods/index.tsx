@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Spin } from 'antd';
 import ProductBanner from '../../../../public/gratitude/product-banner-05.png';
-import FrameProduct from '../../../../public/gratitude/frame-product.png';
+import FrameProduct from '../../../../public/new-year/frame-product.png';
 import BestSeller from '../../../../public/new-year/best-seller.png';
 import Author from '../../../../public/apple/author.webp';
 import HostPrice2 from '../../../../public/gratitude/hot-price.png';

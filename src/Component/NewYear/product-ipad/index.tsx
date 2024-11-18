@@ -7,7 +7,7 @@ import { Spin } from 'antd';
 import './product-ipad.scss';
 import ProductBanner from '../../../../public/gratitude/product-banner-02.png';
 import HostPrice2 from '../../../../public/gratitude/hot-price.png';
-import FrameProduct from '../../../../public/gratitude/frame-product.png';
+import FrameProduct from '../../../../public/new-year/frame-product.png';
 import BestSeller from '../../../../public/new-year/best-seller.png';
 import Author from '../../../../public/apple/author.webp';
 /* eslint-disable @typescript-eslint/no-explicit-any */

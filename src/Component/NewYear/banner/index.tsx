@@ -83,8 +83,7 @@ const Banner: React.FC = () => {
 	return (
 		// <ShineEffect />
 		<div className='banner'>
-			<NewYearEffect />
-			{/* <div className='banner-desktop'>
+			<div className='banner-desktop'>
 				{isLoading ? (
 					<Spin>
 						<div style={{ width: 1820, height: 500 }} />
@@ -94,8 +93,9 @@ const Banner: React.FC = () => {
 						<Image
 							src={bannerDesktopData.media}
 							alt={bannerDesktopData.media_alt || 'banner desktop'}
-							width={1820}
+							width={1920}
 							height={1400}
+							quality={100}
 						/>
 					)
 				)}
@@ -112,10 +112,11 @@ const Banner: React.FC = () => {
 							alt={bannerMobileData.media_alt || 'banner desktop'}
 							width={1820}
 							height={1400}
+							quality={100}
 						/>
 					)
 				)}
-			</div> */}
+			</div>
 		</div>
 	);
 };

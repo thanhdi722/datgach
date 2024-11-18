@@ -39,6 +39,7 @@ const TimeLine: React.FC<TimeLineProps> = ({ onScrollToRules }) => {
 
 	return (
 		<div className='timeline-new-year'>
+			{/* <Image src={CloudNewYear} alt='bg-time-line' className='cloud-new-year' /> */}
 			<div className='container'>
 				{isEventOver ? (
 					<div className='HeaderHalloween-time-line'>

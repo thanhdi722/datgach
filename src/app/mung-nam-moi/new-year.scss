@@ -3,7 +3,8 @@ $secondary: #fdea8a;
 $background: #faf6f6;
 
 .new-year {
-	background: #a80011;
+	// background: #a80011;
+	background: linear-gradient(to right, #bb0a0a, #c0140b, #b9400b, #c4540e, #bd2710);
 	.sticky-category {
 		position: fixed;
 		display: flex;
