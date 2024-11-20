@@ -7,7 +7,7 @@ query getCategories($filters:CategoryFilterInput){categories(filters:$filters){_
 `;
 
 const variables = {
-	filters: { url_key: { eq: 'tin-cong-nghe' } },
+	filters: { url_key: { eq: 'don-giang-sinh-mung-nam-moi' } },
 };
 
 async function fetchContentData() {
