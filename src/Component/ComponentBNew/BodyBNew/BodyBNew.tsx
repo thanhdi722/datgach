@@ -195,10 +195,10 @@ export default function BodyBNew() {
                   {newsDataKM &&
                     newsDataKM
                       .reverse()
-                      .slice(0, 6)
+                      .slice(0, 3)
                       .map((post, index) => (
-                        <Row key={index} className="data-bnew-khuyen-mai">
-                          <Col span={12} className="data-bnew-khuyen-mai-image">
+                        <div key={index} className="data-bnew-khuyen-mai">
+                          <div className="data-bnew-khuyen-mai-image">
                             <a
                               className="data-bnew-khuyen-mai-inner-img"
                               onClick={() =>
@@ -209,11 +209,8 @@ export default function BodyBNew() {
                             >
                               <img alt={post.title} src={post.first_image} />
                             </a>
-                          </Col>
-                          <Col
-                            span={12}
-                            className="data-bnew-khuyen-mai-content"
-                          >
+                          </div>
+                          <div className="data-bnew-khuyen-mai-content">
                             <h2 className="data-bnew-khuyen-mai-title">
                               <a
                                 className="data-bnew-khuyen-mai-inner-img"
@@ -233,8 +230,8 @@ export default function BodyBNew() {
                             <p style={{ padding: "6px 0px", color: "blue" }}>
                               {post.categories[0].meta_title}
                             </p>
-                          </Col>
-                        </Row>
+                          </div>
+                        </div>
                       ))}
                   <Link href="https://bachlongmobile.com/promotion/">
                     <button className="header-BodyBNew2-cardPostView-load-more-button">
