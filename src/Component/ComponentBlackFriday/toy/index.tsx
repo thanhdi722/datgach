@@ -374,8 +374,8 @@ const AppleList: React.FC = () => {
                         >
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
-                              <span className="percent">Trả góp 0%</span>
-                              {/(iphone|ipad|macbook|watch)/i.test(
+                              {/* <span className="percent">Trả góp 0%</span> */}
+                              {/* {/(iphone|ipad|macbook|watch)/i.test(
                                 product?.product?.name
                               ) && (
                                 <Image
@@ -383,7 +383,7 @@ const AppleList: React.FC = () => {
                                   src={DecorWomen}
                                   alt=""
                                 />
-                              )}
+                              )} */}
                             </div>
                             <div className="upgrade-item-img">
                               <div className="img-content">
@@ -436,7 +436,7 @@ const AppleList: React.FC = () => {
                                     %
                                   </div>
                                 </div>
-                                <div
+                                {/* <div
                                   style={{
                                     backgroundColor: "rgba(215, 0, 24, .08)",
                                     borderRadius: "0.4rem",
@@ -453,7 +453,7 @@ const AppleList: React.FC = () => {
                                   >
                                     Giá thu bằng giá bán - Trợ giá lên đến 100%
                                   </span>
-                                </div>
+                                </div> */}
                               </div>
                             </div>
                           </div>

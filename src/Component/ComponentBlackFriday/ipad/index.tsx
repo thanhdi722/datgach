@@ -384,7 +384,7 @@ const IpadList: React.FC = () => {
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
                               <span className="percent">Trả góp 0%</span>
-                              {/(iphone|ipad|macbook|watch)/i.test(
+                              {/* {/(iphone|ipad|macbook|watch)/i.test(
                                 product?.name
                               ) && (
                                 <Image
@@ -392,7 +392,7 @@ const IpadList: React.FC = () => {
                                   src={DecorWomen}
                                   alt=""
                                 />
-                              )}
+                              )} */}
                             </div>
                             <div className="upgrade-item-img">
                               <div className="img-content">
