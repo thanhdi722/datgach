@@ -465,6 +465,11 @@ const ProductAirPods: React.FC = () => {
 														</div>
 													</div>
 												</div>
+												<div className='upgrade-wrap-footer'>
+													<div className='upgrade-hot-footer'>
+														Giá thu bằng giá bán - Trợ giá lên đến 100%
+													</div>
+												</div>
 											</div>
 										</div>
 									</Link>
