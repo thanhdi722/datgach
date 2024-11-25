@@ -405,3 +405,108 @@
     color: white; // Màu chữ khi hover
   }
 }
+.test-css-NewsSub {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+  img {
+    display: none !important;
+  }
+  h1 {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 6px 0px;
+  }
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    padding: 6px 0px;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 6px 0px;
+  }
+  span {
+    font-size: 20px;
+    color: #000;
+    padding: 6px 0px;
+    line-height: 1.5;
+  }
+  p {
+    font-size: 20px;
+    color: #000;
+    padding: 6px 0px;
+    line-height: 1.5;
+  }
+  strong {
+    font-weight: 700;
+  }
+  ol {
+    padding: 10px 0px;
+    padding-left: 20px;
+  }
+  ul {
+    padding: 10px 0px;
+    padding-left: 20px;
+  }
+  ul li {
+    text-decoration: none;
+    // list-style-type: none;
+  }
+  a {
+    span {
+      color: #007bff;
+    }
+  }
+
+  p {
+    img {
+      width: 100% !important;
+      height: 100% !important;
+    }
+    span {
+      img {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+    strong {
+      img {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+    em {
+      span {
+        img {
+          width: 100% !important;
+          height: 100% !important;
+        }
+      }
+    }
+  }
+  img {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  table {
+    tbody {
+      tr {
+        td {
+          border: 1px solid black;
+          img {
+            width: 100% !important;
+            height: auto !important;
+          }
+        }
+      }
+    }
+  }
+}

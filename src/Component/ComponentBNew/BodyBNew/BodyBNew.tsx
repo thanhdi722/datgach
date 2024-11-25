@@ -35,6 +35,7 @@ export default function BodyBNew() {
   const [newsData, setNewsData] = useState<BlogPost[] | null>(null);
   const [newsData2, setNewsData2] = useState<BlogPost[] | null>(null);
   const [newsDataKM, setNewsDataKM] = useState<BlogPost[] | null>(null);
+  const [newsDataDetail, setNewsDataDetail] = useState<BlogPost[] | null>(null);
   const selectedTabIds =
     activeTab === "Trang Chủ"
       ? [19, 9, 12, 14, 20, 27, 21]
@@ -134,12 +135,6 @@ export default function BodyBNew() {
     setLoading(false); // Set loading to false after fetching
   }
 
-  useEffect(() => {
-    fetchBlogPostsData(); // Fetch main posts when activeTab changes
-    fetchBlogPostsDataNew(); // Fetch new posts based on activeTab2
-    fetchBlogPostsDatass(); // Fetch new posts based on activeTab2
-  }, [activeTab, activeTab2]);
-
   const tabs = [
     "Trang Chủ",
     "Tin Công Nghệ",
@@ -150,7 +145,182 @@ export default function BodyBNew() {
     "Tin Tức Sự Kiện",
     "Tuyển Dụng",
   ];
+  const queryDetail = `query BlogPostByUrlKey($url_key: String) {
+    blogPostByUrlKey(url_key: $url_key) {
+            author {
+        author_id
+        author_url
+        content
+        creation_time
+        custom_layout
+        custom_layout_update_xml
+        custom_theme
+        custom_theme_from
+        custom_theme_to
+        facebook_page_url
+        featured_image
+        filtered_content
+        identifier
+        instagram_page_url
+        is_active
+        layout_update_xml
+        linkedin_page_url
+        meta_description
+        meta_title
+        name
+        page_layout
+        relative_url
+        role
+        short_content
+        short_filtered_content
+        title
+        twitter_page_url
+        type
+        url
+    }
+    author_id
+    canonical_url
+    categories {
+        canonical_url
+        category_id
+        category_level
+        category_url
+        category_url_path
+        content
+        content_heading
+        custom_layout
+        custom_layout_update_xml
+        custom_theme
+        custom_theme_from
+        custom_theme_to
+        display_mode
+        identifier
+        include_in_menu
+        is_active
+        layout_update_xml
+        meta_description
+        meta_keywords
+        meta_title
+        page_layout
+        parent_category_id
+        path
+        position
+        posts_count
+        posts_sort_by
+        relative_url
+        title
+        type
+    }
+    category_id
+    content_heading
+    creation_time
+    custom_layout
+    custom_layout_update_xml
+    custom_theme
+    custom_theme_from
+    custom_theme_to
+    end_time
+    featured_list_image
+    featured_list_img_alt
+    filtered_content
+    first_image
+    include_in_recent
+    is_active
+    is_recent_posts_skip
+    layout_update_xml
+    media_gallery {
+        url
+    }
+    meta_description
+    meta_keywords
+    meta_title
+    og_description
+    og_image
+    og_title
+    og_type
+    page_layout
+    publish_time
+    related_posts {
+        ...BlogPostFields
+    }
+    relatedproduct_id
+    relative_url
+    search
+    secret
+    short_content
+    short_filtered_content
+    tag_id
+    tags {
+        content
+        custom_layout
+        custom_layout_update_xml
+        custom_theme
+        custom_theme_from
+        custom_theme_to
+        identifier
+        is_active
+        layout_update_xml
+        meta_description
+        meta_keywords
+        meta_robots
+        meta_title
+        page_layout
+        relative_url
+        tag_id
+        tag_url
+        title
+        type
+    }
+    type
+    update_time
+    views_count
+    ...BlogPostFields
+}
+}fragment BlogPostFields on BlogPost {
+featured_image
+featured_img_alt
+identifier
+position
+post_id
+post_url
+title
+publish_time
+}
+`;
+  const variablesDetail = {
+    url_key: newsData?.[0]?.identifier,
+  };
 
+  async function fetchBlogPostsDataNewDetail() {
+    setLoading(true); // Set loading to true before fetching
+    const response = await fetch(
+      "https://beta-api.bachlongmobile.com/graphql",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: queryDetail,
+          variables: variablesDetail,
+        }),
+      }
+    );
+    const data = await response.json();
+    setNewsDataDetail(data?.data?.blogPostByUrlKey?.filtered_content);
+
+    setLoading(false); // Set loading to false after fetching
+  }
+  useEffect(() => {
+    fetchBlogPostsData(); // Fetch main posts when activeTab changes
+    fetchBlogPostsDataNew(); // Fetch new posts based on activeTab2
+    fetchBlogPostsDatass(); // Fetch new posts based on activeTab2
+  }, [activeTab, activeTab2]);
+
+  useEffect(() => {
+    fetchBlogPostsDataNewDetail(); // Fetch detail when newsData is updated
+  }, [newsData]); // Add newsData as a dependency
+  console.log("dataanew 0", newsDataDetail);
   return (
     <div className="header-BodyBNew">
       <nav>
@@ -292,6 +462,13 @@ export default function BodyBNew() {
 
                           <span>{newsData[0].views_count} lượt xem</span>
                         </div>
+                        <div
+                          className="test-css-NewsSub"
+                          contentEditable="false"
+                          dangerouslySetInnerHTML={{
+                            __html: `${newsDataDetail}`,
+                          }}
+                        ></div>
                       </div>
                     </div>
                   )}

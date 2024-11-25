@@ -1,15 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
-import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
-import FrameProduct from "../../../../public/black-friday/f80.png";
-import { Spin } from "antd";
-import "./apple.scss";
-import Link from "next/link";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import { Spin } from "antd";
+import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
+import DecorWomen from "../../../../public/flase-sale/PC_phukienapple.png";
+import FrameProduct from "../../../../public/black-friday/f80.png";
+import "./apple.scss";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
-import DecorProduct2 from "../../../../public/flase-sale/dragon-sale.png";
+import DecorProduct2 from "../../../../public/halloween/ICON-DRAGON.png";
 export interface Product {
   id: number;
   name: string;
@@ -27,106 +27,42 @@ export interface Product {
     };
   };
 }
-interface DailySalesData {
-  data: {
-    DailySales: {
-      items: DailySale[];
-      page_info: PageInfo;
-      total_count: number;
-    };
+interface BannerItem {
+  banner_id: number;
+  caption: string;
+  link: string;
+  media: string;
+  media_alt: string;
+  name: string;
+  slider_id: number;
+}
+
+interface Banner {
+  __typename: string;
+  items: BannerItem[];
+  page_info: {
+    current_page: number;
+    page_size: number;
+    total_pages: number;
   };
 }
 
-interface DailySale {
-  end_date: string;
-  start_date: string;
-  color_code: string;
-  meta_image: string;
-  meta_image_mobile: string;
-  meta_image_product?: string | null;
-  list_item: any[];
-  identifier?: string | null;
-  entity_id: number;
-  items: SaleItem[];
-  priority: string;
-  show_in_home?: boolean | null;
-  status: number;
+interface SliderItem {
   title: string;
+  identifier: string;
+  Banner: Banner;
 }
 
-interface PageInfo {
-  current_page: number;
-  page_size: number;
-  total_pages: number;
+interface SliderData {
+  Slider: {
+    items: SliderItem[];
+    total_count: number;
+  };
 }
 
-interface SaleItem {
-  rating_summary_daily_sale?: string | null;
-  price_original: string;
-  entity_id: number;
-  product: Products;
-  product_id: number;
-  sale_price: number;
-  sale_qty: number;
-  saleable_qty: number;
-  sold_qty: number;
-  start_date?: string | null;
-  image_banner_sale?: string | null;
+interface ApiResponse {
+  data: SliderData;
 }
-
-interface Products {
-  __typename: string;
-  sku: string;
-  uid: string;
-  name: string;
-  url_key: string;
-  categories: Category[];
-  new_from_date?: string | null;
-  new_to_date?: string | null;
-  rating_summary: number;
-  review_count: number;
-  image: ProductImage;
-  price_range: PriceRange;
-  color?: number | null;
-  country_of_manufacture?: string | null;
-  daily_sale?: any | null;
-}
-
-interface Category {
-  name: string;
-  url_key: string;
-  url_path: string;
-  level: number;
-  uid: string;
-  path: string;
-}
-
-interface ProductImage {
-  url: string;
-}
-
-interface PriceRange {
-  __typename: string;
-  maximum_price: PriceDetails;
-  minimum_price: PriceDetails;
-}
-
-interface PriceDetails {
-  discount: Discount;
-  final_price: Price;
-  regular_price: Price;
-}
-
-interface Discount {
-  amount_off: number;
-  percent_off: number;
-}
-
-interface Price {
-  currency: string;
-  value: number;
-}
-
 const query = `
  query getProducts(
   $search: String
@@ -171,94 +107,65 @@ fragment ProductInterfaceField on ProductInterface {
 const variables = {
   filter: {
     category_uid: {
-      eq: "NDEx",
+      eq: "Mzg2",
     },
   },
   pageSize: 200,
   currentPage: 1,
 };
 
-interface BannerItem {
-  banner_id: number;
-  caption: string;
-  link: string;
-  media: string;
-  media_alt: string;
-  name: string;
-  slider_id: number;
+async function fetchProductListData() {
+  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables,
+    }),
+  });
+
+  const data = await response.json();
+  return data.data.products.items as Product[];
 }
 
-interface Banner {
-  __typename: string;
-  items: BannerItem[];
-  page_info: {
-    current_page: number;
-    page_size: number;
-    total_pages: number;
-  };
-}
-
-interface SliderItem {
-  title: string;
-  identifier: string;
-  Banner: Banner;
-}
-
-interface SliderData {
-  Slider: {
-    items: SliderItem[];
-    total_count: number;
-  };
-}
-
-interface ApiResponse {
-  data: SliderData;
-}
-
-const AppleList: React.FC = () => {
-  async function fetchProductListDataPhuKienBlackFriday() {
-    const response = await fetch(
-      "https://beta-api.bachlongmobile.com/graphql",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query,
-          variables,
-        }),
-      }
-    );
-
-    const data = await response.json();
-    return data.data.products.items as Product[];
-  }
-  const { data, error, isLoading } = useQuery<Product[]>({
-    queryKey: ["productListDataPhuKienBlackFriday"],
-    queryFn: fetchProductListDataPhuKienBlackFriday,
+const ToyList: React.FC = () => {
+  const {
+    data: DataToy,
+    error,
+    isLoading,
+  } = useQuery<Product[]>({
+    queryKey: ["productToy"],
+    queryFn: fetchProductListData,
     staleTime: 300000,
   });
 
-  useEffect(() => {
-    if (activeTab === "All") {
-      setFilteredData(data || []);
-    } else {
-      const filtered = data?.filter((product) =>
-        product.name.toLowerCase().includes(activeTab.toLowerCase())
+  const { data } = useProductSaleData();
+  const filteredDatassss = data?.filter(
+    (item: any) => item.title === "SP PK Flash Sale Tuần"
+  );
+  const productSale = data?.[0]?.items;
+
+  const productSaleNames = productSale?.map(
+    (productSale: any) => productSale.product.name
+  );
+  const productSalePrices = productSale?.map(
+    (productSale: any) => productSale.sale_price
+  );
+
+  const getProductSalePrice = (productName: string, originalPrice: number) => {
+    if (productSaleNames && productSalePrices) {
+      const saleIndex = productSaleNames.findIndex(
+        (name: string) => name === productName
       );
-      const sortedFiltered = filtered?.sort((a, b) => {
-        return (
-          a.price_range.minimum_price.final_price.value -
-          b.price_range.minimum_price.final_price.value
-        );
-      });
-
-      setFilteredData(sortedFiltered || []);
+      if (saleIndex !== -1) {
+        return productSalePrices[saleIndex].toLocaleString("vi-VN");
+      }
     }
-  }, [data]);
+    return originalPrice.toLocaleString("vi-VN");
+  };
 
-  const [activeTab, setActiveTab] = useState<string>("");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
@@ -318,6 +225,37 @@ const AppleList: React.FC = () => {
   useEffect(() => {
     fetchBannerHeader();
   }, []);
+  useEffect(() => {
+    let filtered = DataToy || [];
+    setFilteredData(filtered);
+
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setVisibleCount(4);
+      } else {
+        setVisibleCount(10);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [DataToy]);
+
+  if (isLoading) {
+    return (
+      <div className="container-spin">
+        <Spin size="large" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Error loading data</div>;
+  }
 
   const visibleProducts = filteredData.slice(0, visibleCount);
 
@@ -359,14 +297,15 @@ const AppleList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-                {filteredData && filteredData.length > 0 ? (
+
+                {filteredDatassss && filteredDatassss.length > 0 ? (
                   <div className="upgrade">
-                    {filteredData
-                      .slice(0, visibleCount)
+                    {filteredDatassss?.[0]?.items
+                      ?.slice(0, visibleCount)
                       .map((product: any, index: number) => (
                         <Link
                           key={index}
-                          href={`https://bachlongmobile.com/products/${product?.url_key}`}
+                          href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
                           passHref
                           target="_blank"
                           rel="noopener noreferrer"
@@ -375,20 +314,11 @@ const AppleList: React.FC = () => {
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
                               {/* <span className="percent">Trả góp 0%</span> */}
-                              {/* {/(iphone|ipad|macbook|watch)/i.test(
-                                product?.product?.name
-                              ) && (
-                                <Image
-                                  className="ic-auth"
-                                  src={DecorWomen}
-                                  alt=""
-                                />
-                              )} */}
                             </div>
                             <div className="upgrade-item-img">
                               <div className="img-content">
                                 <Image
-                                  src={product?.image?.url}
+                                  src={product?.product?.image?.url}
                                   width={1400}
                                   height={1200}
                                   quality={100}
@@ -407,20 +337,17 @@ const AppleList: React.FC = () => {
                             </div>
                             <div className="upgrade-item-content">
                               <h4 className="upgrade-item-content-tt">
-                                {product?.name}
+                                {product?.product?.name}
                               </h4>
                               <div className="upgrade-item-content-body">
                                 <div className="upgrade-item-content-body-price">
-                                  {Number(
-                                    product?.price_range?.minimum_price
-                                      ?.final_price?.value
-                                  )?.toLocaleString("vi-VN")}{" "}
+                                  {product?.sale_price?.toLocaleString("vi-VN")}{" "}
                                   VNĐ
                                 </div>
                                 <div className="upgrade-item-content-body-reduced">
                                   <div className="price-reduced">
                                     {Number(
-                                      product?.attributes[0]?.value
+                                      product?.price_original
                                     )?.toLocaleString("vi-VN")}{" "}
                                     VNĐ
                                   </div>
@@ -428,32 +355,13 @@ const AppleList: React.FC = () => {
                                     -
                                     {Math.ceil(
                                       100 -
-                                        (product.price_range?.minimum_price
-                                          ?.final_price?.value /
-                                          product.attributes[0]?.value) *
+                                        (product.sale_price /
+                                          product.price_original) *
                                           100
                                     )}
                                     %
                                   </div>
                                 </div>
-                                {/* <div
-                                  style={{
-                                    backgroundColor: "rgba(215, 0, 24, .08)",
-                                    borderRadius: "0.4rem",
-                                    color: "#d70018",
-                                    padding: "0.8rem",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  <span
-                                    style={{
-                                      fontSize: "1.2rem",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    Giá thu bằng giá bán - Trợ giá lên đến 100%
-                                  </span>
-                                </div> */}
                               </div>
                             </div>
                           </div>
@@ -473,7 +381,7 @@ const AppleList: React.FC = () => {
                     <Spin />
                   </div>
                 )}
-                {visibleCount < filteredData?.length ? (
+                {visibleCount < filteredDatassss?.[0]?.items?.length ? (
                   <div style={{ textAlign: "center", marginTop: "20px" }}>
                     <button
                       onClick={loadMore}
@@ -497,8 +405,9 @@ const AppleList: React.FC = () => {
           </div>
         </div>
       </div>
+      <div id="phu-kien-black-friday" />
     </div>
   );
 };
 
-export default AppleList;
+export default ToyList;
