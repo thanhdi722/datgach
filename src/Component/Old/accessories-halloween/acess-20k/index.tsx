@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import ProMax from '../../accessories-halloween/acess-20k/components/pro-max';
 import Pro from '../../accessories-halloween/acess-20k/components/pro';
 import Plus from '../../accessories-halloween/acess-20k/components/plus';
+import Original from '../../accessories-halloween/acess-20k/components/original';
 import './acess-women.scss';
-import Original from '@/Component/Old/accessories-halloween/acess-20k/components/original';
 
 const Access20k: React.FC = () => {
 	const [selectedTab, setSelectedTab] = useState<string>('iPhone 16 Pro Max');
