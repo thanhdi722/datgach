@@ -1,0 +1,36 @@
+.access-container {
+	font-family: Arial, sans-serif;
+	display: flex;
+	flex-direction: column;
+	gap: 1.2rem;
+
+	.tabs {
+		display: flex;
+		gap: 10px;
+	}
+
+	.tab {
+		background-color: transparent;
+		border: none;
+		padding: 12px 30px;
+		cursor: pointer;
+		font-size: 10px;
+		color: #777;
+		transition: background-color 0.3s, color 0.3s, transform 0.2s ease-out;
+		border-radius: 5px 5px 0 0;
+
+		/* Style cho tab khi hover */
+		&:hover {
+			background-color: #ff4d4f !important;
+			background: #ff4d4f !important;
+		}
+
+		/* Style cho tab khi active */
+		&.active {
+			color: #fff !important;
+			background-color: #ff4d4f !important; /* Màu nền nổi bật khi active */
+			font-weight: bold;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
+	}
+}

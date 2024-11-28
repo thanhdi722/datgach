@@ -10,7 +10,7 @@ const variables = {
 			eq: 'sale-multiple-product',
 		},
 	},
-	pageSize: 200,
+	pageSize: 10,
 	currentPage: 1,
 };
 
