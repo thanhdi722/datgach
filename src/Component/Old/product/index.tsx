@@ -91,7 +91,7 @@ const ProductList: React.FC = () => {
 											borderRadius: '8px',
 											cursor: 'pointer',
 											transition: 'all 0.3s ease',
-											padding: '15px',
+											padding: '10px',
 											boxShadow:
 												activeTab === tab.index ? '0 4px 8px rgba(0, 0, 0, 0.1)' : 'none',
 											fontSize: '1.4rem',
