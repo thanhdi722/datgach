@@ -301,6 +301,7 @@ const ToyList: React.FC = () => {
                 {filteredDatassss && filteredDatassss.length > 0 ? (
                   <div className="upgrade">
                     {filteredDatassss?.[0]?.items
+                      .sort((a: any, b: any) => a.sale_price - b.sale_price)
                       ?.slice(0, visibleCount)
                       .map((product: any, index: number) => (
                         <Link
