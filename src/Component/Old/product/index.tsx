@@ -116,7 +116,7 @@ const ProductList: React.FC = () => {
 											color: activeTab === tab.index ? '#fff' : '#333',
 											backgroundColor: activeTab === tab.index ? '#ff4d4f' : '#fff',
 											borderRadius: '8px',
-											padding: '15px',
+											padding: '10px',
 											cursor: 'pointer',
 											fontSize: '1.4rem',
 											transition: 'all 0.3s ease',
