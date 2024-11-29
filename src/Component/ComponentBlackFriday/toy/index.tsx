@@ -63,108 +63,13 @@ interface SliderData {
 interface ApiResponse {
   data: SliderData;
 }
-const query = `
- query getProducts(
-  $search: String
-  $filter: ProductAttributeFilterInput
-  $sort: ProductAttributeSortInput
-  $pageSize: Int
-  $currentPage: Int
-) {
-  products(
-    search: $search
-    filter: $filter
-    sort: $sort
-    pageSize: $pageSize
-    currentPage: $currentPage
-  ) {
-    items {
-      ...ProductInterfaceField
-    }
-  }
-}
-fragment ProductInterfaceField on ProductInterface {
-  name
-  url_key
-  image {
-    url
-  }
-  attributes {
-    attribute_code
-    value
-  }
-  price_range {
-    minimum_price {
-      final_price {
-        value
-        currency
-      }
-    }
-  }
-}
-`;
-
-const variables = {
-  filter: {
-    category_uid: {
-      eq: "Mzg2",
-    },
-  },
-  pageSize: 200,
-  currentPage: 1,
-};
-
-async function fetchProductListData() {
-  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
-
-  const data = await response.json();
-  return data.data.products.items as Product[];
-}
 
 const ToyList: React.FC = () => {
-  const {
-    data: DataToy,
-    error,
-    isLoading,
-  } = useQuery<Product[]>({
-    queryKey: ["productToy"],
-    queryFn: fetchProductListData,
-    staleTime: 300000,
-  });
-
   const { data } = useProductSaleData();
+  console.log("data sssss", data);
   const filteredDatassss = data?.filter(
     (item: any) => item.title === "SP PK Flash Sale Tuần"
   );
-  const productSale = data?.[0]?.items;
-
-  const productSaleNames = productSale?.map(
-    (productSale: any) => productSale.product.name
-  );
-  const productSalePrices = productSale?.map(
-    (productSale: any) => productSale.sale_price
-  );
-
-  const getProductSalePrice = (productName: string, originalPrice: number) => {
-    if (productSaleNames && productSalePrices) {
-      const saleIndex = productSaleNames.findIndex(
-        (name: string) => name === productName
-      );
-      if (saleIndex !== -1) {
-        return productSalePrices[saleIndex].toLocaleString("vi-VN");
-      }
-    }
-    return originalPrice.toLocaleString("vi-VN");
-  };
 
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
@@ -225,37 +130,6 @@ const ToyList: React.FC = () => {
   useEffect(() => {
     fetchBannerHeader();
   }, []);
-  useEffect(() => {
-    let filtered = DataToy || [];
-    setFilteredData(filtered);
-
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setVisibleCount(4);
-      } else {
-        setVisibleCount(10);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [DataToy]);
-
-  if (isLoading) {
-    return (
-      <div className="container-spin">
-        <Spin size="large" />
-      </div>
-    );
-  }
-
-  if (error) {
-    return <div>Error loading data</div>;
-  }
 
   const visibleProducts = filteredData.slice(0, visibleCount);
 
