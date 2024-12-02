@@ -119,7 +119,7 @@ query getProducts(
 const variables = {
 	filter: {
 		category_uid: {
-			eq: 'MTgz',
+			eq: 'NDI2',
 		},
 	},
 	pageSize: 20,

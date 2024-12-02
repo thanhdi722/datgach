@@ -119,7 +119,7 @@ query getProducts(
 const variables = {
 	filter: {
 		category_uid: {
-			eq: 'MzQ5',
+			eq: 'NDE1',
 		},
 	},
 	pageSize: 15,
@@ -158,14 +158,9 @@ const Pro: React.FC = () => {
 
 	useEffect(() => {
 		setFilteredData(
-			(Access20k || [])
-				.filter(
-					(product) => product.name.startsWith('iPhone 16 Pro') && !product.name.includes('iPhone 16 Pro Max')
-				)
-				.sort(
-					(a, b) =>
-						a.price_range.minimum_price.final_price.value - b.price_range.minimum_price.final_price.value
-				)
+			(Access20k || []).sort(
+				(a, b) => a.price_range.minimum_price.final_price.value - b.price_range.minimum_price.final_price.value
+			)
 		);
 
 		const handleResize = () => {
