@@ -137,6 +137,7 @@ const ProductModal1: React.FC<ProductModalProps> = ({
                     onClick={handleOpenModal2}
                   >
                     <p>Nâng cấp / Đổi máy</p>
+                    <p>iPhone 16 Series</p>
                     <p>{selectedPrice.toLocaleString()}đ</p>{" "}
                     {/* Selected price */}
                   </button>
