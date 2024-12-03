@@ -12,6 +12,7 @@ export interface Product {
 	image: {
 		url: string;
 	};
+	image_banner: any;
 	attributes: any;
 	price_range: {
 		minimum_price: {
@@ -118,7 +119,7 @@ query getProducts(
 const variables = {
 	filter: {
 		category_uid: {
-			eq: 'MTg2',
+			eq: 'NDQw',
 		},
 	},
 	pageSize: 15,
@@ -157,14 +158,9 @@ const Pro: React.FC = () => {
 
 	useEffect(() => {
 		setFilteredData(
-			(Access20k || [])
-				.filter(
-					(product) => product.name.startsWith('iPhone 11 Pro') && !product.name.includes('iPhone 11 Pro Max')
-				)
-				.sort(
-					(a, b) =>
-						a.price_range.minimum_price.final_price.value - b.price_range.minimum_price.final_price.value
-				)
+			(Access20k || []).sort(
+				(a, b) => a.price_range.minimum_price.final_price.value - b.price_range.minimum_price.final_price.value
+			)
 		);
 
 		const handleResize = () => {
@@ -228,6 +224,17 @@ const Pro: React.FC = () => {
 										alt={`product-${index}`}
 									/>
 								</div>
+								{product.image_banner && (
+									<div className='frame-product'>
+										<Image
+											src={product.image_banner}
+											width={500}
+											height={500}
+											quality={100}
+											alt='frame-product'
+										/>
+									</div>
+								)}
 							</div>
 							<div className='upgrade-item-content'>
 								<h4 className='upgrade-item-content-tt'>{product.name}</h4>

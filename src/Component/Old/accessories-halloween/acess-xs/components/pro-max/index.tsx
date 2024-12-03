@@ -119,7 +119,7 @@ query getProducts(
 const variables = {
 	filter: {
 		category_uid: {
-			eq: 'MTg3',
+			eq: 'NDQz',
 		},
 	},
 	pageSize: 15,
@@ -158,12 +158,9 @@ const ProMax: React.FC = () => {
 
 	useEffect(() => {
 		setFilteredData(
-			(Access110 || [])
-				.filter((product) => product.name.includes('iPhone XS Max'))
-				.sort(
-					(a, b) =>
-						a.price_range.minimum_price.final_price.value - b.price_range.minimum_price.final_price.value
-				)
+			(Access110 || []).sort(
+				(a, b) => a.price_range.minimum_price.final_price.value - b.price_range.minimum_price.final_price.value
+			)
 		);
 
 		const handleResize = () => {

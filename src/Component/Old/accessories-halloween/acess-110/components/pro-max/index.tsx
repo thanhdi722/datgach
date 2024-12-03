@@ -119,7 +119,7 @@ query getProducts(
 const variables = {
 	filter: {
 		category_uid: {
-			eq: 'NTY=',
+			eq: 'NDE5',
 		},
 	},
 	pageSize: 10,
@@ -158,12 +158,9 @@ const ProMax: React.FC = () => {
 
 	useEffect(() => {
 		setFilteredData(
-			(Access20k || [])
-				.filter((product) => product.name.includes('iPhone 15 Pro Max'))
-				.sort(
-					(a, b) =>
-						a.price_range.minimum_price.final_price.value - b.price_range.minimum_price.final_price.value
-				)
+			(Access20k || []).sort(
+				(a, b) => a.price_range.minimum_price.final_price.value - b.price_range.minimum_price.final_price.value
+			)
 		);
 
 		const handleResize = () => {

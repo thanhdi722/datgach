@@ -9,6 +9,7 @@ export interface Product {
 	id: number;
 	name: string;
 	url_key: string;
+	image_banner: string;
 	image: {
 		url: string;
 	};
@@ -118,7 +119,7 @@ query getProducts(
 const variables = {
 	filter: {
 		category_uid: {
-			eq: 'MTg2',
+			eq: 'NDM5',
 		},
 	},
 	pageSize: 15,
@@ -226,6 +227,17 @@ const ProMax: React.FC = () => {
 										alt={`product-${index}`}
 									/>
 								</div>
+								{product.image_banner && (
+									<div className='frame-product'>
+										<Image
+											src={product.image_banner}
+											width={500}
+											height={500}
+											quality={100}
+											alt='frame-product'
+										/>
+									</div>
+								)}
 							</div>
 							<div className='upgrade-item-content'>
 								<h4 className='upgrade-item-content-tt'>{product.name}</h4>
