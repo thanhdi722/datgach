@@ -54,8 +54,7 @@
 		}
 	}
 	&-list-privilege {
-		display: grid !important;
-		grid-template-columns: repeat(6, 1fr) !important;
+		display: flex;
 		gap: 2.4rem;
 		padding: 1.2rem 0;
 		align-items: center;

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-
 import Image from 'next/image';
-import './promotion-new-year.scss';
 import Link from 'next/link';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import './promotion-new-year.scss';
+import 'swiper/css';
 
 interface BannerItem {
 	banner_id: number;
@@ -47,6 +48,7 @@ type PromotionProps = {
 
 const Promotion = ({ onScrollToRules }: PromotionProps) => {
 	const [data, setData] = useState<ApiResponse | null>(null);
+	const [isMobile, setIsMobile] = useState<boolean>(false);
 
 	const fetchBannerHeader = async () => {
 		try {
@@ -57,33 +59,33 @@ const Promotion = ({ onScrollToRules }: PromotionProps) => {
 				},
 				body: JSON.stringify({
 					query: `
-                  query getSlider($filter: SliderFilterInput) {
-                    Slider(filter: $filter) {
-                      items {
-                        title
-                        identifier
-                        Banner {
-                          __typename
-                          items {
-                            banner_id
-                            caption
-                            link
-                            media
-                            media_alt
-                            name
-                            slider_id
-                          }
-                          page_info {
-                            current_page
-                            page_size
-                            total_pages
-                          }
-                        }
-                      }
-                      total_count
+            query getSlider($filter: SliderFilterInput) {
+              Slider(filter: $filter) {
+                items {
+                  title
+                  identifier
+                  Banner {
+                    __typename
+                    items {
+                      banner_id
+                      caption
+                      link
+                      media
+                      media_alt
+                      name
+                      slider_id
+                    }
+                    page_info {
+                      current_page
+                      page_size
+                      total_pages
                     }
                   }
-                `,
+                }
+                total_count
+              }
+            }
+          `,
 					variables: {
 						filter: {
 							identifier: {
@@ -103,6 +105,18 @@ const Promotion = ({ onScrollToRules }: PromotionProps) => {
 
 	useEffect(() => {
 		fetchBannerHeader();
+
+		// Check screen width on load and resize
+		const handleResize = () => {
+			setIsMobile(window.innerWidth < 850);
+		};
+
+		handleResize();
+		window.addEventListener('resize', handleResize);
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
 	}, []);
 
 	return (
@@ -116,38 +130,75 @@ const Promotion = ({ onScrollToRules }: PromotionProps) => {
 					} đặc quyền mua hàng tại `}
 					<span style={{ fontWeight: 700 }}>Bạch Long Mobile</span>
 				</div>
+
 				<div className='promotion-new-year-list-privilege'>
-					{data?.data?.Slider?.items[0]?.Banner?.items
-						.filter((item) => item.name.includes('Ưu Đãi Mừng Năm Mới'))
-						.map((item, index) => (
-							<div key={index} className='privilege-img' style={{ cursor: 'pointer' }}>
-								{item.link ? (
-									<Link href={item.link} target='_blank' rel='noopener noreferrer'>
-										<Image
-											src={item.media || ''}
-											alt={`privilege-${index + 1}`} // Adjust the alt text accordingly
-											width={1200}
-											height={1000}
-										/>
-									</Link>
-								) : (
-									<div
-										onClick={() =>
-											document
-												.getElementById('item-rules')
-												?.scrollIntoView({ behavior: 'smooth' })
-										}
-									>
-										<Image
-											src={item.media || ''}
-											alt={`privilege-${index + 1}`} // Adjust the alt text accordingly
-											width={1200}
-											height={1000}
-										/>
-									</div>
-								)}
-							</div>
-						))}
+					{isMobile ? (
+						<Swiper spaceBetween={10} slidesPerView={5.5}>
+							{data?.data?.Slider?.items[0]?.Banner?.items
+								.filter((item) => item.name.includes('Ưu Đãi Mừng Năm Mới'))
+								.map((item, index) => (
+									<SwiperSlide key={index}>
+										{item.link ? (
+											<Link href={item.link} target='_blank' rel='noopener noreferrer'>
+												<Image
+													src={item.media || ''}
+													alt={`privilege-${index + 1}`}
+													width={1200}
+													height={1000}
+												/>
+											</Link>
+										) : (
+											<div
+												onClick={() =>
+													document
+														.getElementById('item-rules')
+														?.scrollIntoView({ behavior: 'smooth' })
+												}
+											>
+												<Image
+													src={item.media || ''}
+													alt={`privilege-${index + 1}`}
+													width={1200}
+													height={1000}
+												/>
+											</div>
+										)}
+									</SwiperSlide>
+								))}
+						</Swiper>
+					) : (
+						data?.data?.Slider?.items[0]?.Banner?.items
+							.filter((item) => item.name.includes('Ưu Đãi Mừng Năm Mới'))
+							.map((item, index) => (
+								<div key={index} className='privilege-img' style={{ cursor: 'pointer' }}>
+									{item.link ? (
+										<Link href={item.link} target='_blank' rel='noopener noreferrer'>
+											<Image
+												src={item.media || ''}
+												alt={`privilege-${index + 1}`}
+												width={1200}
+												height={1000}
+											/>
+										</Link>
+									) : (
+										<div
+											onClick={() =>
+												document
+													.getElementById('item-rules')
+													?.scrollIntoView({ behavior: 'smooth' })
+											}
+										>
+											<Image
+												src={item.media || ''}
+												alt={`privilege-${index + 1}`}
+												width={1200}
+												height={1000}
+											/>
+										</div>
+									)}
+								</div>
+							))
+					)}
 				</div>
 			</div>
 		</div>
