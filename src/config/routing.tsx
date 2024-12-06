@@ -13,6 +13,7 @@ import { default as FlashSaleTuan } from "../app/flash-sale-tuan/page";
 import { default as NhaGiaoVietNam } from "../app/nha-giao-viet-nam/page";
 import { default as MungNamMoi } from "../app/mung-nam-moi/page";
 import { default as BlackFriday } from "../app/black-friday/page";
+import { default as DealDauThang } from "../app/sale-thang-12/page";
 export const routingBachLongMobile = [
   {
     path: "thang-yeu-thuong",
@@ -73,5 +74,9 @@ export const routingBachLongMobile = [
   {
     path: "black-friday",
     component: <BlackFriday />,
+  },
+  {
+    path: "deal-dau-thang",
+    component: <DealDauThang />,
   },
 ];
