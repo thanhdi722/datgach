@@ -239,40 +239,52 @@ function HeaderHalloween() {
           </div>
         )}
         <div
-          className="HeaderHalloween-promotion-header"
-          style={{ fontWeight: 400 }}
+          style={{
+            padding: "10px",
+            background: "#ff5713",
+            borderRadius: "10px",
+          }}
         >
-          {`7 đặc quyền mua hàng tại `}
-          <span style={{ fontWeight: 700 }}>Bạch Long Mobile</span>
-        </div>
-        <div className="HeaderHalloween-promotion-list-privilege">
-          {data?.data?.Slider?.items[0]?.Banner?.items
-            .filter((item) => item.name.includes("đặt quyền deal đầu tháng"))
-            .map((item, index) => (
-              <div
-                key={index}
-                className="privilege-img"
-                style={{ cursor: "pointer" }}
-              >
-                {item.link ? (
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
+          <div
+            className="HeaderHalloween-promotion-header"
+            style={{ fontWeight: 400 }}
+          >
+            {`7 đặc quyền mua hàng tại `}
+            <span style={{ fontWeight: 700 }}>Bạch Long Mobile</span>
+          </div>
+          <div className="HeaderHalloween-promotion-list-privilege">
+            {data?.data?.Slider?.items[0]?.Banner?.items
+              .filter((item) => item.name.includes("đặt quyền deal đầu tháng"))
+              .map((item, index) => (
+                <div
+                  key={index}
+                  className="privilege-img"
+                  style={{ cursor: "pointer" }}
+                >
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Image
+                        src={item.media || ""}
+                        alt={`privilege-${index + 1}`} // Adjust the alt text accordingly
+                        width={1200}
+                        height={1000}
+                      />
+                    </a>
+                  ) : (
                     <Image
                       src={item.media || ""}
                       alt={`privilege-${index + 1}`} // Adjust the alt text accordingly
                       width={1200}
                       height={1000}
                     />
-                  </a>
-                ) : (
-                  <Image
-                    src={item.media || ""}
-                    alt={`privilege-${index + 1}`} // Adjust the alt text accordingly
-                    width={1200}
-                    height={1000}
-                  />
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     </div>
