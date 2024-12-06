@@ -339,7 +339,7 @@ const AppleList: React.FC = () => {
                         >
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
-                              <span className="percent">Trả góp 0%</span>
+                              {/* <span className="percent">Trả góp 0%</span> */}
                               {/* {/(iphone|ipad|macbook|watch)/i.test(
                                 product?.product?.name
                               ) && (
