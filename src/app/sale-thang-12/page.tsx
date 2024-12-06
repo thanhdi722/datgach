@@ -105,7 +105,7 @@ export default function Page() {
     <div
       className="page-sale-thang-12"
       style={{
-        backgroundColor: "#F7D4AE",
+        backgroundColor: "#fff3e5",
       }}
     >
       <div style={{ position: "relative", overflow: "hidden" }}>
