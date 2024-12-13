@@ -1,13 +1,21 @@
-export const useFilteredProductPrice = (productSale: any[] | undefined, targetNames: string[]) => {
+// Define a type for the product structure
+type Product = {
+	product: {
+		name: string;
+		sale_price: number | null;
+	};
+};
+
+export const useFilteredProductPrice = (productSale: Product[] | undefined, targetNames: string[]) => {
 	if (!productSale || !Array.isArray(productSale)) {
 		return [];
 	}
 
 	const filteredPrices = targetNames.map((targetName) => {
 		const foundProduct = productSale.find(
-			(product: { product: { name: string } }) => product.product.name === targetName
+			(product) => product.product.name === targetName
 		);
-		return foundProduct ? foundProduct.sale_price : null;
+		return foundProduct ? foundProduct.product.sale_price : null;
 	});
 
 	return filteredPrices;

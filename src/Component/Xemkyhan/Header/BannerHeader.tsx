@@ -5,16 +5,8 @@ import "../../../style/styleheaderbanner.css";
 import banner1 from "../../../../public/Images/Gioi_thieu_BLM_1200x450_0810-3.jpg";
 import banner2 from "../../../../public/Images/BOX-TRAGOP-8-150624.png";
 import banner3 from "../../../../public/Images/tragop.png";
-import banner4 from "../../../../public/Images/muadee1.png";
-import banner5 from "../../../../public/Images/mpos1.png";
-import banner6 from "../../../../public/Images/kredivo1.png";
-import banner7 from "../../../../public/Images/hompaylater1.png";
-import banner12 from "../../../../public/Images/hdsaigon1.png";
-import banner13 from "../../../../public/Images/cathemienphi1.png";
 import banner8 from "../../../../public/Images/BOX-TRAGOP-4-150624.png";
 import banner9 from "../../../../public/Images/BOX-TRAGOP-5-150624 (1).png";
-import banner10 from "../../../../public/Images/040924-BANNER-TRA-GOP-3-KHONG-1200.png";
-import banner11 from "../../../../public/Images/banner11.png";
 interface BannerItem {
   banner_id: number;
   caption: string;

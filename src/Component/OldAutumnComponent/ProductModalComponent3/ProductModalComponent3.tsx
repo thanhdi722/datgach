@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Modal, Select, Spin } from "antd";
 import "./ProductModalComponent3.scss";
 import { Option } from "antd/es/mentions";
