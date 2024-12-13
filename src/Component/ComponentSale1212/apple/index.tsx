@@ -3,17 +3,16 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
 import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
-import FrameProduct from "../../../../public/sale-12/fpk.png";
+import FrameProduct from "../../../../public/sale-12/fip.png";
 import { Skeleton, Spin } from "antd";
 import "./apple.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
-import DecorProduct2 from "../../../../public/flase-sale/dragon-sale.png";
+import DecorProduct2 from "../../../../public/sale-12/fai.png";
 export interface Product {
   id: number;
   name: string;
-  sku: string;
   url_key: string;
   image: {
     url: string;
@@ -172,7 +171,7 @@ fragment ProductInterfaceField on ProductInterface {
 const variables = {
   filter: {
     category_uid: {
-      eq: "NDEx",
+      eq: "NDA2",
     },
   },
   pageSize: 200,
@@ -217,13 +216,49 @@ interface ApiResponse {
 }
 
 const AppleList: React.FC = () => {
-  const { data } = useProductSaleData();
-  console.log("data sssss", data);
-  const filteredDatassss = data?.filter(
-    (item: any) => item.title === "SP PK Flash Sale Tuần"
-  );
+  async function fetchProductListDataApple() {
+    const response = await fetch(
+      "https://beta-api.bachlongmobile.com/graphql",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query,
+          variables,
+        }),
+      }
+    );
 
-  const [activeTab, setActiveTab] = useState<string>("All");
+    const data = await response.json();
+    return data.data.products.items as Product[];
+  }
+  const { data, error, isLoading } = useQuery<Product[]>({
+    queryKey: ["productListDataAppleBlackFriday"],
+    queryFn: fetchProductListDataApple,
+    staleTime: 300000,
+  });
+
+  useEffect(() => {
+    if (activeTab === "All") {
+      setFilteredData(data || []);
+    } else {
+      const filtered = data?.filter((product) =>
+        product.name.toLowerCase().includes(activeTab.toLowerCase())
+      );
+      const sortedFiltered = filtered?.sort((a, b) => {
+        return (
+          a.price_range.minimum_price.final_price.value -
+          b.price_range.minimum_price.final_price.value
+        );
+      });
+
+      setFilteredData(sortedFiltered || []);
+    }
+  }, [data]);
+
+  const [activeTab, setActiveTab] = useState<string>("iPhone");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
@@ -289,7 +324,7 @@ const AppleList: React.FC = () => {
   const loadMore = () => {
     setVisibleCount((prevCount) => prevCount + 10);
   };
-  console.log("filteredDatassss", filteredDatassss);
+
   return (
     <div
       className="product-20-11"
@@ -300,15 +335,15 @@ const AppleList: React.FC = () => {
       <div>
         <div className="upgrade-list">
           <div className="container">
-            <div style={{ border: "3px solid #fff", borderRadius: "20px" }}>
+            <div>
               <div
-                style={{ border: "10px solid #F68F3E", borderRadius: "20px" }}
+                style={{ border: "10px solid #ff3333", borderRadius: "20px" }}
               >
                 <div className="women-decor" style={{ paddingBottom: "20px" }}>
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes("title phụ kiện deal đầu tháng")
+                        item.name.includes("title iphone deal đầu tháng")
                       )
                       .map((item, index) => (
                         <div key={index}>
@@ -319,20 +354,19 @@ const AppleList: React.FC = () => {
                         </div>
                       ))
                   ) : (
-                    <Spin style={{ display: "flex", justifyContent: "center" }}>
+                    <Spin>
                       <div style={{ width: 200, height: 200 }} />
                     </Spin>
                   )}
                 </div>
-                {filteredDatassss && filteredDatassss.length > 0 ? (
+                {filteredData && filteredData.length > 0 ? (
                   <div className="upgrade">
-                    {filteredDatassss?.[0]?.items
-                      .sort((a: any, b: any) => a.sale_price - b.sale_price)
+                    {filteredData
                       .slice(0, visibleCount)
                       .map((product: any, index: number) => (
                         <Link
                           key={index}
-                          href={`https://bachlongmobile.com/products/${product?.product?.url_key}/?sku=${product?.product?.sku}`}
+                          href={`https://bachlongmobile.com/products/${product?.url_key}`}
                           passHref
                           target="_blank"
                           rel="noopener noreferrer"
@@ -340,21 +374,21 @@ const AppleList: React.FC = () => {
                         >
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
-                              {/* <span className="percent">Trả góp 0%</span> */}
-                              {/* {/(iphone|ipad|macbook|watch)/i.test(
-                                product?.product?.name
+                              <span className="percent">Trả góp 0%</span>
+                              {/(iphone|ipad|macbook|watch)/i.test(
+                                product?.name
                               ) && (
                                 <Image
                                   className="ic-auth"
                                   src={DecorWomen}
                                   alt=""
                                 />
-                              )} */}
+                              )}
                             </div>
                             <div className="upgrade-item-img">
                               <div className="img-content">
                                 <Image
-                                  src={product?.product?.image?.url}
+                                  src={product?.image?.url}
                                   width={1400}
                                   height={1200}
                                   quality={100}
@@ -363,7 +397,11 @@ const AppleList: React.FC = () => {
                               </div>
                               <div className="frame-product">
                                 <Image
-                                  src={FrameProduct}
+                                  src={
+                                    product?.name.includes("16")
+                                      ? FrameProduct
+                                      : DecorProduct2
+                                  }
                                   width={500}
                                   height={500}
                                   quality={100}
@@ -373,17 +411,20 @@ const AppleList: React.FC = () => {
                             </div>
                             <div className="upgrade-item-content">
                               <h4 className="upgrade-item-content-tt">
-                                {product?.product?.name}
+                                {product?.name}
                               </h4>
                               <div className="upgrade-item-content-body">
                                 <div className="upgrade-item-content-body-price">
-                                  {product?.sale_price?.toLocaleString("vi-VN")}{" "}
+                                  {Number(
+                                    product?.price_range?.minimum_price
+                                      ?.final_price?.value
+                                  )?.toLocaleString("vi-VN")}{" "}
                                   VNĐ
                                 </div>
                                 <div className="upgrade-item-content-body-reduced">
                                   <div className="price-reduced">
                                     {Number(
-                                      product?.price_original
+                                      product?.attributes[0]?.value
                                     )?.toLocaleString("vi-VN")}{" "}
                                     VNĐ
                                   </div>
@@ -391,14 +432,15 @@ const AppleList: React.FC = () => {
                                     -
                                     {Math.ceil(
                                       100 -
-                                        (product.sale_price /
-                                          product.price_original) *
+                                        (product.price_range?.minimum_price
+                                          ?.final_price?.value /
+                                          product.attributes[0]?.value) *
                                           100
                                     )}
                                     %
                                   </div>
                                 </div>
-                                {/* <div
+                                <div
                                   style={{
                                     backgroundColor: "rgba(215, 0, 24, .08)",
                                     borderRadius: "0.4rem",
@@ -415,7 +457,7 @@ const AppleList: React.FC = () => {
                                   >
                                     Giá thu bằng giá bán - Trợ giá lên đến 100%
                                   </span>
-                                </div> */}
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -469,12 +511,12 @@ const AppleList: React.FC = () => {
                     ))}
                   </div>
                 )}
-                {visibleCount < filteredDatassss?.[0]?.items?.length ? (
+                {visibleCount < filteredData?.length ? (
                   <div style={{ textAlign: "center", margin: "10px 0px" }}>
                     <button
                       onClick={loadMore}
                       style={{
-                        backgroundColor: "rgb(246 143 62)",
+                        backgroundColor: "#ff3333",
                         color: "white",
                         border: "none",
                         padding: "10px 20px",

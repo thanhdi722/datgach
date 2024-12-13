@@ -9,11 +9,10 @@ import "./apple.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
-import DecorProduct2 from "../../../../public/flase-sale/dragon-sale.png";
+import DecorProduct2 from "../../../../public/sale-12/pngtree-buy-1-get-for-sale-png-image_6589159.png";
 export interface Product {
   id: number;
   name: string;
-  sku: string;
   url_key: string;
   image: {
     url: string;
@@ -225,7 +224,7 @@ const AppleList: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<string>("All");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
-  const [visibleCount, setVisibleCount] = useState<number>(10);
+  const [visibleCount, setVisibleCount] = useState<number>(4);
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
   const fetchBannerHeader = async () => {
     try {
@@ -292,7 +291,7 @@ const AppleList: React.FC = () => {
   console.log("filteredDatassss", filteredDatassss);
   return (
     <div
-      className="product-20-11"
+      className="product-list-sale-12-12"
       style={{
         marginBottom: "20px",
       }}
@@ -300,9 +299,9 @@ const AppleList: React.FC = () => {
       <div>
         <div className="upgrade-list">
           <div className="container">
-            <div style={{ border: "3px solid #fff", borderRadius: "20px" }}>
+            <div>
               <div
-                style={{ border: "10px solid #F68F3E", borderRadius: "20px" }}
+                style={{ border: "10px solid #ff3333", borderRadius: "20px" }}
               >
                 <div className="women-decor" style={{ paddingBottom: "20px" }}>
                   {dataTitle ? (
@@ -332,16 +331,24 @@ const AppleList: React.FC = () => {
                       .map((product: any, index: number) => (
                         <Link
                           key={index}
-                          href={`https://bachlongmobile.com/products/${product?.product?.url_key}/?sku=${product?.product?.sku}`}
+                          href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
                           passHref
                           target="_blank"
                           rel="noopener noreferrer"
-                          style={{ textDecoration: "none", color: "black" }}
+                          style={{
+                            textDecoration: "none",
+                            color: "black",
+                            display: "flex",
+                          }}
                         >
-                          <div className="upgrade-item">
-                            <div className="upgrade-item-header">
-                              {/* <span className="percent">Trả góp 0%</span> */}
-                              {/* {/(iphone|ipad|macbook|watch)/i.test(
+                          <div
+                            className="upgrade-item"
+                            style={{ display: "flex" }}
+                          >
+                            <div className="">
+                              <div className="upgrade-item-header">
+                                {/* <span className="percent">Trả góp 0%</span> */}
+                                {/* {/(iphone|ipad|macbook|watch)/i.test(
                                 product?.product?.name
                               ) && (
                                 <Image
@@ -350,55 +357,57 @@ const AppleList: React.FC = () => {
                                   alt=""
                                 />
                               )} */}
-                            </div>
-                            <div className="upgrade-item-img">
-                              <div className="img-content">
-                                <Image
-                                  src={product?.product?.image?.url}
-                                  width={1400}
-                                  height={1200}
-                                  quality={100}
-                                  alt={`product-${index}`}
-                                />
                               </div>
-                              <div className="frame-product">
-                                <Image
-                                  src={FrameProduct}
-                                  width={500}
-                                  height={500}
-                                  quality={100}
-                                  alt="frame-product"
-                                />
-                              </div>
-                            </div>
-                            <div className="upgrade-item-content">
-                              <h4 className="upgrade-item-content-tt">
-                                {product?.product?.name}
-                              </h4>
-                              <div className="upgrade-item-content-body">
-                                <div className="upgrade-item-content-body-price">
-                                  {product?.sale_price?.toLocaleString("vi-VN")}{" "}
-                                  VNĐ
+                              <div className="upgrade-item-img">
+                                <div className="img-content">
+                                  <Image
+                                    src={product?.product?.image?.url}
+                                    width={1400}
+                                    height={1200}
+                                    quality={100}
+                                    alt={`product-${index}`}
+                                  />
                                 </div>
-                                <div className="upgrade-item-content-body-reduced">
-                                  <div className="price-reduced">
-                                    {Number(
-                                      product?.price_original
-                                    )?.toLocaleString("vi-VN")}{" "}
+                                <div className="frame-product">
+                                  <Image
+                                    src={FrameProduct}
+                                    width={500}
+                                    height={500}
+                                    quality={100}
+                                    alt="frame-product"
+                                  />
+                                </div>
+                              </div>
+                              <div className="upgrade-item-content">
+                                <h4 className="upgrade-item-content-tt">
+                                  {product?.product?.name}
+                                </h4>
+                                <div className="upgrade-item-content-body">
+                                  <div className="upgrade-item-content-body-price">
+                                    {product?.sale_price?.toLocaleString(
+                                      "vi-VN"
+                                    )}{" "}
                                     VNĐ
                                   </div>
-                                  <div className="percent">
-                                    -
-                                    {Math.ceil(
-                                      100 -
-                                        (product.sale_price /
-                                          product.price_original) *
-                                          100
-                                    )}
-                                    %
+                                  <div className="upgrade-item-content-body-reduced">
+                                    <div className="price-reduced">
+                                      {Number(
+                                        product?.price_original
+                                      )?.toLocaleString("vi-VN")}{" "}
+                                      VNĐ
+                                    </div>
+                                    <div className="percent">
+                                      -
+                                      {Math.ceil(
+                                        100 -
+                                          (product.sale_price /
+                                            product.price_original) *
+                                            100
+                                      )}
+                                      %
+                                    </div>
                                   </div>
-                                </div>
-                                {/* <div
+                                  {/* <div
                                   style={{
                                     backgroundColor: "rgba(215, 0, 24, .08)",
                                     borderRadius: "0.4rem",
@@ -416,6 +425,39 @@ const AppleList: React.FC = () => {
                                     Giá thu bằng giá bán - Trợ giá lên đến 100%
                                   </span>
                                 </div> */}
+                                </div>
+                              </div>
+                            </div>
+                            <Image
+                              className="decor-product-1v1"
+                              src={DecorProduct2}
+                              alt=""
+                            />
+                            <div className="">
+                              <div className="upgrade-item-header"></div>
+                              <div className="upgrade-item-img">
+                                <div className="img-content">
+                                  <Image
+                                    src={product?.product?.image?.url}
+                                    width={1400}
+                                    height={1200}
+                                    quality={100}
+                                    alt={`product-${index}`}
+                                  />
+                                </div>
+                              </div>
+                              <div className="upgrade-item-content">
+                                <h4 className="upgrade-item-content-tt">
+                                  {product?.product?.name}
+                                </h4>
+                                <div className="upgrade-item-content-body">
+                                  <div className="upgrade-item-content-body-price">
+                                    {product?.sale_price?.toLocaleString(
+                                      "vi-VN"
+                                    )}{" "}
+                                    VNĐ
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -474,7 +516,7 @@ const AppleList: React.FC = () => {
                     <button
                       onClick={loadMore}
                       style={{
-                        backgroundColor: "rgb(246 143 62)",
+                        backgroundColor: "#ff3333",
                         color: "white",
                         border: "none",
                         padding: "10px 20px",
